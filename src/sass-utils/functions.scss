@@ -1,0 +1,59 @@
+@import './variables.scss';
+
+@function get-color-scale($color, $scale, $customAlpha: 0%) {
+  @if map-has-key($colors, $color) {
+    @if map-has-key($scale-color, $scale) {
+      @if map-get($scale-color, $scale) == 0 {
+        @return scale-color(map-get($colors, $color), $alpha: $customAlpha);
+      }
+      @else {
+        @return scale-color(map-get($colors, $color), $lightness: map-get($scale-color, $scale), $alpha: $customAlpha * -1);
+      }
+    }
+    @else {
+      @error "Unfortunately, no value could be retrieved from `#{$scale}`. "
+          + "Please make sure it is defined in `$scale-color` map.";
+    }
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$color}`. "
+        + "Please make sure it is defined in `$colors` map.";
+  }
+}
+
+@function get-border-size($size) {
+  @if map-has-key($border-size, $size) {
+    @return map-get($border-size, $size);
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$border-size` map.";
+  }
+}
+
+@function get-scale-size($size) {
+  @if map-has-key($scale-size, $size) {
+    @return map-get($scale-size, $size);
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$scale-size` map.";
+  }
+}
+
+@function get-responsive-margin($container-name, $margin-name) {
+  @if map-has-key($margins, $container-name) {
+    $margins-container: map-get($margins, $container-name);
+    @if map-has-key($margins-container, $margin-name) {
+      @return map-get($margins-container, $margin-name);
+    }
+    @else {
+      @error "Unfortunately, no value could be retrieved from `#{$margin-name}`. "
+          + "Please make sure it is defined in `$margins->container` map.";
+    }
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$container-name}`. "
+        + "Please make sure it is defined in `$margins` map.";
+  }
+}

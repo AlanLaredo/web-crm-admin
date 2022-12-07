@@ -1,0 +1,353 @@
+{
+  "applicationTitle": "Crm Admin",
+  "lang": {
+    "luxon": "es",
+    "timezone": "America/Monterrey"
+  },
+  "company": {
+    "name": "Crm Admin"
+  },
+  "pluralize": {
+    "month": "mes",
+    "months": "meses"
+  },
+  "operators": {
+    "and": " y ",
+    "or": " o "
+  },
+  "actions": {
+    "delete": "Eliminar",
+    "new": "Nuevo",
+    "edit": "Editar",
+    "add": "Agregar",
+    "minus": "Restar",
+    "cancel": "Cancelar",
+    "accept": "Aceptar",
+    "hide": "Ocultar",
+    "remove": "Remover",
+    "details": "Detalles",
+    "finalize": "Finalizar",
+    "report": "Reporte",
+    "search": "Buscar",
+    "start": "Iniciar",
+    "send": "Enviar",
+    "pay": "Pagar",
+    "download": "Descargar",
+    "upload": "Adjuntar",
+    "see": "Ver",
+    "view": "Ver",
+    "close": "Cerrar"
+  },
+  "messages": {
+    "help": "Ayuda",
+    "loadingMessage": "Espere por favor...",
+    "warningBrowser": "Para una mejor experiencia se recomienda utilizar Google Chrome o Microsoft Edge",
+    "warningBrowserWithOutBrowser": "Para una mejor experiencia se recomienda utilizar ",
+    "minimalResolution": "(Resolución mínima 1280x720px)",
+    "errorServer": "Error de servidor ",
+    "load": {
+      "error": "Error al cargar la información"
+    },
+    "noRecords": "Sin resultados",
+    "pagerItemsPerPage": "Elementos por pagina",
+    "pagerOf": "Elementos de ",
+    "returnPreviusPage": "Regresar",
+    "filter": {
+      "filterResults": "Filtrar resultados",
+      "selectFilters": "Seleccionar un filtros"
+    },
+    "delete": {
+      "confirmQuestion": "¿Está seguro de eliminar este elemento?",
+      "success": "Se ha eliminado un elemento"
+    },
+    "save": {
+      "success": "Se ha guardado un elemento",
+      "error": "Error al guardar el elemento"
+    },
+    "update": {
+      "success": "Se ha actualizado un elemento"
+    },
+    "send": {
+      "success": "Se ha enviado exitosamente"
+    },
+    "elementNotFound": "Elemento no encontrado",
+    "unknownError": "Error desconocido, contacte a su servicio técnico",
+    "serviceNotAvailable": "Servicio no disponible, inténtelo mas tarde",
+    "internalServer": "Error de servidor interno",
+    "duplicated": "Este elemento ya existe"
+  },
+  "menu": {
+    "home": "Inicio",
+    "security": "Seguridad",
+    "clients": "Clientes",
+    "catalogs": "Catálogos",
+    "client": "Clientes",
+    "company": "Compañías",
+    "employee": "Empleados",
+    "binnacle": "Bitácora",
+    "process": "Procesos",
+    "recruitment": "Reclutamiento",
+    "operationBinnacle": "Operación"
+  },
+  "submenu": {
+    "users": "Usuarios",
+    "roles": "Roles",
+    "permissions": "Permisos",
+    "clients": "Clientes",
+    "clientService": "Servicios",
+    "company": "Compañías",
+    "companyGroup": "Grupos",
+    "companyUser": "Usuarios",
+    "employees": "Empleados",
+    "reassignment": "Reasignación",
+    "process": "Procesos",
+    "customer": "Prospectos",
+    "recruitment": "Reclutamiento",
+    "jobVacancy": "Vacantes",
+    "positions": "Puestos"
+  },
+  "header": {
+    "confirmLogout": "¿Está seguro de cerrar sesión?",
+    "closedSession": "Se ha cerrado la sesión exitosamente",
+    "user": {
+        "greeting": "Hola",
+        "configurate": "Configurar",
+        "logout": "Cerrar Sesión"
+    }
+  },
+  "login": {
+    "pageTitle": "Iniciar Sesión",
+    "loginWait": "Espere por favor",
+    "loginRedirect": "Se redireccionará a la pagina de inicio de sesión...",
+      "forgetPassword": "¿Olvidó su contraseña?",
+      "loginMantain": "Mantener sesión activa"
+  },
+  "general": {
+    "notifications": "Notificaciones",
+    "hello": "Hola",
+    "actions": "Acciones",
+    "noRecords": "Sin resultados",
+    "pagerItemsPerPage": "Elementos por pagina",
+    "pagerOf": "Elementos de ",
+    "returnPreviusPage": "Regresar",
+    "created": "Creación",
+    "to": " a las ",
+    "createdBy": "Creado por",
+    "createdAt": "Creado",
+    "following": "Siguiente",
+    "previous": "Anterior",
+    "filter": {
+      "filterResults": "Filtrar resultados",
+      "selectFilters": "Seleccionar un filtros"
+    },
+    "titles": {
+      "creation": "Creación",
+      "edit": "Edición",
+      "edition": "Edición"
+    },
+    "addMore": "Agregar",
+    "days": "días"
+  },
+  "daysOfWeek": {
+    "Monday": "Lunes",
+    "Tuesday": "Martes",
+    "Wednesday": "Miércoles",
+    "Thursday": "Jueves",
+    "Friday": "Viernes",
+    "Saturday": "Sábado",
+    "Sunday": "Domingo"
+  },
+  "form": {
+    "insufficientData": "Información insuficiente",
+    "errorData": "Revise la información en el formulario",
+    "errorDate": "Revise la información de la fecha",
+    "errorDates": "Revise la información de las fechas",
+    "errorUpdate": "Error al actualizar la información",
+    "changesSaved": "Se han guardado los cambios",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "validations": {
+      "maximum": "Máximo",
+      "abbreviationMaximum": "Max.",
+      "minimum": "Mínimo",
+      "abbreviationMinimum": "Min.",
+      "digits": "dígitos",
+      "decimals": "decimales",
+      "characters": "caracteres",
+      "unicValue": "Valor único",
+      "range": {
+        "rangeOf": "Rango de",
+        "to": "a"
+      },
+      "defaultValue": "Valor predeterminado",
+      "required": "*Obligatorio",
+      "optional": "Opcional",
+      "numberPositiveNegativeAndOrDecimals": "Introduce un número(positivo/negativo/decimales)",
+      "abbreviationNumberPositiveNegative": "Num. +/-",
+      "email": "abc@example.com",
+      "noMoreSpaces": ""
+    },
+    "instructions": {
+      "introduce": "Introduce un texto",
+      "enterAText": "Introduce un texto",
+      "selectADate": "Seleccione una fecha",
+      "enterASecretText": "Introduce un texto",
+      "enterANumber": "Introduce un número",
+      "enterANumberWithDecimals": "Introduce un número (decimales)",
+      "enterANumberWithDecimalsAndOrNegative": "Introduce un número(positivo/negativo/decimales)",
+      "selectAnOption": "Seleccionar",
+      "enterAEmail": "Introduce un email",
+      "enterAPhone": "Introduce un número telefónico",
+      "selectADateTime": "Selecciona una fecha y hora",
+      "markTheOptions": "Marca las opciones"
+    },
+    "login": {
+      "insufficientData": "Debe introducir sus credenciales de acceso"
+    }
+  },
+  "users": {
+    "title": "Usuarios",
+    "cols": {
+      "username": "Usuario",
+      "email": "Email",
+      "name": "Nombre",
+      "roleName": "Rol"
+    },
+    "messages": {
+      "notFoundUser": "No se ha encontrado el usuario",
+      "save": {
+        "success": "Se ha registrado al usuario ",
+        "error": "No se ha podido registrar al usuario"
+      }
+    }
+  },
+  "userForm": {
+    "titles": {
+      "page": "Usuarios",
+      "creation": "Creación",
+      "edition": "Edición"
+    },
+    "form": {
+      "username": "Usuario",
+      "email": "Email",
+      "lastName": "Apellidos",
+      "firstName": "Nombre",
+      "roleName": "Puesto",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar",
+      "roleAccess": "Rol de acceso"
+    },
+    "actions": {
+      "update": {
+        "duplicateUser": " ya se encuentra en uso",
+        "success": "Se ha actualizado el usuario "
+      },
+      "delete": {
+        "success": "Se ha eliminado el usuario"
+      }
+    }
+  },
+  "permissions": {
+    "pageTitle": "Permisos",
+    "title": "Permisos",
+    "cols": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "tag": "Tag"
+    },
+    "grid":"Lista",
+    "delete":"Eliminar",
+    "create":"Creación",
+    "edit":"Edición",
+    "detail":"Detalle",
+    "modules": {
+      "users": "Usuarios",
+      "roleaccess": "Rol de acceso",
+      "presupuesto": "Presupuesto"
+    }
+  },
+  "roleAccess": {
+    "pageTitle": "Rol de acceso",
+    "title": "Rol de acceso",
+    "titles": {
+      "creation": "Creación",
+      "edition": "Edición",
+      "data": "Edición",
+      "permissionsSettings": "Configuración de permisos"
+    },
+    "cols": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "permissionsSettings": "Configuración de permisos"
+    }
+  },
+  "permissionForm": {
+    "titles": {
+      "creation": "Creación",
+      "edition": "Edición"
+    },
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "tag": "Etiqueta"
+    },
+    "save": {
+      "theTag": "El tag ",
+      "isDuplicated": " ya existe",
+      "duplicated": {
+        "tag": "Ese tag ya está en uso",
+        "name": "Ese nombre ya esta en uso"
+      }
+    }
+  },
+  "matTable": {
+    "paginator": {
+      "perPage": "Por página"
+    },
+    "noRecords": "Sin resultados"
+  },
+  "clients": {
+    "title": "Clientes",
+    "titles": {
+      "page": "Clientes",
+      "edition": "Edición",
+      "creation": "Creación"
+    },
+    "cols": {
+      "name": "Nombre",
+      "email": "Email",
+      "managerName": "Encargado",
+      "contactNumbers": "Contacto",
+      "address": "Dirección"
+    },
+    "form": {
+      "tooltips": {
+        "addMorePhones": "+ Agregar número de contacto",
+        "removeMorePhones": "- Eliminar número de contacto"
+      },
+      "validations": {
+        "phoneNumbers": {
+          "insufficientData": "Debe introducir un númeor de contacto"
+        }
+      },
+      "name": "Nombre",
+      "email": "Email",
+      "type": "Tipo de cliente",
+      "managerName": "Encargado",
+      "contactNumber": "Número telefónico",
+      "contactNumbers": "Números de contacto",
+      "postalCode": "Código postal",
+      "state": "Estado",
+      "municipality": "Municipio",
+      "fiscalEmail":"Email (fiscal)",
+      "rfc": "RFC",
+      "usageCfdi": "Uso de CFDI",
+      "fiscalAddress": "Dirección fiscal",
+      "socialReason": "Razón Social",
+      "locationReferences": "Referencias del lugar",
+      "street": "Calle",
+      "suburb": "Colonia",
+      "legalRepresentative": "Representante legal"
+    }
+  }
+}

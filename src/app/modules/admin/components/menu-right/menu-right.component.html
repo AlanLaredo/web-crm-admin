@@ -1,0 +1,55 @@
+<div class="container-notifications p-4" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <div class="row">
+    <div class="col-12" *ngFor="let systemAlert of _systemAlerts">
+      <mat-card class="mat-elevation-z8 system-alert-card m-1 py-0">
+        <mat-card-content>
+          <div class="row system-alert-header">
+            <div class="col-12">
+              <div class="d-flex justify-content-between">
+                <div class="pt-3">
+                  {{'systemAlerts.' + systemAlert.name | translate}}
+                </div>
+                <div>
+                  <button mat-icon-button color="accent" (click)="delete(systemAlert.id)">
+                    <mat-icon class="font-size-18">delete_forever</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row system-alert-description">
+            <div class="col-12">
+              {{systemAlert.notificationInfo}}
+            </div>
+          </div>
+          <div>
+            <a *ngIf="systemAlert.seeMore" class="system-alert-seemore font-size-12" (click)="seeMore(systemAlert.notificationInfoExtended)">
+              Ver más
+            </a>
+          </div>
+          <div class="row system-alert-footer">
+            <div class="col-12">
+              <div class="d-flex justify-content-between system-alert-footer-text">
+                <div>
+                  {{systemAlert.createdAtString}}
+                </div>
+                <mat-icon *ngIf="!systemAlert.viewedAt" class="system-alert-view-button" (click)="view(systemAlert.id)">check</mat-icon>
+                <div *ngIf="systemAlert.viewedAt">
+                  {{'systemAlerts.view' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row" *ngIf="_systemAlerts.length === 0">
+    <div class="col-12">
+      <button mat-icon-button disabled>
+        {{'systemAlerts.noAlerts' | translate}}
+        <mat-icon aria-label="{{'general.notifications' | translate}}">notifications</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

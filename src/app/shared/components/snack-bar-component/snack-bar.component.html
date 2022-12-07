@@ -1,0 +1,12 @@
+<div class="row" style="height:10px;" (click)="snackBarRef.dismiss()" class="cursor-pointer">
+  <div class="col-12 d-flex justify-content-between">
+    <span matSnackBarLabel>
+      {{message}}
+    </span>
+    <span matSnackBarActions>
+      <button mat-icon-button matSnackBarAction class="{{resultClass}}">
+        <mat-icon class="tiny-icon-snackbar">{{icon}}</mat-icon>
+      </button>
+    </span>
+  </div>
+</div>

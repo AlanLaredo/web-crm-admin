@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{'dataEventLog.title' | translate}} </h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12">
+      <mat-list role="list">
+        <mat-list-item role="listitem">Creado el {{_data.createdAtString}} por {{_data.createdByName}}</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="_data.modifiedByName">Modificado el {{_data.modifiedAtString}} por {{_data.createdByName}}</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="_data.clientEmail">Email {{_data.clientEmail}}</mat-list-item>
+        <mat-list-item role="listitem" *ngIf="_data.clientContactNumber">Número {{_data.clientContactNumber}}</mat-list-item>
+      </mat-list>
+    </div>
+  </div>  
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="onNoClick()">{{'actions.close' | translate}}</button>
+</div>

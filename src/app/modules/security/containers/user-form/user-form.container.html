@@ -1,0 +1,22 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row">
+      <go-back-button-component class="col-12"></go-back-button-component>
+    </div>
+    <div class="row d-flex justify-content-between pt-4">
+      <div class="col-12">
+        <h1>{{ title | translate }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4">
+        <user-form-component
+        [loading]="loading"
+        [user]="user" [roleAccessList]="roleAccessList"
+        (outActionForm)="save($event)"
+        (outActionRoleAccessChange)="changeRoleAccess($event)"></user-form-component>
+      </div>
+    </div>
+  </div>
+
+</div>

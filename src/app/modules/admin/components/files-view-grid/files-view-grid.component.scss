@@ -1,0 +1,27 @@
+@import '../../../../../sass-utils/variables.scss';
+@import '../../../../../sass-utils/mixins.scss';
+@import '../../../../../sass-utils/functions.scss';
+
+.cs-filename {
+  font-size: 12px;
+}
+.mat-column-imageIds {
+  padding-left: 14px;
+  padding-right: 14px;
+  width: 500px;
+}
+.cs-material-icons {
+  font-size: 18px;
+}
+.mat-column-name {
+  font-size: 13px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre;
+  max-width: 400px;
+  min-width: 200px;
+}
+.mat-column-date {
+  min-width: 180px;
+}
+

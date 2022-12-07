@@ -1,0 +1,23 @@
+@import '../sass-utils/variables.scss';
+@import '../sass-utils/mixins.scss';
+@import '../sass-utils/functions.scss';
+
+mat-sidenav-container {
+  min-height: calc( 100vh - 60px );
+}
+
+mat-sidenav {
+  /*margin-top: get-scale-size(60);*/
+}
+
+/*
+.footer {
+  min-height: 10vh;
+}
+
+
+mat-sidenav {
+  margin-top: get-scale-size(60);
+  width: get-scale-size(72) * 3;
+}
+*/

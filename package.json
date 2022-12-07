@@ -1,0 +1,103 @@
+{
+  "name": "web-crm-admin",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "SET --max_old_space_size=16384 ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "standard:test": "standard \"$(pwd)/src/**/*.ts\" | ./node_modules/.bin/snazzy",
+    "standard:lint": "standard --fix \"$(pwd)/src/**/*.ts\" | ./node_modules/.bin/snazzy",
+    "standard:windows": "standard ./src/**/*.ts | snazzy"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular-material-components/datetime-picker": "^8.0.0",
+    "@angular-material-components/moment-adapter": "^8.0.0",
+    "@angular/animations": "12.1.2",
+    "@angular/cdk": "^12.1.1",
+    "@angular/common": "~12.1.0",
+    "@angular/compiler": "~12.1.0",
+    "@angular/core": "~12.1.0",
+    "@angular/flex-layout": "11.0.0-beta.33",
+    "@angular/forms": "~12.1.0",
+    "@angular/material": "^12.1.1",
+    "@angular/platform-browser": "~12.1.0",
+    "@angular/platform-browser-dynamic": "~12.1.0",
+    "@angular/router": "~12.1.0",
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.0.6",
+    "@nestjs/schedule": "^1.0.2",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
+    "apollo-angular": "1.10.0",
+    "apollo-angular-link-http": "1.11.0",
+    "apollo-cache-inmemory": "1.6.6",
+    "apollo-client": "2.6.10",
+    "apollo-link-context": "1.0.20",
+    "apollo-link-error": "^1.1.13",
+    "aws-sdk": "^2.1048.0",
+    "file-saver": "^2.0.5",
+    "graphql": "15.4.0",
+    "graphql-tag": "2.11.0",
+    "jspdf": "^2.5.0",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "luxon": "^2.0.2",
+    "moment": "2.29.1",
+    "rxjs": "~6.6.0",
+    "sweetalert2": "10.10.4",
+    "tslib": "^2.2.0",
+    "util": "^0.12.4",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^12.1.4",
+    "@angular/cli": "~12.1.0",
+    "@angular/compiler-cli": "~12.1.0",
+    "@fortawesome/fontawesome-free": "^6.2.1",
+    "@sweetalert2/theme-material-ui": "4.0.1",
+    "@types/cron": "^1.7.3",
+    "@types/file-saver": "^2.0.4",
+    "@types/jasmine": "~3.6.0",
+    "@types/lodash": "^4.14.171",
+    "@types/luxon": "^2.0.5",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/eslint-plugin-tslint": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "bootstrap": "4.5.3",
+    "husky": "4.3.0",
+    "jasmine-core": "~3.7.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
+    "snazzy": "9.0.0",
+    "standard": "^16.0.4",
+    "stream-browserify": "^3.0.0",
+    "typescript": "~4.3.2"
+  },
+  "standard": {
+    "global": [
+      "localStorage",
+      "navigator"
+    ],
+    "env": {
+      "jasmine": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
+    "rules": {}
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run standard:windows",
+      "pre-commit": "npm run standard:windows"
+    }
+  }
+}

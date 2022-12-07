@@ -1,0 +1,10 @@
+<div [class]="_orientation">
+  <menu-item-component
+    *ngFor="let menuItem of menu"
+    [orientation]="_orientation"
+    [active]="isRouteActive(menuItem.routeLink)"
+    (menuItemSelected)="navigateTo($event)"
+    [menuItem]="menuItem"
+  >
+  </menu-item-component>
+</div>

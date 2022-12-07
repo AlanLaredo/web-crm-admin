@@ -1,0 +1,18 @@
+<!-- <mat-menu #childMenu="matMenu" [overlapTrigger]="false" class="submenu">
+  <span *ngFor="let item of subMenu">
+    <span *ngIf="item.childs && item.childs.length > 0">
+      <button mat-menu-item color="primary" [matMenuTriggerFor]="menu.childMenu">
+        <span>{{ 'menu.submenu.' + item.name | translate }}</span>
+      </button>
+      <sub-menu-item-component
+      #menu
+      [subMenu]="item.childs"
+      ></sub-menu-item-component>
+    </span>
+    <span *ngIf="!item.childs || item.childs.length === 0">
+      <button mat-menu-item (click)="onSubItemSelected(item)">
+        <span>{{ 'menu.submenu.' + item.name | translate }}</span>
+      </button>
+    </span>
+  </span>
+</mat-menu> -->

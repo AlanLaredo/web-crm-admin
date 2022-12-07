@@ -1,0 +1,61 @@
+@use 'sass:math';
+@import './variables.scss';
+
+@mixin full-image-bg {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@mixin rem($property, $pxls) {
+  $baseline-rem: math.div($main-font-size, 1rem * 1);
+  #{$property}: $pxls;
+  @if type-of($pxls) == "number" {
+    #{$property}: math.div($pxls, $baseline-rem);
+  }
+  @else {
+    $rem-values: ();
+    @each $value in $pxls {
+      @if $value == 0 or type-of( $value ) != "number" {
+        $rem-values: append($rem-values, $value);
+      }
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+    #{$property}: $rem-values;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin apply-weight($size, $important: false) {
+  @if map-has-key($font-weights, $size) {
+    @if $important {
+      font-weight: #{map-get($font-weights, $size)} !important;
+    }
+    @else {
+      font-weight: #{map-get($font-weights, $size)};
+    }
+  }
+  @else {
+    @error "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$font-weights` map.";
+  }
+}

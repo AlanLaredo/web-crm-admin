@@ -1,0 +1,75 @@
+import gql from 'graphql-tag'
+
+export default gql`mutation deleteClientService($deleteIdData: DeleteIDInput!){
+    deleteClientService(deleteIdData: $deleteIdData){
+        createdBy
+        createdAt
+        modifiedBy
+        modifiedAt
+        deletedBy
+        deletedAt
+        id
+        cientId
+        serviceType
+        scheduleHours
+        serviceCost
+        elementCost
+        patrolCost
+        quadBikeCost
+        bossShiftCost
+        qrCost
+        costHolyDays
+        addressExecution
+        totalElementsDay
+        totalElementsNight
+        totalPatrol
+        totalQaudBike
+        startDate
+        emergencyContact{
+            name
+            lastName
+            phoneContacts
+            emails
+            comments
+            address{
+                name
+                street
+                exteriorNumber
+                interiorNumber
+                neightborhood
+                city
+                state
+                country
+                postalCode
+            }
+        }
+        paymentContact{
+            name
+            lastName
+            phoneContacts
+            emails
+            comments
+            address{
+                name
+                street
+                exteriorNumber
+                interiorNumber
+                neightborhood
+                city
+                state
+                country
+                postalCode
+            }
+        }
+        creditDays
+        paymentDays
+        folioCounterReceipt
+        billing
+        branchBank
+        lastFourDigits
+        paymentMethod
+        usageCfdi
+        paymentForm
+    }
+}
+`

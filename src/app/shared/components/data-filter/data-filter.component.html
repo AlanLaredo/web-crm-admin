@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" *ngIf="!_dataFilterConfiguration.hideSelectable">
+    <mat-form-field  class="custom-mat-form-field">
+      <mat-label>{{ 'general.filter.filterResults' | translate }}</mat-label>
+      <input autocomplete="off" type="text" matInput="matInput" [(ngModel)]="textInput" placeholder="{{'form.instructions.enterAText' | translate}}" (keyup)="filterDataDebounce()"/>
+      <button mat-button *ngIf="textInput" matSuffix mat-icon-button aria-label="Clear" (click)="textInput=''; filterDataDebounce();">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngIf="_dataFilterConfiguration.hideSelectable">
+    <mat-form-field  class="custom-mat-form-field">
+      <mat-label>{{ 'general.filter.filterResults' | translate }}</mat-label>
+      <input autocomplete="off" type="text" matInput="matInput" [(ngModel)]="textInput" placeholder="{{'form.instructions.enterAText' | translate}}" (keyup)="filterDataDebounce()"/>
+      <button mat-button *ngIf="textInput" matSuffix mat-icon-button aria-label="Clear" (click)="textInput=''; filterDataDebounce();">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" *ngIf="!_dataFilterConfiguration.hideSelectable">
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{ 'form.instructions.selectAnOption' | translate }}</mat-label>
+      <mat-select [formControl]="optionsFormControl" placeholder="{{ 'form.instructions.selectAnOption' | translate }}" (ngModelChange)="filterDataDebounce()" multiple>
+        <mat-select-trigger>
+          {{optionsFormControl.value && optionsFormControl.value[0] ? optionsFormControl.value[0].text : ''}}
+          <span *ngIf="optionsFormControl.value?.length > 1" class="example-additional-selection">
+            (+{{optionsFormControl.value.length - 1}} {{optionsFormControl.value?.length === 2 ? 'Otro' : 'Otros'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let option of _options" [value]="option">{{option.text}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

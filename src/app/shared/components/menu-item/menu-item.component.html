@@ -1,0 +1,42 @@
+<!-- Root Menu Item with childrens -->
+<!-- <div [ngClass]="_orientation" *validatePermission="menuItem.permission"> -->
+<div [ngClass]="_orientation">
+
+  <button
+    *ngIf="menuItem.isRoot && menuItem.isParent && menuItem.childs && menuItem.childs.length > 0"
+    [disableRipple]="active"
+    mat-button
+    [ngClass]="active ? 'active': ''"
+    [matMenuTriggerFor]="menu.childMenu">
+    {{ 'menu.' + menuItem.name | translate }}
+    <mat-icon
+      class="float-right mt-2"
+      *ngIf="_orientation === 'vertical' && menuItem.icon"
+      [fontSet]="menuItem.icon.fontSet"
+      [fontIcon]="menuItem.icon.fontIcon"
+    >
+    </mat-icon>
+  </button>
+<!-- Root Menu Item without childrens -->
+  <button
+    *ngIf="menuItem.isRoot && !menuItem.isParent"
+    [disableRipple]="active"
+    mat-button
+    [ngClass]="active ? 'active': ''"
+    (click)="onMenuItemSelected(menuItem)">
+    {{ 'menu.' + menuItem.name | translate }}
+    <mat-icon
+      class="float-right mt-2"
+      *ngIf="_orientation === 'vertical' && menuItem.icon"
+      [fontSet]="menuItem.icon.fontSet"
+      [fontIcon]="menuItem.icon.fontIcon">
+    </mat-icon>
+  </button>
+
+  <!-- Sub Menu Component -->
+  <sub-menu-item-component
+    #menu
+    [subMenu]="menuItem.childs"
+    (subMenuSelected)="onMenuItemSelected($event)"
+    ></sub-menu-item-component>
+</div>

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{_data.title}} </h1>
+<div mat-dialog-content>
+  <p>{{'form.instructions.selectADate' | translate}}</p>
+  <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{'dateTimePickerModal.date' | translate}}</mat-label>
+      <input
+      type="datetime-local"
+      matInput="matInput"
+      formControlName="date"
+      [min]="minDate"
+      [max]="maxDate"
+      placeholder="{{'form.instructions.selectADate' | translate}}">
+      <button *ngIf="formBuilderGroup.value.date" matSuffix mat-icon-button aria-label="Clear" (click)="clearStartDate()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <!-- <input matInput autocomplete="off" [matDatepicker]="picker" formControlName="date"> -->
+      <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker> -->
+      <mat-hint>{{'form.validations.required' | translate}}</mat-hint>
+      </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
+  <button mat-button cdkFocusInitial (click)="submit()" [disabled]="!formBuilderGroup.valid">{{'actions.accept' | translate}}</button>
+</div>

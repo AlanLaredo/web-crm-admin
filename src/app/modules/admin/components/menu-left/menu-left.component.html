@@ -1,0 +1,58 @@
+<div class="sidenav_container " [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <div fxLayout="column">
+    <div class="user_menu">
+      <mat-nav-list class="company_logo_list_item">
+        <a mat-list-item>
+
+          <img class="company_logo" src="../../../../../assets/img/logo.png" alt="">
+          <span [@animateText]="linkText ? 'show' : 'hide'" class="pl-1"> {{'company.name' | translate}} </span>
+        </a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="scroll-custom scroll-custom-menu">
+      <mat-nav-list>
+        <!-- <menu-left-option-component [menu-left-option-component]=""></menu-left-option-component> -->
+        <div *ngFor="let menuOption of menuOptions">
+          <a mat-list-item (click)="clickMenuOption(menuOption)" class="pt-1">
+            <!-- [color]="menuOption.isParent ? 'primary' : ''"
+            [class]="menuOption.isParent ? '' : 'menuLeft-icon-color'" -->
+            <mat-icon
+              color="primary"
+              class="pl-2 pt-1"
+              [fontSet]="menuOption.icon.fontSet"
+              [fontIcon]="menuOption.icon.fontIcon"
+              matTooltip="{{ 'menu.' + menuOption?.name | translate }}"
+              matTooltipPosition="right"
+              style="padding-left:5px;">
+            </mat-icon>            
+            <span [@animateText]="linkText ? 'show' : 'hide'" class="pl-1"> {{ 'menu.' + menuOption?.name | translate }} </span>
+            <mat-icon *ngIf="menuOption.isParent"
+            class="child-options-indicator"
+            color="primary"
+            [fontSet]="'fa'"
+            [fontIcon]="'fa-angle-right'"
+            matTooltipPosition="right">
+          </mat-icon>
+          </a>
+          <menu-left-option-component [linkText]="linkText" [menuOptions]="menuOption.childs" *ngIf="subMenuSelected===menuOption.permission"></menu-left-option-component>
+        </div>
+      </mat-nav-list>
+    </div>
+  </div>
+  <span class="spacer"></span>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" style="padding: 0px 10px;">
+  <button mat-icon-button (click)="onSinenavToggle()">
+    <mat-icon *ngIf="sideNavState">
+      <span class="material-icons-outlined">
+        chevron_left
+      </span>
+    </mat-icon>
+    <mat-icon *ngIf="!sideNavState">
+      <span class="material-icons-outlined">
+        chevron_right
+      </span>
+    </mat-icon>
+  </button>
+</div>

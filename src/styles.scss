@@ -1,0 +1,582 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'sass:math';
+@import './sass-utils/variables.scss';
+@import './sass-utils/mixins.scss';
+@import './sass-utils/functions.scss';
+
+html {
+  font-size: $main-font-size;
+  font-family: $font-family;
+}
+
+body {
+  margin: 0px;
+  font-family: $font-family;
+}
+
+::selection {
+  color: get-color-scale("light", 100) !important;
+  background-color: get-color-scale("primary", 100) !important;
+}
+
+
+._26vh {
+  height: 26vh;
+}
+._33vh {
+  height: 33vh;
+}
+._40vh {
+  height: 40vh;
+}
+._50vh {
+  height: 50vh;
+}
+._68vh {
+  height: 68vh;
+}
+._100vh {
+  height: 100vh;
+}
+.sidenav_container {
+  min-width: 60px; 
+  // height: calc(90vh - 20px);
+}
+.container-main {
+  max-width: 100%;
+  margin-left: get-responsive-margin("container", "sm");
+  margin-right: get-responsive-margin("container", "sm");
+  
+}
+.container-custom {
+  max-width: 100%;
+  overflow-y: scroll;
+  height: 90vh;
+  padding: 25px;
+
+  .row {
+    /*margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;*/
+    /*
+    [class*="col-"] {
+      &:first-child {
+        margin-left: 0px;
+        padding-left: 0px;
+      }
+      &:last-child {
+        margin-right: 0px;
+        padding-right: 0px;
+      }
+    }
+    */
+  }
+/*
+  @include respond-to(md) {
+    padding-left: get-responsive-margin("container", "md");
+    padding-right: get-responsive-margin("container", "md");
+  }
+
+  @include respond-to(lg) {
+    padding-left: get-responsive-margin("container", "lg");
+    padding-right: get-responsive-margin("container", "lg");
+  }
+
+  @include respond-to(xl) {
+    padding-left: get-responsive-margin("container", "xl");
+    padding-right: get-responsive-margin("container", "xl");
+  }*/
+}
+
+.container-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.container-custom::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+.container-custom::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.container-custom::-webkit-scrollbar-thumb:hover {
+  background: get-color-scale("primary", 100);
+}
+
+.scroll-custom {
+  max-width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+.scroll-custom::-webkit-scrollbar-thumb:hover {
+  background: get-color-scale("primary", 100);
+}
+
+.scroll-custom-menu {
+  max-height: 86vh;
+}
+
+.scroll-custom-menu::-webkit-scrollbar {
+  width: 2px;
+}
+.scroll-custom-menu::-webkit-scrollbar-thumb {
+  background: rgb(195, 195, 195); 
+}
+
+.background-primary-100 {
+  background: get-color-scale("primary", 100);
+}
+
+.background-light-100 {
+  color: get-color-scale("light", 100);
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.custom-mat-form-field {
+  width: 100%;
+  @include rem(font-size, 16px);
+}
+
+.custom-mat-button {
+  width: 100%;
+  height: get-scale-size(48);
+  @include rem(font-size, 14px);
+}
+
+.custom-mat-secondary-button {
+  width: 100%;
+  height: get-scale-size(48);
+  color: get-color-scale("primary", 100);
+  text-decoration: underline;
+  border:none;
+  background-color: transparent;
+  @include rem(font-size, 14px);
+}
+
+.email-button {
+  color: inherit;
+  height: get-scale-size(48);
+  @include rem(font-size, 14px);
+  line-height: 20px;
+  color: get-color-scale("light", 0);
+}
+.cancel-button {
+  color: get-color-scale("primary", 100);
+  text-decoration: underline;
+}
+.text-white {
+  color: get-color-scale("light", 100);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ------ CHARTS ----- */
+.general-charts {
+  svg {
+    border-radius: get-scale-size(8);
+  }
+}
+
+.k-checkbox:checked {
+    border-color: get-color-scale("primary", 30);
+    color: get-color-scale("light", 100);
+    background-color: get-color-scale("primary", 100);
+}
+
+.k-checkbox:indeterminate, .k-checkbox.k-state-indeterminate {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: get-color-scale("primary", 100);
+  background-color: #ffffff;
+}
+
+.k-checkbox:checked:focus {
+  border-color: get-color-scale("primary", 100);
+  box-shadow: 0 0 0 2px get-color-scale("primary", 30);
+}
+
+.custom-page-title {
+  @include apply-weight('medium');
+  @include rem(font-size, 28px);
+  line-height: 33px;
+  letter-spacing: -0.23px;
+  color: get-color-scale("dark", 100);
+}
+
+.custom-page-sub-title {
+  @include apply-weight('medium');
+  @include rem(font-size, 18px);
+  line-height: 33px;
+  letter-spacing: -0.23px;
+  color: get-color-scale("dark", 30);
+}
+
+.crm-link {
+  color: get-color-scale("primary", 100) !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  @include rem(font-size, 14px);
+}
+.card-sub-title {
+  color: get-color-scale("dark", 30);
+  font-size: 18px;
+  letter-spacing: -0.15px;
+  line-height: 30px;
+}
+
+.custom-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 14px 0 get-color-scale("dark", 100, -92%);
+  border-left: get-color-scale("primary", 100) 8px solid;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.card-field-name {
+  text-align: 'left';
+  text-transform: capitalize;
+  color: get-color-scale('dark', 30);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.21px;
+  line-height: 24px;
+  text-transform: uppercase;
+ }
+
+ .card-field-data {
+  text-align: 'left';
+  color: get-color-scale('dark', 50);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.21px;
+  line-height: 24px;
+ }
+
+ .card-field-value {
+  color: get-color-scale('dark', 100);
+  @include rem(font-size, 14px);
+  letter-spacing: 0.29px;
+  line-height: 14px;
+  margin-bottom: 20px;
+}
+
+.card-vertical-separate {
+  margin-bottom: 20px;
+}
+
+// Aniamtions
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+/*
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 4px 14px 0 get-color-scale("dark", 90, 80%);
+  border-radius: get-scale-size(8);
+  padding: get-scale-size(24) 0px get-scale-size(24) 0px;
+  
+  &.mat-card-mb-72 {
+    margin-bottom: get-scale-size(72);
+  }
+
+  &.mat-card-mb-24 {
+    margin-bottom: get-scale-size(24);
+  }
+}*/
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: get-color-scale("primary", 100) !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #E6E7E6 !important;
+}
+
+.mat-slide-toggle-bar {
+  background-color:  #E6E7E6 !important;
+}
+
+.mat-slide-toggle-label-before .mat-slide-toggle-bar, [dir=rtl] .mat-slide-toggle-bar {
+  margin-left: 135px !important;
+  margin-right: -6px !important;
+}
+
+.float-right {
+  float: right;
+}
+
+//notifications
+
+.background-error {
+  background-color: get-color-scale("error", 100) !important;
+  font-size: small;
+  text-align: center;
+}
+
+.background-success {
+  background-color: get-color-scale("primary", 100) !important;
+  font-size: small;
+  text-align: center;
+}
+
+.text-success {
+  color: get-color-scale('primary', 100);
+}
+
+.link-primary a:link {
+  color: get-color-scale('primary', 100);
+}
+
+.text-warning {
+  color: get-color-scale('warning', 100);
+}
+
+.text-error {
+  color: get-color-scale('error', 100);
+}
+
+.warning {
+  background-color: black;
+  color: white;
+  padding: 8px 0;
+  text-align: center;
+  margin-left: 0;
+  position: relative;
+  z-index: 9999;
+  p {
+    margin: 0 auto;
+  }
+}
+
+// Submenu
+.submenu {
+  border-radius: 0px !important;
+
+  .mat-menu-content:not(:empty) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  button {
+    padding-bottom: get-scale-size(8);
+    padding-top: get-scale-size(8);
+    // border-bottom: get-border-size("thick") solid get-color-scale("light", 0);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: get-color-scale("dark", 40);
+    @include rem(font-size, 14px);
+    line-height: 16px;
+    @include apply-weight("regular");
+
+    &:hover {
+      // border-bottom: get-border-size("thick") solid get-color-scale("primary", 40);
+      color: get-color-scale("primary", 100);
+    }
+
+    &.active {
+      color: get-color-scale("primary", 100);
+      @include apply-weight("medium");
+      border-bottom: get-border-size("thick") solid get-color-scale("primary", 100);
+    }
+  }
+}
+
+.mat-step-icon-content {
+  color: white;
+}
+
+.mat-dialog-container {
+  max-height: 100vh !important;
+}
+
+.color-white {
+  color: white !important;
+}
+
+.color-white > div {
+  color: white !important;
+}
+
+.mat-calendar-date-initial  {
+  border-radius: 35px;
+  background: #CAE3FF;
+}
+
+.mat-calendar-date-maintenance  {
+  border-radius: 35px;
+  background: #5ac0fc;
+  color: white !important;
+}
+
+.mat-calendar-date-maintenance > div {
+  color: white !important;
+}
+
+.mat-calendar-date-monitoring  {
+  border-radius: 35px;
+  background-color: #26b434;
+
+}
+
+.mat-calendar-date-monitoring > div {
+  color: white !important;
+}
+
+.mat-calendar-date-maintenance-monitoring {
+  border-radius: 35px;
+  background: #f18912;
+}
+
+.mat-calendar-date-maintenance-monitoring > div {
+  color: white !important;
+}
+
+.mat-calendar-date-warranty {
+  border-radius: 35px;
+  background: #ffea31;
+}
+
+.mat-calendar-date-warranty > div {
+  color: white !important;
+}
+.mat-calendar-date-danger  {
+  border-radius: 35px;
+  background: #f53535;
+  color: white !important;
+}
+
+.mat-calendar-date-no-laboral {
+  border-radius: 35px;
+  background: #c7c7c7;
+}
+.mat-calendar-date-no-laboral > div {
+  color: white !important;
+}
+
+.mat-calendar-date-danger > div {
+  color: white !important;
+}
+
+.mat-calendar-instructions-color {
+  height: 21px;
+  width: 21px;
+}
+
+.mat-calendar-date-initial-instructions  {
+  border-radius: 6px;
+  background: #CAE3FF;
+}
+
+.mat-calendar-date-maintenance-instructions  {
+  border-radius: 6px;
+  background: #5ac0fc;
+}
+
+.mat-calendar-date-monitoring-instructions  {
+  border-radius: 6px;
+  background-color: #26b434;
+}
+.mat-calendar-date-maintenance-monitoring-instructions {
+  border-radius: 6px;
+  background: #f18912;
+}
+.mat-calendar-date-warranty-instructions {
+  border-radius: 6px;
+  background: #ffea31;
+}
+.mat-calendar-date-danger-instructions  {
+  border-radius: 6px;
+  background-color: #f53535;
+}
+.mat-calendar-date-no-laboral-instructions  {
+  border-radius: 6px;
+  background-color: #c7c7c7;
+}
+.min-height-100 {
+  min-height: 100px
+}
+.min-height-150 {
+  min-height: 150px
+}
+.min-height-250 {
+  min-height: 250px
+}
+.font-size-18 {
+  font-size: 18px !important;
+}
+
+.font-size-21 {
+  font-size: 21px !important;
+}
+.font-size-14 {
+  font-size: 14px !important;
+}
+.font-size-12 {
+  font-size: 12px !important;
+}
+.font-size-10 {
+  font-size: 10px !important;
+}
+
+.tiny-icon mat-icon {
+  font-size: 20 px;
+}
+.snackbar-light {
+  background: light !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

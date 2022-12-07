@@ -1,0 +1,53 @@
+@import '../../../../../sass-utils/variables.scss';
+@import '../../../../../sass-utils/mixins.scss';
+@import '../../../../../sass-utils/functions.scss';
+.company_logo_list_item {
+  height: 63.9px;
+}
+
+.company_logo {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.container-notifications {
+  min-width: 200px;
+  width: 320px;
+}
+
+.system-alert-description {
+  font-size: 11px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: initial;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.system-alert-footer-text {
+  font-size: 10px;
+  color: lightgrey;
+}
+.system-alert-view-button {
+  font-size: 18px;
+  color: rgba(53, 53, 255, 0.424);
+  cursor: pointer;
+}
+.background-viewed {
+  color: rgba(53, 53, 255, 0.424);
+}
+.system-alert-header {
+  height: 35px;
+}
+.system-alert-footer {
+  height: 25px;
+}
+.system-alert-card {
+  overflow: hidden;
+}
+.system-alert-seemore {
+  height:20px;
+  cursor: pointer;
+}

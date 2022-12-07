@@ -1,0 +1,14 @@
+@import '../../../../sass-utils/variables.scss';
+@import '../../../../sass-utils/mixins.scss';
+@import '../../../../sass-utils/functions.scss';
+
+.cs-filename {
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hide-outer-text {
+  overflow: hidden;
+}

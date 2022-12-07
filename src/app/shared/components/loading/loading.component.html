@@ -1,0 +1,9 @@
+<div class="loading-container">
+  <div class="loading" *ngIf="_isLoading">
+    <p [innerText]="_loadingMessage"></p>
+    <mat-progress-bar mode="determinate" [value]="value"></mat-progress-bar>
+  </div>
+  <div class="content" [ngClass]="{ 'hidden': _isLoading }">
+    <ng-content></ng-content>
+  </div>
+</div>

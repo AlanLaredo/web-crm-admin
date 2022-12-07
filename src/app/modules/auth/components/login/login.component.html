@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-12">
+    <mat-card class="mat-elevation-z8">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-12">
+            <form *ngIf="formLogin" [formGroup]="formLogin">
+              <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                  <div>
+                    <img class="mb-4" src="../../../../../assets/img/logo.png" alt="" height="90">
+                  </div>
+                </div>
+              </div>
+              <mat-form-field appearance="outline" class="custom-mat-form-field">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Introduce tu nombre de usuario" formControlName="username" autocomplete="off" (keyup.enter)="submitForm()"/>
+                <mat-icon matSuffix>account_circle</mat-icon>
+                <!-- <mat-hint>Hint</mat-hint> -->
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="custom-mat-form-field">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Introduce una contraseña" type="password" formControlName="password" autocomplete="off" (keyup.enter)="submitForm()"/>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <!-- <mat-hint>Hint</mat-hint> -->
+              </mat-form-field>
+              <!-- <div class="row">
+                <div class="col-12 col-sm-6 mt-2">
+                  <mat-checkbox>{{'login.loginMantain' | translate}}</mat-checkbox>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <button mat-button>{{'login.forgetPassword' | translate}}</button>
+                </div>
+              </div> -->
+              <div class="row mt-4 ">
+                <div class="col-12">
+                  <button
+                  [disabled]="!formLogin"
+                  class="text-white custom-mat-form-field"
+                  mat-flat-button="mat-flat-button"
+                  (click)="submitForm()"
+                  (keyup.enter)="submitForm()"
+                  color="primary">
+                  Iniciar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

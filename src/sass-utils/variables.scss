@@ -1,0 +1,84 @@
+/* -------- main font size ---- */
+$main-font-size: 12px;
+
+/* ----- Margin containers -----*/
+$margins: (
+  container: (
+    sm: 1rem,
+    md: 1rem,
+    lg: 2rem,
+    xl: 9rem
+  ),
+  header: (
+    sm: 1.5rem,
+    md: 2rem,
+    lg: 3rem,
+    xl: 3rem
+  )
+);
+
+/* ---------- Fonts ------------ */
+$font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+/* ---------- Size Scale ------- */
+$scale-size: (
+  8: 8px,
+  12: 12px,
+  18: 18px,
+  24: 24px,
+  36: 36px,
+  48: 48px,
+  60: 60px,
+  72: 72px
+);
+
+/* ---------- Media Query ------ */
+$breakpoints: (
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+/* ---------- Font Weights ----- */
+$font-weights: ("thin": 100, "regular": 300, "medium": 500, "thick": 700);
+
+/* ---------- Z-Index ---------- */
+$header-zindex: 990;
+
+/* -------- Color Configuration -------- */
+$scale-color: (
+  160: -60%,
+  120: -20%,
+  110: -10%,
+  100: 0%,
+  90: 10%,
+  80: 20%,
+  70: 30%,
+  60: 40%,
+  50: 50%,
+  40: 60%,
+  30: 70%,
+  20: 80%,
+  12: 88%,
+  9: 91%,
+  6: 94%,
+  3: 97%,
+  2: 98%,
+  0: 100%
+);
+
+$colors: (
+  dark: #000,
+  primary: #3A58A3,
+  error: #173A93,
+  info: #3E47E4,
+  light: #FFF,
+  warning: #F9CB51
+);
+
+/* ------- Border size --------------- */
+$border-size: (
+  thin: 1px,
+  regular: 2px,
+  thick: 4px
+)

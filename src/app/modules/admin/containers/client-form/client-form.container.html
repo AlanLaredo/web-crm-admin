@@ -1,0 +1,46 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <go-back-button-component class="col-12"></go-back-button-component>
+        </div>
+        <div class="row d-flex justify-content-between pt-4">
+          <div class="col-12">
+            <h1>{{ title | translate }}</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <client-form-component
+            [loading]="loading"
+            [data]="client"
+            (outIsValid)="setIsValidClient($event)"
+            [configuration]="{ saveButton: false }"
+            (outActionForm)="setClient($event)"></client-form-component>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-4">
+            <button
+            [disabled]="!isValidClient || loading"
+            class="text-white"
+            mat-flat-button="mat-flat-button"
+            (click)="save()"
+            color="primary">
+            {{'form.save' | translate}}
+            </button>
+            <!-- <button
+            class="cancel-button"
+            mat-button="mat-button"
+            (click)="cancelForm()"
+            color="primary"
+            [hidden]="!_data.id">
+            {{'form.cancel' | translate}}
+            </button> -->
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>

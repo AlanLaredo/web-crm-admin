@@ -1,0 +1,21 @@
+<mat-toolbar class="header mat-elevation-z4" fxFlex="row" fxLayoutAlign="right center" fxLayoutGap="10px">
+  <mat-toolbar-row>
+    <button mat-icon-button color="primary" (click)="sidenav.toggle();">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="d-flex justify-content-end align-items-center" style="width: 100%">
+      <!-- <mat-icon class="mr-4" aria-hidden="false" aria-label="Configuración">settings</mat-icon> -->
+      <mat-nav-list class="d-flex justify-content-end align-items-center mr-5">
+        <mat-icon fontSet="fas" fontIcon="fa-user-circle" color="primary" ></mat-icon>
+        <div class="font-size-14">{{'general.hello' | translate}} {{_user.firstName}}</div>
+      </mat-nav-list>
+      <!-- <button mat-icon-button (click)="sidenavRight.toggle();">
+        <mat-icon *ngIf="_totalUnviewedSystemAlerts" class="mr-4" aria-hidden="false" aria-label="{{'general.notifications' | translate}}" matBadge="{{_totalUnviewedSystemAlerts}}" matBadgeColor="accent" matBadgeSize="small">notifications</mat-icon>
+        <mat-icon *ngIf="!_totalUnviewedSystemAlerts" aria-label="{{'general.notifications' | translate}}">notifications</mat-icon>
+      </button> -->
+      <button mat-icon-button color="primary" (click)="logout();">
+        <mat-icon aria-label="{{'header.user.logout' | translate}}">logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

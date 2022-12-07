@@ -1,0 +1,19 @@
+@import '../../../../../sass-utils/variables.scss';
+@import '../../../../../sass-utils/mixins.scss';
+@import '../../../../../sass-utils/functions.scss';
+
+.header {
+  height: get-scale-size(60);
+  z-index: $header-zindex;
+  width: 100%;
+}
+
+.user_image {
+}
+
+.company_logo {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}

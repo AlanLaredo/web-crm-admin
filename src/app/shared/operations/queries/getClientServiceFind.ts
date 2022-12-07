@@ -1,0 +1,75 @@
+import gql from 'graphql-tag'
+
+export default gql`
+query getClientServiceFind($id: ID, $cientId: ID, $serviceType: String, $scheduleHours: String, $serviceCost: Float, $elementCost: Float, $patrolCost: Float, $quadBikeCost: Float, $bossShiftCost: Float, $qrCost: Float, $costHolyDays: Float, $addressExecution: String, $totalElementsDay: Int, $totalElementsNight: Int, $totalPatrol: Int, $totalQaudBike: Int, $startDate: DateTime, $emergencyContact: CreatePersonInput, $paymentContact: CreatePersonInput, $creditDays: String, $paymentDays: String, $folioCounterReceipt: String, $billing: String, $branchBank: String, $lastFourDigits: String, $paymentMethod: String, $usageCfdi: String, $paymentForm: String, $offset: Int, $limit: Int){
+    getClientServiceFind(id: $id, cientId: $cientId, serviceType: $serviceType, scheduleHours: $scheduleHours, serviceCost: $serviceCost, elementCost: $elementCost, patrolCost: $patrolCost, quadBikeCost: $quadBikeCost, bossShiftCost: $bossShiftCost, qrCost: $qrCost, costHolyDays: $costHolyDays, addressExecution: $addressExecution, totalElementsDay: $totalElementsDay, totalElementsNight: $totalElementsNight, totalPatrol: $totalPatrol, totalQaudBike: $totalQaudBike, startDate: $startDate, emergencyContact: $emergencyContact, paymentContact: $paymentContact, creditDays: $creditDays, paymentDays: $paymentDays, folioCounterReceipt: $folioCounterReceipt, billing: $billing, branchBank: $branchBank, lastFourDigits: $lastFourDigits, paymentMethod: $paymentMethod, usageCfdi: $usageCfdi, paymentForm: $paymentForm, offset: $offset, limit: $limit){
+        createdBy
+        createdAt
+        modifiedBy
+        modifiedAt
+        deletedBy
+        deletedAt
+        id
+        cientId
+        serviceType
+        scheduleHours
+        serviceCost
+        elementCost
+        patrolCost
+        quadBikeCost
+        bossShiftCost
+        qrCost
+        costHolyDays
+        addressExecution
+        totalElementsDay
+        totalElementsNight
+        totalPatrol
+        totalQaudBike
+        startDate
+        emergencyContact{
+            name
+            lastName
+            phoneContacts
+            emails
+            comments
+            address{
+                name
+                street
+                exteriorNumber
+                interiorNumber
+                neightborhood
+                city
+                state
+                country
+                postalCode
+            }
+        }
+        paymentContact{
+            name
+            lastName
+            phoneContacts
+            emails
+            comments
+            address{
+                name
+                street
+                exteriorNumber
+                interiorNumber
+                neightborhood
+                city
+                state
+                country
+                postalCode
+            }
+        }
+        creditDays
+        paymentDays
+        folioCounterReceipt
+        billing
+        branchBank
+        lastFourDigits
+        paymentMethod
+        usageCfdi
+        paymentForm
+    }
+}`

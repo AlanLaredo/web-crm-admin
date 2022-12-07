@@ -1,0 +1,54 @@
+@import '../../../../sass-utils/variables.scss';
+@import '../../../../sass-utils/mixins.scss';
+@import '../../../../sass-utils/functions.scss';
+.letter-size-sheet-horizontal {
+  padding: 50px;
+  width: 1600px;
+  height: 1150px;
+}
+.letter-size-data-horizontal {
+  height: 100%;
+  width: 30%;
+}
+.letter-size-calendar-horizontal {
+  height: 80%;
+  width: 100%;
+}
+.title-text {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.general-text {
+  font-size: 16px;
+}
+.signature-line {
+  margin-top: 200px;
+  text-align: center;
+  font-size: 22px;
+  border-top: 2px solid #000;
+}
+.company_logo {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/*
+.letter-size-sheet-vertical {
+  height: 3508px;
+  width: 2480px;
+  background-color: blue;
+}
+.letter-size-calendar-vertical {
+  height: 2280px;
+  width: 1612px;
+  background-color: yellow;
+}
+.letter-size-data-vertical {
+  height: 1228px;
+  width: 868px;
+  background-color: green;
+}
+*/

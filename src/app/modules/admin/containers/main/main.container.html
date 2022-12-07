@@ -1,0 +1,22 @@
+
+<mat-sidenav-container class="_100vh">
+  <mat-sidenav #leftSidenav mode="side" opened  class="mat-elevation-z1">
+    <app-left-menu></app-left-menu>
+  </mat-sidenav>
+  <mat-sidenav #rightSidenav mode="side" position="end" opened="false" class="mat-elevation-z1">
+    <app-right-menu [systemAlerts]="systemAlerts" (outActionDelete)="removeSystemAlert($event)" (outActionView)="viewSystemAlert($event)"></app-right-menu>
+  </mat-sidenav>
+  <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+    <app-header [sidenav]="leftSidenav" [user]="user" [sidenavRight]="rightSidenav" [totalUnviewedSystemAlerts]="totalUnviewedSystemAlerts"></app-header>
+    <div class="row warning link-primary" *ngIf="isNotChrome && !browserAlertAdvised">
+      <p>
+        {{'messages.warningBrowserWithOutBrowser' | translate }}
+        <a href="https://www.google.com/intl/es-419/chrome/" target="_blank">Google Chrome</a>
+        {{'operators.or' | translate }}
+        <a href="https://www.microsoft.com/es-es/edge" target="_blank">Microsoft Edge</a>
+        <button mat-button color="primary">OK</button>
+        {{'messages.minimalResolution' | translate }}
+      </p>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>

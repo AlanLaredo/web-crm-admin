@@ -1,0 +1,14 @@
+ <div *ngFor="let menuOption of _menuOptions" class="">
+  <a mat-list-item [routerLink]="menuOption.routeLink">
+    <mat-icon
+      class="pl-2 menuLeft-icon-color "
+      [fontSet]="menuOption.icon.fontSet"
+      [fontIcon]="menuOption.icon.fontIcon"
+      matTooltip="{{ 'submenu.' + menuOption?.name | translate }}"
+      matTooltipPosition="right"
+      style="padding-left:5px;">
+    </mat-icon>
+
+    <span [@animateText]="linkText ? 'show' : 'hide'" class="pl-2 pb-2 menuLeft-icon-color ">  {{ 'submenu.' + menuOption?.name | translate }} </span>
+  </a>
+</div>

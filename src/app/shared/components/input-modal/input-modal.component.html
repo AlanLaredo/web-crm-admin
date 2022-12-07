@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{_data.title}} </h1>
+<div mat-dialog-content>
+  <p>{{_data.info}}</p>
+  <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{_data.inputName}}</mat-label>
+      <input
+      type="{{_data.type}}"
+      autocomplete="off"
+      matInput="matInput"
+      placeholder="{{_data.instructions}}"
+      formControlName="inputValue"
+      />
+      <mat-hint>{{(_data.required ? 'form.validations.required' : 'form.validations.optional') | translate }} </mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
+  <button mat-button cdkFocusInitial (click)="submit()" [disabled]="!formBuilderGroup.valid">{{'actions.accept' | translate}}</button>
+</div>

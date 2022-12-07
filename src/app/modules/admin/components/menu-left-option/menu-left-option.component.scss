@@ -1,0 +1,17 @@
+@import '../../../../../sass-utils/variables.scss';
+@import '../../../../../sass-utils/mixins.scss';
+@import '../../../../../sass-utils/functions.scss';
+
+.menuLeft-icon-color {
+  color:rgb(112, 112, 112);
+}
+
+.active {
+  background: get-color-scale("primary", 100);
+  color: white !important;
+}
+
+
+.menuLeftTinyIcon {
+  font-size: 10px;
+}

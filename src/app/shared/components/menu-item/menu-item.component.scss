@@ -1,0 +1,59 @@
+@import '../../../../sass-utils/variables.scss';
+@import '../../../../sass-utils/mixins.scss';
+@import '../../../../sass-utils/functions.scss';
+
+div {
+  &.horizontal {
+    display: inline;
+
+    button {
+      padding-bottom: get-scale-size(18);
+      padding-top: get-scale-size(8);
+      border-bottom: get-border-size("thick") solid get-color-scale("light", 0);
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      color: get-color-scale("dark", 40);
+      @include rem(font-size, 14px);
+      line-height: 16px;
+      @include apply-weight("regular");
+
+      &:hover {
+        border-bottom: get-border-size("thick") solid get-color-scale("primary", 40);
+        color: get-color-scale("primary", 100);
+      }
+
+      &.active {
+        color: get-color-scale("primary", 100);
+        @include apply-weight("medium");
+        border-bottom: get-border-size("thick") solid get-color-scale("primary", 100);
+      }
+    }
+  }
+
+  &.vertical {
+    button {
+      width: 100%;
+      border-radius: 0px;
+      border-bottom: get-border-size("thin") solid get-color-scale("primary", 120);
+      color: get-color-scale("dark", 40);
+      @include rem(font-size, 14px);
+      @include apply-weight("regular");
+      text-align: left;
+
+      mat-icon {
+        @include rem(font-size, get-scale-size(24));
+      }
+
+      &:hover {
+        background-color: get-color-scale("primary", 12);
+        color: get-color-scale("primary", 100);
+      }
+
+      &.active {
+        color: get-color-scale("primary", 120);
+        @include apply-weight("medium");
+        background-color: get-color-scale("primary", 30);
+      }
+    }
+  }
+}
