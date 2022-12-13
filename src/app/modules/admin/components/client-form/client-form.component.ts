@@ -1,38 +1,36 @@
 /* eslint-disable no-useless-constructor */
+/* eslint accessor-pairs: ["error", { "enforceForClassMembers": false }] */
+
 // Third Party
-import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
+import { LoginService } from 'src/app/modules/auth/services'
 
 import Swal from 'sweetalert2'
-import { IClient } from '../../models/data'
 
 @Component({
   selector: 'client-form-component',
   templateUrl: './client-form.component.html',
   styleUrls: ['./client-form.component.scss']
 })
-export class ClientFormComponent implements OnInit, OnDestroy {
+export class ClientFormComponent implements OnInit {
   _loading: boolean = false
   public formBuilderGroup: any = null
-  _data: Partial<IClient> = {}
-  contactNumbers: string[] = ['']
-  contactNumbersValue: string[] = ['']
-  isValidSubscription: any
-
+  _data: any = {}
   _configuration: any = {
-    saveButton: true,
-    editable: true
+    withDescription: true
   }
+
+  userRoleName: any
+  companyId: any
+
+  _companies: any[] = []
 
   @Input('data')
-  set data (data: Partial<IClient>) {
+  set data (data: any) {
     this._data = data
     this.initForm()
-  }
-
-  get data () {
-    return this._data
   }
 
   @Input('loading')
@@ -40,140 +38,115 @@ export class ClientFormComponent implements OnInit, OnDestroy {
     this._loading = loading
   }
 
-  get loading () {
-    return this.loading
-  }
-
   @Input('configuration')
   set configuration (configuration: any) {
-    if (configuration) {
-      this._configuration.saveButton = configuration.saveButton !== undefined ? configuration.saveButton : true
-      this._configuration.editable = configuration.editable !== undefined ? configuration.editable : true
+    if (configuration && configuration.withDescription !== undefined) {
+      this._configuration.withDescription = configuration.withDescription
     }
   }
 
-  get configuration () {
-    return this._configuration
+  @Input('catalogsData')
+  set catalogsData (catalogsData: any) {
+    this._companies = catalogsData.companies
   }
 
   @Output()
-  outActionForm: EventEmitter<Partial<IClient>> = new EventEmitter<Partial<IClient>>()
-
-  @Output()
-  outIsValid: EventEmitter<boolean> = new EventEmitter<boolean>()
+  outActionForm: EventEmitter<any> = new EventEmitter<any>()
 
   constructor (
     private formBuilder: FormBuilder,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit (): void {
+    const user: any = this.loginService.getUser()
+    this.userRoleName = user.userRole.name
+    this.companyId = user.companyId
     this.initForm()
   }
 
-  ngOnDestroy () {
-    this.isValidSubscription.unsubscribe()
-  }
-
+  /*
+$keycode: String,
+$rfc: String,
+$businessName: String,
+$businessReason: String,
+$legalRepresentativeContact: CreatePersonInput,
+$fiscalAddress: CreateAddressInput,
+$companyId: ID,
+  */
   initForm () {
+    let companyId = this._data.companyId || undefined
+    if (!companyId && this.companyId) {
+      companyId = this.companyId
+    }
+
     this.formBuilderGroup = this.formBuilder.group({
-      name: new FormControl({ value: (this._data.name || ''), disabled: !this._configuration.editable }, [
-        Validators.required
-      ]),
-      email: new FormControl({ value: (this._data.email || ''), disabled: !this._configuration.editable }, [
-        Validators.email
-      ]),
-      managerName: new FormControl({ value: (this._data.managerName || ''), disabled: !this._configuration.editable }, [
-        Validators.required
-      ]),
-      legalRepresentative: new FormControl({ value: (this._data.legalRepresentative || ''), disabled: !this._configuration.editable }, [
-        Validators.required
-      ]),
-      postalCode: new FormControl({ value: (this._data.postalCode || ''), disabled: !this._configuration.editable }, [
-      ]),
-      suburb: new FormControl({ value: (this._data.suburb || ''), disabled: !this._configuration.editable }, [
-        Validators.required
-      ]),
-      street: new FormControl({ value: (this._data.street || ''), disabled: !this._configuration.editable }, [
-        Validators.required
-      ]),
-      locationReferences: new FormControl({ value: (this._data.locationReferences || ''), disabled: !this._configuration.editable }, [
-      ]),
-      socialReason: new FormControl({ value: (this._data.socialReason || ''), disabled: !this._configuration.editable }, [
-      ]),
-      fiscalAddress: new FormControl({ value: (this._data.fiscalAddress || ''), disabled: !this._configuration.editable }, [
-      ]),
-      usageCfdi: new FormControl({ value: (this._data.usageCfdi || ''), disabled: !this._configuration.editable }, [
-      ]),
-      rfc: new FormControl({ value: (this._data.rfc || ''), disabled: !this._configuration.editable }, [
-      ]),
-      fiscalEmail: new FormControl({ value: (this._data.fiscalEmail || ''), disabled: !this._configuration.editable }, [
-        Validators.email
-      ])
+      keycode: new FormControl((this._data.keycode || undefined), []),
+      rfc: new FormControl((this._data.rfc || undefined), []),
+      businessName: new FormControl((this._data.businessName || undefined), [Validators.required]),
+      businessReason: new FormControl((this._data.businessReason || undefined), []),
+      fiscalAddress: new FormControl((this._data.fiscalAddress || undefined), []),
+      companyId: new FormControl(companyId, [Validators.required]),
+
+      personName: new FormControl((this._data.legalRepresentativeContact?.name || undefined), [Validators.required]),
+      personLastName: new FormControl((this._data.legalRepresentativeContact?.lastName || undefined), []),
+      personPhoneContacts: new FormControl((this._data.legalRepresentativeContact?.phoneContacts[0] || undefined), []),
+      personEmails: new FormControl((this._data.legalRepresentativeContact?.emails[0] || undefined), []),
+      personComments: new FormControl((this._data.legalRepresentativeContact?.comments || undefined), []),
+
+      addressName: new FormControl((this._data.fiscalAddress?.name || undefined), []),
+      addressStreet: new FormControl((this._data.fiscalAddress?.street || undefined), []),
+      addressExteriorNumber: new FormControl((this._data.fiscalAddress?.exteriorNumber || undefined), []),
+      addressInteriorNumber: new FormControl((this._data.fiscalAddress?.interiorNumber || undefined), []),
+      addressNeightborhood: new FormControl((this._data.fiscalAddress?.neightborhood || undefined), []),
+      addressCity: new FormControl((this._data.fiscalAddress?.city || undefined), []),
+      addressState: new FormControl((this._data.fiscalAddress?.state || undefined), []),
+      addressCountry: new FormControl((this._data.fiscalAddress?.country || undefined), []),
+      addressPostalCode: new FormControl((this._data.fiscalAddress?.postalCode || undefined), [])
     })
-
-    if (!this._data.contactNumbers || this._data.contactNumbers.length === 0) {
-      this._data.contactNumbers = ['']
-    }
-    this.contactNumbers = [...this._data.contactNumbers]
-    this.contactNumbersValue = [...this._data.contactNumbers]
-
-    this.isValidSubscription = this.formBuilderGroup.valueChanges.subscribe(() => {
-      this.sendOutData()
-    })
-  }
-
-  sendOutData () {
-    const outData = { ...this.formBuilderGroup.value, contactNumbers: this.contactNumbersValue } as IClient
-    if (this._data.id) {
-      outData.id = this._data.id
-    }
-    const existsEmptyNumbers = outData.contactNumbers.find(element => element.trim() === '')
-    if (this.formBuilderGroup.valid && this.contactNumbersValue.length >= 1 && existsEmptyNumbers === undefined) {
-      this.outIsValid.emit(true)
-    } else {
-      this.outIsValid.emit(false)
-    }
-    this.outActionForm.emit(outData)
-  }
-
-  addContactNumber () {
-    if (!this.contactNumbers || this.contactNumbers.length === 0) {
-      this.contactNumbers = ['']
-    }
-    this.contactNumbers.push('')
-    this.contactNumbersValue.push('')
-  }
-
-  removeContactNumber (index: number) {
-    this.contactNumbers = this.contactNumbers.filter((value, elementIndex) => elementIndex !== index)
-    this.contactNumbersValue = this.contactNumbersValue.filter((value, elementIndex) => elementIndex !== index)
-    this.sendOutData()
-  }
-
-  updateContactNumber ($event: any, index: number) {
-    this.contactNumbersValue[index] = $event.target.value
-    this.contactNumbersValue = [...this.contactNumbersValue]
-    setTimeout(() => this.sendOutData(), 0)
   }
 
   submitForm () {
-    if (this.contactNumbersValue[0].trim() === '') {
-      Swal.fire({ icon: 'warning', titleText: this.translate.instant('clients.form.validations.phoneNumbers.insufficientData') }).then()
-      return
-    }
-
     this.formBuilderGroup.markAllAsTouched()
     if (!this.formBuilderGroup.valid) {
       Swal.fire({ icon: 'warning', titleText: this.translate.instant('form.insufficientData') }).then()
       return
     }
-    const outData = { ...this.formBuilderGroup.value, contactNumbers: this.contactNumbersValue } as IClient
+    const client = { ...this.formBuilderGroup.value }
+    const outData: any = {}
+    outData.keycode = client.keycode?.trim()
+    outData.rfc = client.rfc?.trim()
+    outData.businessName = client.businessName?.trim()
+    outData.businessReason = client.businessReason?.trim()
+    outData.companyId = client.companyId
 
-    outData.name = outData.name?.trim()
+    outData.legalRepresentativeContact = {}
+    outData.legalRepresentativeContact.name = client.personName ? client.personName.trim() : undefined
+    outData.legalRepresentativeContact.lastName = client.personLastName ? client.personLastName.trim() : undefined
+    outData.legalRepresentativeContact.phoneContacts = client.personPhoneContacts ? [client.personPhoneContacts] : undefined
+    outData.legalRepresentativeContact.emails = client.personEmails ? [client.personEmails] : undefined
+    outData.legalRepresentativeContact.comments = client.personComments || undefined
+
+    outData.fiscalAddress = {}
+    outData.fiscalAddress.name = client.addressName || undefined
+    outData.fiscalAddress.street = client.addressStreet || undefined
+    outData.fiscalAddress.exteriorNumber = client.addressExteriorNumber || undefined
+    outData.fiscalAddress.interiorNumber = client.addressInteriorNumber || undefined
+    outData.fiscalAddress.neightborhood = client.addressNeightborhood || undefined
+    outData.fiscalAddress.city = client.addressCity || undefined
+    outData.fiscalAddress.state = client.addressState || undefined
+    outData.fiscalAddress.country = client.addressCountry || undefined
+    outData.fiscalAddress.postalCode = client.addressPostalCode || undefined
+
     if (this._data.id) {
       outData.id = this._data.id
     }
+
+    if (!this._configuration.withDescription) {
+      delete outData.description
+    }
+
     this.outActionForm.emit(outData)
   }
 

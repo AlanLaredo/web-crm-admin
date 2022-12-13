@@ -6,12 +6,11 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 import { Title } from '@angular/platform-browser'
 
-import { IPermission, IRoleAccess } from 'src/app/shared/interfaces'
-import { IUser } from 'src/app/shared/interfaces/user.interface'
 import { PermissionsGqlService, UsersGqlService } from '../../services'
 import { RoleAcccessGqlService } from '../../services/graphql/role-access.gql.service'
-import { NotifyService } from 'src/app/shared/services'
-import { IUserPermissionConfig } from '../../interfaces/user-permission-config.interface'
+import { GraphqlService, NotifyService } from 'src/app/shared/services'
+
+import { companiesOperation, userRolesOperation, userOperation } from 'src/app/shared/operations/queries/'
 
 @Component({
   templateUrl: './user-form.container.html',
@@ -20,53 +19,47 @@ import { IUserPermissionConfig } from '../../interfaces/user-permission-config.i
 export class UserFormContainer implements OnInit {
   loading: boolean = false
   title: string = ''
-  user: Partial<IUser> = {}
-  roleAccessList: IRoleAccess[] = []
-  permissions: IPermission[] = []
+  user: any = {}
+  roleAccessList: any[] = []
+  permissions: any[] = []
+  companies: any[] = []
 
   constructor (
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private roleAccessGqlService: RoleAcccessGqlService,
     private usersGqlService: UsersGqlService,
+    private graphQlService: GraphqlService,
     private permissionsGqlService: PermissionsGqlService,
     public translate: TranslateService,
     private notifyService: NotifyService,
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  async ngOnInit () {
     this.titleService.setTitle(this.translate.instant('userForm.titles.page') + ' - ' + this.translate.instant('applicationTitle'))
 
-    this.loadRoleAccessList()
-    // this.loadPermissions()
+    const promises = [
+      this.graphQlService.execute(companiesOperation),
+      this.graphQlService.execute(userRolesOperation)
+    ]
     const params = this.activatedRoute.snapshot.params
     if (params && params.userId) {
       this.title = 'userForm.titles.edition'
-      this.usersGqlService.getOne(params.userId).then(
-        (data) => {
-          this.user = data
-          // this.processPermissionsData()
-        },
-        (Error: any) => {
-          this.loading = false
-          Swal.fire({ icon: 'error', titleText: this.translate.instant('users.messages.notFoundUser') }).then(() => {})
-        }
-      )
+      promises.push(this.graphQlService.execute(userOperation, { id: params.userId }))
     } else {
       this.title = 'userForm.titles.creation'
+    }
+    const [companies, userRoles, user] = await Promise.all(promises)
+    this.companies = companies
+    this.roleAccessList = userRoles
+    if (user) {
+      this.user = user
     }
   }
 
   save ($event: any) {
-    // const permissionsConfig = this.user.permissionsConfig?.map((permissionConfig): IUserPermissionConfig => {
-    //   return {
-    //     permissionId: permissionConfig.permissionId,
-    //     deny: permissionConfig.deny
-    //   }
-    // })
-
-    const data: IUser = { ...$event/*, permissionsConfig */ } as IUser
+    const data: any = { ...$event/*, permissionsConfig */ } as any
     if (data.id) {
       this.update(data)
     } else {
@@ -74,10 +67,10 @@ export class UserFormContainer implements OnInit {
     }
   }
 
-  create (data: IUser) {
+  create (data: any) {
     this.loading = true
     this.usersGqlService.create(data).then(
-      (data: IUser) => {
+      (data: any) => {
         this.loading = false
         Swal.fire({ icon: 'success', titleText: this.translate.instant('users.messages.save.success') }).then(() => {
           this.router.navigate(['/admin/security/users'])
@@ -90,10 +83,10 @@ export class UserFormContainer implements OnInit {
     )
   }
 
-  update (data: IUser) {
+  update (data: any) {
     this.loading = true
     this.usersGqlService.update(data).then(
-      (data: IUser) => {
+      (data: any) => {
         this.user = data
         this.loading = false
         // this.processPermissionsData()
@@ -105,78 +98,7 @@ export class UserFormContainer implements OnInit {
     )
   }
 
-  processPermissionsData () {
-    this.user.permissionIds = []
-    const denyPermissionsConfig: string[] = []
-    this.user.permissionsConfig?.forEach(permission => {
-      if (!permission.deny) {
-        this.user.permissionIds?.push(permission.permissionId)
-      } else {
-        denyPermissionsConfig?.push(permission.permissionId)
-      }
-    })
-    this.user.roleAccess?.permissionIds.forEach(
-      (permissionId: string) => {
-        if (denyPermissionsConfig?.indexOf(permissionId) === -1) {
-          this.user.permissionIds?.push(permissionId)
-        }
-      }
-    )
-  }
-
-  updatePermissionSettings ($event: any) {
-    const permissionIds = $event
-    this.user.permissionsConfig = []
-    // recorre los seleccionados y agregalos si no son parte del rol: explicito positivo
-    permissionIds.forEach(
-      (permissionId: string) => {
-        if (!this.user.roleAccess || !this.user.roleAccess.permissionIds || this.user.roleAccess?.permissionIds.indexOf(permissionId) === -1) {
-          const configPermission: IUserPermissionConfig = {
-            permissionId,
-            deny: false
-          }
-          this.user.permissionsConfig?.push(configPermission)
-        }
-      }
-    )
-
-    // recorre todos los permisos y si no estan seleccionados y están dentro del rol actual: crea explicito negativo
-    this.permissions.forEach((permission: IPermission) => {
-      if (permissionIds.indexOf(permission.id) === -1 && this.user.roleAccess?.permissionIds.indexOf(permission.id) !== -1) {
-        const configPermission: IUserPermissionConfig = {
-          permissionId: permission.id,
-          deny: true
-        }
-        this.user.permissionsConfig?.push(configPermission)
-      }
-    })
-  }
-
-  loadRoleAccessList () {
-    this.roleAccessGqlService.list().subscribe(
-      (data) => {
-        this.roleAccessList = data
-      },
-      (Error: any) => {
-        this.loading = false
-        Swal.fire({ icon: 'error', titleText: this.translate.instant('messages.load.error') }).then(() => {})
-      }
-    )
-  }
-
-  loadPermissions () {
-    this.permissionsGqlService.list().subscribe(
-      (data) => {
-        this.permissions = data
-      },
-      (Error: any) => {
-        this.loading = false
-        Swal.fire({ icon: 'error', titleText: this.translate.instant('messages.load.error') }).then(() => {})
-      }
-    )
-  }
-
-  newRoleAccess: Partial<IRoleAccess> = {}
+  newRoleAccess: Partial<any> = {}
   changeRoleAccess ($event:any) {
     this.user.roleAccess = $event
     // this.user.permissionsConfig = []

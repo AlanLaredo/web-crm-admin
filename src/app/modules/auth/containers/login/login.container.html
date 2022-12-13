@@ -1,5 +1,26 @@
-<div class="container-custom d-flex align-items-center justify-content-center">
+<!-- <div class="container-custom d-flex align-items-center justify-content-center"> -->
+<div class="container-custom d-flex align-items-center justify-content-center _99vh">
   <component-loading [isLoading]="loading">
-    <login-component (outActionForm)="login($event)"></login-component>
-  </component-loading>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-7">
+          <div class="row">
+            <div class="col-12 d-none d-lg-block d-xl-block">
+              <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_teubekfl.json"
+              background="transparent" speed="1" style="width: 100%;" mode="normal" loop="" autoplay=""></lottie-player>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-5 col-xl-5">
+            <login-component (outActionForm)="login($event)"></login-component>
+        </div>
+      </div>
+      <!-- <component-loading [isLoading]="loading" > -->
+      <!-- </component-loading> -->
+    </div>
+  </div>
+</component-loading>
+
 </div>

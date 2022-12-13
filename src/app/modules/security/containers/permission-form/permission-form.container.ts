@@ -6,8 +6,9 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 
 import { IPermission } from 'src/app/shared/interfaces'
-import { PermissionsGqlService } from '../../services'
-import { NotifyService } from 'src/app/shared/services'
+import { GraphqlService, NotifyService } from 'src/app/shared/services'
+import { rolePermissionOperation } from 'src/app/shared/operations/queries'
+import { createRolePermissionOperation, updateRolePermissionOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
   templateUrl: './permission-form.container.html',
@@ -21,16 +22,16 @@ export class PermissionFormContainer implements OnInit {
   constructor (
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private permissionsGqlService: PermissionsGqlService,
+    private graphqlService: GraphqlService,
     public translate: TranslateService,
     private notifyService: NotifyService
   ) { }
 
   ngOnInit () {
     const params = this.activatedRoute.snapshot.params
-    if (params && params.permissionId) {
+    if (params && params.elementId) {
       this.title = 'permissionForm.titles.edition'
-      this.permissionsGqlService.getOne(params.permissionId).subscribe(
+      this.graphqlService.execute(rolePermissionOperation, { id: params.elementId }).then(
         (data) => {
           this.permission = data
         },
@@ -45,39 +46,20 @@ export class PermissionFormContainer implements OnInit {
   }
 
   save ($event: any) {
-    const data: IPermission = $event as IPermission
-    if (data.id) {
-      this.update(data)
-    } else {
-      this.create(data)
-    }
-  }
-
-  create (data: IPermission) {
+    const permission: IPermission = $event as IPermission
     this.loading = true
-    this.permissionsGqlService.create(data).subscribe(
+    this.graphqlService.execute(permission.id ? updateRolePermissionOperation : createRolePermissionOperation, permission).then(
       (data: IPermission) => {
         this.loading = false
-        Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-          this.router.navigate(['/admin/security/permissions'])
+        Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.' + (data.id ? 'update' : 'save') + '.success') }).then(() => {
+          if (!permission.id) {
+            this.router.navigate(['/admin/security/role-permissions'])
+          }
         })
       },
       (Error: any) => {
         this.loading = false
         // Swal.fire({ icon: 'error', titleText: this.translate.instant('messages.save.error') }).then(() => {})
-      }
-    )
-  }
-
-  update (data: IPermission) {
-    this.loading = true
-    this.permissionsGqlService.update(data).subscribe(
-      (data: IPermission) => {
-        this.loading = false
-        this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
-      },
-      () => {
-        this.loading = false
       }
     )
   }

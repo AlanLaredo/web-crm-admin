@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   initForm () {
     this.formLogin = this.formBuilder.group({
-      username: new FormControl(('slaredo'), [Validators.required]),
+      username: new FormControl(('admin'), [Validators.required]),
       password: new FormControl(('Pass.word*'), [Validators.required])
     })
   }

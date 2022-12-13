@@ -69,7 +69,8 @@ export class DataFilterComponent implements OnInit {
       selectedOptions = this.optionsFormControl.value
     }
 
-    const text = this.textInput.toLowerCase().trim()
+    let text = this.textInput.toLowerCase().trim()
+    text = this.removeAccents(text)
     const filteredData = this._dataSource.filter((element: any) => {
       let exists = false
       selectedOptions.forEach((option: any) => {
@@ -83,5 +84,21 @@ export class DataFilterComponent implements OnInit {
       return exists
     })
     this.emitFilteredData(filteredData)
+  }
+
+  removeAccents (text: string) {
+    const accents: any = {
+      á: 'a',
+      é: 'e',
+      í: 'i',
+      ó: 'o',
+      ú: 'u',
+      Á: 'A',
+      É: 'E',
+      Í: 'I',
+      Ó: 'O',
+      Ú: 'U'
+    }
+    return text.split('').map(letter => accents[letter] || letter).join('').toString()
   }
 }

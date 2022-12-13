@@ -3,6 +3,8 @@
 @import './sass-utils/variables.scss';
 @import './sass-utils/mixins.scss';
 @import './sass-utils/functions.scss';
+@import './dark.theme.scss';
+@import './light.theme.scss';
 
 html {
   font-size: $main-font-size;
@@ -35,6 +37,9 @@ body {
 ._68vh {
   height: 68vh;
 }
+._99vh {
+  height: 100vh;
+}
 ._100vh {
   height: 100vh;
 }
@@ -51,8 +56,11 @@ body {
 .container-custom {
   max-width: 100%;
   overflow-y: scroll;
-  height: 90vh;
-  padding: 25px;
+  height: 93vh;
+  padding-left: 60px;
+  padding-right: 25px;
+  padding-top: 25px;
+  padding-bottom: 80px;
 
   .row {
     /*margin-left: 0px;

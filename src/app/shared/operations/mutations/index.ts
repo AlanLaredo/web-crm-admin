@@ -1,135 +1,135 @@
-import createClientService from './createClientService'
-import updateClientService from './updateClientService'
-import deleteClientService from './deleteClientService'
-import createClient from './createClient'
-import updateClient from './updateClient'
-import deleteClient from './deleteClient'
-import createCompanyGroup from './createCompanyGroup'
-import updateCompanyGroup from './updateCompanyGroup'
-import deleteCompanyGroup from './deleteCompanyGroup'
-import createCompanyUser from './createCompanyUser'
-import updateCompanyUser from './updateCompanyUser'
-import deleteCompanyUser from './deleteCompanyUser'
-import createCompany from './createCompany'
-import updateCompany from './updateCompany'
-import deleteCompany from './deleteCompany'
-import createActionLog from './createActionLog'
-import updateActionLog from './updateActionLog'
-import deleteActionLog from './deleteActionLog'
-import createMetaConfiguration from './createMetaConfiguration'
-import updateMetaConfiguration from './updateMetaConfiguration'
-import deleteMetaConfiguration from './deleteMetaConfiguration'
-import createEmployeeReassignment from './createEmployeeReassignment'
-import updateEmployeeReassignment from './updateEmployeeReassignment'
-import deleteEmployeeReassignment from './deleteEmployeeReassignment'
-import createEmployee from './createEmployee'
-import updateEmployee from './updateEmployee'
-import deleteEmployee from './deleteEmployee'
-import createCustomer from './createCustomer'
-import updateCustomer from './updateCustomer'
-import deleteCustomer from './deleteCustomer'
-import createProcessFunction from './createProcessFunction'
-import updateProcessFunction from './updateProcessFunction'
-import deleteProcessFunction from './deleteProcessFunction'
-import createProcess from './createProcess'
-import updateProcess from './updateProcess'
-import deleteProcess from './deleteProcess'
-import createApplicantStatus from './createApplicantStatus'
-import updateApplicantStatus from './updateApplicantStatus'
-import deleteApplicantStatus from './deleteApplicantStatus'
-import createJobVacancyStatus from './createJobVacancyStatus'
-import updateJobVacancyStatus from './updateJobVacancyStatus'
-import deleteJobVacancyStatus from './deleteJobVacancyStatus'
-import createJobVacancy from './createJobVacancy'
-import updateJobVacancy from './updateJobVacancy'
-import deleteJobVacancy from './deleteJobVacancy'
-import createPosition from './createPosition'
-import updatePosition from './updatePosition'
-import deletePosition from './deletePosition'
-import createRecruit from './createRecruit'
-import updateRecruit from './updateRecruit'
-import deleteRecruit from './deleteRecruit'
-import createRolePermission from './createRolePermission'
-import updateRolePermission from './updateRolePermission'
-import deleteRolePermission from './deleteRolePermission'
-import createUserPreferences from './createUserPreferences'
-import updateUserPreferences from './updateUserPreferences'
-import deleteUserPreferences from './deleteUserPreferences'
-import createUserRole from './createUserRole'
-import updateUserRole from './updateUserRole'
-import deleteUserRole from './deleteUserRole'
-import createUserSession from './createUserSession'
-import updateUserSession from './updateUserSession'
-import deleteUserSession from './deleteUserSession'
-import createUser from './createUser'
-import updateUser from './updateUser'
-import deleteUser from './deleteUser'
+import createClientServiceOperation from './createClientService'
+import updateClientServiceOperation from './updateClientService'
+import deleteClientServiceOperation from './deleteClientService'
+import createClientOperation from './createClient'
+import updateClientOperation from './updateClient'
+import deleteClientOperation from './deleteClient'
+import createCompanyGroupOperation from './createCompanyGroup'
+import updateCompanyGroupOperation from './updateCompanyGroup'
+import deleteCompanyGroupOperation from './deleteCompanyGroup'
+import createCompanyUserOperation from './createCompanyUser'
+import updateCompanyUserOperation from './updateCompanyUser'
+import deleteCompanyUserOperation from './deleteCompanyUser'
+import createCompanyOperation from './createCompany'
+import updateCompanyOperation from './updateCompany'
+import deleteCompanyOperation from './deleteCompany'
+import createActionLogOperation from './createActionLog'
+import updateActionLogOperation from './updateActionLog'
+import deleteActionLogOperation from './deleteActionLog'
+import createMetaConfigurationOperation from './createMetaConfiguration'
+import updateMetaConfigurationOperation from './updateMetaConfiguration'
+import deleteMetaConfigurationOperation from './deleteMetaConfiguration'
+import createEmployeeReassignmentOperation from './createEmployeeReassignment'
+import updateEmployeeReassignmentOperation from './updateEmployeeReassignment'
+import deleteEmployeeReassignmentOperation from './deleteEmployeeReassignment'
+import createEmployeeOperation from './createEmployee'
+import updateEmployeeOperation from './updateEmployee'
+import deleteEmployeeOperation from './deleteEmployee'
+import createCustomerOperation from './createCustomer'
+import updateCustomerOperation from './updateCustomer'
+import deleteCustomerOperation from './deleteCustomer'
+import createProcessFunctionOperation from './createProcessFunction'
+import updateProcessFunctionOperation from './updateProcessFunction'
+import deleteProcessFunctionOperation from './deleteProcessFunction'
+import createProcessOperation from './createProcess'
+import updateProcessOperation from './updateProcess'
+import deleteProcessOperation from './deleteProcess'
+import createApplicantStatusOperation from './createApplicantStatus'
+import updateApplicantStatusOperation from './updateApplicantStatus'
+import deleteApplicantStatusOperation from './deleteApplicantStatus'
+import createJobVacancyStatusOperation from './createJobVacancyStatus'
+import updateJobVacancyStatusOperation from './updateJobVacancyStatus'
+import deleteJobVacancyStatusOperation from './deleteJobVacancyStatus'
+import createJobVacancyOperation from './createJobVacancy'
+import updateJobVacancyOperation from './updateJobVacancy'
+import deleteJobVacancyOperation from './deleteJobVacancy'
+import createPositionOperation from './createPosition'
+import updatePositionOperation from './updatePosition'
+import deletePositionOperation from './deletePosition'
+import createRecruitOperation from './createRecruit'
+import updateRecruitOperation from './updateRecruit'
+import deleteRecruitOperation from './deleteRecruit'
+import createRolePermissionOperation from './createRolePermission'
+import updateRolePermissionOperation from './updateRolePermission'
+import deleteRolePermissionOperation from './deleteRolePermission'
+import createUserPreferencesOperation from './createUserPreferences'
+import updateUserPreferencesOperation from './updateUserPreferences'
+import deleteUserPreferencesOperation from './deleteUserPreferences'
+import createUserRoleOperation from './createUserRole'
+import updateUserRoleOperation from './updateUserRole'
+import deleteUserRoleOperation from './deleteUserRole'
+import createUserSessionOperation from './createUserSession'
+import updateUserSessionOperation from './updateUserSession'
+import deleteUserSessionOperation from './deleteUserSession'
+import createUserOperation from './createUser'
+import updateUserOperation from './updateUser'
+import deleteUserOperation from './deleteUser'
 
 export {
-  createClientService,
-  updateClientService,
-  deleteClientService,
-  createClient,
-  updateClient,
-  deleteClient,
-  createCompanyGroup,
-  updateCompanyGroup,
-  deleteCompanyGroup,
-  createCompanyUser,
-  updateCompanyUser,
-  deleteCompanyUser,
-  createCompany,
-  updateCompany,
-  deleteCompany,
-  createActionLog,
-  updateActionLog,
-  deleteActionLog,
-  createMetaConfiguration,
-  updateMetaConfiguration,
-  deleteMetaConfiguration,
-  createEmployeeReassignment,
-  updateEmployeeReassignment,
-  deleteEmployeeReassignment,
-  createEmployee,
-  updateEmployee,
-  deleteEmployee,
-  createCustomer,
-  updateCustomer,
-  deleteCustomer,
-  createProcessFunction,
-  updateProcessFunction,
-  deleteProcessFunction,
-  createProcess,
-  updateProcess,
-  deleteProcess,
-  createApplicantStatus,
-  updateApplicantStatus,
-  deleteApplicantStatus,
-  createJobVacancyStatus,
-  updateJobVacancyStatus,
-  deleteJobVacancyStatus,
-  createJobVacancy,
-  updateJobVacancy,
-  deleteJobVacancy,
-  createPosition,
-  updatePosition,
-  deletePosition,
-  createRecruit,
-  updateRecruit,
-  deleteRecruit,
-  createRolePermission,
-  updateRolePermission,
-  deleteRolePermission,
-  createUserPreferences,
-  updateUserPreferences,
-  deleteUserPreferences,
-  createUserRole,
-  updateUserRole,
-  deleteUserRole,
-  createUserSession,
-  updateUserSession,
-  deleteUserSession,
-  createUser,
-  updateUser,
-  deleteUser
+  createClientServiceOperation,
+  updateClientServiceOperation,
+  deleteClientServiceOperation,
+  createClientOperation,
+  updateClientOperation,
+  deleteClientOperation,
+  createCompanyGroupOperation,
+  updateCompanyGroupOperation,
+  deleteCompanyGroupOperation,
+  createCompanyUserOperation,
+  updateCompanyUserOperation,
+  deleteCompanyUserOperation,
+  createCompanyOperation,
+  updateCompanyOperation,
+  deleteCompanyOperation,
+  createActionLogOperation,
+  updateActionLogOperation,
+  deleteActionLogOperation,
+  createMetaConfigurationOperation,
+  updateMetaConfigurationOperation,
+  deleteMetaConfigurationOperation,
+  createEmployeeReassignmentOperation,
+  updateEmployeeReassignmentOperation,
+  deleteEmployeeReassignmentOperation,
+  createEmployeeOperation,
+  updateEmployeeOperation,
+  deleteEmployeeOperation,
+  createCustomerOperation,
+  updateCustomerOperation,
+  deleteCustomerOperation,
+  createProcessFunctionOperation,
+  updateProcessFunctionOperation,
+  deleteProcessFunctionOperation,
+  createProcessOperation,
+  updateProcessOperation,
+  deleteProcessOperation,
+  createApplicantStatusOperation,
+  updateApplicantStatusOperation,
+  deleteApplicantStatusOperation,
+  createJobVacancyStatusOperation,
+  updateJobVacancyStatusOperation,
+  deleteJobVacancyStatusOperation,
+  createJobVacancyOperation,
+  updateJobVacancyOperation,
+  deleteJobVacancyOperation,
+  createPositionOperation,
+  updatePositionOperation,
+  deletePositionOperation,
+  createRecruitOperation,
+  updateRecruitOperation,
+  deleteRecruitOperation,
+  createRolePermissionOperation,
+  updateRolePermissionOperation,
+  deleteRolePermissionOperation,
+  createUserPreferencesOperation,
+  updateUserPreferencesOperation,
+  deleteUserPreferencesOperation,
+  createUserRoleOperation,
+  updateUserRoleOperation,
+  deleteUserRoleOperation,
+  createUserSessionOperation,
+  updateUserSessionOperation,
+  deleteUserSessionOperation,
+  createUserOperation,
+  updateUserOperation,
+  deleteUserOperation
 }

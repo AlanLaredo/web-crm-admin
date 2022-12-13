@@ -14,6 +14,7 @@ export default gql`mutation updateUser($updateUserData: UpdateUserInput!){
         firstName
         lastName
         roleAccessId
+        companyId
     }
 }
 `

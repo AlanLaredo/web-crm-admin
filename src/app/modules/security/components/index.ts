@@ -1,19 +1,21 @@
-import { PermissionFormComponent } from './permission-form'
-import { PermissionsListComponent } from './permissions-list'
+
 import { UsersListComponent } from './users-list'
 import { UserFormComponent } from './users-form'
-import { RoleAccessGridComponent } from './role-access-grid'
-import { RoleAccessFormComponent } from './role-access-form'
+
 import { SelectPermissionsByCategoryComponent } from './select-permissions-by-category'
+import { PermissionsListComponent } from './permissions-list'
+import { PermissionFormComponent } from './permission-form'
+import { UserRoleFormComponent } from './user-role-form'
+import { UserRoleGridComponent } from './user-role-grid'
 
 export const SECURITY_COMPONENTS = [
   UsersListComponent,
-  PermissionsListComponent,
   UserFormComponent,
   PermissionFormComponent,
-  RoleAccessGridComponent,
-  RoleAccessFormComponent,
-  SelectPermissionsByCategoryComponent
+  PermissionsListComponent,
+  SelectPermissionsByCategoryComponent,
+  UserRoleFormComponent,
+  UserRoleGridComponent
 ]
 
 export {
@@ -21,7 +23,7 @@ export {
   PermissionsListComponent,
   UserFormComponent,
   PermissionFormComponent,
-  RoleAccessGridComponent,
-  RoleAccessFormComponent,
-  SelectPermissionsByCategoryComponent
+  SelectPermissionsByCategoryComponent,
+  UserRoleFormComponent,
+  UserRoleGridComponent
 }

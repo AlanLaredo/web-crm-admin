@@ -10,10 +10,19 @@
   text-align: center;
   color: get-color-scale("primary", 100);
   font-size: get-scale-size(24);
+
+
 }
 
 .message {
   text-align: center;
   color: get-color-scale("dark", 60);
   font-size: get-scale-size(18);
+}
+
+.background-animated {
+}
+
+._99vh {
+  height: 99vh;
 }

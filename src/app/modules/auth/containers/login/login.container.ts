@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core'
   styleUrls: ['./login.container.scss']
 })
 export class LoginContainer {
-  loading: boolean = false
+  loading: boolean = true
   constructor (
     private loginService: LoginService,
     private router: Router,
@@ -23,9 +23,13 @@ export class LoginContainer {
     private translate: TranslateService
   ) {
     this.titleService.setTitle(this.translate.instant('login.pageTitle') + ' - ' + this.translate.instant('applicationTitle'))
+    setTimeout(() => {
+      this.loading = false
+    }, 0)
   }
 
   public login (loginData: any) {
+    this.loading = true
     this.loginService.login(loginData).then((callback: any) => {
       this.router.navigate(['/admin'])
     }, (error: HttpErrorResponse) => {

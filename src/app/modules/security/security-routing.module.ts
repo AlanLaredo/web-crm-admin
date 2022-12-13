@@ -2,7 +2,7 @@
 // Third Party
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { PermissionFormContainer, PermissionsContainer, RoleAccessContainer, RoleAccessFormContainer, UserFormContainer, UsersContainer } from './containers'
+import { PermissionFormContainer, PermissionsContainer, UserFormContainer, UserRoleFormContainer, UserRoleGridContainer, UsersContainer } from './containers'
 
 const routes: Routes = [
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'permissions',
+    path: 'role-permissions',
     children: [
       {
         path: '',
@@ -53,7 +53,7 @@ const routes: Routes = [
         }
       },
       {
-        path: ':permissionId/edit',
+        path: ':elementId/edit',
         component: PermissionFormContainer,
         data: {
           title: 'Detalle de permiso'
@@ -62,25 +62,25 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'role-access',
+    path: 'user-role',
     children: [
       {
         path: '',
-        component: RoleAccessContainer,
+        component: UserRoleGridContainer,
         data: {
           title: 'Listado de roles'
         }
       },
       {
         path: 'create',
-        component: RoleAccessFormContainer,
+        component: UserRoleFormContainer,
         data: {
           title: 'Nuevo rol'
         }
       },
       {
-        path: ':roleAccessId/edit',
-        component: RoleAccessFormContainer,
+        path: ':elementId/edit',
+        component: UserRoleFormContainer,
         data: {
           title: 'Edición de rol'
         }

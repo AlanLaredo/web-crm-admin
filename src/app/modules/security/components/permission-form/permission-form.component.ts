@@ -54,7 +54,6 @@ export class PermissionFormComponent implements OnInit {
         Validators.required
       ]),
       description: new FormControl((this._data.description || ''), [
-        Validators.required
       ]),
       tag: new FormControl((this._data.tag || ''), [
         Validators.required

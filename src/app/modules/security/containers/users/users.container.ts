@@ -7,7 +7,8 @@ import { Router } from '@angular/router'
 
 import { IUser } from 'src/app/shared/interfaces/user.interface'
 import { UsersGqlService } from '../../services'
-import { NotifyService } from 'src/app/shared/services'
+import { GraphqlService, NotifyService } from 'src/app/shared/services'
+import { usersOperation } from 'src/app/shared/operations/queries'
 @Component({
   templateUrl: './users.container.html',
   styleUrls: ['./users.container.scss']
@@ -29,6 +30,7 @@ export class UsersContainer implements OnInit {
     private translate: TranslateService,
     private usersGqlService: UsersGqlService,
     private notifyService: NotifyService,
+    private graphQlService: GraphqlService,
     private router: Router,
     private titleService: Title) {
     this.translate.stream('users.cols').subscribe((cols) => {
@@ -36,7 +38,8 @@ export class UsersContainer implements OnInit {
         { key: 'username', text: cols.username },
         { key: 'email', text: cols.email },
         { key: 'fullName', text: cols.name },
-        { key: 'rolename', text: cols.roleName }
+        { key: 'rolename', text: cols.roleName },
+        { key: 'companyName', text: cols.company }
       ]
     })
   }
@@ -51,13 +54,19 @@ export class UsersContainer implements OnInit {
     this.filteredUsers = filteredUsers
   }
 
-  loadUsers () {
+  async loadUsers () {
     this.loading = true
-    this.usersGqlService.list().subscribe((result) => {
-      this.loading = false
-      this.users = result
-      this.filteredUsers = result
+    const result = await this.graphQlService.execute(usersOperation)
+
+    this.loading = false
+    const users = result.map((user: any) => {
+      user.fullName = user.firstName + (user.lastName ? user.lastName + ' ' : '')
+      user.companyName = user.company?.name || 'N/A'
+      return user
     })
+
+    this.users = users
+    this.filteredUsers = users
   }
 
   delete (id: string) {

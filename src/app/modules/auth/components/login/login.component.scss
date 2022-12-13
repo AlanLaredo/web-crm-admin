@@ -1,3 +1,15 @@
 @import '../../../../../sass-utils/variables.scss';
 @import '../../../../../sass-utils/mixins.scss';
 @import '../../../../../sass-utils/functions.scss';
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  color: #173a93;
+  font-size: get-scale-size(24);
+  font-weight: 900;
+  margin-bottom: 26px;
+  margin-top: 26px;
+}

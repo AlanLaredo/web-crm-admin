@@ -11,6 +11,13 @@ query employees($id: ID, $keycode: String, $person: CreatePersonInput, $position
         deletedAt
         id
         keycode
+        companyId
+        company {
+          name
+        }
+        client {
+          businessName
+        }
         person{
             name
             lastName

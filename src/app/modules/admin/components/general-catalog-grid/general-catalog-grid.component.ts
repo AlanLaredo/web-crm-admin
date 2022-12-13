@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
 
-import { ICatalog, IGeneralGridColumn } from '../../models/data'
+import { IGeneralGridColumn } from '../../models/data'
 
 @Component({
   selector: 'general-catalog-grid-component',
@@ -30,13 +30,19 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
     if (columns !== null) {
       this._columns = columns
       this.displayedColumns = this._columns.map(column => column.id)
+      this.updateElements()
     }
+  }
+
+  @Input('viewServices')
+  set viewServices (viewServices: any) {
+    this._viewServices = viewServices
   }
 
   @Output()
   outActionDelete: EventEmitter<string> = new EventEmitter<string>()
 
-  _data: ICatalog[] = []
+  _data: any[] = []
 
   _columns: IGeneralGridColumn[] = [{
     id: 'name',
@@ -50,7 +56,7 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
   }]
 
   displayedColumns: string[] = this._columns.map(column => column.id)
-
+  _viewServices: boolean = false
   dataSource: any
 
   @ViewChild(MatPaginator) paginator: any
@@ -66,7 +72,7 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
   }
 
   loadData () {
-    this.dataSource = new MatTableDataSource<ICatalog>(this._data)
+    this.dataSource = new MatTableDataSource<any>(this._data)
     this.updateElements()
   }
 

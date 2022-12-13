@@ -9,7 +9,7 @@ export default gql`mutation createClientService($createClientServiceData: Create
         deletedBy
         deletedAt
         id
-        cientId
+        clientId
         serviceType
         scheduleHours
         serviceCost
@@ -23,7 +23,7 @@ export default gql`mutation createClientService($createClientServiceData: Create
         totalElementsDay
         totalElementsNight
         totalPatrol
-        totalQaudBike
+        totalQuadBike
         startDate
         emergencyContact{
             name

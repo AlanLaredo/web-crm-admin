@@ -14,6 +14,9 @@ query user($id: ID, $username: String, $email: String, $firstName: String, $last
       firstName
       lastName
       roleAccessId
+      roleAccess {
+        name
+      }
   }
 }
 `

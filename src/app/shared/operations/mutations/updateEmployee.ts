@@ -10,6 +10,13 @@ export default gql`mutation updateEmployee($updateEmployeeData: UpdateEmployeeIn
         deletedAt
         id
         keycode
+        companyId
+        company {
+          name
+        }
+        client {
+          businessName
+        }
         person{
             name
             lastName

@@ -15,5 +15,11 @@ query users($id: ID, $username: String, $email: String, $firstName: String, $las
         firstName
         lastName
         roleAccessId
+        roleAccess {
+          name
+        }
+        company {
+          name
+        }
     }
 }`

@@ -4,11 +4,20 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { PageNotFoundComponent } from 'src/app/shared/components'
 import { AuthGuard } from '../auth/shared'
+
 import {
   ClientFormContainer,
-  ClientsContainer,
+  ClientGridContainer,
+  ClientServiceFormContainer,
+  CompanyFormContainer,
+  CompanyGridContainer,
+  CompanyGroupFormContainer,
+  CompanyGroupGridContainer,
+  EmployeeFormContainer,
+  EmployeeGridContainer,
   MainContainer
 } from './containers'
+import { ClientServiceGridContainer } from './containers/client-service-grid'
 
 const routes: Routes = [
   {
@@ -29,19 +38,112 @@ const routes: Routes = [
         loadChildren: () => import('../security/security.module').then(mod => mod.SecurityModule)
       },
       {
-        path: 'clientes',
-        component: ClientsContainer,
-        canActivate: [AuthGuard]
+        path: 'client',
+        children: [
+          {
+            path: 'clients',
+            component: ClientGridContainer,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'clients/:elementId/edit',
+            component: ClientFormContainer,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'clients/create',
+            component: ClientFormContainer,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'clients/:elementId/services',
+            component: ClientServiceGridContainer,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'clients/:elementId/services/create',
+            component: ClientServiceFormContainer,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'clients/:elementId/services/:clientServiceId/edit',
+            component: ClientServiceFormContainer,
+            canActivate: [AuthGuard]
+          }
+        ]
       },
       {
-        path: 'clientes/:clientId/edit',
-        component: ClientFormContainer,
-        canActivate: [AuthGuard]
+        path: 'company',
+        children: [
+          {
+            path: 'company-group',
+            component: CompanyGroupGridContainer,
+            data: {
+              title: 'Listado de grupos de empresa'
+            }
+          },
+          {
+            path: 'company-group/create',
+            component: CompanyGroupFormContainer,
+            data: {
+              title: 'Nuevo grupo'
+            }
+          },
+          {
+            path: 'company-group/:elementId/edit',
+            component: CompanyGroupFormContainer,
+            data: {
+              title: 'Edición de grupo de empresa'
+            }
+          },
+          {
+            path: 'company',
+            component: CompanyGridContainer,
+            data: {
+              title: 'Listado de empresa'
+            }
+          },
+          {
+            path: 'company/create',
+            component: CompanyFormContainer,
+            data: {
+              title: 'Nueva empresa'
+            }
+          },
+          {
+            path: 'company/:elementId/edit',
+            component: CompanyFormContainer,
+            data: {
+              title: 'Edición de empresa'
+            }
+          }
+        ]
       },
       {
-        path: 'clientes/create',
-        component: ClientFormContainer,
-        canActivate: [AuthGuard]
+        path: 'employee',
+        children: [
+          {
+            path: 'employees',
+            component: EmployeeGridContainer,
+            data: {
+              title: 'Listado de empleados'
+            }
+          },
+          {
+            path: 'employees/create',
+            component: EmployeeFormContainer,
+            data: {
+              title: 'Nueva empleado'
+            }
+          },
+          {
+            path: 'employees/:elementId/edit',
+            component: EmployeeFormContainer,
+            data: {
+              title: 'Edición de empleado'
+            }
+          }
+        ]
       },
       {
         path: 'catalogos',

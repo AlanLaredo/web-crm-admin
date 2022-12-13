@@ -74,7 +74,7 @@ export class MenuService {
           },
           {
             isRoot: false,
-            name: 'roles',
+            name: 'userRole',
             isParent: false,
             routeLink: ['/', 'admin', 'security', 'user-role'],
             icon: {
@@ -133,7 +133,7 @@ export class MenuService {
         childs: [
           {
             isRoot: false,
-            name: 'companyGroup',
+            name: 'companyGroups',
             isParent: false,
             routeLink: ['/', 'admin', 'company', 'company-group'],
             icon: {
@@ -142,20 +142,20 @@ export class MenuService {
             },
             permission: 'admin.company-group'
           },
+          // {
+          //   isRoot: false,
+          //   name: 'companyUser',
+          //   isParent: false,
+          //   routeLink: ['/', 'admin', 'company', 'company-user'],
+          //   icon: {
+          //     fontIcon: ' fa-users',
+          //     fontSet: 'fas'
+          //   },
+          //   permission: 'admin.company.company-user'
+          // },
           {
             isRoot: false,
-            name: 'companyUser',
-            isParent: false,
-            routeLink: ['/', 'admin', 'company', 'company-user'],
-            icon: {
-              fontIcon: ' fa-users',
-              fontSet: 'fas'
-            },
-            permission: 'admin.company.company-user'
-          },
-          {
-            isRoot: false,
-            name: 'company',
+            name: 'companies',
             isParent: false,
             routeLink: ['/', 'admin', 'company', 'company'],
             icon: {

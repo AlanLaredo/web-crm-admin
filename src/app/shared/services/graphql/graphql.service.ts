@@ -33,7 +33,7 @@ export class GraphqlService {
     })
   }
 
-  execute (operation: DocumentNode, variables: any): Promise<any> {
+  execute (operation: DocumentNode, variables: any = null): Promise<any> {
     const definitions: any = operation.definitions[0]
     const resultOperation: string = definitions.name.value
     let prepareOperation

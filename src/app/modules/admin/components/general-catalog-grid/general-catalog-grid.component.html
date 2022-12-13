@@ -15,7 +15,12 @@
                 <mat-icon>mode_edit</mat-icon>
               </button>
             </a>
-            <button mat-button color="accent" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)">
+            <a [routerLink]="[row.id, 'services']">
+              <button mat-button color="primary" *ngIf="_viewServices" matTooltip="{{'actions.edwit' | translate}}">
+                <mat-icon class="cs-material-icons material-icons mat-icon-no-color" [fontSet]="'fa'" [fontIcon]="'fa-globe'"></mat-icon>
+              </button>
+            </a>
+            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>
@@ -23,7 +28,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="5">
+          <td class="mat-cell" colspan="40">
             {{'matTable.noRecords' | translate}}
           </td>
         </tr>

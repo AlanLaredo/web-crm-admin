@@ -4,11 +4,12 @@ import { Component, HostListener, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
+import { Title } from '@angular/platform-browser'
 
 import { IPermission } from 'src/app/shared/interfaces'
-import { NotifyService } from 'src/app/shared/services'
+import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { PermissionsGqlService } from '../../services'
-import { Title } from '@angular/platform-browser'
+import { rolePermissionsOperation } from 'src/app/shared/operations/queries'
 
 @Component({
   templateUrl: './permissions.container.html',
@@ -22,7 +23,7 @@ export class PermissionsContainer implements OnInit {
 
   @HostListener('document:keydown', ['$event']) onKeyDown (e: any) {
     if (e.shiftKey && e.keyCode === 78) { // N
-      this.router.navigate(['/admin/security/permissions/create'])
+      this.router.navigate(['/admin/security/role-permissions/create'])
     }
   }
 
@@ -31,6 +32,7 @@ export class PermissionsContainer implements OnInit {
     private translate: TranslateService,
     private permissionsGqlService: PermissionsGqlService,
     private notifyService: NotifyService,
+    private graphQlService: GraphqlService,
     private router: Router,
     private titleService: Title) {
     this.translate.stream('permissions.cols').subscribe((cols) => {
@@ -53,7 +55,7 @@ export class PermissionsContainer implements OnInit {
 
   loadData () {
     this.loading = true
-    this.permissionsGqlService.list().subscribe((result: any) => {
+    this.graphQlService.execute(rolePermissionsOperation).then((result: any) => {
       this.loading = false
       this.data = result
       this.filteredData = result

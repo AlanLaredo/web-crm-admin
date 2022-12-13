@@ -32,7 +32,7 @@
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/theme.scss",
+              
               "src/sass-utils/bootstrap.scss",
               "src/styles.scss"
             ],

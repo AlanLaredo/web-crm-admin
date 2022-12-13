@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Router, NavigationEnd } from '@angular/router'
 import { MenuService } from 'src/app/shared/services'
 
 import { onSideNavChange, animateText } from '../../animations'
@@ -25,6 +25,17 @@ export class MenuLeftComponent implements OnInit {
 
   ngOnInit () {
     this.loadMenuOptions()
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationEnd) {
+          console.log(event)
+        }
+      }
+    )
+    // this.router.events.filter(
+    //   (event: any) => event instanceof NavigationEnd).subscribe(event => {
+    //   console.log(event)
+    // })
   }
 
   loadMenuOptions () {

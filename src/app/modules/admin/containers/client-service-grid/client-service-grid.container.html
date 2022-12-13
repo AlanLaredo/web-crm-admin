@@ -1,0 +1,38 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row mb-5">
+      <div class="col-12">
+          <button mat-stroked-button="mat-stroked-button" (click)="backHistory()">
+            <mat-icon class="go-back-icon" fontSet="fas" fontIcon="fa-arrow-left"></mat-icon>
+            <span>{{ 'general.returnPreviusPage' | translate }}</span>
+          </button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <h1>{{ 'submenu.clientService' | translate }}</h1>
+      </div>
+      <div class="col-6">
+        <a class="m-4" [routerLink]="['create']">
+          <button class="float-right " mat-stroked-button color="primary">
+            <mat-icon>add</mat-icon>
+            {{'actions.new' | translate}}
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+        <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <component-loading [isLoading]="loading">
+          <general-catalog-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)"></general-catalog-grid-component>
+        </component-loading>
+      </div>
+    </div>
+  </div>
+</div>
+

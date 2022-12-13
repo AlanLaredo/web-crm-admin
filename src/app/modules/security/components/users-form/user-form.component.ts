@@ -1,9 +1,12 @@
 /* eslint-disable no-useless-constructor */
+/* eslint accessor-pairs: ["error", { "enforceForClassMembers": false }] */
+
 // Third Party
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
-import { IRoleAccess, IUser } from 'src/app/shared/interfaces'
+import { LoginService } from 'src/app/modules/auth/services'
+import { LocalService } from 'src/app/shared/services'
 import Swal from 'sweetalert2'
 
 @Component({
@@ -14,8 +17,11 @@ import Swal from 'sweetalert2'
 export class UserFormComponent implements OnInit {
   _loading: boolean = false
   public userForm: any = null
-  _user: Partial<IUser> = {}
-  _roleAccessList: IRoleAccess[] = []
+  _user: any = {}
+  _roleAccessList: any[] = []
+  _companies: any[] = []
+  roleAccessName: any
+  companyId: any
 
   @Input('user')
   set user (user: any) {
@@ -23,8 +29,9 @@ export class UserFormComponent implements OnInit {
     this.initForm()
   }
 
-  get user () {
-    return this._user
+  @Input('companies')
+  set companies (companies: any[]) {
+    this._companies = companies
   }
 
   @Input('loading')
@@ -32,32 +39,28 @@ export class UserFormComponent implements OnInit {
     this._loading = loading
   }
 
-  get loading () {
-    return this.loading
-  }
-
   @Input('roleAccessList')
-  set roleAccessList (roleAccessList: IRoleAccess[]) {
+  set roleAccessList (roleAccessList: any[]) {
     this._roleAccessList = roleAccessList
-    console.log(roleAccessList)
-  }
-
-  get roleAccessList () {
-    return this._roleAccessList
   }
 
   @Output()
-  outActionForm: EventEmitter<Partial<IUser>> = new EventEmitter<Partial<IUser>>()
+  outActionForm: EventEmitter<any> = new EventEmitter<any>()
 
   @Output()
-  outActionRoleAccessChange: EventEmitter<Partial<IRoleAccess>> = new EventEmitter<Partial<IRoleAccess>>()
+  outActionRoleAccessChange: EventEmitter<any> = new EventEmitter<any>()
 
   constructor (
     private formBuilder: FormBuilder,
-    public translate: TranslateService
-  ) { }
+    public translate: TranslateService,
+    private loginService: LoginService
+  ) {
+    const user: any = this.loginService.getUser()
+    this.roleAccessName = user.userRole?.name || ''
+    this.companyId = user.companyId
+  }
 
-  ngOnInit (): void {
+  async ngOnInit () {
     this.initForm()
   }
 
@@ -78,14 +81,12 @@ export class UserFormComponent implements OnInit {
         Validators.required,
         Validators.email
       ]),
-      roleAccessId: new FormControl((this._user.roleAccessId || null), [])
-    })
-    if (!this._user.id) {
-      this.userForm.addControl('password', new FormControl((this._user.password || ''), [
-        Validators.required,
+      roleAccessId: new FormControl(({ value: this._user.roleAccessId || null, disabled: false }), [Validators.required]),
+      companyId: new FormControl((this._user.companyId || null), []),
+      password: new FormControl('', [
         Validators.minLength(8)
-      ]))
-    }
+      ])
+    })
   }
 
   submitForm () {
@@ -97,10 +98,13 @@ export class UserFormComponent implements OnInit {
     const user = { ...this.userForm.value }
     user.lastName = user.lastName.trim()
     user.firstName = user.firstName.trim()
+    user.password = user.password && user.password.trim() !== '' ? user.password.trim() : undefined
     if (this._user.id) {
       user.id = this._user.id
     }
-    console.log(user)
+    if (!user.companyId) {
+      user.companyId = this.companyId
+    }
     this.outActionForm.emit(user)
   }
 

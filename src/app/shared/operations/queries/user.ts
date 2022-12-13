@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query user($id: ID, $username: String, $email: String, $firstName: String, $lastName: String, $roleAccessId: ID, $password: String, $offset: Int, $limit: Int){
-    user(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, roleAccessId: $roleAccessId, password: $password, offset: $offset, limit: $limit){
+query user($id: ID, $username: String, $email: String, $firstName: String, $lastName: String, $roleAccessId: ID, $companyId: ID, $password: String, $offset: Int, $limit: Int){
+    user(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, roleAccessId: $roleAccessId, companyId: $companyId, password: $password, offset: $offset, limit: $limit){
         createdBy
         createdAt
         modifiedBy
@@ -15,5 +15,6 @@ query user($id: ID, $username: String, $email: String, $firstName: String, $last
         firstName
         lastName
         roleAccessId
+        companyId
     }
 }`

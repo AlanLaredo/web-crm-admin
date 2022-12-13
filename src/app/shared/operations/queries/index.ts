@@ -1,121 +1,130 @@
-import clientService from './clientService'
-import jobVacancies from './jobVacancies'
-import getClientServiceFind from './getClientServiceFind'
-import client from './client'
-import getClientFind from './getClientFind'
-import companyGroup from './companyGroup'
-import getCompanyGroupFind from './getCompanyGroupFind'
-import companyUser from './companyUser'
-import getCompanyUserFind from './getCompanyUserFind'
-import company from './company'
-import getCompanyFind from './getCompanyFind'
-import actionLog from './actionLog'
-import getActionLogFind from './getActionLogFind'
-import metaConfiguration from './metaConfiguration'
-import getMetaConfigurationFind from './getMetaConfigurationFind'
-import employeeReassignment from './employeeReassignment'
-import employeeReassignments from './employeeReassignments'
-import getEmployeeReassignmentFind from './getEmployeeReassignmentFind'
-import employee from './employee'
-import employees from './employees'
-import getEmployeeFind from './getEmployeeFind'
-import customer from './customer'
-import customers from './customers'
-import getCustomerFind from './getCustomerFind'
-import processFunction from './processFunction'
-import processFunctions from './processFunctions'
-import getProcessFunctionFind from './getProcessFunctionFind'
-import process from './process'
-import processList from './processList'
-import getProcessFind from './getProcessFind'
-import applicantStatus from './applicantStatus'
-import applicantStatusList from './applicantStatusList'
-import getApplicantStatusFind from './getApplicantStatusFind'
-import jobVacancyStatus from './jobVacancyStatus'
-import jobVacancyStatusList from './jobVacancyStatusList'
-import getJobVacancyStatusFind from './getJobVacancyStatusFind'
-import jobVacancy from './jobVacancy'
-import getJobVacancyFind from './getJobVacancyFind'
-import position from './position'
-import positions from './positions'
-import getPositionFind from './getPositionFind'
-import recruit from './recruit'
-import recruits from './recruits'
-import getRecruitFind from './getRecruitFind'
-import rolePermission from './rolePermission'
-import rolePermissions from './rolePermissions'
-import getRolePermissionFind from './getRolePermissionFind'
-import userPreferences from './userPreferences'
-import userPreferencesList from './userPreferencesList'
-import getUserPreferencesFind from './getUserPreferencesFind'
-import userRole from './userRole'
-import userRoles from './userRoles'
-import getUserRoleFind from './getUserRoleFind'
-import userSession from './userSession'
-import userSessions from './userSessions'
-import getUserSessionFind from './getUserSessionFind'
-import user from './user'
-import users from './users'
-import getUserFind from './getUserFind'
+import clientServiceOperation from './clientService'
+import clientsOperation from './clients'
+import clientServicesOperation from './clientServices'
+
+import jobVacanciesOperation from './jobVacancies'
+import getClientServiceFindOperation from './getClientServiceFind'
+import clientOperation from './client'
+import getClientFindOperation from './getClientFind'
+import companyGroupOperation from './companyGroup'
+import companyGroupsOperation from './companyGroups'
+import getCompanyGroupFindOperation from './getCompanyGroupFind'
+import companyUserOperation from './companyUser'
+import getCompanyUserFindOperation from './getCompanyUserFind'
+import companyOperation from './company'
+import companiesOperation from './companies'
+import getCompanyFindOperation from './getCompanyFind'
+import actionLogOperation from './actionLog'
+import getActionLogFindOperation from './getActionLogFind'
+import metaConfigurationOperation from './metaConfiguration'
+import getMetaConfigurationFindOperation from './getMetaConfigurationFind'
+import employeeReassignmentOperation from './employeeReassignment'
+import employeeReassignmentsOperation from './employeeReassignments'
+import getEmployeeReassignmentFindOperation from './getEmployeeReassignmentFind'
+import employeeOperation from './employee'
+import employeesOperation from './employees'
+import getEmployeeFindOperation from './getEmployeeFind'
+import customerOperation from './customer'
+import customersOperation from './customers'
+import getCustomerFindOperation from './getCustomerFind'
+import processFunctionOperation from './processFunction'
+import processFunctionsOperation from './processFunctions'
+import getProcessFunctionFindOperation from './getProcessFunctionFind'
+import processOperation from './process'
+import processListOperation from './processList'
+import getProcessFindOperation from './getProcessFind'
+import applicantStatusOperation from './applicantStatus'
+import applicantStatusListOperation from './applicantStatusList'
+import getApplicantStatusFindOperation from './getApplicantStatusFind'
+import jobVacancyStatusOperation from './jobVacancyStatus'
+import jobVacancyStatusListOperation from './jobVacancyStatusList'
+import getJobVacancyStatusFindOperation from './getJobVacancyStatusFind'
+import jobVacancyOperation from './jobVacancy'
+import getJobVacancyFindOperation from './getJobVacancyFind'
+import positionOperation from './position'
+import positionsOperation from './positions'
+import getPositionFindOperation from './getPositionFind'
+import recruitOperation from './recruit'
+import recruitsOperation from './recruits'
+import getRecruitFindOperation from './getRecruitFind'
+import rolePermissionOperation from './rolePermission'
+import rolePermissionsOperation from './rolePermissions'
+import getRolePermissionFindOperation from './getRolePermissionFind'
+import userPreferencesOperation from './userPreferences'
+import userPreferencesListOperation from './userPreferencesList'
+import getUserPreferencesFindOperation from './getUserPreferencesFind'
+import userRoleOperation from './userRole'
+import userRolesOperation from './userRoles'
+import getUserRoleFindOperation from './getUserRoleFind'
+import userSessionOperation from './userSession'
+import userSessionsOperation from './userSessions'
+import getUserSessionFindOperation from './getUserSessionFind'
+import userOperation from './user'
+import usersOperation from './users'
+import getUserFindOperation from './getUserFind'
 
 export {
-  actionLog,
-  applicantStatus,
-  applicantStatusList,
-  client,
-  clientService,
-  company,
-  companyGroup,
-  companyUser,
-  customer,
-  customers,
-  employee,
-  employeeReassignment,
-  employeeReassignments,
-  employees,
-  getActionLogFind,
-  getApplicantStatusFind,
-  getClientFind,
-  getClientServiceFind,
-  getCompanyFind,
-  getCompanyGroupFind,
-  getCompanyUserFind,
-  getCustomerFind,
-  getEmployeeFind,
-  getEmployeeReassignmentFind,
-  getJobVacancyFind,
-  getJobVacancyStatusFind,
-  getMetaConfigurationFind,
-  getPositionFind,
-  getProcessFind,
-  getProcessFunctionFind,
-  getRecruitFind,
-  getRolePermissionFind,
-  getUserFind,
-  getUserPreferencesFind,
-  getUserRoleFind,
-  getUserSessionFind,
-  jobVacancies,
-  jobVacancy,
-  jobVacancyStatus,
-  jobVacancyStatusList,
-  metaConfiguration,
-  position,
-  positions,
-  process,
-  processFunction,
-  processFunctions,
-  processList,
-  recruit,
-  recruits,
-  rolePermission,
-  rolePermissions,
-  user,
-  userPreferences,
-  userPreferencesList,
-  userRole,
-  userRoles,
-  users,
-  userSession,
-  userSessions
+  actionLogOperation,
+  applicantStatusOperation,
+  applicantStatusListOperation,
+  clientOperation,
+  clientsOperation,
+  clientServiceOperation,
+  clientServicesOperation,
+  companyOperation,
+  companiesOperation,
+  companyGroupsOperation,
+  companyGroupOperation,
+  companyUserOperation,
+  customerOperation,
+  customersOperation,
+  employeeOperation,
+  employeeReassignmentOperation,
+  employeeReassignmentsOperation,
+  employeesOperation,
+  getActionLogFindOperation,
+  getApplicantStatusFindOperation,
+  getClientFindOperation,
+  getClientServiceFindOperation,
+  getCompanyFindOperation,
+  getCompanyGroupFindOperation,
+  getCompanyUserFindOperation,
+  getCustomerFindOperation,
+  getEmployeeFindOperation,
+  getEmployeeReassignmentFindOperation,
+  getJobVacancyFindOperation,
+  getJobVacancyStatusFindOperation,
+  getMetaConfigurationFindOperation,
+  getPositionFindOperation,
+  getProcessFindOperation,
+  getProcessFunctionFindOperation,
+  getRecruitFindOperation,
+  getRolePermissionFindOperation,
+  getUserFindOperation,
+  getUserPreferencesFindOperation,
+  getUserRoleFindOperation,
+  getUserSessionFindOperation,
+  jobVacanciesOperation,
+  jobVacancyOperation,
+  jobVacancyStatusOperation,
+  jobVacancyStatusListOperation,
+  metaConfigurationOperation,
+  positionOperation,
+  positionsOperation,
+  processOperation,
+  processFunctionOperation,
+  processFunctionsOperation,
+  processListOperation,
+  recruitOperation,
+  recruitsOperation,
+  rolePermissionOperation,
+  rolePermissionsOperation,
+  userOperation,
+  userPreferencesOperation,
+  userPreferencesListOperation,
+  userRoleOperation,
+  userRolesOperation,
+  usersOperation,
+  userSessionOperation,
+  userSessionsOperation
 }

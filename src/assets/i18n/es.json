@@ -58,14 +58,16 @@
     },
     "delete": {
       "confirmQuestion": "¿Está seguro de eliminar este elemento?",
-      "success": "Se ha eliminado un elemento"
+      "success": "Se ha eliminado un elemento",
+      "error": "Error al eliminar el elemento"
     },
     "save": {
       "success": "Se ha guardado un elemento",
       "error": "Error al guardar el elemento"
     },
     "update": {
-      "success": "Se ha actualizado un elemento"
+      "success": "Se ha actualizado un elemento",
+      "error": "Error al actualizar el elemento"
     },
     "send": {
       "success": "Se ha enviado exitosamente"
@@ -91,12 +93,12 @@
   },
   "submenu": {
     "users": "Usuarios",
-    "roles": "Roles",
+    "userRole": "Roles",
     "permissions": "Permisos",
     "clients": "Clientes",
     "clientService": "Servicios",
-    "company": "Compañías",
-    "companyGroup": "Grupos",
+    "companies": "Compañías",
+    "companyGroups": "Grupos",
     "companyUser": "Usuarios",
     "employees": "Empleados",
     "reassignment": "Reasignación",
@@ -146,7 +148,9 @@
       "edition": "Edición"
     },
     "addMore": "Agregar",
-    "days": "días"
+    "days": "días",
+    "name": "Nombre",
+    "description": "Descripción"
   },
   "daysOfWeek": {
     "Monday": "Lunes",
@@ -211,7 +215,8 @@
       "username": "Usuario",
       "email": "Email",
       "name": "Nombre",
-      "roleName": "Rol"
+      "roleName": "Rol",
+      "company": "Compañía"
     },
     "messages": {
       "notFoundUser": "No se ha encontrado el usuario",
@@ -349,5 +354,90 @@
       "suburb": "Colonia",
       "legalRepresentative": "Representante legal"
     }
+  },
+  "companyModule": {
+    "group": "Grupo",
+    "parent": "Compañía padre",
+    "name": "Empresa"
+  },
+  "user": {
+    "company": "Empresa",
+    "withoutRole": "Sin rol",
+    "withoutCompany": "Sin empresa"
+  },
+  "client": {
+    "keycode": "Clave",
+    "rfc": "RFC",
+    "businessName": "Razón social",
+    "businessReason": "Nombre comercial",
+    "company": "Compañía",
+    "data": "Información"
+  },
+  "clientService": {
+    "client": "Cliente",
+    "serviceType": "Tipo",
+    "scheduleHours": "Horario",
+    "serviceCost": "Costo servicio",
+    "elementCost": "Costo elemento",
+    "patrolCost": "Costo patrulla",
+    "quadBikeCost": "Costo cuatrimoto",
+    "bossShiftCost": "Costo jefe",
+    "qrCost": "Costo Qr",
+    "costHolyDays": "Costo día libre",
+    "addressExecution": "Dirección ejecución",
+    "totalElementsDay": "elementos día",
+    "totalElementsNight": "Elementos noche",
+    "totalPatrol": "Total patrullas",
+    "totalQuadBike": "Total cuatrimoto",
+    "startDate": "Fecha inicio",
+    "emergencyContact": "Cto emergencia",
+    "paymentContact": "Contacto pago",
+    "creditDays": "Días crédito",
+    "paymentDays": "Días pago",
+    "folioCounterReceipt": "Folio recepción",
+    "billing": "Facturación",
+    "branchBank": "Banco",
+    "lastFourDigits": "4 dígitos",
+    "paymentMethod": "Método pago",
+    "usageCfdi": "Uso CFDI",
+    "paymentForm": "Método pago",
+    "contactEmergency": "Contacto de emergencia",
+    "emergencyContactName": "Nombre",
+    "emergencyContactLastName": "Apellido",
+    "emergencyContactPhoneContacts": "Telefono",
+    "emergencyContactEmails": "Email",
+    "paymentContactName": "Nombre",
+    "paymentContactLastName": "Apellido",
+    "paymentContactPhoneContacts": "Telefono",
+    "paymentContactEmails": "Email"
+  },
+  "person": {
+    "legalRepresentative": "Representante legal",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "phoneContacts": "Teléfono",
+    "emails": "Email",
+    "comments": "Comentarios",
+    "address": "Dirección"
+  },
+  "address": {
+    "name": "Nombre",
+    "street": "Calle",
+    "exteriorNumber": "N. Exterior",
+    "interiorNumber": "N. Interior",
+    "neightborhood": "Colonia",
+    "city": "Ciudad",
+    "state": "Estado",
+    "country": "País",
+    "postalCode": "Código Postal"
+  },
+  "employee": {
+    "company": "Compañía",
+    "keycode": "Código",
+    "personName": "Nombre",
+    "positionName": "Puesto",
+    "hiringDate": "Contratación",
+    "startOperationDate": "Inicio de operación",
+    "clientName": "Cliente"
   }
 }

@@ -2,7 +2,6 @@
 /* eslint-disable no-self-assign */
 import { Injectable } from '@angular/core'
 import { map } from 'rxjs/operators'
-import { Observable } from 'rxjs'
 import { Apollo } from 'apollo-angular'
 import { ApolloQueryResult } from 'apollo-client'
 
@@ -11,8 +10,8 @@ import { IGraphQL } from '../../../../shared/interfaces'
 import { IUser } from 'src/app/shared/interfaces/user.interface'
 import { GraphqlService } from 'src/app/shared/services'
 
-import { user } from 'src/app/shared/operations/queries'
-import { createUser, updateUser } from 'src/app/shared/operations/mutations'
+import { userOperation } from 'src/app/shared/operations/queries'
+import { createUserOperation, updateUserOperation } from 'src/app/shared/operations/mutations'
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,7 @@ export class UsersGqlService extends GraphqlService {
   }
 
   public getOne (id: string) {
-    return this.execute(user, { id })
+    return this.execute(userOperation, { id })
     // const definitions: any = updateUser.definitions[0]
     // return this.query(user, { id })
     //   .pipe(map((result: ApolloQueryResult<IGraphQL>) => {
@@ -33,15 +32,8 @@ export class UsersGqlService extends GraphqlService {
     //   }))
   }
 
-  list (): Observable<IUser[]> {
-    return this.query(OPERATIONS.GET_USERS)
-      .pipe(map((result: ApolloQueryResult<IGraphQL>) => {
-        return result.data.users
-      }))
-  }
-
   create (data: IUser) {
-    return this.execute(createUser, data)
+    return this.execute(createUserOperation, data)
 
     // return this.mutate(OPERATIONS.CREATE_USER, { createUserData: data })
     //   .pipe(map((result: ApolloQueryResult<IGraphQL>) => {
@@ -50,7 +42,7 @@ export class UsersGqlService extends GraphqlService {
   }
 
   update (data: IUser) {
-    return this.execute(updateUser, data)
+    return this.execute(updateUserOperation, data)
 
     // return this.mutate(OPERATIONS.UPDATE_USER, { updateUserData: UpdateUserInput })
     //   .pipe(map((result: ApolloQueryResult<IGraphQL>) => {

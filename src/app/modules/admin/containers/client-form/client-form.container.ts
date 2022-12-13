@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
-
-import { NotifyService } from 'src/app/shared/services'
 import Swal from 'sweetalert2'
-import { IClient } from '../../models/data'
-import { ClientService } from '../../services'
+
+import { GraphqlService, NotifyService } from 'src/app/shared/services'
+import { clientOperation, companiesOperation } from 'src/app/shared/operations/queries'
+import { createClientOperation, updateClientOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
   templateUrl: './client-form.container.html',
@@ -16,81 +16,60 @@ export class ClientFormContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
   title: string = ''
-  client: Partial<IClient> = {}
-  saveClient: Partial<IClient> = {}
-  isValidClient: boolean = false
+  data: any = {}
+  catalogsData: any = {}
 
   /* eslint-disable no-useless-constructor */
   constructor (
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private clientService: ClientService,
-    public translate: TranslateService,
-    private notifyService: NotifyService
+    private graphQlService: GraphqlService,
+    private notifyService: NotifyService,
+    public translate: TranslateService
   ) {
   }
 
-  ngOnInit () {
+  async ngOnInit () {
     const params = this.activatedRoute.snapshot.params
-    if (params && params.clientId) {
-      this.title = 'clients.titles.edition'
-      this.clientService.getById(params.clientId).subscribe(
-        (data) => {
-          this.client = data
-          this.setClient(data)
-          this.isValidClient = true
-        },
-        (Error: any) => {
-          this.loading = false
-          Swal.fire({ icon: 'error', titleText: this.translate.instant('messages.elementNotFound') }).then(() => {})
+    this.loading = true
+    const promises: Promise<any>[] = [
+      // this.graphQlService.execute(clientGroupsOperation),
+      this.graphQlService.execute(companiesOperation)
+    ]
+
+    if (params && params.elementId) {
+      this.title = 'general.titles.edition'
+      promises.push(this.graphQlService.execute(clientOperation, { id: params.elementId }))
+    } else {
+      this.title = 'general.titles.creation'
+    }
+    const [rsCompanies, data] = await Promise.all(promises)
+    this.loading = false
+    if (data) {
+      this.data = data
+    }
+    // this.catalogsData.clientGroups = rsClientGroups
+    this.catalogsData.companies = rsCompanies
+    this.catalogsData = { ...this.catalogsData }
+  }
+
+  save ($event: any) {
+    const data = $event
+    this.loading = true
+    this.graphQlService.execute(data.id ? updateClientOperation : createClientOperation, data).then(
+      (response: any) => {
+        this.data = response
+        this.loading = false
+        if (!data.id) {
+          Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
+            this.router.navigate(['/admin/client/clients'])
+          })
+        } else {
+          this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
         }
-      )
-    } else {
-      this.title = 'clients.titles.creation'
-    }
-  }
-
-  setClient ($event: any) {
-    this.saveClient = $event as Partial<IClient>
-  }
-
-  setIsValidClient ($event: boolean) {
-    this.isValidClient = $event
-  }
-
-  save () {
-    const data: IClient = this.saveClient as IClient
-    if (data.id) {
-      this.update(data)
-    } else {
-      this.create(data)
-    }
-  }
-
-  create (data: IClient) {
-    this.loading = true
-    this.clientService.create(data).subscribe(
-      (data: IClient) => {
-        this.loading = false
-        Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-          this.router.navigate(['/admin/clientes'])
-        })
-      },
-      (Error: any) => {
-        this.loading = false
-        // Swal.fire({ icon: 'error', titleText: this.translate.instant('messages.save.error') }).then(() => {})
-      }
-    )
-  }
-
-  update (data: IClient) {
-    this.loading = true
-    this.clientService.update(data).subscribe(
-      (data: IClient) => {
-        this.loading = false
-        this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
       },
       () => {
+        this.notifyService.notify(this.translate.instant('messages.update.error'), 'error')
         this.loading = false
       }
     )

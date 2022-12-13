@@ -1,0 +1,304 @@
+<div class="row">
+  <div class="col-12">
+    <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>
+    <mat-card>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-12">
+            <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row d-flex justify-content-between pt-4">
+                    <div class="col-12">
+                      <h2>{{ 'client.data' | translate }}</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.serviceType' | translate}}</mat-label>
+                    <input formControlName="serviceType" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.scheduleHours' | translate}}</mat-label>
+                    <input formControlName="scheduleHours" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.serviceCost' | translate}}</mat-label>
+                    <input formControlName="serviceCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.elementCost' | translate}}</mat-label>
+                    <input formControlName="elementCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.patrolCost' | translate}}</mat-label>
+                    <input formControlName="patrolCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.quadBikeCost' | translate}}</mat-label>
+                    <input formControlName="quadBikeCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.bossShiftCost' | translate}}</mat-label>
+                    <input formControlName="bossShiftCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.qrCost' | translate}}</mat-label>
+                    <input formControlName="qrCost" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.costHolyDays' | translate}}</mat-label>
+                    <input formControlName="costHolyDays" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.addressExecution' | translate}}</mat-label>
+                    <input formControlName="addressExecution" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.totalElementsDay' | translate}}</mat-label>
+                    <input formControlName="totalElementsDay" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.totalElementsNight' | translate}}</mat-label>
+                    <input formControlName="totalElementsNight" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.totalPatrol' | translate}}</mat-label>
+                    <input formControlName="totalPatrol" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.totalQuadBike' | translate}}</mat-label>
+                    <input formControlName="totalQuadBike" placeholder="{{'form.instructions.enterANumber' | translate}}" type="number" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <!-- <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.startDate' | translate}}</mat-label>
+                    <input formControlName="startDate" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field> -->
+
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.startDate' | translate}}</mat-label>
+                    <input matInput autocomplete="off" [matDatepicker]="startDate" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
+                  </mat-form-field>
+
+                  
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.creditDays' | translate}}</mat-label>
+                    <input formControlName="creditDays" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentDays' | translate}}</mat-label>
+                    <input formControlName="paymentDays" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.folioCounterReceipt' | translate}}</mat-label>
+                    <input formControlName="folioCounterReceipt" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.billing' | translate}}</mat-label>
+                    <input formControlName="billing" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.branchBank' | translate}}</mat-label>
+                    <input formControlName="branchBank" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.lastFourDigits' | translate}}</mat-label>
+                    <input formControlName="lastFourDigits" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentMethod' | translate}}</mat-label>
+                    <input formControlName="paymentMethod" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.usageCfdi' | translate}}</mat-label>
+                    <input formControlName="usageCfdi" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentForm' | translate}}</mat-label>
+                    <input formControlName="paymentForm" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12">
+                  <div class="row d-flex justify-content-between pt-4">
+                    <div class="col-12">
+                      <h2>{{ 'clientService.contactEmergency' | translate }}</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.emergencyContactName' | translate}}</mat-label>
+                    <input formControlName="emergencyContactName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.emergencyContactLastName' | translate}}</mat-label>
+                    <input formControlName="emergencyContactLastName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.emergencyContactPhoneContacts' | translate}}</mat-label>
+                    <input formControlName="emergencyContactPhoneContacts" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.emergencyContactEmails' | translate}}</mat-label>
+                    <input formControlName="emergencyContactEmails" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12">
+                  <div class="row d-flex justify-content-between pt-4">
+                    <div class="col-12">
+                      <h2>{{ 'clientService.paymentContact' | translate }}</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentContactName' | translate}}</mat-label>
+                    <input formControlName="paymentContactName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentContactLastName' | translate}}</mat-label>
+                    <input formControlName="paymentContactLastName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentContactPhoneContacts' | translate}}</mat-label>
+                    <input formControlName="paymentContactPhoneContacts" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.paymentContactEmails' | translate}}</mat-label>
+                    <input formControlName="paymentContactEmails" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+  
+          
+                <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'client.keycode' | translate}}</mat-label>
+                    <input formControlName="keycode" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div> -->
+  
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="row" *ngIf="formBuilderGroup">
+  <div class="col-12 mt-4">
+    <button
+    [disabled]="!formBuilderGroup.valid || _loading"
+    class="text-white"
+    mat-flat-button="mat-flat-button"
+    (click)="submitForm()"
+    color="primary">
+    {{'form.save' | translate}}
+    </button>
+    <button
+    class="cancel-button"
+    mat-button="mat-button"
+    (click)="cancelForm()"
+    color="primary"
+    [hidden]="!_data.id">
+    {{'form.cancel' | translate}}
+    </button>
+  </div>
+</div>
+
+

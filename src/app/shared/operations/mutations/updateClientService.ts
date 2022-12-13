@@ -9,7 +9,7 @@ export default gql`mutation updateClientService($updateClientServiceData: Update
         deletedBy
         deletedAt
         id
-        cientId
+        clientId
         serviceType
         scheduleHours
         serviceCost
@@ -23,7 +23,7 @@ export default gql`mutation updateClientService($updateClientServiceData: Update
         totalElementsDay
         totalElementsNight
         totalPatrol
-        totalQaudBike
+        totalQuadBike
         startDate
         emergencyContact{
             name

@@ -31,7 +31,7 @@ export class UsersListComponent {
   }
 
   _users: IUser[] = []
-  displayedColumns: string[] = ['name', 'username', 'email', 'roleName', 'Acciones'];
+  displayedColumns: string[] = ['name', 'username', 'email', 'roleName', 'companyName', 'Acciones'];
   dataSource: any
 
   @ViewChild(MatPaginator) paginator: any
