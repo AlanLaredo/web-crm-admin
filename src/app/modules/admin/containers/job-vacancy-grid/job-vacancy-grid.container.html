@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="row d-flex justify-content-between">
       <div class="col-6">
-        <h1>{{ 'submenu.companyGroup' | translate }}</h1>
+        <h1>{{ 'submenu.jobVacancys' | translate }}</h1>
       </div>
       <div class="col-6">
         <a class="m-4" [routerLink]="['create']">
@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-12">
         <component-loading [isLoading]="loading">
-          <company-group-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)"></company-group-grid-component>
+          <job-vacancy-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)"></job-vacancy-grid-component>
         </component-loading>
       </div>
     </div>

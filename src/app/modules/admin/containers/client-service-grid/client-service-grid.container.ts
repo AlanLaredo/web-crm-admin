@@ -70,7 +70,7 @@ export class ClientServiceGridContainer implements OnInit {
   }
 
   backHistory () {
-    this.router.navigate(['/admin/client/clients/'])
+    this.router.navigate(['/admin/clients/'])
   }
 
   loadTranslations () {

@@ -48,36 +48,21 @@ export class CompanyGroupFormContainer implements OnInit {
 
   save ($event: any) {
     const data = $event
-    if (data.id) {
-      this.update(data)
-    } else {
-      this.create(data)
-    }
-  }
-
-  create (data: any) {
     this.loading = true
-    this.graphQlService.execute(createCompanyGroupOperation, data).then(
+    this.graphQlService.execute(data.id ? updateCompanyGroupOperation : createCompanyGroupOperation, data).then(
       (response: any) => {
+        this.data = response
         this.loading = false
-        Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-          this.router.navigate(['/admin/company/company-group'])
-        })
-      },
-      (Error: any) => {
-        this.loading = false
-      }
-    )
-  }
-
-  update (data: any) {
-    this.loading = true
-    this.graphQlService.execute(updateCompanyGroupOperation, data).then(
-      (data: any) => {
-        this.loading = false
-        this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
+        if (!data.id) {
+          Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
+            this.router.navigate(['/admin/company/company-group'])
+          })
+        } else {
+          this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
+        }
       },
       () => {
+        this.notifyService.notify(this.translate.instant('messages.update.error'), 'error')
         this.loading = false
       }
     )

@@ -15,9 +15,12 @@ import {
   CompanyGroupGridContainer,
   EmployeeFormContainer,
   EmployeeGridContainer,
-  MainContainer
+  MainContainer,
+  PositionFormContainer,
+  PositionGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
+import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
 
 const routes: Routes = [
   {
@@ -38,35 +41,35 @@ const routes: Routes = [
         loadChildren: () => import('../security/security.module').then(mod => mod.SecurityModule)
       },
       {
-        path: 'client',
+        path: 'clients',
         children: [
           {
-            path: 'clients',
+            path: '',
             component: ClientGridContainer,
             canActivate: [AuthGuard]
           },
           {
-            path: 'clients/:elementId/edit',
+            path: ':elementId/edit',
             component: ClientFormContainer,
             canActivate: [AuthGuard]
           },
           {
-            path: 'clients/create',
+            path: 'create',
             component: ClientFormContainer,
             canActivate: [AuthGuard]
           },
           {
-            path: 'clients/:elementId/services',
+            path: ':elementId/services',
             component: ClientServiceGridContainer,
             canActivate: [AuthGuard]
           },
           {
-            path: 'clients/:elementId/services/create',
+            path: ':elementId/services/create',
             component: ClientServiceFormContainer,
             canActivate: [AuthGuard]
           },
           {
-            path: 'clients/:elementId/services/:clientServiceId/edit',
+            path: ':elementId/services/:clientServiceId/edit',
             component: ClientServiceFormContainer,
             canActivate: [AuthGuard]
           }
@@ -141,6 +144,53 @@ const routes: Routes = [
             component: EmployeeFormContainer,
             data: {
               title: 'Edición de empleado'
+            }
+          }
+        ]
+      },
+      {
+        path: 'recruitment',
+        children: [
+          // {
+          //   path: 'job-vacancies',
+          //   component: JobVacancyGridContainer,
+          //   data: {
+          //     title: 'Listado de vacantes'
+          //   }
+          // },
+          // {
+          //   path: 'job-vacancies/create',
+          //   component: EmployeeFormContainer,
+          //   data: {
+          //     title: 'Nueva empleado'
+          //   }
+          // },
+          // {
+          //   path: 'job-vacancies/:elementId/edit',
+          //   component: EmployeeFormContainer,
+          //   data: {
+          //     title: 'Edición de empleado'
+          //   }
+          // }
+          {
+            path: 'position',
+            component: PositionGridContainer,
+            data: {
+              title: 'Listado de puestos'
+            }
+          },
+          {
+            path: 'position/create',
+            component: PositionFormContainer,
+            data: {
+              title: 'Nueva puesto'
+            }
+          },
+          {
+            path: 'position/:elementId/edit',
+            component: PositionFormContainer,
+            data: {
+              title: 'Edición de puesto'
             }
           }
         ]

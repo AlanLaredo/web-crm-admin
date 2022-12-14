@@ -88,37 +88,37 @@ export class MenuService {
       {
         isRoot: true,
         name: 'client',
-        isParent: true,
-        routeLink: ['/', 'admin', 'client'],
+        isParent: false,
+        routeLink: ['/', 'admin', 'clients'],
         icon: {
-          fontIcon: 'fa-briefcase',
+          fontIcon: 'fa-store',
           fontSet: 'fas'
         },
-        permission: 'admin.clients',
-        childs: [
-          {
-            isRoot: false,
-            name: 'clientService',
-            isParent: false,
-            routeLink: ['/', 'admin', 'client', 'client-service'],
-            icon: {
-              fontIcon: 'fa-check-square',
-              fontSet: 'fas'
-            },
-            permission: 'admin.client.clienty-service'
-          },
-          {
-            isRoot: false,
-            name: 'clients',
-            isParent: false,
-            routeLink: ['/', 'admin', 'client', 'clients'],
-            icon: {
-              fontIcon: 'fa-list',
-              fontSet: 'fas'
-            },
-            permission: 'aadmin.client.clients'
-          }
-        ]
+        permission: 'admin.clients'
+        // childs: [
+        //   {
+        //     isRoot: false,
+        //     name: 'clientService',
+        //     isParent: false,
+        //     routeLink: ['/', 'admin', 'client', 'client-service'],
+        //     icon: {
+        //       fontIcon: 'fa-check-square',
+        //       fontSet: 'fas'
+        //     },
+        //     permission: 'admin.client.clienty-service'
+        //   },
+        //   {
+        //     isRoot: false,
+        //     name: 'clients',
+        //     isParent: false,
+        //     routeLink: ['/', 'admin', 'client', 'clients'],
+        //     icon: {
+        //       fontIcon: 'fa-list',
+        //       fontSet: 'fas'
+        //     },
+        //     permission: 'aadmin.client.clients'
+        //   }
+        // ]
       },
       {
         isRoot: true,
@@ -133,7 +133,7 @@ export class MenuService {
         childs: [
           {
             isRoot: false,
-            name: 'companyGroups',
+            name: 'companyGroup',
             isParent: false,
             routeLink: ['/', 'admin', 'company', 'company-group'],
             icon: {
@@ -190,7 +190,7 @@ export class MenuService {
           },
           {
             isRoot: false,
-            name: 'employees',
+            name: 'employee',
             isParent: false,
             routeLink: ['/', 'admin', 'employee', 'employees'],
             icon: {
@@ -260,7 +260,7 @@ export class MenuService {
           },
           {
             isRoot: false,
-            name: 'positions',
+            name: 'position',
             isParent: false,
             routeLink: ['/', 'admin', 'recruitment', 'position'],
             icon: {

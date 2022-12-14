@@ -43,6 +43,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule } from '@angular/forms'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { MAT_DATE_LOCALE } from '@angular/material/core'
+import { DefaultOptions } from 'apollo-client'
 
 export function createTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -151,10 +152,22 @@ export class AppModule {
       link
     ])
 
+    const defaultOptions: DefaultOptions = {
+      watchQuery: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'ignore'
+      },
+      query: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+      }
+    }
+
     apollo.createDefault({
       link: httpLinkWithErrorHandling,
       ssrMode: false,
-      cache: new InMemoryCache({ addTypename: false })
+      cache: new InMemoryCache({ addTypename: false }),
+      defaultOptions: defaultOptions
     })
   }
 

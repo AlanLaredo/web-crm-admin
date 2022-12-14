@@ -4,14 +4,14 @@ import { Title } from '@angular/platform-browser'
 import { TranslateService } from '@ngx-translate/core'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 
-import { companyGroupsOperation } from 'src/app/shared/operations/queries'
-import { deleteCompanyGroupOperation } from 'src/app/shared/operations/mutations'
+import { jobVacanciesOperation } from 'src/app/shared/operations/queries'
+import { deleteJobVacancyOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
-  templateUrl: './company-group-grid.container.html',
-  styleUrls: ['./company-group-grid.container.scss']
+  templateUrl: './job-vacancy-grid.container.html',
+  styleUrls: ['./job-vacancy-grid.container.scss']
 })
-export class CompanyGroupGridContainer implements OnInit {
+export class JobVacancyGridContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
   data: any[] = []
@@ -27,7 +27,7 @@ export class CompanyGroupGridContainer implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.titleService.setTitle(this.translate.instant('submenu.companyGroup') + ' - ' + this.translate.instant('applicationTitle'))
+    this.titleService.setTitle(this.translate.instant('submenu.job-vacancy') + ' - ' + this.translate.instant('applicationTitle'))
 
     this.loadTranslations()
     this.loadData()
@@ -46,12 +46,12 @@ export class CompanyGroupGridContainer implements OnInit {
 
   loadData () {
     this.loading = true
-    this.graphqlService.execute(companyGroupsOperation).then((result: any) => {
+    this.graphqlService.execute(jobVacanciesOperation).then((result: any) => {
       this.loading = false
       this.data = result
-      this.data.map((companyGroup: any) => {
-        companyGroup.category = companyGroup.name
-        return companyGroup
+      this.data.map((jobVacancy: any) => {
+        jobVacancy.category = jobVacancy.name
+        return jobVacancy
       })
       this.setDataFiltered(this.data)
     })
@@ -65,7 +65,7 @@ export class CompanyGroupGridContainer implements OnInit {
     const confirm = await this.notifyService.deleteConfirm()
     if (confirm) {
       this.loading = true
-      this.graphqlService.execute(deleteCompanyGroupOperation, { id }).then(
+      this.graphqlService.execute(deleteJobVacancyOperation, { id }).then(
         (result: any) => {
           this.loading = false
           this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')

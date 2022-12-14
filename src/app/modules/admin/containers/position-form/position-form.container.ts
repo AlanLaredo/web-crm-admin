@@ -5,20 +5,18 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
-import { clientsOperation, companiesOperation, employeeOperation, positionsOperation } from 'src/app/shared/operations/queries'
-import { createEmployeeOperation, updateEmployeeOperation } from 'src/app/shared/operations/mutations'
+import { clientsOperation, positionOperation } from 'src/app/shared/operations/queries'
+import { createPositionOperation, updatePositionOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
-  templateUrl: './employee-form.container.html',
-  styleUrls: ['./employee-form.container.scss']
+  templateUrl: './position-form.container.html',
+  styleUrls: ['./position-form.container.scss']
 })
-export class EmployeeFormContainer implements OnInit {
+export class PositionFormContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
   title: string = ''
   data: any = {}
-  companies: any[] = []
-  positions: any[] = []
   clients: any[] = []
 
   /* eslint-disable no-useless-constructor */
@@ -35,23 +33,19 @@ export class EmployeeFormContainer implements OnInit {
     const params = this.activatedRoute.snapshot.params
     this.loading = true
     const promises: Promise<any>[] = [
-      this.graphQlService.execute(companiesOperation),
-      this.graphQlService.execute(clientsOperation),
-      this.graphQlService.execute(positionsOperation)
+      this.graphQlService.execute(clientsOperation)
     ]
 
     if (params && params.elementId) {
       this.title = 'general.titles.edition'
-      promises.push(this.graphQlService.execute(employeeOperation, { id: params.elementId }))
+      promises.push(this.graphQlService.execute(positionOperation, { id: params.elementId }))
     } else {
       this.title = 'general.titles.creation'
     }
-    const [companies, clients, positions, data] = await Promise.all(promises)
-    this.loading = false
-    this.companies = companies
-    this.clients = clients
-    this.positions = positions
+    const [clients, data] = await Promise.all(promises)
 
+    this.loading = false
+    this.clients = clients
     if (data) {
       this.data = data
     }
@@ -60,13 +54,13 @@ export class EmployeeFormContainer implements OnInit {
   save ($event: any) {
     const data = $event
     this.loading = true
-    this.graphQlService.execute(data.id ? updateEmployeeOperation : createEmployeeOperation, data).then(
+    this.graphQlService.execute(data.id ? updatePositionOperation : createPositionOperation, data).then(
       (response: any) => {
         this.data = response
         this.loading = false
         if (!data.id) {
           Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-            this.router.navigate(['/admin/employee/employees'])
+            this.router.navigate(['/admin/recruitment/position'])
           })
         } else {
           this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')

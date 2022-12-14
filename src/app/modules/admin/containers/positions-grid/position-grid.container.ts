@@ -4,16 +4,15 @@ import { Title } from '@angular/platform-browser'
 import { TranslateService } from '@ngx-translate/core'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 
-import { employeesOperation } from 'src/app/shared/operations/queries'
-import { deleteEmployeeOperation } from 'src/app/shared/operations/mutations'
+import { positionsOperation } from 'src/app/shared/operations/queries'
+import { deletePositionOperation } from 'src/app/shared/operations/mutations'
 import { LoginService } from 'src/app/modules/auth/services'
-import { DateTime } from 'luxon'
 
 @Component({
-  templateUrl: './employee-grid.container.html',
-  styleUrls: ['./employee-grid.container.scss']
+  templateUrl: './position-grid.container.html',
+  styleUrls: ['./position-grid.container.scss']
 })
-export class EmployeeGridContainer implements OnInit {
+export class PositionGridContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
   data: any[] = []
@@ -33,7 +32,7 @@ export class EmployeeGridContainer implements OnInit {
   }
 
   ngOnInit () {
-    this.titleService.setTitle(this.translate.instant('submenu.employee') + ' - ' + this.translate.instant('applicationTitle'))
+    this.titleService.setTitle(this.translate.instant('submenu.position') + ' - ' + this.translate.instant('applicationTitle'))
 
     this.loadTranslations()
     this.loadData()
@@ -41,12 +40,9 @@ export class EmployeeGridContainer implements OnInit {
 
   loadTranslations () {
     this.filterOptions = [
-      { key: 'keycode', text: this.translate.instant('employee.keycode') },
-      { key: 'personName', text: this.translate.instant('employee.personName') },
-      { key: 'positionName', text: this.translate.instant('employee.positionName') },
-      { key: 'hiringDate', text: this.translate.instant('employee.hiringDate') },
-      { key: 'startOperationDate', text: this.translate.instant('employee.startOperationDate') },
-      { key: 'clientName', text: this.translate.instant('employee.clientName') }
+      { key: 'name', text: this.translate.instant('position.name') },
+      { key: 'clientName', text: this.translate.instant('position.clientName') },
+      { key: 'salary', text: this.translate.instant('position.salary') }
     ]
 
     if (this.user.userRole.name === 'CrmAdmin') {
@@ -70,20 +66,13 @@ export class EmployeeGridContainer implements OnInit {
 
   loadData () {
     this.loading = true
-    this.graphqlService.execute(employeesOperation).then((result: any) => {
+    this.graphqlService.execute(positionsOperation).then((result: any) => {
       this.loading = false
       this.data = result
-      this.data.map((employee: any) => {
-        // employee.name = employee.name
-        employee.companyName = employee.company.name
-        employee.personName = employee.company.name
-        employee.positionName = employee.company.name
-        employee.clientName = employee.client.businessName
-
-        employee.hiringDate = employee.hiringDate ? DateTime.fromJSDate(new Date(employee.hiringDate)).toFormat('DDDD') : 'N/A'
-        employee.startOperationDate = employee.startOperationDate ? DateTime.fromJSDate(new Date(employee.startOperationDate)).toFormat('DDDD') : 'N/A'
-
-        return employee
+      this.data.map((position: any) => {
+        position.companyName = position.client.company.name
+        position.clientName = position.client.businessName
+        return position
       })
       this.setDataFiltered(this.data)
     })
@@ -97,7 +86,7 @@ export class EmployeeGridContainer implements OnInit {
     const confirm = await this.notifyService.deleteConfirm()
     if (confirm) {
       this.loading = true
-      this.graphqlService.execute(deleteEmployeeOperation, { id }).then(
+      this.graphqlService.execute(deletePositionOperation, { id }).then(
         (result: any) => {
           this.loading = false
           this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')

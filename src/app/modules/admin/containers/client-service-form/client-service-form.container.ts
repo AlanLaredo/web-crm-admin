@@ -58,7 +58,7 @@ export class ClientServiceFormContainer implements OnInit {
         this.loading = false
         if (!data.id) {
           Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-            this.router.navigate(['/admin/client/clients/' + this.clientId + '/services'])
+            this.router.navigate(['/admin/clients/' + this.clientId + '/services'])
           })
         } else {
           this.data = response

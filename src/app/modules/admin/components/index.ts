@@ -14,6 +14,8 @@ import { CompanyFormComponent } from './company-form'
 import { CompanyGridComponent } from './company-grid'
 import { PersonFormComponent } from './person-form'
 import { ClientServiceFormComponent } from './client-service-form'
+import { EmployeeFormComponent } from './employee-form'
+import { PositionFormComponent } from './position-form'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -32,7 +34,9 @@ export const ADMIN_COMPONENTS = [
   CompanyGridComponent,
   ClientFormComponent,
   PersonFormComponent,
-  ClientServiceFormComponent
+  ClientServiceFormComponent,
+  EmployeeFormComponent,
+  PositionFormComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = [
@@ -54,5 +58,7 @@ export {
   CompanyFormComponent,
   CompanyGridComponent,
   PersonFormComponent,
-  ClientServiceFormComponent
+  ClientServiceFormComponent,
+  EmployeeFormComponent,
+  PositionFormComponent
 }

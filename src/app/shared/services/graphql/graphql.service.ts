@@ -19,7 +19,7 @@ export class GraphqlService {
       query,
       variables,
       context,
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       errorPolicy: 'all'
     }).valueChanges
   }

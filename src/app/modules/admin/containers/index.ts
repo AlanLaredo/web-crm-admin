@@ -9,6 +9,9 @@ import { MainContainer } from './main/main.container'
 import { ClientServiceFormContainer } from './client-service-form'
 import { EmployeeGridContainer } from './employee-grid'
 import { EmployeeFormContainer } from './employee-form'
+import { JobVacancyGridContainer } from './job-vacancy-grid'
+import { PositionGridContainer } from './positions-grid'
+import { PositionFormContainer } from './position-form'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -21,7 +24,10 @@ export const ADMIN_CONTAINERS = [
   ClientServiceGridContainer,
   ClientServiceFormContainer,
   EmployeeGridContainer,
-  EmployeeFormContainer
+  EmployeeFormContainer,
+  JobVacancyGridContainer,
+  PositionGridContainer,
+  PositionFormContainer
 ]
 
 export {
@@ -35,5 +41,8 @@ export {
   ClientServiceGridContainer,
   ClientServiceFormContainer,
   EmployeeGridContainer,
-  EmployeeFormContainer
+  EmployeeFormContainer,
+  JobVacancyGridContainer,
+  PositionGridContainer,
+  PositionFormContainer
 }

@@ -81,9 +81,8 @@
   "menu": {
     "home": "Inicio",
     "security": "Seguridad",
-    "clients": "Clientes",
-    "catalogs": "Catálogos",
     "client": "Clientes",
+    "catalogs": "Catálogos",
     "company": "Compañías",
     "employee": "Empleados",
     "binnacle": "Bitácora",
@@ -94,19 +93,19 @@
   "submenu": {
     "users": "Usuarios",
     "userRole": "Roles",
-    "permissions": "Permisos",
+    "permission": "Permisos",
     "clients": "Clientes",
     "clientService": "Servicios",
-    "companies": "Compañías",
-    "companyGroups": "Grupos",
+    "company": "Compañías",
+    "companyGroup": "Grupos",
     "companyUser": "Usuarios",
-    "employees": "Empleados",
+    "employee": "Empleados",
     "reassignment": "Reasignación",
     "process": "Procesos",
     "customer": "Prospectos",
     "recruitment": "Reclutamiento",
     "jobVacancy": "Vacantes",
-    "positions": "Puestos"
+    "position": "Puestos"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -432,12 +431,25 @@
     "postalCode": "Código Postal"
   },
   "employee": {
+    "operation": "Operación",
+    "withoutPosition": "Sin puesto",
+    "info": "Configuración",
+    "address": "Dirección",
+    "data": "Personales",
+    "configuration": "Configuración",
     "company": "Compañía",
     "keycode": "Código",
     "personName": "Nombre",
     "positionName": "Puesto",
     "hiringDate": "Contratación",
     "startOperationDate": "Inicio de operación",
-    "clientName": "Cliente"
+    "clientName": "Cliente",
+    "position": "Puesto",
+    "client": "Cliente"
+  },
+  "position": {
+    "name": "Nombre",
+    "clientName": "Cliente",
+    "salary": "Salario"
   }
 }

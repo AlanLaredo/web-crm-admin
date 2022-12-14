@@ -62,7 +62,7 @@ export class ClientGridContainer implements OnInit {
     }]
     if (this.roleAccessName === 'CrmAdmin') {
       this.filterOptions.unshift({
-        key: 'comanyName',
+        key: 'companyName',
         text: this.translate.instant('client.company')
       })
     }
@@ -92,7 +92,7 @@ export class ClientGridContainer implements OnInit {
         dataDomain.businessReason = client.businessReason?.charAt(0).toUpperCase() + client.businessReason?.slice(1) || ''
         dataDomain.legalRepresentativeContactFullName = client.legalRepresentativeContact?.name
         dataDomain.legalRepresentativeContactFullNamePhoneContact = client.legalRepresentativeContact?.phoneContacts[0] || 'N/A'
-        dataDomain.comanyName = client.company.name
+        dataDomain.companyName = client.company.name
         this.data.push(dataDomain)
       })
       this.setDataFiltered(this.data)

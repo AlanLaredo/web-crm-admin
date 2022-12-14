@@ -67,11 +67,11 @@ export class ClientServiceFormComponent implements OnInit {
       paymentMethod: new FormControl((this._data.paymentMethod || undefined), []),
       usageCfdi: new FormControl((this._data.usageCfdi || undefined), []),
       paymentForm: new FormControl((this._data.paymentForm || undefined), []),
-      emergencyContactName: new FormControl((this._data.emergencyContact?.name || undefined), []),
+      emergencyContactName: new FormControl((this._data.emergencyContact?.name || undefined), [Validators.required]),
       emergencyContactLastName: new FormControl((this._data.emergencyContact?.lastName || undefined), []),
       emergencyContactPhoneContacts: new FormControl((this._data.emergencyContact?.phoneContacts && this._data.emergencyContact?.phoneContacts[0] ? this._data.emergencyContact?.phoneContacts[0] : undefined), []),
       emergencyContactEmails: new FormControl((this._data.emergencyContact?.emails && this._data.emergencyContact?.emails[0] ? this._data.emergencyContact?.emails[0]: undefined), []),
-      paymentContactName: new FormControl((this._data.paymentContact?.name || undefined), []),
+      paymentContactName: new FormControl((this._data.paymentContact?.name || undefined), [Validators.required]),
       paymentContactLastName: new FormControl((this._data.paymentContact?.lastName || undefined), []),
       paymentContactPhoneContacts: new FormControl((this._data.paymentContact?.phoneContacts && this._data.paymentContact?.phoneContacts[0] ? this._data.paymentContact?.phoneContacts[0] : undefined), []),
       paymentContactEmails: new FormControl((this._data.paymentContact?.emails && this._data.paymentContact?.emails[0] ? this._data.paymentContact?.emails[0] : undefined), [])
