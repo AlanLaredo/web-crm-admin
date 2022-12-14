@@ -20,5 +20,12 @@ query companies($id: ID, $name: String, $companyGroupId: ID, $logoImagePath: Str
         companyParent {
           name
         }
+        processList {
+          id
+          name
+          order
+          functionsIds
+          companyId
+        }
     }
 }`

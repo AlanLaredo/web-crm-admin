@@ -17,7 +17,8 @@ import {
   EmployeeGridContainer,
   MainContainer,
   PositionFormContainer,
-  PositionGridContainer
+  PositionGridContainer,
+  OperationDragAndDropContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -120,6 +121,18 @@ const routes: Routes = [
               title: 'Edición de empresa'
             }
           }
+        ]
+      },
+      {
+        path: 'process',
+        children: [
+          {
+            path: 'process',
+            component: OperationDragAndDropContainer,
+            data: {
+              title: 'Listado de grupos de procesos'
+            }
+          },
         ]
       },
       {

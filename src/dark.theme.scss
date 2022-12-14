@@ -105,6 +105,8 @@ $crm-dark-app-accent:  mat-palette($md-accent);
 
 $crm-dark-app-theme: mat-dark-theme($crm-dark-app-primary, $crm-dark-app-accent);
 
+@include angular-material-theme($crm-dark-app-theme);
+
 .dark-theme {
   @include angular-material-theme($crm-dark-app-theme);
 }

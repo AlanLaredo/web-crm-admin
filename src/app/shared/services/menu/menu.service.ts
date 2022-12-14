@@ -63,7 +63,7 @@ export class MenuService {
           },
           {
             isRoot: false,
-            name: 'permissions',
+            name: 'permission',
             isParent: false,
             routeLink: ['/', 'admin', 'security', 'role-permissions'],
             icon: {
@@ -82,6 +82,87 @@ export class MenuService {
               fontSet: 'fas'
             },
             permission: 'admin.users.user-role'
+          }
+        ]
+      },
+      {
+        isRoot: true,
+        name: 'company',
+        isParent: true,
+        routeLink: ['/', 'admin', 'company'],
+        icon: {
+          fontIcon: 'fa-building',
+          fontSet: 'fas'
+        },
+        permission: 'admin.company',
+        childs: [
+          {
+            isRoot: false,
+            name: 'companyGroup',
+            isParent: false,
+            routeLink: ['/', 'admin', 'company', 'company-group'],
+            icon: {
+              fontIcon: 'fa-object-group',
+              fontSet: 'fas'
+            },
+            permission: 'admin.company-group'
+          },
+          // {
+          //   isRoot: false,
+          //   name: 'companyUser',
+          //   isParent: false,
+          //   routeLink: ['/', 'admin', 'company', 'company-user'],
+          //   icon: {
+          //     fontIcon: ' fa-users',
+          //     fontSet: 'fas'
+          //   },
+          //   permission: 'admin.company.company-user'
+          // },
+          {
+            isRoot: false,
+            name: 'company',
+            isParent: false,
+            routeLink: ['/', 'admin', 'company', 'company'],
+            icon: {
+              fontIcon: 'fa-list',
+              fontSet: 'fas'
+            },
+            permission: 'admin.company.company'
+          }
+        ]
+      },
+      {
+        isRoot: true,
+        name: 'process',
+        isParent: true,
+        routeLink: ['/', 'admin', 'process'],
+        icon: {
+          fontIcon: 'fa-cubes',
+          fontSet: 'fas'
+        },
+        permission: 'admin.process',
+        childs: [
+          {
+            isRoot: false,
+            name: 'customer',
+            isParent: false,
+            routeLink: ['/', 'admin', 'process', 'customer'],
+            icon: {
+              fontIcon: 'fa-users',
+              fontSet: 'fas'
+            },
+            permission: 'admin.process.customer'
+          },
+          {
+            isRoot: false,
+            name: 'process',
+            isParent: false,
+            routeLink: ['/', 'admin', 'process', 'process'],
+            icon: {
+              fontIcon: 'fa-list',
+              fontSet: 'fas'
+            },
+            permission: 'admin.process.process'
           }
         ]
       },
@@ -122,52 +203,6 @@ export class MenuService {
       },
       {
         isRoot: true,
-        name: 'company',
-        isParent: true,
-        routeLink: ['/', 'admin', 'company'],
-        icon: {
-          fontIcon: 'fa-building',
-          fontSet: 'fas'
-        },
-        permission: 'admin.company',
-        childs: [
-          {
-            isRoot: false,
-            name: 'companyGroup',
-            isParent: false,
-            routeLink: ['/', 'admin', 'company', 'company-group'],
-            icon: {
-              fontIcon: 'fa-object-group',
-              fontSet: 'fas'
-            },
-            permission: 'admin.company-group'
-          },
-          // {
-          //   isRoot: false,
-          //   name: 'companyUser',
-          //   isParent: false,
-          //   routeLink: ['/', 'admin', 'company', 'company-user'],
-          //   icon: {
-          //     fontIcon: ' fa-users',
-          //     fontSet: 'fas'
-          //   },
-          //   permission: 'admin.company.company-user'
-          // },
-          {
-            isRoot: false,
-            name: 'companies',
-            isParent: false,
-            routeLink: ['/', 'admin', 'company', 'company'],
-            icon: {
-              fontIcon: 'fa-list',
-              fontSet: 'fas'
-            },
-            permission: 'admin.company.company'
-          }
-        ]
-      },
-      {
-        isRoot: true,
         name: 'employee',
         isParent: true,
         routeLink: ['/', 'admin', 'employee'],
@@ -198,41 +233,6 @@ export class MenuService {
               fontSet: 'fas'
             },
             permission: 'admin.employee.employees'
-          }
-        ]
-      },
-      {
-        isRoot: true,
-        name: 'process',
-        isParent: true,
-        routeLink: ['/', 'admin', 'process'],
-        icon: {
-          fontIcon: 'fa-cubes',
-          fontSet: 'fas'
-        },
-        permission: 'admin.process',
-        childs: [
-          {
-            isRoot: false,
-            name: 'customer',
-            isParent: false,
-            routeLink: ['/', 'admin', 'process', 'customer'],
-            icon: {
-              fontIcon: 'fa-users',
-              fontSet: 'fas'
-            },
-            permission: 'admin.process.customer'
-          },
-          {
-            isRoot: false,
-            name: 'process',
-            isParent: false,
-            routeLink: ['/', 'admin', 'process', 'process'],
-            icon: {
-              fontIcon: 'fa-list',
-              fontSet: 'fas'
-            },
-            permission: 'admin.process.process'
           }
         ]
       },
@@ -282,17 +282,17 @@ export class MenuService {
           }
         ]
       },
-      {
-        isRoot: true,
-        name: 'catalogs',
-        isParent: true,
-        routeLink: ['/', 'admin', 'catalogos'],
-        icon: {
-          fontIcon: 'fa-list',
-          fontSet: 'fas'
-        },
-        permission: 'admin.catalogs'
-      },
+      // {
+      //   isRoot: true,
+      //   name: 'catalogs',
+      //   isParent: true,
+      //   routeLink: ['/', 'admin', 'catalogos'],
+      //   icon: {
+      //     fontIcon: 'fa-list',
+      //     fontSet: 'fas'
+      //   },
+      //   permission: 'admin.catalogs'
+      // },
       {
         isRoot: true,
         name: 'operationBinnacle',

@@ -12,6 +12,7 @@ import { EmployeeFormContainer } from './employee-form'
 import { JobVacancyGridContainer } from './job-vacancy-grid'
 import { PositionGridContainer } from './positions-grid'
 import { PositionFormContainer } from './position-form'
+import { OperationDragAndDropContainer } from './operation-drag-and-drop'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -27,7 +28,8 @@ export const ADMIN_CONTAINERS = [
   EmployeeFormContainer,
   JobVacancyGridContainer,
   PositionGridContainer,
-  PositionFormContainer
+  PositionFormContainer,
+  OperationDragAndDropContainer
 ]
 
 export {
@@ -44,5 +46,6 @@ export {
   EmployeeFormContainer,
   JobVacancyGridContainer,
   PositionGridContainer,
-  PositionFormContainer
+  PositionFormContainer,
+  OperationDragAndDropContainer
 }

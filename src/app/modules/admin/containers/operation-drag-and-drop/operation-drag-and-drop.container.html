@@ -1,0 +1,26 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <h1>{{ 'submenu.process' | translate }}</h1>
+      </div>
+      <div class="col-6">
+        <button class="float-right " mat-stroked-button color="primary" (click)="newProcess()">
+          <mat-icon>add</mat-icon>
+          {{'actions.new' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+        <data-filter-component [dataSource]="data" [options]="filterOptions" [dataFilterConfiguration]="{ hideSelectable: true }" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <component-loading [isLoading]="loading">
+        </component-loading>
+      </div>
+    </div>
+  </div>
+</div>

@@ -451,5 +451,13 @@
     "name": "Nombre",
     "clientName": "Cliente",
     "salary": "Salario"
-  }
+  },
+  "process": {
+    "form": "Proceso",
+    "name": "Nombre",
+    "functions": "Funciones",
+    "order": "Órden",
+    "company": "Compañía"
+  },
+  "logKeys": {}
 }

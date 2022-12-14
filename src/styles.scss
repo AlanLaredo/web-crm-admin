@@ -3,8 +3,8 @@
 @import './sass-utils/variables.scss';
 @import './sass-utils/mixins.scss';
 @import './sass-utils/functions.scss';
-@import './dark.theme.scss';
 @import './light.theme.scss';
+@import './dark.theme.scss';
 
 html {
   font-size: $main-font-size;
@@ -20,7 +20,6 @@ body {
   color: get-color-scale("light", 100) !important;
   background-color: get-color-scale("primary", 100) !important;
 }
-
 
 ._26vh {
   height: 26vh;
