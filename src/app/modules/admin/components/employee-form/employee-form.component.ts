@@ -4,8 +4,10 @@
 // Third Party
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
+import { MatDialog } from '@angular/material/dialog'
 import { TranslateService } from '@ngx-translate/core'
 import { LoginService } from 'src/app/modules/auth/services'
+import { InputModalComponent } from 'src/app/shared/components/input-modal'
 
 import Swal from 'sweetalert2'
 
@@ -55,12 +57,16 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   @Output()
-  outActionForm: EventEmitter<Partial<any>> = new EventEmitter<any>()
+  outActionForm: EventEmitter<any> = new EventEmitter<any>()
+
+  @Output()
+  outActionFormReasignment: EventEmitter<any> = new EventEmitter<any>()
 
   constructor (
     private formBuilder: FormBuilder,
     public translate: TranslateService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private dialog: MatDialog
   ) {
     this.user = this.loginService.getUser()
   }
@@ -76,7 +82,7 @@ export class EmployeeFormComponent implements OnInit {
       hiringDate: new FormControl((this._data.hiringDate || undefined), []),
       startOperationDate: new FormControl((this._data.startOperationDate || undefined), []),
       clientId: new FormControl((this._data.clientId || undefined), []),
-      companyId: new FormControl({ value: !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : (this._data.companyId || undefined), disabled: !(this.user.userRole.name === 'CrmAdmin') }, [Validators.required]),
+      companyId: new FormControl({ value: !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : (this._data?.companyId || undefined), disabled: !(this.user.userRole.name === 'CrmAdmin') }, [Validators.required]),
 
       contactName: new FormControl((this._data.person?.name || undefined), [Validators.required]),
       contactLastName: new FormControl((this._data.person?.lastName || undefined), []),
@@ -94,13 +100,13 @@ export class EmployeeFormComponent implements OnInit {
       postalCode: new FormControl((this._data.address?.postalCode || undefined), [])
     })
 
-    const companyId = !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : this._data.companyId || undefined
+    const companyId = !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : this._data?.companyId || undefined
     if (companyId) {
       this.updateClientsForCompany({ value: companyId })
     }
 
     if (this._data.clientId) {
-      this.updatePositionsForClient({ value: this._data.clientId })
+      this.updatePositionsForClient({ value: this._data.clientId }, false)
     }
   }
 
@@ -118,7 +124,7 @@ export class EmployeeFormComponent implements OnInit {
     outData.positionId = employee.positionId ? employee.positionId : undefined
     outData.hiringDate = employee.hiringDate ? employee.hiringDate : undefined
     outData.startOperationDate = employee.startOperationDate ? employee.startOperationDate : undefined
-    outData.clientId = employee.clientId ? employee.clientId : undefined
+    outData.clientId = employee.clientId ? employee.clientId : null
     outData.companyId = employee.companyId ? employee.companyId : undefined
 
     outData.person = {}
@@ -150,12 +156,44 @@ export class EmployeeFormComponent implements OnInit {
   updateClientsForCompany ($event: any) {
     const companyId = $event.value
     this.clientsForCompany = this._clients.filter(_client => _client.companyId === companyId)
-    this.updatePositionsForClient({ value: null })
+    this.updatePositionsForClient({ value: null }, false)
   }
 
-  updatePositionsForClient ($event: any) {
-    const clientId = $event.value
+  async updatePositionsForClient ($event: any, checkReasignment: boolean = true) {
+    let clientId = $event.value
+
+    if (this._data.id && this._data.clientId !== clientId && checkReasignment) {
+      const reason = await this.openDialogReasignment()
+      if (reason) {
+        this.outActionFormReasignment.emit({ clientId, reason })
+      } else {
+        clientId = this._data.clientId
+        this.formBuilderGroup.controls.clientId.setValue(this._data.clientId)
+      }
+    }
+
     this.positionsForClient = this._positions.filter(_position => _position.clientId === clientId)
+  }
+
+  openDialogReasignment () {
+    const dialogRef = this.dialog.open(InputModalComponent, {
+      width: '400px',
+      disableClose: true,
+      data: {
+        title: this.translate.instant('employee.reasignmentReason'),
+        inputName: this.translate.instant('employee.reason'),
+        instructions: this.translate.instant('form.instructions.enterAText'),
+        info: this.translate.instant('employee.enterAReason'),
+        required: true,
+        type: 'text',
+        value: ''
+      }
+    })
+    return new Promise((resolve, reject) => {
+      dialogRef.afterClosed().subscribe(result => {
+        resolve(result)
+      })
+    })
   }
 
   cancelForm () {

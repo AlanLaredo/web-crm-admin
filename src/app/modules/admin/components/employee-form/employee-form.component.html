@@ -69,10 +69,10 @@
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'employee.client' | translate}}</mat-label>
                     <mat-select formControlName="clientId" (selectionChange)="updatePositionsForClient($event)">
-                      <!-- <mat-option [value]="null">{{'employee.withoutClient' | translate}}</mat-option> -->
+                      <mat-option [value]="null">{{'employee.withoutClient' | translate}}</mat-option>
                       <mat-option *ngFor="let client of clientsForCompany; let i = index" [value]="client.id">{{client.businessName}}</mat-option>
                     </mat-select>
-                    <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.optional' | translate}}</mat-hint>
+                    <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -82,7 +82,7 @@
                       <!-- <mat-option [value]="null">{{'employee.withoutPosition' | translate}}</mat-option> -->
                       <mat-option *ngFor="let position of positionsForClient; let i = index" [value]="position.id">{{position.name}}</mat-option>
                     </mat-select>
-                    <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.optional' | translate}}</mat-hint>
+                    <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
                   </mat-form-field>
                 </div>
                 <div class="col-12">

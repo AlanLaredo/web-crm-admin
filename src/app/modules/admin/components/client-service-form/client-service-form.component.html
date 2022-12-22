@@ -16,6 +16,13 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'clientService.name' | translate}}</mat-label>
+                    <input formControlName="name" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'clientService.serviceType' | translate}}</mat-label>
                     <input formControlName="serviceType" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
                     <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
@@ -202,7 +209,7 @@
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'clientService.emergencyContactName' | translate}}</mat-label>
                     <input formControlName="emergencyContactName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
-                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                    <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -237,7 +244,7 @@
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'clientService.paymentContactName' | translate}}</mat-label>
                     <input formControlName="paymentContactName" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
-                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                    <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">

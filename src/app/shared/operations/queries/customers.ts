@@ -18,6 +18,14 @@ query customers($id: ID, $processId: ID, $commercialValue: Float, $attemptClosin
         catalogPriority
         attachedQuotePath
         comments
+        remindDate
+        client {
+          businessName
+        }
+        process {
+          id
+          name
+        }
         contact{
             name
             lastName

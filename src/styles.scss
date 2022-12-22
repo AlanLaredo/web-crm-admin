@@ -3,8 +3,8 @@
 @import './sass-utils/variables.scss';
 @import './sass-utils/mixins.scss';
 @import './sass-utils/functions.scss';
-@import './light.theme.scss';
 @import './dark.theme.scss';
+@import './light.theme.scss';
 
 html {
   font-size: $main-font-size;
@@ -396,7 +396,7 @@ body {
 }
 
 .warning {
-  background-color: black;
+  background-color: green;
   color: white;
   padding: 8px 0;
   text-align: center;
@@ -577,13 +577,19 @@ body {
 .font-size-10 {
   font-size: 10px !important;
 }
-
 .tiny-icon mat-icon {
   font-size: 20 px;
 }
 .snackbar-light {
-  background: light !important;
+  background: get-color-scale("primary", 100);
+  color: get-color-scale("light", 100) !important;
 }
 .cursor-pointer {
   cursor: pointer;
+}
+
+.process-elements {
+  background:#dde1ece0;
+  color: get-color-scale("primary", 90) !important;
+  
 }

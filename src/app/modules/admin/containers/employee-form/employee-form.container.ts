@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { clientsOperation, companiesOperation, employeeOperation, positionsOperation } from 'src/app/shared/operations/queries'
 import { createEmployeeOperation, updateEmployeeOperation } from 'src/app/shared/operations/mutations'
+import createEmployeeReassignment from 'src/app/shared/operations/mutations/createEmployeeReassignment'
 
 @Component({
   templateUrl: './employee-form.container.html',
@@ -25,7 +26,7 @@ export class EmployeeFormContainer implements OnInit {
   constructor (
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private graphQlService: GraphqlService,
+    private graphqlService: GraphqlService,
     public translate: TranslateService,
     private notifyService: NotifyService
   ) {
@@ -35,14 +36,14 @@ export class EmployeeFormContainer implements OnInit {
     const params = this.activatedRoute.snapshot.params
     this.loading = true
     const promises: Promise<any>[] = [
-      this.graphQlService.execute(companiesOperation),
-      this.graphQlService.execute(clientsOperation),
-      this.graphQlService.execute(positionsOperation)
+      this.graphqlService.execute(companiesOperation),
+      this.graphqlService.execute(clientsOperation),
+      this.graphqlService.execute(positionsOperation)
     ]
 
     if (params && params.elementId) {
       this.title = 'general.titles.edition'
-      promises.push(this.graphQlService.execute(employeeOperation, { id: params.elementId }))
+      promises.push(this.graphqlService.execute(employeeOperation, { id: params.elementId }))
     } else {
       this.title = 'general.titles.creation'
     }
@@ -57,10 +58,22 @@ export class EmployeeFormContainer implements OnInit {
     }
   }
 
+  async reasignment ($event: any) {
+    const { clientId, reason } = $event
+    await this.graphqlService.execute(createEmployeeReassignment, {
+      employeId: this.data.id,
+      transmitterClientId: this.data.clientId,
+      receiverClientId: clientId,
+      reason,
+      companyId: this.data.companyId
+    })
+    this.save({ id: this.data.id, clientId })
+  }
+
   save ($event: any) {
     const data = $event
     this.loading = true
-    this.graphQlService.execute(data.id ? updateEmployeeOperation : createEmployeeOperation, data).then(
+    this.graphqlService.execute(data.id ? updateEmployeeOperation : createEmployeeOperation, data).then(
       (response: any) => {
         this.data = response
         this.loading = false

@@ -22,20 +22,21 @@
     </mat-form-field>
 
     <mat-form-field appearance="legacy" class="custom-mat-form-field">
-      <mat-label>{{'process.functions' | translate }}</mat-label>
-      <mat-select formControlName="functionsIds">
-        <mat-option *ngFor="let element of _processFunctions; let i = index" [value]="element.id">{{element.name}}</mat-option>
-      </mat-select>
-      <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.optional' | translate}}</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field appearance="legacy" class="custom-mat-form-field">
       <mat-label>{{'process.company' | translate }}</mat-label>
-      <mat-select formControlName="companyId">
+      <mat-select formControlName="companyId" (selectionChange)="filterFunctions($event.value)" >
         <mat-option *ngFor="let company of _companies; let i = index" [value]="company.id">{{company.name}}</mat-option>
       </mat-select>
       <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.required' | translate}}</mat-hint>
     </mat-form-field>
+
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{'process.functions' | translate }}</mat-label>
+      <mat-select formControlName="functionsIds" multiple>
+        <mat-option *ngFor="let element of processFunctions; let i = index" [value]="element.id" [disabled]="element.disabled">{{element.name}}</mat-option>
+      </mat-select>
+      <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
+    </mat-form-field>
+
   </form>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end">

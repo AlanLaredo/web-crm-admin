@@ -75,7 +75,7 @@ export class DataFilterComponent implements OnInit {
       let exists = false
       selectedOptions.forEach((option: any) => {
         if (!exists) {
-          const stringToSearch = String(element[option.key]).toLowerCase()
+          const stringToSearch = this.removeAccents(String(element[option.key]).toLowerCase())
           if (!exists && stringToSearch.indexOf(text) >= 0) {
             exists = true
           }
@@ -99,6 +99,7 @@ export class DataFilterComponent implements OnInit {
       Ó: 'O',
       Ú: 'U'
     }
-    return text.split('').map(letter => accents[letter] || letter).join('').toString()
+    const result = text.split('').map(letter => accents[letter] || letter).join('').toString()
+    return result
   }
 }

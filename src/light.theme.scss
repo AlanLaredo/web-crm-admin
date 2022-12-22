@@ -104,9 +104,9 @@ $crm-app-primary: mat-palette($md-brand);
 $crm-app-accent:  mat-palette($md-accent);
 
 $crm-app-theme: mat-light-theme($crm-app-primary, $crm-app-accent);
+
 @include angular-material-theme($crm-app-theme);
 
 .light-theme {
   @include angular-material-theme($crm-app-theme);
 }
-

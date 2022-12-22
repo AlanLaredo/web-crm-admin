@@ -4,6 +4,8 @@ import { Component, Inject } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { TranslateService } from '@ngx-translate/core'
+import { DateTime } from 'luxon'
+// import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 
 @Component({
@@ -39,13 +41,20 @@ export class InputModalComponent {
       this._data.required = data.required
       this._data.type = data.type
       this._data.value = data.value
+      this._data.aditionalButtons = data.aditionalButtons
     }
     this.initForm()
   }
 
   initForm () {
+    let value = this._data.value
+    if (this._data.type === 'datetime-local') {
+      value = DateTime.fromJSDate(
+        new Date(this._data.value ? this._data.value : new Date())).set({ millisecond: 0, second: 0 }).setLocale(this.translate.instant('lang.luxon')
+      ).toISO({ includeOffset: false, suppressMilliseconds: true, suppressSeconds: true, format: 'extended' })
+    }
     this.formBuilderGroup = this.formBuilder.group({
-      inputValue: new FormControl((this._data.value), [
+      inputValue: new FormControl((value || undefined), [
         Validators.required
       ])
     })
@@ -61,5 +70,13 @@ export class InputModalComponent {
       return
     }
     this.dialogRef.close(this.formBuilderGroup.value.inputValue)
+  }
+
+  aditionalButtonAction (action: string) {
+    switch (action) {
+      case 'submitAsNull':
+        this.dialogRef.close(null)
+        break
+    }
   }
 }

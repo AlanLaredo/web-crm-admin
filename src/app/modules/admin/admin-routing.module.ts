@@ -18,7 +18,9 @@ import {
   MainContainer,
   PositionFormContainer,
   PositionGridContainer,
-  OperationDragAndDropContainer
+  OperationDragAndDropContainer,
+  CustomerGridContainer,
+  EmployeeReassignmentGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -133,6 +135,13 @@ const routes: Routes = [
               title: 'Listado de grupos de procesos'
             }
           },
+          {
+            path: 'customer',
+            component: CustomerGridContainer,
+            data: {
+              title: 'Listado de grupos de prospectos'
+            }
+          }
         ]
       },
       {
@@ -157,6 +166,13 @@ const routes: Routes = [
             component: EmployeeFormContainer,
             data: {
               title: 'Edición de empleado'
+            }
+          },
+          {
+            path: 'employee-reassignment',
+            component: EmployeeReassignmentGridContainer,
+            data: {
+              title: 'Listado de reasignación'
             }
           }
         ]

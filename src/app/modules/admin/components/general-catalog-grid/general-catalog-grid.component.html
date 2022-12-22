@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z2">
       <table mat-table [dataSource]="dataSource" matSort class="full-width">        
         <ng-container *ngFor="let column of _columns" [matColumnDef]="column.id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.name | translate}} </th>
@@ -16,7 +16,7 @@
               </button>
             </a>
             <a [routerLink]="[row.id, 'services']">
-              <button mat-button color="primary" *ngIf="_viewServices" matTooltip="{{'actions.edwit' | translate}}">
+              <button mat-button color="primary" *ngIf="_viewServices" matTooltip="{{'actions.edit' | translate}}">
                 <mat-icon class="cs-material-icons material-icons mat-icon-no-color" [fontSet]="'fa'" [fontIcon]="'fa-globe'"></mat-icon>
               </button>
             </a>

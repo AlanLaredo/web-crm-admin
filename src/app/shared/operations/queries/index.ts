@@ -13,6 +13,7 @@ import companyUserOperation from './companyUser'
 import getCompanyUserFindOperation from './getCompanyUserFind'
 import companyOperation from './company'
 import companiesOperation from './companies'
+import companiesForProcessOperation from './companiesForProcessOperation'
 import getCompanyFindOperation from './getCompanyFind'
 import actionLogOperation from './actionLog'
 import getActionLogFindOperation from './getActionLogFind'
@@ -73,6 +74,7 @@ export {
   clientServicesOperation,
   companyOperation,
   companiesOperation,
+  companiesForProcessOperation,
   companyGroupsOperation,
   companyGroupOperation,
   companyUserOperation,

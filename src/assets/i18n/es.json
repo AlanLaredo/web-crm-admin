@@ -19,6 +19,7 @@
     "delete": "Eliminar",
     "new": "Nuevo",
     "edit": "Editar",
+    "remind": "Recordatorio",
     "add": "Agregar",
     "minus": "Restar",
     "cancel": "Cancelar",
@@ -149,7 +150,8 @@
     "addMore": "Agregar",
     "days": "días",
     "name": "Nombre",
-    "description": "Descripción"
+    "description": "Descripción",
+    "remind": "Recordar"
   },
   "daysOfWeek": {
     "Monday": "Lunes",
@@ -184,7 +186,7 @@
       },
       "defaultValue": "Valor predeterminado",
       "required": "*Obligatorio",
-      "optional": "Opcional",
+      "optional": "",
       "numberPositiveNegativeAndOrDecimals": "Introduce un número(positivo/negativo/decimales)",
       "abbreviationNumberPositiveNegative": "Num. +/-",
       "email": "abc@example.com",
@@ -373,6 +375,7 @@
     "data": "Información"
   },
   "clientService": {
+    "name": "Nombre",
     "client": "Cliente",
     "serviceType": "Tipo",
     "scheduleHours": "Horario",
@@ -433,6 +436,7 @@
   "employee": {
     "operation": "Operación",
     "withoutPosition": "Sin puesto",
+    "withoutClient": "Sin asignación",
     "info": "Configuración",
     "address": "Dirección",
     "data": "Personales",
@@ -445,7 +449,10 @@
     "startOperationDate": "Inicio de operación",
     "clientName": "Cliente",
     "position": "Puesto",
-    "client": "Cliente"
+    "client": "Cliente",
+    "reasignmentReason": "Reasignación de empleado",
+    "reason": "Razón",
+    "enterAReason": "Introduce el motivo de la reasignación"
   },
   "position": {
     "name": "Nombre",
@@ -457,7 +464,53 @@
     "name": "Nombre",
     "functions": "Funciones",
     "order": "Órden",
-    "company": "Compañía"
+    "company": "Compañía",
+    "withoutFunction": "Sin función",
+    "new": " crear nuevo ",
+    "noProcess": "Aún no hay procesos registrados en ",
+    "forContinue": "para continuar",
+    "noCustomers": "No hay negocios",
+    "commercialValue": "Valor comercial",
+    "attemptClosingDate": "Fecha de cierre esperada",
+    "clientId": "cliente",
+    "customerName": "Nombre de servicio",
+    "catalogPriority": "Prioridad",
+    "attachedQuotePath": "Archivo",
+    "comments": "Comentarios",
+    "contact": "Contacto",
+    "contactName": "Nombre",
+    "contactLastName": "Apellidos",
+    "contactPhoneContacts": "Teléfono",
+    "contactEmails": "Emails",
+    "newClient": "Nuevo cliente",
+    "remind": "Recordatorio",
+    "date": "Fecha",
+    "remindInstructions": "Selecciona una fecha",
+    "infoRemind": "Se enviará un emaila tu correo electrónico",
+    "deleteRemindDate": "Eliminar"
+  },
+  "customer": {
+    "commercialValue": "Valor comercial",
+    "attemptClosingDate": "Cierre esperado",
+    "client": "Cliente",
+    "customerName": "Nombre",
+    "catalogPriority": "Prioridad",
+    "attachedQuotePath": "Archivo",
+    "comments": "Comentarios",
+    "contactName": "Contacto",
+    "contactPhoneContacts": "Teléfono",
+    "contactEmails": "Email",
+    "low": "Baja",
+    "mid": "Media",
+    "high": "Alta",
+    "process": "Proceso"
+  },
+  "reassignment": {
+    "employee": "Empleado",
+    "from": "De",
+    "to": "a",
+    "date": "Fecha",
+    "reason": "Razón"
   },
   "logKeys": {}
 }

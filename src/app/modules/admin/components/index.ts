@@ -17,6 +17,7 @@ import { ClientServiceFormComponent } from './client-service-form'
 import { EmployeeFormComponent } from './employee-form'
 import { PositionFormComponent } from './position-form'
 import { ProcessFormModalComponent } from './process-form-modal'
+import { ProcessCustomerFormModalComponent } from './process-customer-form-modal'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -38,7 +39,8 @@ export const ADMIN_COMPONENTS = [
   ClientServiceFormComponent,
   EmployeeFormComponent,
   PositionFormComponent,
-  ProcessFormModalComponent
+  ProcessFormModalComponent,
+  ProcessCustomerFormModalComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = [
@@ -63,5 +65,6 @@ export {
   ClientServiceFormComponent,
   EmployeeFormComponent,
   PositionFormComponent,
-  ProcessFormModalComponent
+  ProcessFormModalComponent,
+  ProcessCustomerFormModalComponent
 }

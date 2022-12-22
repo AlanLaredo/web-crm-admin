@@ -5,21 +5,182 @@
         <h1>{{ 'submenu.process' | translate }}</h1>
       </div>
       <div class="col-6">
-        <button class="float-right " mat-stroked-button color="primary" (click)="newProcess()">
+        <button class="float-right " mat-stroked-button color="primary" (click)="openProcessDialog()">
           <mat-icon>add</mat-icon>
           {{'actions.new' | translate}}
         </button>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
         <data-filter-component [dataSource]="data" [options]="filterOptions" [dataFilterConfiguration]="{ hideSelectable: true }" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="col-12">
-        <component-loading [isLoading]="loading">
-        </component-loading>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        <div class="row d-flex mb-5" *ngFor="let company of companies; let i = index" cdkDropListGroup>
+          <div class="col-12 m-6">
+            <h2>{{company.name}}</h2>
+          </div>
+
+          <div class="col-12 m-6">
+            <!-- <div class="row">
+              <h2>{{company.name}}</h2>
+            </div> -->
+          <!-- <div class="col-6">
+            <button class="float-right " mat-stroked-button color="primary" (click)="newProcess()">
+              <mat-icon>add</mat-icon>
+              {{'actions.new' | translate}}
+            </button>
+          </div> -->
+            <div class="d-flex justify-content-start flex-wrap">
+              <div class="m-2" style="width: 300px;" *ngFor="let process of company.processList; let j = index" >
+                <mat-card class="mat-elevation-z2 mb-5">
+                  <mat-card-title>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-flex justify-content-between">
+                          <div>
+                            <h3>
+                              <span><strong>{{company.processList[j].name}} </strong></span>
+                              <span class="text-accent total-business" [hidden]="company.processList[j].customers.length===0"> ({{company.processList[j].customers.length}})</span>
+                            </h3>
+                          </div>
+                          <div>
+                            <div class="d-flex justify-content-end">
+                              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menú">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                <button mat-menu-item matTooltip="{{'actions.add' | translate}}" (click)="openCustomerDialog(process, company.clients)">
+                                  <mat-icon color="primary">add</mat-icon>
+                                  <span>{{'actions.add' | translate}}</span>
+                                </button>
+                                <button mat-menu-item matTooltip="{{'actions.edit' | translate}}" (click)="openProcessDialog(process)">
+                                  <mat-icon color="accent">mode_edit</mat-icon>
+                                  <span>{{'actions.edit' | translate}}</span>
+                                </button>
+                                <button mat-menu-item matTooltip="{{'actions.delete' | translate}}" (click)="delete(process.id)">
+                                  <mat-icon color="warn">delete_forever</mat-icon>
+                                  <span>{{'actions.delete' | translate}}</span>
+                                </button>
+                              </mat-menu>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card-title>
+                  <mat-card-content>
+                    <div >
+                      <div class="row">
+                        <div class="col-12">
+                          <div
+                            cdkDropList
+                            class="customer-list"
+                            [id]="company.processList[j].id"
+                            [cdkDropListData]="company.processList[j].customers"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="total-business pl-4 pt-2 " *ngIf="process.customers.length===0">
+                              <button mat-icon-button (click)="openCustomerDialog(process, company.clients)" >
+                                {{'process.noCustomers' | translate}}
+                                <mat-icon color="info">add</mat-icon>
+                              </button>
+                            </div>
+                            <div
+                              (cdkDragEntered)="entered($event)"
+                              (cdkDragEnded)="dragEnd($event, customer, process)"
+                              class="customer-box process-elements row mat-elevation-z8 mb-3"
+                              *ngFor="let customer of process.customers"
+                              [id]="customer.id"
+                              cdkDrag>
+                                <div class="col-12">
+                                  <div class="row p-1 pt-2">
+                                    <div class="col-12 p-0">
+                                      <div class="d-flex justify-content-between flex-wrap">
+                                        <div class="pl-3 pt-2">
+                                          <span><strong>{{customer.customerName}}</strong></span>
+                                        </div>
+                                        <div class="d-flex justify-content-end customer-action-buttons">
+                                          <button class="tiny-process-icon" mat-icon-button matTooltip="{{'actions.hide' | translate}}" (click)="deleteCustomer(customer.id)">
+                                            <mat-icon class="tiny-process-icon" color="primary">visibility_off</mat-icon>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row p-1 pt-2">
+                                    <div class="col-12">
+                                      <span>{{customer.comments ? customer.comments : 'Sin comentarios'}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row p-1 pt-2">
+                                    <div class="col-12 created-at-date">
+                                      <span>{{'general.created' | translate }}: {{customer.createdAtString}}</span>
+                                    </div>
+                                    <!-- <div class="col-12 created-at-date">
+                                      <span>{{'general.remind' | translate }} {{customer.remindDateString }}</span>
+                                    </div> -->
+                                  </div>
+                                  <div class="row customer-action-area">
+                                    <div class="col-12 p-0">
+                                      <div class="d-flex justify-content-between">
+                                        <div>
+                                          <h3>
+                                            <span><strong></strong></span>
+                                          </h3>
+                                        </div>
+                                        <div>
+                                          <div class="d-flex justify-content-end customer-action-buttons">
+                                            <button mat-icon-button matTooltip="{{customer.remindDateString ? customer.remindDateString : ('actions.remind' | translate)}}" (click)="openRemindDialog(customer)">
+                                              <mat-icon color="accent" matBadge="{{customer.remindDateString ? '✓' : ''}}" matBadgeColor="warn" matBadgeSize="small">av_timer</mat-icon>
+                                            </button>
+                                            <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openCustomerDialog(process, company.clients, customer)">
+                                              <mat-icon color="accent">mode_edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="deleteCustomer(customer.id)">
+                                              <mat-icon color="warn">delete_forever</mat-icon>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col-12" *ngIf="company.processList.length === 0">
+                  <div class="row align-items-center d-flex no-process">
+                    <div class="col-4 offset-4 ">
+                      <div class="row">
+                        <div class="col-2">
+                          <img class="img-fluid" alt="" src="../../../../assets/img/logo.png" height="60">
+                        </div>
+                        <div class="col-10">
+                          <h2 class="font-weight-light font-size-30">{{'process.noProcess' | translate}} {{company.name}}</h2>
+                          <p class="lead m-b-30">
+                            Puedes <a class="crm-link" (click)="openProcessDialog()">{{'process.new' | translate}}</a>
+                            {{'process.forContinue' | translate}}
+                          </p>
+                        </div>
+                        <div class="col-md-6 m-l-auto">
+                            <!-- <img class="img-fluid" src="assets/images/others/error-1.png" alt=""> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

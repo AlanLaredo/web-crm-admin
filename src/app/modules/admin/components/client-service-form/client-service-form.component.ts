@@ -43,6 +43,7 @@ export class ClientServiceFormComponent implements OnInit {
 
   initForm () {
     this.formBuilderGroup = this.formBuilder.group({
+      name: new FormControl((this._data.name || undefined), [Validators.required]),
       serviceType: new FormControl((this._data.serviceType || undefined), []),
       scheduleHours: new FormControl((this._data.scheduleHours || undefined), []),
       serviceCost: new FormControl((this._data.serviceCost || undefined), []),
@@ -87,6 +88,7 @@ export class ClientServiceFormComponent implements OnInit {
     const serviceClient = { ...this.formBuilderGroup.value } as any
 
     const outData: any = {}
+    outData.name = serviceClient.name?.trim()
     outData.serviceType = serviceClient.serviceType?.trim()
     outData.scheduleHours = serviceClient.scheduleHours?.trim()
     outData.serviceCost = serviceClient.serviceCost

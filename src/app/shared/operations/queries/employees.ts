@@ -37,6 +37,9 @@ query employees($id: ID, $keycode: String, $person: CreatePersonInput, $position
             }
         }
         positionId
+        position {
+          name
+        }
         hiringDate
         startOperationDate
         clientId

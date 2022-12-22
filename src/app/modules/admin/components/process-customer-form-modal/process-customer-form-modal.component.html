@@ -1,0 +1,116 @@
+<h1 mat-dialog-title>
+  <h1>{{ title | translate }}</h1>
+</h1>
+<div mat-dialog-content>
+  <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.commercialValue' | translate }}</mat-label>
+            <input type="number" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="commercialValue" />
+          <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.attemptClosingDate' | translate }}</mat-label>
+            <input matInput autocomplete="off" [matDatepicker]="attemptClosingDate" formControlName="attemptClosingDate">
+            <mat-datepicker-toggle matSuffix [for]="attemptClosingDate"></mat-datepicker-toggle>
+            <mat-datepicker #attemptClosingDate></mat-datepicker>
+          <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'employee.client' | translate}}</mat-label>
+          <mat-select formControlName="clientId">
+            <mat-option [value]="0">{{'process.newClient' | translate}}</mat-option>
+            <mat-option *ngFor="let client of _clients; let i = index" [value]="client.id">{{client.businessName}}</mat-option>
+          </mat-select>
+          <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.customerName' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="customerName" />
+          <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.catalogPriority' | translate }}</mat-label>
+            <!-- <input type="number" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="catalogPriority" /> -->
+            <mat-select formControlName="catalogPriority">
+              <mat-option [value]="0">{{'customer.low' | translate}}</mat-option>
+              <mat-option [value]="1">{{'customer.mid' | translate}}</mat-option>
+              <mat-option [value]="2">{{'customer.high' | translate}}</mat-option>
+            </mat-select>
+
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.attachedQuotePath' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="attachedQuotePath" />
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.comments' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="comments" />
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <div class="row d-flex justify-content-between pt-4">
+          <div class="col-12">
+            <h2>{{ 'process.contact' | translate }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.contactName' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="contactName" />
+          <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.contactLastName' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="contactLastName" />
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.contactPhoneContacts' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="contactPhoneContacts" />
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'process.contactEmails' | translate }}</mat-label>
+            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="contactEmails" />
+          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{'process.company' | translate }}</mat-label>
+      <mat-select formControlName="companyId">
+        <mat-option *ngFor="let company of _companies; let i = index" [value]="company.id">{{company.name}}</mat-option>
+      </mat-select>
+      <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.required' | translate}}</mat-hint>
+    </mat-form-field> -->
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
+  <button mat-button cdkFocusInitial (click)="submit()" [disabled]="!formBuilderGroup.valid">{{'actions.accept' | translate}}</button>
+</div>

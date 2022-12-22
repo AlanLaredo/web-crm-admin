@@ -28,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatRippleModule } from '@angular/material/core'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 // import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker'
 
@@ -68,6 +69,7 @@ export function createTranslateLoader (http: HttpClient) {
     MatRippleModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    DragDropModule,
     FlexLayoutModule,
     MatTooltipModule,
     // NgxMatTimepickerModule,
@@ -100,6 +102,7 @@ export function createTranslateLoader (http: HttpClient) {
     ...SHARED_DIRECTIVES,
     TranslateModule,
     MatButtonModule,
+    DragDropModule,
     MatTooltipModule
   ]
 })

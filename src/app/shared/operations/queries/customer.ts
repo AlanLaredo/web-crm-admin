@@ -18,6 +18,7 @@ query customer($id: ID, $processId: ID, $commercialValue: Float, $attemptClosing
         catalogPriority
         attachedQuotePath
         comments
+        remindDate
         contact{
             name
             lastName

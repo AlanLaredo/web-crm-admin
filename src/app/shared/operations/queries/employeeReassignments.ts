@@ -14,5 +14,36 @@ query employeeReassignments($id: ID, $employeId: ID, $transmitterClientId: ID, $
         transmitterClientId
         receiverClientId
         reason
+        company {
+          name
+        }
+        employee {
+          person{
+            name
+            lastName
+            phoneContacts
+            emails
+            comments
+            address{
+                name
+                street
+                exteriorNumber
+                interiorNumber
+                neightborhood
+                city
+                state
+                country
+                postalCode
+            }
+          }
+        }
+        transmitterClient {
+          businessName
+          businessReason
+        }
+        receiverClient {
+          businessName
+          businessReason
+        }
     }
 }`

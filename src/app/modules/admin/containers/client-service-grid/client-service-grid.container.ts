@@ -43,8 +43,8 @@ export class ClientServiceGridContainer implements OnInit {
     this.graphqlService.execute(clientServicesOperation, { clientId: this.clientId }).then((result: any) => {
       this.loading = false
       this.data = result.map((clientService: any) => {
-        clientService.emergencyContactName = clientService.emergencyContact.name + (clientService.emergencyContact.lastName ? clientService.emergencyContact.lastName : '')
-        clientService.paymentContactName = clientService.paymentContact.name + (clientService.paymentContact.lastName ? clientService.paymentContact.lastName : '')
+        clientService.emergencyContactName = clientService.emergencyContact.name + ' ' + (clientService.emergencyContact.lastName ? clientService.emergencyContact.lastName : '')
+        clientService.paymentContactName = clientService.paymentContact.name + ' ' + (clientService.paymentContact.lastName ? clientService.paymentContact.lastName : '')
         return clientService
       })
       this.setDataFiltered(this.data)
@@ -74,7 +74,13 @@ export class ClientServiceGridContainer implements OnInit {
   }
 
   loadTranslations () {
-    this.filterOptions = [{
+    this.filterOptions = [
+      {
+        key: 'name',
+        text: this.translate.instant('clientService.name')
+      },
+      /*
+      {
       key: 'serviceType',
       text: this.translate.instant('clientService.serviceType')
     },
@@ -134,14 +140,16 @@ export class ClientServiceGridContainer implements OnInit {
       key: 'startDate',
       text: this.translate.instant('clientService.startDate')
     },
-    {
-      key: 'emergencyContactName',
-      text: this.translate.instant('clientService.emergencyContact')
-    },
-    {
-      key: 'paymentContactName',
-      text: this.translate.instant('clientService.paymentContact')
-    },
+    */
+      {
+        key: 'emergencyContactName',
+        text: this.translate.instant('clientService.emergencyContact')
+      },
+      {
+        key: 'paymentContactName',
+        text: this.translate.instant('clientService.paymentContact')
+      },
+      /*
     {
       key: 'creditDays',
       text: this.translate.instant('clientService.creditDays')
@@ -150,10 +158,12 @@ export class ClientServiceGridContainer implements OnInit {
       key: 'paymentDays',
       text: this.translate.instant('clientService.paymentDays')
     },
-    {
-      key: 'folioCounterReceipt',
-      text: this.translate.instant('clientService.folioCounterReceipt')
-    },
+    */
+      {
+        key: 'folioCounterReceipt',
+        text: this.translate.instant('clientService.folioCounterReceipt')
+      },
+    /*
     {
       key: 'billing',
       text: this.translate.instant('clientService.billing')
@@ -177,7 +187,8 @@ export class ClientServiceGridContainer implements OnInit {
     {
       key: 'paymentForm',
       text: this.translate.instant('clientService.paymentForm')
-    }]
+    }
+  */]
 
     this.columns = this.filterOptions.map((column: any) => {
       column.id = column.key
