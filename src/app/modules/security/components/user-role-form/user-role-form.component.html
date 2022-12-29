@@ -1,42 +1,44 @@
-<div class="row">
-  <div class="col-12">
-    <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>
-    <mat-card>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-12">
-            <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
-              <mat-form-field appearance="legacy" class="custom-mat-form-field">
-                <mat-label>{{'general.name' | translate}}</mat-label>
-                <input
-                type="text"
-                autocomplete="off"
-                matInput="matInput"
-                placeholder="{{'form.instructions.enterAText' | translate}}"
-                formControlName="name"
-                />
-                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
-              </mat-form-field>
 
-              <mat-form-field appearance="legacy" class="custom-mat-form-field">
-                <mat-label>{{'general.description' | translate}}</mat-label>
-                <input
-                type="text"
-                autocomplete="off"
-                matInput="matInput"
-                placeholder="{{'form.instructions.enterAText' | translate}}"
-                formControlName="description"
-                />
-                <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
-              </mat-form-field>
+    <div class="row">
+      <div class="col-12">
+        <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>
+        <mat-card>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-12 ">
+                <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'general.name' | translate}}</mat-label>
+                    <input
+                    type="text"
+                    autocomplete="off"
+                    matInput="matInput"
+                    placeholder="{{'form.instructions.enterAText' | translate}}"
+                    formControlName="name"
+                    />
+                    <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+                  </mat-form-field>
 
-            </form>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'general.description' | translate}}</mat-label>
+                    <input
+                    type="text"
+                    autocomplete="off"
+                    matInput="matInput"
+                    placeholder="{{'form.instructions.enterAText' | translate}}"
+                    formControlName="description"
+                    />
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </form>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
 <div class="row" *ngIf="formBuilderGroup">
   <div class="col-12 mt-4">
     <button
@@ -47,14 +49,14 @@
     color="primary">
     {{'form.save' | translate}}
     </button>
-    <button
+    <!-- <button
     class="cancel-button"
     mat-button="mat-button"
     (click)="cancelForm()"
     color="primary"
     [hidden]="!_data.id">
     {{'form.cancel' | translate}}
-    </button>
+    </button> -->
   </div>
 </div>
 

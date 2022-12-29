@@ -4,8 +4,12 @@ import { Component, Inject } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { TranslateService } from '@ngx-translate/core'
-import { LoginService } from 'src/app/modules/auth/services'
 import Swal from 'sweetalert2'
+import * as fileSaver from 'file-saver'
+
+import { LoginService } from 'src/app/modules/auth/services'
+import { AwsFileService } from '../../services'
+import { NotifyService } from 'src/app/shared/services'
 
 @Component({
   selector: 'process-customer-form-modal-component',
@@ -19,6 +23,7 @@ export class ProcessCustomerFormModalComponent {
   _clients: any = {}
   user: any
   _disabled: boolean = false
+  fileNameString: string = ''
 
   title: string =''
   public formBuilderGroup: any = null
@@ -26,7 +31,9 @@ export class ProcessCustomerFormModalComponent {
   constructor (
     private formBuilder: FormBuilder,
     public translate: TranslateService,
+    public awsFileService: AwsFileService,
     public loginService: LoginService,
+    public notifyService: NotifyService,
     public dialogRef: MatDialogRef<ProcessCustomerFormModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any // title, name, value
   ) {
@@ -55,7 +62,6 @@ export class ProcessCustomerFormModalComponent {
       clientId: new FormControl({ value: (this._customer?.clientId || 0), disabled: this._disabled }, [Validators.required]),
       customerName: new FormControl({ value: (this._customer?.customerName || undefined), disabled: this._disabled }, [Validators.required]),
       catalogPriority: new FormControl({ value: (this._customer?.catalogPriority || 0), disabled: this._disabled }, []),
-      attachedQuotePath: new FormControl({ value: (this._customer?.attachedQuotePath || undefined), disabled: this._disabled }, []),
       comments: new FormControl({ value: (this._customer?.comments || undefined), disabled: this._disabled }, []),
 
       contactName: new FormControl({ value: (this._customer?.contact?.name || undefined), disabled: this._disabled }, [Validators.required]),
@@ -63,6 +69,11 @@ export class ProcessCustomerFormModalComponent {
       contactPhoneContacts: new FormControl({ value: (this._customer?.contact?.phoneContacts[0] || undefined), disabled: this._disabled }, []),
       contactEmails: new FormControl({ value: (this._customer?.contact?.emails[0] || undefined), disabled: this._disabled }, [])
     })
+
+    if (this._customer?.attachedQuotePath && this._customer?.attachedQuotePath.length > 0) {
+      const replaceUUIDAndPath = this._customer?.attachedQuotePath[0].split('_')[0] + '_'
+      this.fileNameString = this._customer?.attachedQuotePath[0].replace(replaceUUIDAndPath, '')
+    }
   }
 
   onNoClick (): void {
@@ -79,10 +90,10 @@ export class ProcessCustomerFormModalComponent {
     outData.id = this._customer?.id
     outData.commercialValue = customer.commercialValue
     outData.attemptClosingDate = customer.attemptClosingDate
-    outData.clientId = [0, '0'].includes(customer.clientId) ? undefined : customer.clientId
+    outData.clientId = [0, '0'].includes(customer.clientId) ? null : customer.clientId
     outData.customerName = customer.customerName ? customer.customerName?.trim() : undefined
     outData.catalogPriority = customer.catalogPriority
-    outData.attachedQuotePath = customer.attachedQuotePath ? customer.attachedQuotePath?.trim() : undefined
+    outData.attachedQuotePath = customer.attachedQuotePath ? customer.attachedQuotePath : undefined
     outData.comments = customer.comments ? customer.comments?.trim() : undefined
 
     if (customer.contactName?.trim() || customer.contactLastName?.trim() || customer.contactPhoneContacts || customer.contactEmails) {
@@ -98,10 +109,65 @@ export class ProcessCustomerFormModalComponent {
     }
 
     outData.processId = this._process.id
+
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      outData.selectedFiles = this.selectedFiles
+    } else if (this._customer?.attachedQuotePath === null) {
+      outData.attachedQuotePath = null
+    }
+
     this.dialogRef.close(outData)
   }
 
   public clearStartDate () {
     this.formBuilderGroup.controls.text.setValue(null)
+  }
+
+  onFileComplete ($event: any) {
+    console.log('onFileComplete')
+    console.log($event)
+  }
+
+  selectedFiles: any[] = []
+  uploadFile ($event: any) {
+    if (!$event.data) {
+      return
+    }
+    this.selectedFiles.push($event.data)
+  }
+
+  removeTemporalFile ($event: any) {
+    const index = $event
+    if (index > -1) {
+      this.selectedFiles.splice(index, 1)
+    }
+  }
+
+  async download () {
+    this._loading = true
+    if (this._customer?.attachedQuotePath && this._customer?.attachedQuotePath.length > 0) {
+      const result: any = await this.awsFileService.getBlob(this._customer.attachedQuotePath[0])
+      this._loading = false
+      const blobFile = new window.Blob([new Uint8Array([...result]).buffer])
+      fileSaver.saveAs(blobFile, this.fileNameString)
+    }
+  }
+
+  async delete () {
+    this._loading = true
+    if (await this.notifyService.deleteConfirm() && this._customer?.attachedQuotePath && this._customer?.attachedQuotePath.length > 0) {
+      this.awsFileService.delete(this._customer?.attachedQuotePath[0])
+      this._loading = false
+      this._customer.attachedQuotePath = null
+      this.submit()
+    }
+  }
+
+  view () {
+    if (this._customer?.attachedQuotePath && this._customer?.attachedQuotePath.length > 0) {
+      this.awsFileService.getSignedUrl(this._customer?.attachedQuotePath[0]).subscribe((result: any) => {
+        window.open(result)
+      })
+    }
   }
 }

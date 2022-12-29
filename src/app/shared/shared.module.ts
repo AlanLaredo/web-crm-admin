@@ -8,9 +8,6 @@ import { TranslateModule } from '@ngx-translate/core'
 import { RouterModule } from '@angular/router'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 
-// Components
-import { SHARED_COMPONENTS } from './components'
-
 // Material
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
@@ -29,6 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatRippleModule } from '@angular/material/core'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { MatFileUploadModule } from 'angular-material-fileupload';
+
+// Components
+import { SHARED_COMPONENTS } from './components'
 
 // import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker'
 
@@ -76,6 +77,8 @@ export function createTranslateLoader (http: HttpClient) {
     // NgxMatNativeDateModule,
     // NgxMatDatetimePickerModule,
 
+    MatFileUploadModule,
+
     FormsModule,
     ReactiveFormsModule,
     TranslateModule
@@ -103,7 +106,8 @@ export function createTranslateLoader (http: HttpClient) {
     TranslateModule,
     MatButtonModule,
     DragDropModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFileUploadModule
   ]
 })
 export class SharedModule {

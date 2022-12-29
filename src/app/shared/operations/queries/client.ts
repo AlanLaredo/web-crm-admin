@@ -47,5 +47,9 @@ query client($id: ID, $keycode: String, $rfc: String, $businessName: String, $bu
         company {
           name
         }
+        customer {
+          id
+          customerName
+        }
     }
 }`

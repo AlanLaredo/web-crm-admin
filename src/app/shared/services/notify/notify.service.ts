@@ -6,7 +6,7 @@
 import { Injectable } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
-import Swal from 'sweetalert2'
+import Swal, { SweetAlertIcon } from 'sweetalert2'
 import { SnackBarComponent } from '../../components'
 
 @Injectable({
@@ -36,8 +36,18 @@ export class NotifyService {
 
   public async deleteConfirm (): Promise<boolean> {
     const { isConfirmed } = await Swal.fire({
-      icon: 'question',
+      icon: 'warning',
       title: this.translate.instant('messages.delete.confirmQuestion'),
+      showConfirmButton: true,
+      showCancelButton: true
+    })
+    return isConfirmed
+  }
+
+  public async confirm (text: string, icon: SweetAlertIcon = 'warning'): Promise<boolean> {
+    const { isConfirmed } = await Swal.fire({
+      icon,
+      title: text,
       showConfirmButton: true,
       showCancelButton: true
     })

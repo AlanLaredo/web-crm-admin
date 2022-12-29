@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
-import { clientServiceOperation } from 'src/app/shared/operations/queries'
-import { createClientServiceOperation, updateClientServiceOperation } from 'src/app/shared/operations/mutations'
+import { clientServiceOperation, customerOperation } from 'src/app/shared/operations/queries'
+import { createClientServiceOperation, updateClientServiceOperation, updateCustomerOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
   templateUrl: './client-service-form.container.html',
@@ -19,6 +19,7 @@ export class ClientServiceFormContainer implements OnInit {
   data: any = {}
   clientServiceId: any
   clientId: any
+  customer: any
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -36,16 +37,32 @@ export class ClientServiceFormContainer implements OnInit {
     const promises: Promise<any>[] = []
     this.clientServiceId = params.clientServiceId
     this.clientId = params.elementId
+
     if (this.clientServiceId) {
       this.title = 'general.titles.edition'
       promises.push(this.graphQlService.execute(clientServiceOperation, { id: this.clientServiceId }))
     } else {
       this.title = 'general.titles.creation'
     }
-    const [data] = await Promise.all(promises)
+
+    if (params.customerId) {
+      promises.push(this.graphQlService.execute(customerOperation, { id: params.customerId }))
+    }
+
+    const [data, customer] = await Promise.all(promises)
     this.loading = false
-    if (data) {
+    if (data && params.clientServiceId) {
       this.data = data
+    }
+
+    if (customer) {
+      this.customer = customer
+    } else if (!params.clientServiceId && params.customerId) {
+      this.clientId = data.clientId
+      this.customer = data
+      this.data = {
+        name: data.customerName
+      }
     }
   }
 
@@ -54,12 +71,19 @@ export class ClientServiceFormContainer implements OnInit {
     data.clientId = this.clientId
     this.loading = true
     this.graphQlService.execute(!data.id ? createClientServiceOperation : updateClientServiceOperation, data).then(
-      (response: any) => {
+      async (response: any) => {
+        if (this.customer) {
+          await this.graphQlService.execute(updateCustomerOperation, { id: this.customer.id, clientServiceId: response.id })
+        }
         this.loading = false
         if (!data.id) {
-          Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-            this.router.navigate(['/admin/clients/' + this.clientId + '/services'])
-          })
+          if (!this.customer) {
+            Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
+              this.router.navigate(['/admin/clients/' + this.clientId + '/services'])
+            })
+          } else {
+            this.router.navigate(['/admin/process/process/'])
+          }
         } else {
           this.data = response
           this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')

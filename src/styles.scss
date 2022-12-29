@@ -589,7 +589,41 @@ body {
 }
 
 .process-elements {
-  background:#dde1ece0;
+  background: #edf2ffe0;
   color: get-color-scale("primary", 90) !important;
-  
+}
+
+.process-elements-no-dragable {
+  background: #f9f9f9e0;
+  color: #9ea5b6 !important;
+  cursor: no-drop !important;
+}
+
+
+.upload-files-zone {
+  margin: 2px;
+  margin-bottom: 5px;
+  color: rgba(82, 82, 82, 0.87);
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+  border: 1px dashed rgb(241, 234, 234);
+  min-height: 60px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  padding: 3px;
+}
+
+.mat-raised-button.mat-primary span {
+  color: white;
+}
+.upload-progress button span mat-icon {
+  color: get-color-scale("primary", 100) !important;
+}
+.uploaded-files-zone .mat-raised-button.mat-primary span {
+  display: none;
 }

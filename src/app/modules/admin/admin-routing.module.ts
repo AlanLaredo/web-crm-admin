@@ -136,6 +136,36 @@ const routes: Routes = [
             }
           },
           {
+            path: 'process/customer',
+            children: [
+              {
+                path: ':customerId/client/create',
+                component: ClientFormContainer,
+                data: {
+                  title: 'Registro de cliente'
+                }
+              }, {
+                path: ':customerId/client/:elementId/edit',
+                component: ClientFormContainer,
+                data: {
+                  title: 'Registro de cliente'
+                }
+              }, {
+                path: ':customerId/clientService/create',
+                component: ClientServiceFormContainer,
+                data: {
+                  title: 'Registro de servicio'
+                }
+              }, {
+                path: ':customerId/clientService/:elementId/edit',
+                component: ClientServiceFormContainer,
+                data: {
+                  title: 'Registro de servicio'
+                }
+              }
+            ]
+          },
+          {
             path: 'customer',
             component: CustomerGridContainer,
             data: {

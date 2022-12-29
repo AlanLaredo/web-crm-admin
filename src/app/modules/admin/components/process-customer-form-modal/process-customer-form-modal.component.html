@@ -53,13 +53,6 @@
       </div>
       <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
         <mat-form-field appearance="legacy" class="custom-mat-form-field">
-          <mat-label>{{'process.attachedQuotePath' | translate }}</mat-label>
-            <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="attachedQuotePath" />
-          <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <mat-form-field appearance="legacy" class="custom-mat-form-field">
           <mat-label>{{'process.comments' | translate }}</mat-label>
             <input type="string" autocomplete="off" matInput="matInput" placeholder="{{'form.instructions.enterAText' | translate}}" formControlName="comments" />
           <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
@@ -101,16 +94,53 @@
         </mat-form-field>
       </div>
     </div>
-    <!-- <mat-form-field appearance="legacy" class="custom-mat-form-field">
-      <mat-label>{{'process.company' | translate }}</mat-label>
-      <mat-select formControlName="companyId">
-        <mat-option *ngFor="let company of _companies; let i = index" [value]="company.id">{{company.name}}</mat-option>
-      </mat-select>
-      <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.required' | translate}}</mat-hint>
-    </mat-form-field> -->
+    <div class="col-12">
+      <div class="row d-flex justify-content-between pt-4">
+        <div class="col-12">
+          <h2>{{ 'process.saleQuote' | translate }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="fileNameString && (!selectedFiles || selectedFiles.length === 0)">
+      <!-- <mat-label>{{'process.attachedQuotePath' | translate }}</mat-label> -->
+      <div class=" d-flex justify-content-left">
+        <div>
+          <h2>
+            <span >
+              {{fileNameString}}
+            </span>
+          </h2>
+        </div>
+        <button mat-icon-button color="primary" (click)="download()">
+          <mat-icon>file_download</mat-icon>
+          <!-- {{'actions.download' | translate}} -->
+        </button>
+        <button mat-icon-button color="primary" (click)="view()">
+          <mat-icon>visibility</mat-icon>
+          <!-- {{'actions.view' | translate}} -->
+        </button>
+        <button mat-icon-button color="warn" (click)="delete()" [disabled]="_disabled">
+          <mat-icon>delete_forever</mat-icon>
+          <!-- {{'actions.delete' | translate}} -->
+        </button>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="!_disabled">
+        <div class="row d-flex justify-content-between pt-4">
+          <div class="col-12 hide-outer-text">
+            <h1>
+              <upload-files-component
+              [multiple]="false"
+              (complete)="onFileComplete($event)"
+              (outActionUploadFile)="uploadFile($event)"
+              (outActionRemoveFile)="removeTemporalFile($event)"></upload-files-component>
+            </h1>
+          </div>
+        </div>
+    </div>
   </form>
 </div>
-<div mat-dialog-actions class="d-flex justify-content-end">
+<div mat-dialog-actions class="d-flex justify-content-end pt-4">
   <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
   <button mat-button cdkFocusInitial (click)="submit()" [disabled]="!formBuilderGroup.valid">{{'actions.accept' | translate}}</button>
 </div>

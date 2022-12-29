@@ -73,15 +73,13 @@
   border-top: 1px solid #c5cfe98a;
 }
 .customer-action-buttons button {
-  height: 31px;
-  width: 31px;
+  height: 39px;
+  width: 39px;
   // background: red;
 }
 .customer-action-buttons button mat-icon {
   font-size: 20px;
   // background: blue;
-  margin-bottom: 5px;
-
 }
 .created-at-date {
   font-size: 11px;
@@ -91,4 +89,14 @@
   font-size: 50px;
 
   // background: blue;
+}
+
+.tiny-process-icon-title {
+  font-size: 17px !important;
+}
+.tiny-process-checklist span {
+  font-size: 12px !important;
+}
+.tiny-process-checklist mat-icon {
+  font-size: 12px !important;
 }

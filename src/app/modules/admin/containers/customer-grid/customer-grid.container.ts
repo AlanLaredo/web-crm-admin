@@ -46,7 +46,6 @@ export class CustomerGridContainer implements OnInit {
     this.graphqlService.execute(customersOperation, { clientId: this.clientId }).then((result: any) => {
       this.loading = false
       const user: any = this.loginService.getUser()
-      console.log(user)
       const customers = result.filter((customer: any) => customer.createdBy === user._id)
       this.data = customers.map((customer: any) => {
         customer.contactName = customer.contact ? customer.contact.name + ' ' + (customer.contact.lastName ? customer.contact.lastName : '') : 'N/A'
@@ -106,10 +105,10 @@ export class CustomerGridContainer implements OnInit {
         key: 'catalogPriorityName',
         text: this.translate.instant('customer.catalogPriority')
       },
-      {
-        key: 'attachedQuotePath',
-        text: this.translate.instant('customer.attachedQuotePath')
-      },
+      // {
+      //   key: 'attachedQuotePath',
+      //   text: this.translate.instant('customer.attachedQuotePath')
+      // },
       {
         key: 'comments',
         text: this.translate.instant('customer.comments')

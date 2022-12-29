@@ -2,7 +2,6 @@
 import { UsersListComponent } from './users-list'
 import { UserFormComponent } from './users-form'
 
-import { SelectPermissionsByCategoryComponent } from './select-permissions-by-category'
 import { PermissionsListComponent } from './permissions-list'
 import { PermissionFormComponent } from './permission-form'
 import { UserRoleFormComponent } from './user-role-form'
@@ -13,7 +12,6 @@ export const SECURITY_COMPONENTS = [
   UserFormComponent,
   PermissionFormComponent,
   PermissionsListComponent,
-  SelectPermissionsByCategoryComponent,
   UserRoleFormComponent,
   UserRoleGridComponent
 ]
@@ -23,7 +21,6 @@ export {
   PermissionsListComponent,
   UserFormComponent,
   PermissionFormComponent,
-  SelectPermissionsByCategoryComponent,
   UserRoleFormComponent,
   UserRoleGridComponent
 }

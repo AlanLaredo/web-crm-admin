@@ -3,20 +3,23 @@
 import { Injectable } from '@angular/core'
 import * as S3 from 'aws-sdk/clients/s3'
 import { Observable, of } from 'rxjs'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AwsFileService {
   s3Object: any
+  bucketName: string
   constructor () {
     this.s3Object = new S3(
       {
-        accessKeyId: 'AKIAQ6IKE4QWLFXZSHZD',
-        secretAccessKey: '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',
-        region: 'us-east-2'
+        accessKeyId: environment.aws_file_service.access_key_id,
+        secretAccessKey: environment.aws_file_service.secret_access_key,
+        region: environment.aws_file_service.region
       }
     )
+    this.bucketName = environment.aws_file_service.bucket
   }
 
   // {
@@ -29,11 +32,12 @@ export class AwsFileService {
     return new Promise((resolve, reject) => {
       const contentType = file.type
       const params = {
-        Bucket: 'crmadmin',
+        Bucket: this.bucketName,
         Key: directory + '/' + file.name,
         Body: file,
         ContentType: contentType
       }
+
       this.s3Object.upload(params, function (err: any, data: any) {
         if (err) {
           reject(err)
@@ -59,7 +63,7 @@ export class AwsFileService {
 
   public getSignedUrl (key: string): Observable<string> {
     const params = {
-      Bucket: 'crmadmin',
+      Bucket: this.bucketName,
       Key: key
     }
 
@@ -70,7 +74,7 @@ export class AwsFileService {
   getBlob (key: string) {
     return new Promise((resolve, reject) => {
       const params = {
-        Bucket: 'crmadmin',
+        Bucket: this.bucketName,
         Key: key
       }
 
@@ -86,7 +90,7 @@ export class AwsFileService {
   delete (key: string) {
     return new Promise((resolve, reject) => {
       const params = {
-        Bucket: 'crmadmin',
+        Bucket: this.bucketName,
         Key: key
       }
 

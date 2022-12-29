@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>{{_data.title}} </h1>
+<div mat-dialog-content>
+  <p>{{_data.info}}</p>
+
+
+  <mat-form-field class="custom-mat-form-field" appearance="fill">
+    <mat-label>{{_data.inputName}}</mat-label>
+    <mat-chip-list #chipGrid aria-label="Enter">
+      <mat-chip *ngFor="let element of _data.value" [removable]="true" (removed)="remove(element)" [color]="'primary'">
+        {{element}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="{{'actions.add' | translate}} ..."
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+          autocomplete="email"/>
+    </mat-chip-list>
+    <mat-hint>{{(_data.required ? 'form.validations.required' : 'form.validations.optional') | translate }} </mat-hint>
+
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <a [ngSwitch]="button.matType" *ngFor="let button of _data.aditionalButtons">
+    <button mat-fab *ngSwitchCase="'mat-fab'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-mini-fab *ngSwitchCase="'mat-mini-fab'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-icon-button *ngSwitchCase="'mat-icon-button'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-icon-button  *ngSwitchCase="'mat-icon-button '" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-flat-button *ngSwitchCase="'mat-flat-button'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-stroked-button *ngSwitchCase="'mat-stroked-button'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-raised-button *ngSwitchCase="'mat-raised-button'" [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+    <button mat-button *ngSwitchDefault [color]="button.color ? button.color : 'primary'" (click)="aditionalButtonAction(button.action)">
+      {{button.name}}
+    </button>
+  </a>
+  <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
+  <button mat-button cdkFocusInitial (click)="submit()">{{'actions.accept' | translate}}</button>
+</div>

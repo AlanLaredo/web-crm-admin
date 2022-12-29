@@ -1,4 +1,6 @@
 /* eslint-disable no-useless-constructor */
+/* eslint accessor-pairs: ["error", { "enforceForClassMembers": false }] */
+
 import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
@@ -24,12 +26,11 @@ export class PermissionsListComponent {
     }
   }
 
-  get data () {
-    return this._data
-  }
-
   @Output()
   outActionDelete: EventEmitter<string> = new EventEmitter<string>()
+
+  @Output()
+  outActionAdd: EventEmitter<string> = new EventEmitter<string>()
 
   _data: IPermission[] = []
   displayedColumns: string[] = ['name', 'description', 'tag', 'actions'];
@@ -62,5 +63,9 @@ export class PermissionsListComponent {
 
   delete (id: string) {
     this.outActionDelete.emit(id)
+  }
+
+  add (id: string) {
+    this.outActionAdd.emit(id)
   }
 }

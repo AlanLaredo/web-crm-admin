@@ -17,6 +17,7 @@ export default gql`mutation updateCustomer($updateCustomerData: UpdateCustomerIn
         catalogPriority
         attachedQuotePath
         comments
+        emails
         contact{
             name
             lastName

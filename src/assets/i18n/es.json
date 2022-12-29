@@ -70,6 +70,11 @@
       "success": "Se ha actualizado un elemento",
       "error": "Error al actualizar el elemento"
     },
+    "hide": {
+      "confirmQuestion": "¿Está seguro de ocultar este elemento?",
+      "success": "Se ha ocultado un elemento",
+      "error": "Error al ocultar el elemento"
+    },
     "send": {
       "success": "Se ha enviado exitosamente"
     },
@@ -151,7 +156,9 @@
     "days": "días",
     "name": "Nombre",
     "description": "Descripción",
-    "remind": "Recordar"
+    "remind": "Recordar",
+    "uploadFiles": "Arrastre y suelte los archivos aquí",
+    "withoutComments": "Sin comentarios"
   },
   "daysOfWeek": {
     "Monday": "Lunes",
@@ -475,7 +482,7 @@
     "clientId": "cliente",
     "customerName": "Nombre de servicio",
     "catalogPriority": "Prioridad",
-    "attachedQuotePath": "Archivo",
+    "attachedQuotePath": "Cotización",
     "comments": "Comentarios",
     "contact": "Contacto",
     "contactName": "Nombre",
@@ -487,7 +494,22 @@
     "date": "Fecha",
     "remindInstructions": "Selecciona una fecha",
     "infoRemind": "Se enviará un emaila tu correo electrónico",
-    "deleteRemindDate": "Eliminar"
+    "emails": "Aviso de actualización de Lead",
+    "recipients": "Emails",
+    "deleteRemindDate": "Eliminar",
+    "changeProcessDescription": "Enviar aviso a: ",
+    "emailDuplied": "El email ya está en la lista.",
+    "confirmDeleteExistsCustomers": "Existen customers en este proceso, ¿desea continuar?",
+    "saleQuote": "Cotización de venta",
+    "requireQuote": "Require cotización",
+    "requireQuoteInstruction": "Favor de agregar una cotización",
+    "clientRegistered": "Cliente",
+    "clientServiceRegistered": "Servicio",
+    "clientPending": "Cliente pendiente",
+    "client": "Cliente",
+    "clientService": "Servicio",
+    "withoutClient": "Sin cliente",
+    "withoutClientService": "Sin servicio"
   },
   "customer": {
     "commercialValue": "Valor comercial",
@@ -503,7 +525,8 @@
     "low": "Baja",
     "mid": "Media",
     "high": "Alta",
-    "process": "Proceso"
+    "process": "Proceso",
+    "clientFor": "de cliente para"
   },
   "reassignment": {
     "employee": "Empleado",

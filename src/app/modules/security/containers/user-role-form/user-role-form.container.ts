@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
-import { userRoleOperation } from 'src/app/shared/operations/queries'
+import { rolePermissionsOperation, userRoleOperation } from 'src/app/shared/operations/queries'
 import { createUserRoleOperation, updateUserRoleOperation } from 'src/app/shared/operations/mutations'
 
 @Component({
@@ -17,6 +17,9 @@ export class UserRoleFormContainer implements OnInit {
   public filterOptions: any = []
   title: string = ''
   data: any = {}
+  permissions: any[] = []
+  filteredPermissions: any[] = []
+  existsChanges: boolean = false
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -28,10 +31,23 @@ export class UserRoleFormContainer implements OnInit {
   ) {
   }
 
+  loadTranslations () {
+    this.translate.stream('permissions.cols').subscribe((cols) => {
+      this.filterOptions = [
+        { key: 'name', text: cols.name },
+        { key: 'description', text: cols.description }
+      ]
+    })
+  }
+
   async ngOnInit () {
+    this.loadTranslations()
+
     const params = this.activatedRoute.snapshot.params
     this.loading = true
-    const promises: Promise<any>[] = []
+    const promises: Promise<any>[] = [
+      this.graphQlService.execute(rolePermissionsOperation)
+    ]
 
     if (params && params.elementId) {
       this.title = 'general.titles.edition'
@@ -39,47 +55,49 @@ export class UserRoleFormContainer implements OnInit {
     } else {
       this.title = 'general.titles.creation'
     }
-    const [data] = await Promise.all(promises)
+    const [permissions, data] = await Promise.all(promises)
     this.loading = false
+    this.permissions = permissions
     if (data) {
       this.data = data
     }
+    this.setDataFiltered(this.permissions)
   }
 
-  save ($event: any) {
+  async save ($event: any) {
     const data = $event
-    if (data.id) {
-      this.update(data)
+    this.loading = true
+    data.permissionsIds = this.data?.permissionsIds || []
+    const result = await this.graphQlService.execute(data.id ? updateUserRoleOperation : createUserRoleOperation, data)
+    this.data = result
+    this.existsChanges = false
+    this.loading = false
+    if (!data.id) {
+      Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
+        this.router.navigate(['/admin/security/user-role'])
+      })
     } else {
-      this.create(data)
+      this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
     }
   }
 
-  create (data: any) {
-    this.loading = true
-    this.graphQlService.execute(createUserRoleOperation, data).then(
-      (response: any) => {
-        this.loading = false
-        Swal.fire({ icon: 'success', titleText: this.translate.instant('messages.save.success') }).then(() => {
-          this.router.navigate(['/admin/security/user-role'])
-        })
-      },
-      (Error: any) => {
-        this.loading = false
-      }
-    )
+  deletePermission ($event: string) {
+    this.existsChanges = true
+    this.data.permissionsIds = this.data.permissionsIds.filter((permission: string) => permission !== $event)
+    this.setDataFiltered(this.filteredPermissions)
   }
 
-  update (data: any) {
-    this.loading = true
-    this.graphQlService.execute(updateUserRoleOperation, data).then(
-      (data: any) => {
-        this.loading = false
-        this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
-      },
-      () => {
-        this.loading = false
-      }
-    )
+  addPermission ($event: string) {
+    this.existsChanges = true
+    this.data.permissionsIds.push($event)
+    this.setDataFiltered(this.filteredPermissions)
+  }
+
+  setDataFiltered (filteredPermissions: any) {
+    filteredPermissions.map((element: any) => {
+      element.exists = this.data && this.data.permissionsIds.includes(element.id)
+      return element
+    })
+    this.filteredPermissions = filteredPermissions
   }
 }

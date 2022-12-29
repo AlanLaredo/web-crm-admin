@@ -5,17 +5,38 @@
         <div class="row">
           <go-back-button-component class="col-12"></go-back-button-component>
         </div>
-        <div class="row d-flex justify-content-between pt-4">
-          <div class="col-12">
+        <div class="row pt-4">
+          <div class="col-3">
             <h1>{{ title | translate }}</h1>
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex justify-content-between">
+                  <div class="row">
+                    <div class="col-10">
+                      <data-filter-component class="custom-mat-form-field" [dataSource]="permissions" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+                    </div>
+                  </div>
+                  <button mat-icon-button [disabled]="true" *ngIf="existsChanges">
+                    <mat-icon aria-label="{{'header.user.logout' | translate}}">save</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-lg-8">
+          <div class="col-3">
             <user-role-form-component
             [loading]="loading"
             [data]="data"
             (outActionForm)="save($event)"></user-role-form-component>
+          </div>
+          <div class="col-9">
+            <component-loading [isLoading]="loading">
+              <permissions-list-component [data]="filteredPermissions" (outActionDelete)="deletePermission($event)" (outActionAdd)="addPermission($event)"></permissions-list-component>
+            </component-loading>
           </div>
         </div>
       </div>

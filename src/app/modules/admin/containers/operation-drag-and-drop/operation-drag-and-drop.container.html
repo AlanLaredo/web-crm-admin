@@ -1,3 +1,4 @@
+
 <div class="row container-custom">
   <div class="col-12">
     <div class="row d-flex justify-content-between">
@@ -91,30 +92,74 @@
                             <div
                               (cdkDragEntered)="entered($event)"
                               (cdkDragEnded)="dragEnd($event, customer, process)"
-                              class="customer-box process-elements row mat-elevation-z8 mb-3"
+                              class="customer-box  row mat-elevation-z3 mb-2"
+                              [ngClass]="isDragable(process, customer) ? 'process-elements' : 'process-elements-no-dragable'"
                               *ngFor="let customer of process.customers"
                               [id]="customer.id"
+                              [cdkDragDisabled]="!isDragable(process, customer)"
                               cdkDrag>
                                 <div class="col-12">
                                   <div class="row p-1 pt-2">
                                     <div class="col-12 p-0">
                                       <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="pl-3 pt-2">
-                                          <span><strong>{{customer.customerName}}</strong></span>
+                                        <div class="pl-3 pt-2 customer-action-buttons">
+                                          <span>
+                                            <strong>{{customer.customerName}}</strong>
+                                            <span *ngIf="!customer.clientId  && checkCreateClient(process)">
+                                              <button mat-icon-button matTooltip="{{'actions.add' | translate}} {{ 'process.client' | translate }}" matTooltipPosition="above" matTooltipPosition="above" (click)="openClientForm(customer)">
+                                                <span>
+                                                  <mat-icon class=" text-warning tiny-process-icon-title" [fontSet]="'fa'" [fontIcon]="'fa-store'"></mat-icon>
+                                                </span>
+                                              </button>
+                                            </span>
+                                            <span *ngIf="customer.clientId && !customer.clientServiceId && checkCreateClient(process)">
+                                              <button mat-icon-button matTooltip="{{'actions.add' | translate}} {{ 'process.clientService' | translate }}" matTooltipPosition="above" (click)="openClientServiceForm(customer)">
+                                                <span >
+                                                  <mat-icon class=" text-warning tiny-process-icon-title" [fontSet]="'fa'" [fontIcon]="'fa-globe'"></mat-icon>
+                                                </span>
+                                              </button>
+                                            </span>
+                                            <span *ngIf="!isDragable(process, customer)">
+                                              <button mat-icon-button matTooltip="{{ 'process.requireQuote' | translate }}" matTooltipPosition="above" (click)="openCustomerDialog(process, company.clients, customer)">
+                                                <span>
+                                                  <mat-icon class=" text-warning tiny-process-icon-title" [fontSet]="'fa'" [fontIcon]="'fa-file-text'"></mat-icon>
+                                                </span>
+                                              </button>
+                                            </span>
+                                          </span>
                                         </div>
                                         <div class="d-flex justify-content-end customer-action-buttons">
-                                          <button class="tiny-process-icon" mat-icon-button matTooltip="{{'actions.hide' | translate}}" (click)="deleteCustomer(customer.id)">
-                                            <mat-icon class="tiny-process-icon" color="primary">visibility_off</mat-icon>
-                                          </button>
+                                          <span>
+                                            <button *ngIf="customer.clientServiceId" (click)="hideCustomer(customer.id)" class="tiny-process-icon" matTooltip="{{'actions.hide' | translate}}" mat-icon-button>
+                                              <span>
+                                                <mat-icon class="tiny-process-icon" color="primary">visibility_off</mat-icon>
+                                              </span>
+                                            </button>
+                                          </span>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="row p-1 pt-2">
+                                  <div class="row">
                                     <div class="col-12">
-                                      <span>{{customer.comments ? customer.comments : 'Sin comentarios'}}</span>
+                                      <span>{{customer.comments ? customer.comments :  ('general.withoutComments' | translate) }}</span>
                                     </div>
                                   </div>
+                                  <div class="row pt-2">
+                                    <div class="col-12 tiny-process-checklist">
+                                      <span  *ngIf="customer.clientId">{{'process.client' | translate }}
+                                        <mat-icon class=" text-success">done</mat-icon>
+                                      </span>
+                            
+                                      <span *ngIf="customer.clientServiceId">{{'process.clientService' | translate }}
+                                        <mat-icon class="text-success">done</mat-icon>
+                                      </span>
+                                   
+                                      <span *ngIf="customer.attachedQuotePath && customer.attachedQuotePath.length > 0">{{'process.attachedQuotePath' | translate }}
+                                        <mat-icon class="text-success">done</mat-icon>
+                                      </span>
+                                    </div>
+                                  </div>                              
                                   <div class="row p-1 pt-2">
                                     <div class="col-12 created-at-date">
                                       <span>{{'general.created' | translate }}: {{customer.createdAtString}}</span>
@@ -127,19 +172,16 @@
                                     <div class="col-12 p-0">
                                       <div class="d-flex justify-content-between">
                                         <div>
-                                          <h3>
-                                            <span><strong></strong></span>
-                                          </h3>
                                         </div>
                                         <div>
                                           <div class="d-flex justify-content-end customer-action-buttons">
-                                            <button mat-icon-button matTooltip="{{customer.remindDateString ? customer.remindDateString : ('actions.remind' | translate)}}" (click)="openRemindDialog(customer)">
+                                            <button mat-icon-button matTooltip="{{customer.remindDateString ? customer.remindDateString : ('actions.remind' | translate)}}" (click)="openRemindDialog(customer)" >
                                               <mat-icon color="accent" matBadge="{{customer.remindDateString ? '✓' : ''}}" matBadgeColor="warn" matBadgeSize="small">av_timer</mat-icon>
                                             </button>
-                                            <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openCustomerDialog(process, company.clients, customer)">
+                                            <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openCustomerDialog(process, company.clients, customer)" >
                                               <mat-icon color="accent">mode_edit</mat-icon>
                                             </button>
-                                            <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="deleteCustomer(customer.id)">
+                                            <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="deleteCustomer(customer.id)" >
                                               <mat-icon color="warn">delete_forever</mat-icon>
                                             </button>
                                           </div>

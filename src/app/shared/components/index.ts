@@ -10,6 +10,7 @@ import { TextModalComponent } from './text-modal'
 import { InputModalComponent } from './input-modal'
 import { UploadFilesComponent } from './upload-files-component'
 import { PdfFormModalComponent } from './pdf-form-modal'
+import { InputChipModalComponent } from './input-ships-modal'
 
 export const SHARED_COMPONENTS = [
   LoadingComponent,
@@ -23,7 +24,8 @@ export const SHARED_COMPONENTS = [
   TextModalComponent,
   InputModalComponent,
   UploadFilesComponent,
-  PdfFormModalComponent
+  PdfFormModalComponent,
+  InputChipModalComponent
 ]
 
 export {
@@ -35,5 +37,6 @@ export {
   SnackBarComponent,
   CalendarMonthComponent,
   UploadFilesComponent,
-  PdfFormModalComponent
+  PdfFormModalComponent,
+  InputChipModalComponent
 }

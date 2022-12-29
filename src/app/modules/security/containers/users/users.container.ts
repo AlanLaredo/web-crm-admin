@@ -69,23 +69,16 @@ export class UsersContainer implements OnInit {
     this.filteredUsers = users
   }
 
-  delete (id: string) {
-    Swal.fire({
-      icon: 'question',
-      title: this.translate.instant('messages.delete.confirmQuestion'),
-      showConfirmButton: true,
-      showCancelButton: true
-    }).then((rs) => {
-      if (rs.isConfirmed) {
-        this.loading = true
-        this.usersGqlService.remove(id).subscribe(
-          (result: IUser) => {
-            this.loading = false
-            this.notifyService.notify(this.translate.instant('messages.delete.success') + ' ' + result.email, 'success')
-            this.loadUsers()
-          }
-        )
-      }
-    })
+  async delete (id: string) {
+    if (await this.notifyService.deleteConfirm()) {
+      this.loading = true
+      this.usersGqlService.remove(id).subscribe(
+        (result: IUser) => {
+          this.loading = false
+          this.notifyService.notify(this.translate.instant('messages.delete.success') + ' ' + result.email, 'success')
+          this.loadUsers()
+        }
+      )
+    }
   }
 }

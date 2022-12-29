@@ -53,10 +53,12 @@ export class InputModalComponent {
         new Date(this._data.value ? this._data.value : new Date())).set({ millisecond: 0, second: 0 }).setLocale(this.translate.instant('lang.luxon')
       ).toISO({ includeOffset: false, suppressMilliseconds: true, suppressSeconds: true, format: 'extended' })
     }
+    const validations = []
+    if (this._data.required) {
+      validations.push(Validators.required)
+    }
     this.formBuilderGroup = this.formBuilder.group({
-      inputValue: new FormControl((value || undefined), [
-        Validators.required
-      ])
+      inputValue: new FormControl((value || undefined), validations)
     })
   }
 

@@ -51,6 +51,8 @@ query companies($id: ID, $name: String, $companyGroupId: ID, $logoImagePath: Str
             attachedQuotePath
             comments
             remindDate
+            clientServiceId
+            hidden
             createdAt
             contact {
               name

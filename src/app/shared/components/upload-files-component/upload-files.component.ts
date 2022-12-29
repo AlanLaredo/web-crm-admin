@@ -28,6 +28,7 @@ export class UploadFilesComponent implements OnInit {
 
   @Input() text = 'Upload'
   @Input() accept = '*'
+  @Input() multiple: boolean = false
 
   // tslint:disable-next-line:no-output-native
   @Output() complete = new EventEmitter<string>()
@@ -43,11 +44,16 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit () {
   }
 
-  onClick () {
+  clieckFileInput () {
     const fileUpload = document.getElementById('fileUpload') as any
 
     fileUpload.onchange = () => {
       if (fileUpload && fileUpload.files) {
+        if (!this.multiple) {
+          this.files.forEach(file => {
+            this.removeFileFromArray(file)
+          })
+        }
         // tslint:disable-next-line:prefer-for-of
         for (let index = 0; index < fileUpload.files.length; index++) {
           const file = fileUpload.files[index]
