@@ -15,6 +15,9 @@ import { PositionFormContainer } from './position-form'
 import { OperationDragAndDropContainer } from './operation-drag-and-drop'
 import { CustomerGridContainer } from './customer-grid'
 import { EmployeeReassignmentGridContainer } from './employee-reassignment-grid'
+import { JobVacancyFormContainer } from './job-vacancy-form'
+import { RecruitGridContainer } from './recruit-grid'
+import { RecruitFormContainer } from './recruit-form'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -33,7 +36,10 @@ export const ADMIN_CONTAINERS = [
   PositionFormContainer,
   OperationDragAndDropContainer,
   CustomerGridContainer,
-  EmployeeReassignmentGridContainer
+  EmployeeReassignmentGridContainer,
+  JobVacancyFormContainer,
+  RecruitGridContainer,
+  RecruitFormContainer
 ]
 
 export {
@@ -53,5 +59,8 @@ export {
   PositionFormContainer,
   OperationDragAndDropContainer,
   CustomerGridContainer,
-  EmployeeReassignmentGridContainer
+  EmployeeReassignmentGridContainer,
+  JobVacancyFormContainer,
+  RecruitGridContainer,
+  RecruitFormContainer
 }

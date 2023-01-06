@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query jobVacancy($id: ID, $name: String, $clientId: ID, $totalVacancies: Float, $requiredDocumentsPaths: [String!], $jobVacanciesStatusId: ID, $offset: Int, $limit: Int){
-    jobVacancy(id: $id, name: $name, clientId: $clientId, totalVacancies: $totalVacancies, requiredDocumentsPaths: $requiredDocumentsPaths, jobVacanciesStatusId: $jobVacanciesStatusId, offset: $offset, limit: $limit){
+query jobVacancy($id: ID, $positionId: ID, $clientServiceId: ID, $totalVacancies: Float, $requiredDocumentsPaths: [String!], $jobVacanciesStatus: Int, $offset: Int, $limit: Int){
+    jobVacancy(id: $id, positionId: $positionId, clientServiceId: $clientServiceId, totalVacancies: $totalVacancies, requiredDocumentsPaths: $requiredDocumentsPaths, jobVacanciesStatus: $jobVacanciesStatus, offset: $offset, limit: $limit){
         createdBy
         createdAt
         modifiedBy
@@ -10,10 +10,21 @@ query jobVacancy($id: ID, $name: String, $clientId: ID, $totalVacancies: Float, 
         deletedBy
         deletedAt
         id
-        name
-        clientId
+        positionId
+        companyId
+        clientServiceId
         totalVacancies
         requiredDocumentsPaths
-        jobVacanciesStatusId
+        jobVacanciesStatus
+        clientService {
+          id
+          name
+          clientId
+        }
+        position {
+          id
+          name
+          requiredDocumentsPaths
+        }
     }
 }`

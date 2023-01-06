@@ -9,6 +9,7 @@ query position($id: ID, $name: String, $clientId: ID, $salary: Float, $offset: I
         modifiedAt
         deletedBy
         deletedAt
+        requiredDocumentsPaths
         id
         name
         clientId

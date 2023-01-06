@@ -16,7 +16,7 @@ export class JobVacancyGridContainer implements OnInit {
   public filterOptions: any = []
   data: any[] = []
   filteredData: any[] = []
-  columns: string[] = []
+  columns: any[] = []
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -27,21 +27,28 @@ export class JobVacancyGridContainer implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.titleService.setTitle(this.translate.instant('submenu.job-vacancy') + ' - ' + this.translate.instant('applicationTitle'))
+    this.titleService.setTitle(this.translate.instant('submenu.jobVacancy') + ' - ' + this.translate.instant('applicationTitle'))
 
     this.loadTranslations()
     this.loadData()
   }
 
   loadTranslations () {
-    this.translate.stream('general').subscribe((cols) => {
+    this.translate.stream('jobVacancies').subscribe((cols) => {
       this.filterOptions = [
-        { key: 'name', text: cols.name }
+        { key: 'positionName', text: cols.positionName },
+        { key: 'clientServiceName', text: cols.clientServiceName },
+        { key: 'totalVacanciesString', text: cols.totalVacancies },
+        { key: 'requiredDocumentsPathsString', text: cols.requiredDocumentsPaths },
+        { key: 'jobVacanciesStatusString', text: cols.jobVacanciesStatusString }
       ]
     })
 
-    this.columns = this.filterOptions.map((col: any) => col.key)
-    this.columns.push('actions')
+    this.columns = [...this.filterOptions]
+    this.columns.push({
+      key: 'actions',
+      text: this.translate.instant('catalogs.cols.actions')
+    })
   }
 
   loadData () {
@@ -50,9 +57,14 @@ export class JobVacancyGridContainer implements OnInit {
       this.loading = false
       this.data = result
       this.data.map((jobVacancy: any) => {
-        jobVacancy.category = jobVacancy.name
+        jobVacancy.positionName = jobVacancy.position.name
+        jobVacancy.clientServiceName = jobVacancy.clientService.name
+        jobVacancy.requiredDocumentsPathsString = jobVacancy.requiredDocumentsPaths ? jobVacancy.requiredDocumentsPaths.toString() : this.translate.instant('jobVacancies.noDocuments')
+        jobVacancy.jobVacanciesStatusString = !jobVacancy.jobVacanciesStatus ? this.translate.instant('jobVacancies.inProcess') : jobVacancy.jobVacanciesStatus === 1 ? this.translate.instant('jobVacancies.completed') : 'N/A'
+        jobVacancy.totalVacanciesString = jobVacancy.totalVacancies + ' / ' + (jobVacancy.recruits && jobVacancy.recruits.lenght > 0 ? jobVacancy.recruits.lenght : 0)
         return jobVacancy
       })
+
       this.setDataFiltered(this.data)
     })
   }

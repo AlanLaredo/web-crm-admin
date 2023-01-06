@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
+import { v4 as uuidv4 } from 'uuid'
+import { AwsFileService } from '../../services'
 
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { clientsOperation, positionOperation } from 'src/app/shared/operations/queries'
@@ -25,6 +27,7 @@ export class PositionFormContainer implements OnInit {
     private activatedRoute: ActivatedRoute,
     private graphQlService: GraphqlService,
     public translate: TranslateService,
+    public awsFileService: AwsFileService,
     private notifyService: NotifyService
   ) {
   }
@@ -51,9 +54,22 @@ export class PositionFormContainer implements OnInit {
     }
   }
 
-  save ($event: any) {
+  async save ($event: any) {
     const data = $event
     this.loading = true
+    if (data.selectedFiles) {
+      this.loading = true
+      data.selectedFiles = data.selectedFiles.map((file: any) => {
+        return new File([file], (uuidv4() + '_' + file.name), { type: file.type })
+      })
+      const awsFiles = await this.uploadAws(data.selectedFiles)
+
+      if (awsFiles && awsFiles.length > 0) {
+        data.attachedQuotePath = awsFiles.map(file => file.key)
+      }
+      delete data.selectedFiles
+    }
+
     this.graphQlService.execute(data.id ? updatePositionOperation : createPositionOperation, data).then(
       (response: any) => {
         this.data = response
@@ -71,5 +87,9 @@ export class PositionFormContainer implements OnInit {
         this.loading = false
       }
     )
+  }
+
+  async uploadAws (selectedFiles: any[]): Promise<any[]> {
+    return await Promise.all(selectedFiles.map(file => this.awsFileService.uploadFile(file, 'quotes')))
   }
 }

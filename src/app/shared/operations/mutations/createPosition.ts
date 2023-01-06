@@ -9,6 +9,7 @@ export default gql`mutation createPosition($createPositionData: CreatePositionIn
         deletedBy
         deletedAt
         id
+        requiredDocumentsPaths
         name
         clientId
         salary

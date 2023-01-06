@@ -31,7 +31,7 @@ export default gql`mutation deleteRecruit($deleteIdData: DeleteIDInput!){
         interviewerName
         requiredDocumentsPaths
         requiredInfo
-        statusApplicantId
+        statusApplicant
     }
 }
 `

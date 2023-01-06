@@ -14,6 +14,7 @@ import decodeJWT from 'jwt-decode'
 // import { ITokenDecoded } from '../../shared'
 import { ITokenDecoded } from '../../shared'
 import { LocalService } from 'src/app/shared/services/local/local.service'
+import jwtDecode from 'jwt-decode'
 
 @Injectable({
   providedIn: 'root'

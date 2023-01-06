@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query getRecruitFind($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $interviewerName: String, $requiredDocumentsPaths: [String!], $requiredInfo: String, $statusApplicantId: ID, $offset: Int, $limit: Int){
-    getRecruitFind(id: $id, data: $data, jobVacancyId: $jobVacancyId, interviewerName: $interviewerName, requiredDocumentsPaths: $requiredDocumentsPaths, requiredInfo: $requiredInfo, statusApplicantId: $statusApplicantId, offset: $offset, limit: $limit){
+query getRecruitFind($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $interviewerName: String, $requiredDocumentsPaths: [String!], $requiredInfo: String, $statusApplicant: Int, $offset: Int, $limit: Int){
+    getRecruitFind(id: $id, data: $data, jobVacancyId: $jobVacancyId, interviewerName: $interviewerName, requiredDocumentsPaths: $requiredDocumentsPaths, requiredInfo: $requiredInfo, statusApplicant: $statusApplicantId, offset: $offset, limit: $limit){
         createdBy
         createdAt
         modifiedBy
@@ -32,6 +32,6 @@ query getRecruitFind($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $inte
         interviewerName
         requiredDocumentsPaths
         requiredInfo
-        statusApplicantId
+        statusApplicant
     }
 }`

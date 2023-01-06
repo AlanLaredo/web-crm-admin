@@ -11,6 +11,7 @@ export default gql`mutation updateEmployee($updateEmployeeData: UpdateEmployeeIn
         id
         keycode
         companyId
+        attachedQuotePath
         company {
           name
         }

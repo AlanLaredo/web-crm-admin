@@ -1,0 +1,37 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+            <go-back-button-component></go-back-button-component>
+            <div class="row">
+              <div class="col-12">
+                <button mat-stroked-button="mat-stroked-button" [disabled]="(!data.requiredDocumentsPaths || data.requiredDocumentsPaths.length !== documents.length) && data.statusApplicant === 1" matTooltip="{{'recruit.promote' | translate}}" (click)="toPromote()" *ngIf="data && [0, 1].includes(data.statusApplicant)">
+                    <mat-icon>how_to_reg</mat-icon> 
+                  <span> {{ data.statusApplicant === 0 ? ('recruit.toCandidate' | translate) : ('recruit.toEmployee' | translate) }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-between pt-4">
+          <div class="col-12">
+            <h1>{{ title | translate }} {{ 'recruit.title' | translate }}</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <component-loading [isLoading]="loading">
+              <recruit-form-component
+              [data]="data"
+              [loading]="loading"
+              [documents]="documents"
+              (outActionForm)="save($event)"></recruit-form-component>
+            </component-loading>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

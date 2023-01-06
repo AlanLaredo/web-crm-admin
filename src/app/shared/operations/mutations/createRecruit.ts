@@ -31,7 +31,7 @@ export default gql`mutation createRecruit($createRecruitData: CreateRecruitInput
         interviewerName
         requiredDocumentsPaths
         requiredInfo
-        statusApplicantId
+        statusApplicant
     }
 }
 `

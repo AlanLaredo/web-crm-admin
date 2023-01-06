@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
-import { DateTime } from 'luxon'
 
 @Component({
   selector: 'files-view-grid-component',
@@ -24,6 +23,21 @@ export class FilesViewGridComponent {
     }
   }
 
+  @Input('columns')
+  set columns (columns: string[]) {
+    if (columns !== null) {
+      this._columns = columns
+      this.loadData()
+    }
+  }
+
+  @Input('cleanSelectedFiles')
+  set cleanSelectedFiles (cleanSelectedFiles: string[]) {
+    if (cleanSelectedFiles === null || cleanSelectedFiles.length === 0) {
+      this.selectedFiles = []
+    }
+  }
+
   @Output()
   outActionDelete: EventEmitter<string> = new EventEmitter<string>()
 
@@ -33,9 +47,13 @@ export class FilesViewGridComponent {
   @Output()
   outActionView: EventEmitter<string> = new EventEmitter<string>()
 
+  @Output()
+  outActionNewFiles: EventEmitter<any> = new EventEmitter<any>()
+
   _data: any[] = []
   dataSource: any
-  _columns: string[] = ['name', 'date', 'actions']
+  _columns: string[] = ['document', 'filename', 'actions']
+  loading: boolean = false
 
   @ViewChild(MatPaginator) paginator: any
   @ViewChild(MatSort) sort: any
@@ -46,18 +64,16 @@ export class FilesViewGridComponent {
   }
 
   loadData () {
-    const data: any[] = []
-    this._data.forEach((fileRow: any) => {
-      const name = fileRow.externalPath.substring(fileRow.externalPath.lastIndexOf('/') + 1)
-      const date = DateTime.fromJSDate(new Date(fileRow.createdAt)).setLocale(this.translate.instant('lang.luxon')).toFormat('DDD\',\' hh:mm a')
-      const file = {
-        name,
-        date,
-        ...fileRow
-      }
-      data.push(file)
-    })
-    this.dataSource = new MatTableDataSource<any>(data)
+    // const data: any[] = []
+    // this._data.forEach((fileRow: any) => {
+    //   const name = fileRow.filename
+    //   const file = {
+    //     name,
+    //     ...fileRow
+    //   }
+    //   data.push(file)
+    // })
+    this.dataSource = new MatTableDataSource<any>(this._data)
     this.updateElements()
   }
 
@@ -72,15 +88,37 @@ export class FilesViewGridComponent {
     }
   }
 
-  delete (id: string) {
-    this.outActionDelete.emit(id)
+  onFileComplete ($event: any) {
+    console.log('onFileComplete')
+    console.log($event)
   }
 
-  download (id: string) {
-    this.outActionDownload.emit(id)
+  selectedFiles: any[] = []
+  uploadFile ($event: any, document: string) {
+    if (!$event.data) {
+      return
+    }
+    this.selectedFiles.push({ file: $event.data, document })
+    this.outActionNewFiles.emit(this.selectedFiles)
   }
 
-  view (id: string) {
-    this.outActionView.emit(id)
+  removeTemporalFile ($event: any) {
+    const index = $event
+    if (index > -1) {
+      this.selectedFiles.splice(index, 1)
+    }
+    this.outActionNewFiles.emit(this.selectedFiles)
+  }
+
+  download (awsKey: string) {
+    this.outActionDownload.emit(awsKey)
+  }
+
+  delete (awsKey: string) {
+    this.outActionDelete.emit(awsKey)
+  }
+
+  view (awsKey: string) {
+    this.outActionView.emit(awsKey)
   }
 }

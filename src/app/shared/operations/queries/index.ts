@@ -37,8 +37,6 @@ import getProcessFindOperation from './getProcessFind'
 import applicantStatusOperation from './applicantStatus'
 import applicantStatusListOperation from './applicantStatusList'
 import getApplicantStatusFindOperation from './getApplicantStatusFind'
-import jobVacancyStatusOperation from './jobVacancyStatus'
-import jobVacancyStatusListOperation from './jobVacancyStatusList'
 import getJobVacancyStatusFindOperation from './getJobVacancyStatusFind'
 import jobVacancyOperation from './jobVacancy'
 import getJobVacancyFindOperation from './getJobVacancyFind'
@@ -108,8 +106,6 @@ export {
   getUserSessionFindOperation,
   jobVacanciesOperation,
   jobVacancyOperation,
-  jobVacancyStatusOperation,
-  jobVacancyStatusListOperation,
   metaConfigurationOperation,
   positionOperation,
   positionsOperation,

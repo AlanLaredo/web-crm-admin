@@ -43,6 +43,14 @@ query clients($id: ID, $keycode: String, $rfc: String, $businessName: String, $b
             country
             postalCode
         }
+        clientServices {
+          id
+          name
+        }
+        positions {
+          id
+          name
+        }
         companyId
         company {
           name

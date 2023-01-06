@@ -31,7 +31,7 @@ export default gql`mutation updateRecruit($updateRecruitData: UpdateRecruitInput
         interviewerName
         requiredDocumentsPaths
         requiredInfo
-        statusApplicantId
+        statusApplicant
     }
 }
 `

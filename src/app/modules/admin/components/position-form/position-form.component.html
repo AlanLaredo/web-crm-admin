@@ -24,6 +24,23 @@
                   <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
                 </mat-form-field>
             </form>
+            <mat-form-field class="custom-mat-form-field" appearance="fill">
+              <mat-label>{{'jobVacancies.requiredDocumentsPaths' | translate}}</mat-label>
+              <mat-chip-list #chipGrid aria-label="Enter">
+                <mat-chip *ngFor="let element of _data.requiredDocumentsPaths" [removable]="true" (removed)="remove(element)" [color]="'primary'">
+                  {{element}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="{{'actions.add' | translate}} ..."
+                    [matChipInputFor]="chipGrid"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)"
+                    autocomplete="email"/>
+              </mat-chip-list>
+              <mat-hint>{{(_data.required ? 'form.validations.required' : 'form.validations.optional') | translate }} </mat-hint>
+            </mat-form-field>
+  
           </div>
         </div>
       </mat-card-content>

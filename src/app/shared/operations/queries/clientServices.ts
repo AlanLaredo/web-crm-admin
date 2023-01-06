@@ -11,6 +11,10 @@ query clientServices($id: ID, $name: String, $clientId: ID, $serviceType: String
         deletedAt
         id
         clientId
+        client {
+          id
+          businessName
+        }
         serviceType
         scheduleHours
         serviceCost

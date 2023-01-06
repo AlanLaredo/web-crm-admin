@@ -12,6 +12,7 @@ query employee($id: ID, $keycode: String, $person: CreatePersonInput, $positionI
         id
         keycode
         companyId
+        attachedQuotePath
         company {
           name
         }

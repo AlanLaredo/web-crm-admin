@@ -12,16 +12,18 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <component-loading [isLoading]="loading">
+            <!-- <component-loading [isLoading]="loading"> -->
               <employee-form-component
+              [disableConfigurations]="disableConfiguration"
+              [requiredDocumentsPaths]="jobVacancy.requiredDocumentsPaths"
               [companies]="companies"
               [clients]="clients"
               [positions]="positions"
               [data]="data"
               [loading]="loading"
               (outActionFormReasignment)="reasignment($event)"
-              (outActionForm)="save($event)"></employee-form-component>
-            </component-loading>
+              (outActionForm)="save($event)"></employee-form-component> 
+            <!-- </component-loading> -->
           </div>
         </div>
       </div>

@@ -1,8 +1,21 @@
 <div class="row">
   <div class="col-12">
-    <mat-list role="list">
+    <div class="d-flex flex-column pt-4" *ngFor="let file of files" [@fadeInOut]="file.state">
+      <div>
+        <span id="file-label" class="cs-filename">
+          <button mat-icon-button color="primary" title="Cancel"(click)="cancelFile(file)" *ngIf="file.canCancel">
+            <mat-icon>cancel</mat-icon>
+          </button>  
+          {{file.data ? file.data.name ? file.data.name : 'N/A' : ''}}
+          <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
+            <mat-icon>refresh</mat-icon>
+          </a>
+        </span>
+      </div>
+    </div>
+    <!-- <mat-list role="list" class="p-0">
       <mat-list-item role="listitem" *ngFor="let file of files" [@fadeInOut]="file.state">
-        <!-- <mat-progress-bar [value]="file.progress"></mat-progress-bar> -->
+        <mat-progress-bar [value]="file.progress"></mat-progress-bar>
         <br>
         <span id="file-label" class="cs-filename">
           <button mat-icon-button color="primary" title="Cancel"(click)="cancelFile(file)" *ngIf="file.canCancel">
@@ -14,10 +27,10 @@
           </a>
         </span>
       </mat-list-item>
-    </mat-list>
+    </mat-list> -->
   </div>
 </div>
-<button class="float-right custom-mat-form-field" mat-stroked-button color="primary" (click)="clieckFileInput()">
+<button class="float-right custom-mat-form-field" mat-stroked-button color="primary" (click)="clieckFileInput()" [hidden]="files.length > 0 && !multiple">
   <mat-icon>file_upload</mat-icon>
   {{'actions.upload' | translate}}
 </button>

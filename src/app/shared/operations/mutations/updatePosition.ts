@@ -8,6 +8,7 @@ export default gql`mutation updatePosition($updatePositionData: UpdatePositionIn
         modifiedAt
         deletedBy
         deletedAt
+        requiredDocumentsPaths
         id
         name
         clientId

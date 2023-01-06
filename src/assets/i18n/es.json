@@ -111,7 +111,8 @@
     "customer": "Prospectos",
     "recruitment": "Reclutamiento",
     "jobVacancy": "Vacantes",
-    "position": "Puestos"
+    "position": "Puestos",
+    "recruit": "Reclutamiento"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -158,7 +159,8 @@
     "description": "Descripción",
     "remind": "Recordar",
     "uploadFiles": "Arrastre y suelte los archivos aquí",
-    "withoutComments": "Sin comentarios"
+    "withoutComments": "Sin comentarios",
+    "attached": "Adjuntos"
   },
   "daysOfWeek": {
     "Monday": "Lunes",
@@ -202,6 +204,7 @@
     "instructions": {
       "introduce": "Introduce un texto",
       "enterAText": "Introduce un texto",
+      "enterATextWithComma": "Texto separado por Coma",
       "selectADate": "Seleccione una fecha",
       "enterASecretText": "Introduce un texto",
       "enterANumber": "Introduce un número",
@@ -535,5 +538,47 @@
     "date": "Fecha",
     "reason": "Razón"
   },
-  "logKeys": {}
+  "logKeys": {},
+  "jobVacancies": {
+    "positionName": "Puesto",
+    "clientServiceName": "Servicio",
+    "totalVacancies": "# Vacantes",
+    "requiredDocumentsPaths": "Documentos",
+    "jobVacanciesStatusString": "Estatus",
+    "noDocuments": "Sin documentos",
+    "inProcess": "En proceso",
+    "completed": "Completada",
+    "clientService": "Servicio",
+    "position": "Puesto"
+  },
+  "recruit": {
+    "title": "personal",
+    "dataName": "Nombres",
+    "dataLastName": "Apellidos",
+    "dataPhoneContacts": "Teléfono",
+    "dataEmails": "Email",
+    "dataComments": "Comentarios",
+    "dataAddressName": "Dirección",
+    "dataAddressStreet": "Calle",
+    "dataAddressExteriorNumber": "N. Exterior",
+    "dataAddressInteriorNumber": "N. Interior",
+    "dataAddressNeightborhood": "Colonia",
+    "dataAddressCity": "Ciudad",
+    "dataAddressState": "Estado",
+    "dataAddressCountry": "País",
+    "dataAddressPostalCode": "CP",
+    "interviewerName": "Entrevistador",
+    "requiredDocumentsPaths": "Documents",
+    "requiredInfo": "Información",
+    "statusApplicant": "Estatus",
+    "documents": "Documentos",
+    "toCandidate": "Candidato",
+    "toEmployee": "Empleado",
+    "promote": "Promover"
+  },
+  "filesViewGrid": {
+    "filename": "Archivo",
+    "document": "Documento",
+    "date": "Creado"
+  }
 }

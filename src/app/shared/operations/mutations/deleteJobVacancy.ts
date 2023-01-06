@@ -13,7 +13,7 @@ export default gql`mutation deleteJobVacancy($deleteIdData: DeleteIDInput!){
         clientId
         totalVacancies
         requiredDocumentsPaths
-        jobVacanciesStatusId
+        jobVacanciesStatus
     }
 }
 `

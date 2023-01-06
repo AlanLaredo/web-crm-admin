@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query recruit($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $interviewerName: String, $requiredDocumentsPaths: [String!], $requiredInfo: String, $statusApplicantId: ID, $offset: Int, $limit: Int){
-    recruit(id: $id, data: $data, jobVacancyId: $jobVacancyId, interviewerName: $interviewerName, requiredDocumentsPaths: $requiredDocumentsPaths, requiredInfo: $requiredInfo, statusApplicantId: $statusApplicantId, offset: $offset, limit: $limit){
+query recruit($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $interviewerName: String, $requiredDocumentsPaths: [String!], $requiredInfo: String, $statusApplicant: Int, $offset: Int, $limit: Int){
+    recruit(id: $id, data: $data, jobVacancyId: $jobVacancyId, interviewerName: $interviewerName, requiredDocumentsPaths: $requiredDocumentsPaths, requiredInfo: $requiredInfo, statusApplicant: $statusApplicant, offset: $offset, limit: $limit){
         createdBy
         createdAt
         modifiedBy
@@ -32,6 +32,6 @@ query recruit($id: ID, $data: CreatePersonInput, $jobVacancyId: ID, $interviewer
         interviewerName
         requiredDocumentsPaths
         requiredInfo
-        statusApplicantId
+        statusApplicant
     }
 }`

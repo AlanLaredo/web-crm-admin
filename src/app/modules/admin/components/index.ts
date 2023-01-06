@@ -18,6 +18,9 @@ import { EmployeeFormComponent } from './employee-form'
 import { PositionFormComponent } from './position-form'
 import { ProcessFormModalComponent } from './process-form-modal'
 import { ProcessCustomerFormModalComponent } from './process-customer-form-modal'
+import { JobVacancyGridComponent } from './job-vacancy-grid'
+import { JobVacancyFormComponent } from './job-vacancy-form'
+import { RecruitFormComponent } from './recruit-form'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -40,7 +43,10 @@ export const ADMIN_COMPONENTS = [
   EmployeeFormComponent,
   PositionFormComponent,
   ProcessFormModalComponent,
-  ProcessCustomerFormModalComponent
+  ProcessCustomerFormModalComponent,
+  JobVacancyGridComponent,
+  JobVacancyFormComponent,
+  RecruitFormComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = [
@@ -66,5 +72,8 @@ export {
   EmployeeFormComponent,
   PositionFormComponent,
   ProcessFormModalComponent,
-  ProcessCustomerFormModalComponent
+  ProcessCustomerFormModalComponent,
+  JobVacancyGridComponent,
+  JobVacancyFormComponent,
+  RecruitFormComponent
 }

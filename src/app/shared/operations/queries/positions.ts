@@ -12,6 +12,7 @@ query positions($id: ID, $name: String, $clientId: ID, $salary: Float, $offset: 
         id
         name
         clientId
+        requiredDocumentsPaths
         salary
         client {
           businessName

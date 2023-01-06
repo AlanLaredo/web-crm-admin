@@ -126,17 +126,17 @@
       </div>
     </div>
     <div class="col-12" *ngIf="!_disabled">
-        <div class="row d-flex justify-content-between pt-4">
-          <div class="col-12 hide-outer-text">
-            <h1>
-              <upload-files-component
-              [multiple]="false"
-              (complete)="onFileComplete($event)"
-              (outActionUploadFile)="uploadFile($event)"
-              (outActionRemoveFile)="removeTemporalFile($event)"></upload-files-component>
-            </h1>
-          </div>
+      <div class="row d-flex justify-content-between pt-4">
+        <div class="col-12 hide-outer-text">
+          <h1>
+            <upload-files-component
+            [multiple]="false"
+            (complete)="onFileComplete($event)"
+            (outActionUploadFile)="uploadFile($event)"
+            (outActionRemoveFile)="removeTemporalFile($event)"></upload-files-component>
+          </h1>
         </div>
+      </div>
     </div>
   </form>
 </div>

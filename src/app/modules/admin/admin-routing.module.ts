@@ -20,10 +20,13 @@ import {
   PositionGridContainer,
   OperationDragAndDropContainer,
   CustomerGridContainer,
-  EmployeeReassignmentGridContainer
+  EmployeeReassignmentGridContainer,
+  JobVacancyFormContainer,
+  RecruitGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
+import { RecruitFormContainer } from './containers/recruit-form/recruit-form.container'
 
 const routes: Routes = [
   {
@@ -210,27 +213,55 @@ const routes: Routes = [
       {
         path: 'recruitment',
         children: [
-          // {
-          //   path: 'job-vacancies',
-          //   component: JobVacancyGridContainer,
-          //   data: {
-          //     title: 'Listado de vacantes'
-          //   }
-          // },
-          // {
-          //   path: 'job-vacancies/create',
-          //   component: EmployeeFormContainer,
-          //   data: {
-          //     title: 'Nueva empleado'
-          //   }
-          // },
-          // {
-          //   path: 'job-vacancies/:elementId/edit',
-          //   component: EmployeeFormContainer,
-          //   data: {
-          //     title: 'Edición de empleado'
-          //   }
-          // }
+          {
+            path: 'job-vacancies',
+            component: JobVacancyGridContainer,
+            data: {
+              title: 'Listado de vacantes'
+            }
+          },
+          {
+            path: 'job-vacancies/create',
+            component: JobVacancyFormContainer,
+            data: {
+              title: 'Nueva vacante'
+            }
+          },
+          {
+            path: 'job-vacancies/:elementId/edit',
+            component: JobVacancyFormContainer,
+            data: {
+              title: 'Edición de vacantes'
+            }
+          },
+          {
+            path: 'job-vacancies/:elementId/recruits',
+            component: RecruitGridContainer,
+            data: {
+              title: 'Edición de reclutas'
+            }
+          },
+          {
+            path: 'job-vacancies/:elementId/recruits/create',
+            component: RecruitFormContainer,
+            data: {
+              title: 'Nueva empleado'
+            }
+          },
+          {
+            path: 'job-vacancies/:elementId/recruits/:recruitId/edit',
+            component: RecruitFormContainer,
+            data: {
+              title: 'Edición de empleado'
+            }
+          },
+          {
+            path: 'job-vacancies/:jobVacancyId/recruits/:recruitId/edit/employee',
+            component: EmployeeFormContainer,
+            data: {
+              title: 'Nuevo empleado'
+            }
+          },
           {
             path: 'position',
             component: PositionGridContainer,

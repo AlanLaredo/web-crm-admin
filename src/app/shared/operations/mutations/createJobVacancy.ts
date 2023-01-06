@@ -9,11 +9,11 @@ export default gql`mutation createJobVacancy($createJobVacancyData: CreateJobVac
         deletedBy
         deletedAt
         id
-        name
-        clientId
+        positionId
+        clientServiceId
         totalVacancies
         requiredDocumentsPaths
-        jobVacanciesStatusId
+        jobVacanciesStatus
     }
 }
 `

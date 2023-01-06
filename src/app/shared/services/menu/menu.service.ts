@@ -207,7 +207,7 @@ export class MenuService {
         isParent: true,
         routeLink: ['/', 'admin', 'employee'],
         icon: {
-          fontIcon: 'fa-wrench',
+          fontIcon: 'fa-male',
           fontSet: 'fas'
         },
         permission: 'admin.employee',
@@ -251,12 +251,12 @@ export class MenuService {
             isRoot: false,
             name: 'jobVacancy',
             isParent: false,
-            routeLink: ['/', 'admin', 'recruitment', 'job-vacancy'],
+            routeLink: ['/', 'admin', 'recruitment', 'job-vacancies'],
             icon: {
               fontIcon: 'fa-address-book',
               fontSet: 'fas'
             },
-            permission: 'admin.recruitment.job-vacancy'
+            permission: 'admin.recruitment.jobVacancy'
           },
           {
             isRoot: false,
@@ -268,17 +268,6 @@ export class MenuService {
               fontSet: 'fas'
             },
             permission: 'admin.recruitment.position'
-          },
-          {
-            isRoot: false,
-            name: 'recruitment',
-            isParent: false,
-            routeLink: ['/', 'admin', 'recruitment', 'recruitment'],
-            icon: {
-              fontIcon: 'fa-list',
-              fontSet: 'fas'
-            },
-            permission: 'admin.recruitment.recruitment'
           }
         ]
       },
@@ -304,17 +293,17 @@ export class MenuService {
         },
         permission: 'admin.operationBinnacle'
       },
-      {
-        isRoot: true,
-        name: 'binnacle',
-        isParent: false,
-        routeLink: ['/', 'admin', 'binnacle'],
-        icon: {
-          fontIcon: 'fa-list-alt',
-          fontSet: 'fas'
-        },
-        permission: 'admin.binnacle'
-      }
+      // {
+      //   isRoot: true,
+      //   name: 'binnacle',
+      //   isParent: false,
+      //   routeLink: ['/', 'admin', 'binnacle'],
+      //   icon: {
+      //     fontIcon: 'fa-list-alt',
+      //     fontSet: 'fas'
+      //   },
+      //   permission: 'admin.binnacle'
+      // }
     ]
   }
 
