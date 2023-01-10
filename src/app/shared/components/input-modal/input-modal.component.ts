@@ -23,7 +23,8 @@ export class InputModalComponent {
     required: true,
     type: '',
     catalogForSelect: [],
-    value: null
+    value: null,
+    disabled: false
   }
 
   public formBuilderGroup: any = null
@@ -59,7 +60,7 @@ export class InputModalComponent {
         this._data.type = data.type
       }
 
-      if (data.value) {
+      if (data.value !== undefined) {
         this._data.value = data.value
       }
 
@@ -70,12 +71,17 @@ export class InputModalComponent {
       if (data.catalogForSelect) {
         this._data.catalogForSelect = data.catalogForSelect
       }
+
+      if (data.disabled !== undefined) {
+        this._data.disabled = data.disabled
+      }
     }
     this.initForm()
   }
 
   initForm () {
     let value = this._data.value
+
     if (this._data.type === 'datetime-local') {
       value = DateTime.fromJSDate(
         new Date(this._data.value ? this._data.value : new Date())).set({ millisecond: 0, second: 0 }).setLocale(this.translate.instant('lang.luxon')
@@ -86,7 +92,7 @@ export class InputModalComponent {
       validations.push(Validators.required)
     }
     this.formBuilderGroup = this.formBuilder.group({
-      inputValue: new FormControl((value || undefined), validations)
+      inputValue: new FormControl({ value: (value || undefined), disabled: this._data.disabled }, validations)
     })
   }
 

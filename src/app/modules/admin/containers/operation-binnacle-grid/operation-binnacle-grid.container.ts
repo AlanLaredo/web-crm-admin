@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog'
 import { OperationFormModalComponent } from '../../components/operation-form-modal/'
 import { createOperation, updateOperation } from 'src/app/shared/operations/mutations'
 import { LoginService } from 'src/app/modules/auth/services'
-import Swal from 'sweetalert2'
 import { InputModalComponent } from 'src/app/shared/components/input-modal'
 
 @Component({
@@ -67,10 +66,14 @@ export class OperationBinnacleGridContainer implements OnInit {
       return column
     })
 
-    this.columns = [...this.columns, ...this.daysOfWeek.map(date => ({
-      key: date.toFormat('D'),
-      text: this.capitalize(date.weekdayLong) + ' ' + date.setLocale(this.translate.instant('lang.luxon')).toFormat('d')
-    }))]
+    this.columns = [...this.columns, ...this.daysOfWeek.map(date => {
+      const dateName = this.capitalize(date.weekdayLong) + ' ' + date.setLocale(this.translate.instant('lang.luxon')).toFormat('d')
+      return {
+        key: date.toFormat('D'),
+        text: dateName.split(' ')[0],
+        extra: dateName.split(' ')[1]
+      }
+    })]
   }
 
   async loadData () {
@@ -103,9 +106,14 @@ export class OperationBinnacleGridContainer implements OnInit {
             employee[dayOfWeek.toFormat('D')].operationConfirmColor = operationConfirm.color
             employee[dayOfWeek.toFormat('D')].textConfirm = operationConfirm.text
           }
-          employee.restDay = foundOperation.restDay
           employee.workshift = foundOperation.workshift
           employee.hours = foundOperation.hours
+
+          const restDayDateTime: DateTime = DateTime.fromJSDate(new Date(foundOperation.restDay))
+          if (restDayDateTime.equals(dayOfWeek)) {
+            employee.restDay = restDayDateTime.toFormat('D')
+            employee.restDayDateTime = restDayDateTime
+          }
         } else {
           employee[dayOfWeek.toFormat('D')] = { date: dayOfWeek.toJSDate(), dateTime: dayOfWeek, employeeId: employee.id }
         }
@@ -120,7 +128,7 @@ export class OperationBinnacleGridContainer implements OnInit {
       // operationConfirm
       // operationModifiedBy
       // operationConfirmModifiedBy
-      employee.fullname = employee.person.name + ' ' + employee.person.lastName ? employee.person.lastName : ''
+      employee.fullname = employee.person.name + ' ' + (employee.person.lastName ? employee.person.lastName : '')
       employee.phone = employee.person.phoneContacts && employee.person.phoneContacts.length > 0 ? employee.person.phoneContacts[0] : 'N/A'
       employee.startOperationDateString = employee.startOperationDate ? DateTime.fromJSDate(new Date(employee.startOperationDate)).setLocale(this.translate.instant('lang.luxon')).toFormat('DDD') : 'N/A'
       return employee
@@ -193,42 +201,29 @@ export class OperationBinnacleGridContainer implements OnInit {
         operations: OPERATIONS_CATALOG_DATA
       }
     })
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async (result: any) => {
       if (result) {
         if (result.abbreviation !== abbreviation) {
           const { dateTime, operationColor, operationConfirmColor, text, textConfirm, ...updateOperation } = operation
           _function === 'operation' ? updateOperation.operation = result.abbreviation : updateOperation.operationConfirm = result.abbreviation
           _function === 'operation' ? updateOperation.operationModifiedBy = this.user._id : updateOperation.operationConfirmModifiedBy = this.user._id
-          console.log(updateOperation)
-          this.saveOperation(updateOperation)
+          this.loading = true
+          const response = await this.saveOperation(updateOperation)
+          if (response.id) {
+            this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
+          }
+          this.loadData()
         }
       }
     })
   }
 
   async saveOperation (data: any) {
-    this.loading = true
-
-    this.graphqlService.execute(data && data.id ? updateOperation : createOperation, data).then(
-      async (response: any) => {
-        this.loading = false
-        if (data.id) {
-          this.notifyService.notify(this.translate.instant('messages.save.success'), 'success')
-        } else {
-          this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
-        }
-        this.loadData()
-      },
-      () => {
-        this.notifyService.notify(this.translate.instant('messages.update.error'), 'error')
-        this.loading = false
-      }
-    )
+    return this.graphqlService.execute(data && data.id ? updateOperation : createOperation, data)
   }
 
   openDialog ($event: any) {
     const { typeDialog, employee } = $event
-
     const data: any = {}
     switch (typeDialog) {
       case 'restDay':
@@ -238,9 +233,9 @@ export class OperationBinnacleGridContainer implements OnInit {
         data.info = this.translate.instant('operationBinnacle.infoRestDay')
         data.required = false
         data.type = 'select'
-        data.value = employee.restDay
+        data.value = employee.restDayDateTime?.setLocale(this.translate.instant('lang.luxon')).toFormat('D') || null
         data.catalogForSelect = this.daysOfWeek.map((date: DateTime) => ({
-          value: date.toJSDate(),
+          value: date.setLocale(this.translate.instant('lang.luxon')).toFormat('D'),
           label: date.setLocale(this.translate.instant('lang.luxon')).toFormat('DDDD')
         }))
         break
@@ -260,7 +255,7 @@ export class OperationBinnacleGridContainer implements OnInit {
         data.info = this.translate.instant('operationBinnacle.infoHours')
         data.required = false
         data.type = 'select'
-        data.value = employee.hours
+        data.value = Number(employee.hours)
         data.catalogForSelect = Array.from(Array(24).keys()).map((element: number) => ({
           value: element + 1,
           label: element + 1
@@ -274,11 +269,12 @@ export class OperationBinnacleGridContainer implements OnInit {
       data
     })
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe(async (result: any) => {
       if (result !== undefined) {
         const updateOperations: any[] = []
 
         if (typeDialog === 'workshift' || typeDialog === 'hours') {
+          result = result?.toString() || null
           this.daysOfWeek.forEach((dayOfWeek: DateTime) => {
             const foundOperation = employee.operations.find((operation: any) => {
               const operationDate = DateTime.fromJSDate(new Date(operation.date))
@@ -289,36 +285,52 @@ export class OperationBinnacleGridContainer implements OnInit {
               updateOperations.push({ ...foundOperation })
             } else {
               const newOperation: any = { date: dayOfWeek.toJSDate(), employeeId: employee.id }
-              foundOperation[typeDialog] = result
+              newOperation[typeDialog] = result
               updateOperations.push(newOperation)
             }
           })
         } else if (typeDialog === 'restDay') {
-          this.daysOfWeek.forEach((dayOfWeek: DateTime) => {
-            const foundOperation = employee.operations.find((operation: any) => {
-              const operationDate = DateTime.fromJSDate(new Date(operation.date))
-              return operationDate.equals(dayOfWeek)
-            })
-            if (foundOperation) {
-              const restDayDateTime: DateTime = DateTime.fromJSDate(new Date(result))
-              const foundOperationForRestDay = employee.operations.find((operation: any) => {
+          if (!result) {
+            this.daysOfWeek.forEach((dayOfWeek: DateTime) => {
+              const foundOperation = employee.operations.find((operation: any) => {
                 const operationDate = DateTime.fromJSDate(new Date(operation.date))
-                return operationDate.equals(restDayDateTime)
+                return operationDate.equals(dayOfWeek)
               })
-
-              if (foundOperationForRestDay !== undefined && foundOperation.id === foundOperationForRestDay.id) {
-                foundOperation[typeDialog] = restDayDateTime.toJSDate()
-              } else {
-                foundOperation[typeDialog] = null
+              if (foundOperation) {
+                updateOperations.push({ ...foundOperation, restDay: null })
               }
+            })
+          } else {
+            const splitDate = result?.split('/')
+            const restDayDateTime: DateTime = DateTime.fromObject({ year: splitDate[2], month: splitDate[1], day: splitDate[0] })
+            const foundOperationForRestDay = employee.operations.find((operation: any) => {
+              const operationDate = DateTime.fromJSDate(new Date(operation.date))
+              return operationDate.equals(restDayDateTime)
+            })
 
-              updateOperations.push({ ...foundOperation })
+            if (foundOperationForRestDay === undefined) {
+              const newOperation: any = { date: restDayDateTime.toJSDate(), restDay: restDayDateTime.toJSDate(), employeeId: employee.id }
+              updateOperations.push(newOperation)
+            } else {
+              updateOperations.push({ ...foundOperationForRestDay, restDay: restDayDateTime.toJSDate() })
             }
-          })
-        }
 
-        console.log('updateOperations')
-        console.log(updateOperations)
+            this.daysOfWeek.forEach((dayOfWeek: DateTime) => {
+              const foundOperation = employee.operations.find((operation: any) => {
+                const operationDate = DateTime.fromJSDate(new Date(operation.date))
+                return operationDate.equals(dayOfWeek) && !operationDate.equals(restDayDateTime)
+              })
+              if (foundOperation) {
+                updateOperations.push({ ...foundOperation, restDay: null })
+              }
+            })
+          }
+        }
+        if (updateOperations && updateOperations.length > 0) {
+          await Promise.all(updateOperations.map(element => this.saveOperation(element)))
+          this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
+          this.loadData()
+        }
       }
     })
   }

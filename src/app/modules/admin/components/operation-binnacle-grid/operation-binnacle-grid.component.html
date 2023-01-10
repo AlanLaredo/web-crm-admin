@@ -5,47 +5,42 @@
 
       <table mat-table [dataSource]="dataSource" matSort class="full-width">        
         <ng-container *ngFor="let column of _columns" [matColumnDef]="column.key">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="['text-align-center']"> {{column.text}} </th>
-          <td mat-cell *matCellDef="let row">
-            <span *ngIf="row[column.key] && !row[column.key].dateTime">
-              {{row[column.key]}}
-            </span>
+          <th mat-header-cell *matHeaderCellDef class="text-center" [ngClass]="(column.text.toLowerCase() === todayString ? 'active-day' : '')"><span>{{column.text}}</span> <br> <span class="col-extra">{{column.extra ? column.extra : ''}}</span> </th>
+          <td mat-cell *matCellDef="let row" class="text-center"  [ngClass]="(column.text.toLowerCase() === todayString ? 'active-day' : '')">
+            <div class="row">
+              <div class="col-12">
+                
+                <span *ngIf="row[column.key] && !row[column.key].dateTime && !['restDay', 'workshift', 'hours'].includes(column.key)">
+                  {{row[column.key]}}
+                </span>
 
-            <button mat-icon-button color="accent" *ngIf="['restDay', 'workshift', 'hours'].includes(column.key)" (click)="openDialog(column.key, row)">
-              <!-- <span >{{row[column.key].operation}}</span> -->
-              <mat-icon class="font-size-18">edit</mat-icon>
-            </button>
-<!--          
-            <button mat-icon-button color="accent" *ngIf="row[column.key] && row[column.key].dateTime" (click)="setOperation({ employee: row, _function: 'operation', operation: row[column.key] })">
-              <span [ngStyle]="{ 'color': row[column.key].operationColor?.replace('0f', '') }">{{row[column.key].operation}}</span>
-              <mat-icon class="font-size-18" [ngClass]="row[column.key].operation ? 'text-success' : ''" *ngIf="!row[column.key].operation">pending_actions</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" *ngIf="row[column.key] && row[column.key].dateTime" (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })">
-              <span [ngStyle]="{ 'color': row[column.key].operationConfirmColor?.replace('0f', '')}">{{row[column.key].operationConfirm}}</span>
-              <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''"  *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
-            </button> -->
+                <button mat-button color="accent" *ngIf="['restDay', 'workshift', 'hours'].includes(column.key)" (click)="openDialog(column.key, row)" class="float-left">
+                  <mat-icon>settings</mat-icon>
+                  {{row[column.key]}} {{ 'hours' === column.key && row[column.key] ? 'hrs' : ''}}
+                </button>
 
-
-            <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime"
-            (click)="setOperation({ employee: row, _function: 'operation', operation: row[column.key] })"
-            matTooltip="{{row[column.key].text}}"
-            [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor.replace('0f', '40') : ''}">
-              <span >{{row[column.key].operation}}</span>
-              <mat-icon class="font-size-18" [ngClass]="row[column.key].operation ? 'text-success' : ''" *ngIf="!row[column.key].operation">pending_actions</mat-icon>
-            </button>
-            
-            <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime" (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
-            matTooltip="{{row[column.key].textConfirm}}"
-            [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor.replace('0f', '40') : ''}">
-              <span>{{row[column.key].operationConfirm}}</span>
-              <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''"  *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
-            </button>
+                <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime"
+                (click)="setOperation({ employee: row, _function: 'operation', operation: row[column.key] })"
+                matTooltip="{{row[column.key].text}}"
+                [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor.replace('0f', '40') : ''}">
+                  <mat-icon class="font-size-18" [ngClass]="row[column.key].operation ? 'text-success' : ''" *ngIf="!row[column.key].operation">pending_actions</mat-icon>
+                  <span>{{row[column.key].operation}}</span>
+                </button>
+                
+                <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime" (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
+                matTooltip="{{row[column.key].textConfirm}}"
+                [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor.replace('0f', '40') : ''}">
+                  <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''"  *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
+                  <span>{{row[column.key].operationConfirm}}</span>
+                </button>
+              </div>
+            </div>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="white-space">
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="7">   
-            
+            {{'operationBinnacle.info' | translate}}
           </th>
         </ng-container>
 

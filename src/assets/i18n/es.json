@@ -599,6 +599,7 @@
     "titleHours": "Horas",
     "infoRestDay": "Selecciona la fecha de descanso",
     "infoWorkhift": "Introduce un turno",
-    "infoHours": "Introduce la cantidad de horas"
+    "infoHours": "Introduce la cantidad de horas",
+    "info": "Empleados"
   }
 }

@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
 
 import { IGeneralGridColumn } from '../../models/data'
+import { DateTime } from 'luxon'
 // OperationFormModalComponent
 @Component({
   selector: 'operation-binnacle-grid-component',
@@ -50,6 +51,7 @@ export class OperationBinnacleGridComponent implements AfterViewInit {
   _data: any[] = []
   _columns: any[] = []
   _loading: boolean = false
+  todayString: string = (DateTime.now().weekdayLong)
 
   displayedColumns: string[] = this._columns.map(column => column.key)
   dataSource: any
@@ -67,7 +69,6 @@ export class OperationBinnacleGridComponent implements AfterViewInit {
   }
 
   loadData () {
-    console.log(this._data)
     this.dataSource = new MatTableDataSource<any>(this._data)
     this.updateElements()
   }

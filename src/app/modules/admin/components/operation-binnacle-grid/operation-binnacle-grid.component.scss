@@ -8,3 +8,22 @@
 .mat-column-dates {
   text-align: center;
 }
+.mat-column-restDay {
+  width: 140px !important;
+  min-width: 140px !important;
+}
+.mat-column-workshift {
+  width: 140px !important;
+  min-width: 140px !important;
+}
+.mat-column-hours {
+  width: 90px !important;
+  min-width: 90px !important;
+}
+.col-extra {
+  font-size: 20px;
+}
+.active-day {
+  background: linear-gradient(180deg, #f6f9ff 98%, #0055ff 114%) !important;
+  color: #173a93;
+}
