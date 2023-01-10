@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query employees($id: ID, $keycode: String, $person: CreatePersonInput, $positionId: ID, $hiringDate: DateTime, $startOperationDate: DateTime, $clientId: ID, $address: CreateAddressInput, $offset: Int, $limit: Int){
-    employees(id: $id, keycode: $keycode, person: $person, positionId: $positionId, hiringDate: $hiringDate, startOperationDate: $startOperationDate, clientId: $clientId, address: $address, offset: $offset, limit: $limit){
+query employeesInOperation($id: ID, $keycode: String, $person: CreatePersonInput, $positionId: ID, $hiringDate: DateTime, $startOperationDate: DateTime, $clientId: ID, $address: CreateAddressInput, $offset: Int, $limit: Int){
+  employeesInOperation(id: $id, keycode: $keycode, person: $person, positionId: $positionId, hiringDate: $hiringDate, startOperationDate: $startOperationDate, clientId: $clientId, address: $address, offset: $offset, limit: $limit){
         createdBy
         createdAt
         modifiedBy
@@ -54,6 +54,18 @@ query employees($id: ID, $keycode: String, $person: CreatePersonInput, $position
             state
             country
             postalCode
+        }
+        operations {
+          id
+          employeeId
+          date
+          operation
+          operationConfirm
+          restDay
+          workshift
+          hours
+          operationModifiedBy
+          operationConfirmModifiedBy
         }
     }
 }`

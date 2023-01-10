@@ -1,5 +1,5 @@
 // Third Party
-import { APP_INITIALIZER, Injector, NgModule } from '@angular/core'
+import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ApolloModule, Apollo } from 'apollo-angular'
@@ -58,6 +58,7 @@ export function createTranslateLoader (http: HttpClient) {
     ],
     multi: true
   },
+  { provide: LOCALE_ID, useValue: 'es-ES' },
   { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
   {
     provide: LocationStrategy,

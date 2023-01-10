@@ -22,6 +22,7 @@ export class InputModalComponent {
     instructions: '',
     required: true,
     type: '',
+    catalogForSelect: [],
     value: null
   }
 
@@ -34,14 +35,41 @@ export class InputModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data) {
-      this._data.title = data.title
-      this._data.inputName = data.inputName
-      this._data.instructions = data.instructions
-      this._data.info = data.info
-      this._data.required = data.required
-      this._data.type = data.type
-      this._data.value = data.value
-      this._data.aditionalButtons = data.aditionalButtons
+      if (data.title) {
+        this._data.title = data.title
+      }
+
+      if (data.inputName) {
+        this._data.inputName = data.inputName
+      }
+
+      if (data.instructions) {
+        this._data.instructions = data.instructions
+      }
+
+      if (data.info) {
+        this._data.info = data.info
+      }
+
+      if (data.required !== undefined) {
+        this._data.required = data.required
+      }
+
+      if (data.type) {
+        this._data.type = data.type
+      }
+
+      if (data.value) {
+        this._data.value = data.value
+      }
+
+      if (data.aditionalButtons) {
+        this._data.aditionalButtons = data.aditionalButtons
+      }
+
+      if (data.catalogForSelect) {
+        this._data.catalogForSelect = data.catalogForSelect
+      }
     }
     this.initForm()
   }

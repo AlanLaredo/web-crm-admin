@@ -24,6 +24,8 @@ import employeeReassignmentsOperation from './employeeReassignments'
 import getEmployeeReassignmentFindOperation from './getEmployeeReassignmentFind'
 import employeeOperation from './employee'
 import employeesOperation from './employees'
+import employeesInOperationOperation from './employeesInOperation'
+
 import getEmployeeFindOperation from './getEmployeeFind'
 import customerOperation from './customer'
 import customersOperation from './customers'
@@ -61,6 +63,7 @@ import getUserSessionFindOperation from './getUserSessionFind'
 import userOperation from './user'
 import usersOperation from './users'
 import getUserFindOperation from './getUserFind'
+import operationsOperation from './operations'
 
 export {
   actionLogOperation,
@@ -79,6 +82,7 @@ export {
   customerOperation,
   customersOperation,
   employeeOperation,
+  employeesInOperationOperation,
   employeeReassignmentOperation,
   employeeReassignmentsOperation,
   employeesOperation,
@@ -124,5 +128,6 @@ export {
   userRolesOperation,
   usersOperation,
   userSessionOperation,
-  userSessionsOperation
+  userSessionsOperation,
+  operationsOperation
 }

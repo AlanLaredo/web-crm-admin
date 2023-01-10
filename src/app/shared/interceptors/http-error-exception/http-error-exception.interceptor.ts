@@ -22,7 +22,7 @@ export class HttpErrorExceptionIntercept implements HttpInterceptor {
           }
           switch (error.status) {
             case 0:
-              Swal.fire({ icon: 'warning', titleText: this.translate.instant('messages.serviceNotAvailable') }).then()
+              Swal.fire({ icon: 'warning', titleText: this.translate.instant('messages.serviceNotAvailable') !== 'messages.serviceNotAvailable' ? this.translate.instant('messages.serviceNotAvailable') : 'Servicio no disponible' }).then()
               break
             case 500:
               Swal.fire({ icon: 'warning', titleText: this.translate.instant('messages.internalServer') }).then()

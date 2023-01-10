@@ -1,0 +1,42 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <h1>{{ 'submenu.operationBinnacle' | translate }}</h1>
+      </div>
+      <div class="col-6">
+        <a class="m-4" (click)="openDialogInicidence()">
+          <button class="float-right " mat-stroked-button color="primary">
+            <mat-icon>quickreply</mat-icon>
+            {{'operationBinnacle.incidence' | translate}}
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="legacy" class="custom-mat-form-field">
+          <mat-label>{{'operationBinnacle.date' | translate }}</mat-label>
+          <input matInput
+          value="{{dateString}}"
+          (keydown)="keydownOff($event)" [matDatepickerFilter]="weekendsDatesFilter" [matDatepicker]="picker"
+          (dateChange)="onChangeDate($event)"
+          placeholder="{{'form.instructions.enterADate' | translate}}"
+          autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>          
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!-- <component-loading [isLoading]="loading"> -->
+          <operation-binnacle-grid-component [loading]="loading" [datesInfo]="datesInfo" [columns]="columns" [data]="filteredData" (outActionOperation)="openDialogOperation($event)" (outActionDialog)="openDialog($event)"></operation-binnacle-grid-component>
+        <!-- </component-loading> -->
+      </div>
+    </div>
+  </div>
+</div>

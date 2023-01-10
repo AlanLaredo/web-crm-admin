@@ -22,7 +22,8 @@ import {
   CustomerGridContainer,
   EmployeeReassignmentGridContainer,
   JobVacancyFormContainer,
-  RecruitGridContainer
+  RecruitGridContainer,
+  OperationBinnacleGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -284,6 +285,11 @@ const routes: Routes = [
             }
           }
         ]
+      },
+      {
+        path: 'operation-binnacle',
+        component: OperationBinnacleGridContainer,
+        canActivate: [AuthGuard]
       },
       {
         path: 'catalogos',

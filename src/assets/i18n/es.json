@@ -112,7 +112,8 @@
     "recruitment": "Reclutamiento",
     "jobVacancy": "Vacantes",
     "position": "Puestos",
-    "recruit": "Reclutamiento"
+    "recruit": "Reclutamiento",
+    "operationBinnacle": "Bitácora operativa"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -160,7 +161,8 @@
     "remind": "Recordar",
     "uploadFiles": "Arrastre y suelte los archivos aquí",
     "withoutComments": "Sin comentarios",
-    "attached": "Adjuntos"
+    "attached": "Adjuntos",
+    "withoutOption": "Seleccionar"
   },
   "daysOfWeek": {
     "Monday": "Lunes",
@@ -580,5 +582,23 @@
     "filename": "Archivo",
     "document": "Documento",
     "date": "Creado"
+  },
+  "operationBinnacle": {
+    "incidence": "Incidencia",
+    "clientBusinessName": "Cliente",
+    "fullname": "Empleado",
+    "restDay": "Día descanso",
+    "workshift": "Turno",
+    "hours": "Horas",
+    "phone": "Contacto",
+    "startOperationDateString": "Inicio de operación",
+    "abbreviation": "Operación",
+    "setOperation": "Selecciona una operación",
+    "titleRestDay": "Descanso",
+    "titleWorkshift": "Turno",
+    "titleHours": "Horas",
+    "infoRestDay": "Selecciona la fecha de descanso",
+    "infoWorkhift": "Introduce un turno",
+    "infoHours": "Introduce la cantidad de horas"
   }
 }

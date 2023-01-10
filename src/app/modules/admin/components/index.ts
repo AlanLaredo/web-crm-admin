@@ -21,6 +21,8 @@ import { ProcessCustomerFormModalComponent } from './process-customer-form-modal
 import { JobVacancyGridComponent } from './job-vacancy-grid'
 import { JobVacancyFormComponent } from './job-vacancy-form'
 import { RecruitFormComponent } from './recruit-form'
+import { OperationBinnacleGridComponent } from './operation-binnacle-grid'
+import { OperationFormModalComponent } from './operation-form-modal'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -46,7 +48,9 @@ export const ADMIN_COMPONENTS = [
   ProcessCustomerFormModalComponent,
   JobVacancyGridComponent,
   JobVacancyFormComponent,
-  RecruitFormComponent
+  RecruitFormComponent,
+  OperationBinnacleGridComponent,
+  OperationFormModalComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = [
@@ -75,5 +79,7 @@ export {
   ProcessCustomerFormModalComponent,
   JobVacancyGridComponent,
   JobVacancyFormComponent,
-  RecruitFormComponent
+  RecruitFormComponent,
+  OperationBinnacleGridComponent,
+  OperationFormModalComponent
 }

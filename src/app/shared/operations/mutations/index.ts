@@ -64,6 +64,8 @@ import deleteUserSessionOperation from './deleteUserSession'
 import createUserOperation from './createUser'
 import updateUserOperation from './updateUser'
 import deleteUserOperation from './deleteUser'
+import updateOperation from './updateOperation'
+import createOperation from './createOperation'
 
 export {
   createClientServiceOperation,
@@ -131,5 +133,7 @@ export {
   deleteUserSessionOperation,
   createUserOperation,
   updateUserOperation,
-  deleteUserOperation
+  deleteUserOperation,
+  updateOperation,
+  createOperation
 }

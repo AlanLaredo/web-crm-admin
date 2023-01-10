@@ -18,6 +18,7 @@ import { EmployeeReassignmentGridContainer } from './employee-reassignment-grid'
 import { JobVacancyFormContainer } from './job-vacancy-form'
 import { RecruitGridContainer } from './recruit-grid'
 import { RecruitFormContainer } from './recruit-form'
+import { OperationBinnacleGridContainer } from './operation-binnacle-grid'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -39,7 +40,8 @@ export const ADMIN_CONTAINERS = [
   EmployeeReassignmentGridContainer,
   JobVacancyFormContainer,
   RecruitGridContainer,
-  RecruitFormContainer
+  RecruitFormContainer,
+  OperationBinnacleGridContainer
 ]
 
 export {
@@ -62,5 +64,6 @@ export {
   EmployeeReassignmentGridContainer,
   JobVacancyFormContainer,
   RecruitGridContainer,
-  RecruitFormContainer
+  RecruitFormContainer,
+  OperationBinnacleGridContainer
 }

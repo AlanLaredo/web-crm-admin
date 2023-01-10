@@ -286,7 +286,7 @@ export class MenuService {
         isRoot: true,
         name: 'operationBinnacle',
         isParent: false,
-        routeLink: ['/', 'admin', 'operationBinnacle'],
+        routeLink: ['/', 'admin', 'operation-binnacle'],
         icon: {
           fontIcon: 'fa-calendar-check',
           fontSet: 'fas'

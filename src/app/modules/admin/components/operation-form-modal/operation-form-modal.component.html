@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>
+  <h1>{{ title | translate }}</h1>
+</h1>
+<div mat-dialog-content>
+  <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{'operationBinnacle.abbreviation' | translate }}</mat-label>
+      <mat-select formControlName="abbreviation" (selectionChange)="updateDescription($event)">
+        <mat-option *ngFor="let operation of _operations; let i = index" [value]="operation.abbreviation"
+          [ngStyle]="{ 'background': operation.color }">
+          <span [ngStyle]="{ 'color': operation.color.replace('0f', '') }">
+            ({{operation.abbreviation}})
+          </span>
+          {{operation.text}}
+        </mat-option>
+        <!-- <mat-select formControlName="functionsIds" multiple>
+          <mat-option *ngFor="let element of processFunctions; let i = index" [value]="element.id" [disabled]="element.disabled">{{element.name}}</mat-option>
+        </mat-select> -->
+      </mat-select>
+      <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.required' | translate}}</mat-hint>
+    </mat-form-field>
+  </form>
+  <div class="row mt-4">
+    <div class="col-12">
+      <p>
+        <span>
+          <strong>{{description}}</strong>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="onNoClick()">{{'actions.cancel' | translate}}</button>
+  <button mat-button cdkFocusInitial (click)="submit()" [disabled]="!formBuilderGroup.valid">{{'actions.accept' | translate}}</button>
+</div>
