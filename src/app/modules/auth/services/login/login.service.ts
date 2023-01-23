@@ -14,7 +14,6 @@ import decodeJWT from 'jwt-decode'
 // import { ITokenDecoded } from '../../shared'
 import { ITokenDecoded } from '../../shared'
 import { LocalService } from 'src/app/shared/services/local/local.service'
-import jwtDecode from 'jwt-decode'
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +38,7 @@ export class LoginService {
     return this.getLogin(access).toPromise().then((callback: any) => {
       this.localService.setItem('token', callback.access_token)
       this.localService.setItem('user', callback.user)
+      this.fetchPermissions()
       return true
     },
     err => {
@@ -95,52 +95,40 @@ export class LoginService {
   }
 
   async fetchPermissions () {
-    /*
-    const data: any = await this.getOAuthUserData()
+    const { permissions } = this.getTokenDecoded()
+    // if (applicationsData) {
+    //   permissionsModules = applicationsData.permission_modules.map(item => item.display_name)
+    //   permissionsActions = applicationsData.permissions.map(item => item.display_name)
+    //   permissionsAll = [...permissionsModules, ...permissionsActions]
 
-    const displayName = environment.keycloakConfig.clientId
-    const applicationsData = data.user_data.application_organization.find(item => item.display_name === displayName)
+    //   // tslint:disable-next-line: one-variable-per-declaration prefer-const
+    //   applicationsData.roles.forEach(role => {
+    //     const permissionsArray = role.permission_role.map(item => item.display_name)
 
-    let permissionsModules = []
-    let permissionsActions = []
-    let permissionsAll = []
-    const roles = []
-    const rolesPermissions = []
+    //     roles.push(role.display_name)
+    //     rolesPermissions.push([role.display_name, permissionsArray])
+    //   })
+    // }
 
-    if (applicationsData) {
-      permissionsModules = applicationsData.permission_modules.map(item => item.display_name)
-      permissionsActions = applicationsData.permissions.map(item => item.display_name)
-      permissionsAll = [...permissionsModules, ...permissionsActions]
+    // const security = {
+    //   permissionsModules,
+    //   permissionsActions,
+    //   permissionsAll,
+    //   roles,
+    //   rolesPermissions
+    // }
+    this.localService.setItem(this.SECUTIRY_KEY, permissions)
 
-      // tslint:disable-next-line: one-variable-per-declaration prefer-const
-      applicationsData.roles.forEach(role => {
-        const permissionsArray = role.permission_role.map(item => item.display_name)
-
-        roles.push(role.display_name)
-        rolesPermissions.push([role.display_name, permissionsArray])
-      })
-    }
-
-    const security = {
-      permissionsModules,
-      permissionsActions,
-      permissionsAll,
-      roles,
-      rolesPermissions
-    }
-
-    this.sessionService.setItem(this.SECUTIRY_KEY, security)
-
-    return security
-    */
+    // return security
+    // */
   }
 
   getPermissions () {
-    // const actions = this.sessionService.getItem<any>(this.SECUTIRY_KEY)
-    // if (actions) {
-    //   return actions.permissionsActions
-    // } else {
-    //   return []
-    // }
+    const permissions = this.localService.getItem<any>(this.SECUTIRY_KEY)
+    if (permissions) {
+      return permissions.map((permission: any) => permission.tag)
+    } else {
+      return []
+    }
   }
 }

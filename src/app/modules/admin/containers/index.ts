@@ -19,6 +19,7 @@ import { JobVacancyFormContainer } from './job-vacancy-form'
 import { RecruitGridContainer } from './recruit-grid'
 import { RecruitFormContainer } from './recruit-form'
 import { OperationBinnacleGridContainer } from './operation-binnacle-grid'
+import { PrenominalGridContainer } from './prenominal-grid'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -41,7 +42,8 @@ export const ADMIN_CONTAINERS = [
   JobVacancyFormContainer,
   RecruitGridContainer,
   RecruitFormContainer,
-  OperationBinnacleGridContainer
+  OperationBinnacleGridContainer,
+  PrenominalGridContainer
 ]
 
 export {
@@ -65,5 +67,6 @@ export {
   JobVacancyFormContainer,
   RecruitGridContainer,
   RecruitFormContainer,
-  OperationBinnacleGridContainer
+  OperationBinnacleGridContainer,
+  PrenominalGridContainer
 }

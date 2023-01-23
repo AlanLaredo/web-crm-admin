@@ -10,6 +10,7 @@ export default gql`mutation updateEmployee($updateEmployeeData: UpdateEmployeeIn
       deletedAt
       id
       keycode
+      bankAccount
       companyId
       company {
         id
@@ -43,6 +44,7 @@ export default gql`mutation updateEmployee($updateEmployeeData: UpdateEmployeeIn
       hiringDate
       startOperationDate
       clientId
+      clientServiceId
       address{
           name
           street

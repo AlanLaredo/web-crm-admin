@@ -66,7 +66,7 @@ export const OPERATIONS_CATALOG_DATA = [
   },
   {
     abbreviation: 'TEP',
-    text: 'Pago ene efecivo Y/O depositado a su tarjeta el mismo día',
+    text: 'Pago en efecivo Y/O depositado a su tarjeta el mismo día',
     color: '#0000000f'
   },
   {

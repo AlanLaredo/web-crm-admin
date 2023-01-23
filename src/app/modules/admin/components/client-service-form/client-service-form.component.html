@@ -16,6 +16,13 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'client.keycode' | translate}}</mat-label>
+                    <input formControlName="keycode" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'clientService.name' | translate}}</mat-label>
                     <input formControlName="name" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
                     <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
@@ -159,7 +166,10 @@
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                   <mat-form-field appearance="legacy" class="custom-mat-form-field">
                     <mat-label>{{'clientService.billing' | translate}}</mat-label>
-                    <input formControlName="billing" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                      <mat-select formControlName="billing">
+                        <mat-option [value]="'mensual'">{{'clientService.monthly' | translate}}</mat-option>
+                        <mat-option [value]="'quincenal'">{{'clientService.biweekly' | translate}}</mat-option>
+                      </mat-select>
                     <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
                   </mat-form-field>
                 </div>

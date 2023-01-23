@@ -64,6 +64,11 @@ import userOperation from './user'
 import usersOperation from './users'
 import getUserFindOperation from './getUserFind'
 import operationsOperation from './operations'
+import operationSendEmail from './operationSendEmail'
+import nominaOperation from './nomina.operation'
+import nominasOperation from './nominas.operation'
+import prenominaOperation from './prenomina.operation'
+import prenominasOperation from './prenominas.operation'
 
 export {
   actionLogOperation,
@@ -129,5 +134,10 @@ export {
   usersOperation,
   userSessionOperation,
   userSessionsOperation,
-  operationsOperation
+  operationsOperation,
+  operationSendEmail,
+  nominaOperation,
+  nominasOperation,
+  prenominaOperation,
+  prenominasOperation
 }

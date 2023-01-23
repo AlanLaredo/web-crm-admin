@@ -6,9 +6,9 @@ import _ from 'lodash'
 
 // Own interfaces
 import { IMenu } from '../../interfaces/menu'
+import { LoginService } from 'src/app/modules/auth/services'
 
 // Own services
-// import { LoginService } from '../../../auth/services' remove
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,9 @@ export class MenuService {
   menuVisibilitySubject: Subject<boolean> = new Subject<boolean>()
 
   constructor (
-    // private loginService: LoginService
+    private loginService: LoginService
   ) {
-    // this.actions = this.loginService.getPermissions()
-    this.actions = []
-
+    this.actions = this.loginService.getPermissions()
     this.menu = [
       {
         isRoot: true,
@@ -37,7 +35,7 @@ export class MenuService {
           fontIcon: 'fa-home',
           fontSet: 'fas'
         },
-        permission: 'admin.home'
+        permission: 'home'
       },
       {
         isRoot: true,
@@ -48,7 +46,7 @@ export class MenuService {
           fontIcon: 'fa-shield-alt',
           fontSet: 'fas'
         },
-        permission: 'admin.users',
+        permission: 'users',
         childs: [
           {
             isRoot: false,
@@ -59,7 +57,7 @@ export class MenuService {
               fontIcon: 'fa-user',
               fontSet: 'fas'
             },
-            permission: 'admin.users.users'
+            permission: 'users'
           },
           {
             isRoot: false,
@@ -70,7 +68,7 @@ export class MenuService {
               fontIcon: 'fa-user-shield',
               fontSet: 'fas'
             },
-            permission: 'admin.users.role-permissions'
+            permission: 'roles'
           },
           {
             isRoot: false,
@@ -81,7 +79,7 @@ export class MenuService {
               fontIcon: 'fa-users',
               fontSet: 'fas'
             },
-            permission: 'admin.users.user-role'
+            permission: 'roles'
           }
         ]
       },
@@ -105,7 +103,7 @@ export class MenuService {
               fontIcon: 'fa-object-group',
               fontSet: 'fas'
             },
-            permission: 'admin.company-group'
+            permission: 'companyGroups'
           },
           // {
           //   isRoot: false,
@@ -127,7 +125,7 @@ export class MenuService {
               fontIcon: 'fa-list',
               fontSet: 'fas'
             },
-            permission: 'admin.company.company'
+            permission: 'company'
           }
         ]
       },
@@ -140,7 +138,7 @@ export class MenuService {
           fontIcon: 'fa-cubes',
           fontSet: 'fas'
         },
-        permission: 'admin.process',
+        permission: 'customers',
         childs: [
           {
             isRoot: false,
@@ -151,7 +149,7 @@ export class MenuService {
               fontIcon: 'fa-users',
               fontSet: 'fas'
             },
-            permission: 'admin.process.customer'
+            permission: 'customers'
           },
           {
             isRoot: false,
@@ -162,7 +160,7 @@ export class MenuService {
               fontIcon: 'fa-list',
               fontSet: 'fas'
             },
-            permission: 'admin.process.process'
+            permission: 'operations'
           }
         ]
       },
@@ -175,31 +173,7 @@ export class MenuService {
           fontIcon: 'fa-store',
           fontSet: 'fas'
         },
-        permission: 'admin.clients'
-        // childs: [
-        //   {
-        //     isRoot: false,
-        //     name: 'clientService',
-        //     isParent: false,
-        //     routeLink: ['/', 'admin', 'client', 'client-service'],
-        //     icon: {
-        //       fontIcon: 'fa-check-square',
-        //       fontSet: 'fas'
-        //     },
-        //     permission: 'admin.client.clienty-service'
-        //   },
-        //   {
-        //     isRoot: false,
-        //     name: 'clients',
-        //     isParent: false,
-        //     routeLink: ['/', 'admin', 'client', 'clients'],
-        //     icon: {
-        //       fontIcon: 'fa-list',
-        //       fontSet: 'fas'
-        //     },
-        //     permission: 'aadmin.client.clients'
-        //   }
-        // ]
+        permission: 'clients'
       },
       {
         isRoot: true,
@@ -210,7 +184,7 @@ export class MenuService {
           fontIcon: 'fa-male',
           fontSet: 'fas'
         },
-        permission: 'admin.employee',
+        permission: 'employees',
         childs: [
           {
             isRoot: false,
@@ -221,7 +195,7 @@ export class MenuService {
               fontIcon: 'fa-refresh',
               fontSet: 'fas'
             },
-            permission: 'admin.employee.employee-reassignment'
+            permission: 'employees'
           },
           {
             isRoot: false,
@@ -232,7 +206,7 @@ export class MenuService {
               fontIcon: 'fa-list',
               fontSet: 'fas'
             },
-            permission: 'admin.employee.employees'
+            permission: 'employees'
           }
         ]
       },
@@ -245,7 +219,7 @@ export class MenuService {
           fontIcon: 'fa-flag-checkered',
           fontSet: 'fas'
         },
-        permission: 'admin.recruitment',
+        permission: 'jobVavancy',
         childs: [
           {
             isRoot: false,
@@ -256,7 +230,7 @@ export class MenuService {
               fontIcon: 'fa-address-book',
               fontSet: 'fas'
             },
-            permission: 'admin.recruitment.jobVacancy'
+            permission: 'jobVavancy'
           },
           {
             isRoot: false,
@@ -267,21 +241,10 @@ export class MenuService {
               fontIcon: 'fa-address-card',
               fontSet: 'fas'
             },
-            permission: 'admin.recruitment.position'
+            permission: 'positions'
           }
         ]
       },
-      // {
-      //   isRoot: true,
-      //   name: 'catalogs',
-      //   isParent: true,
-      //   routeLink: ['/', 'admin', 'catalogos'],
-      //   icon: {
-      //     fontIcon: 'fa-list',
-      //     fontSet: 'fas'
-      //   },
-      //   permission: 'admin.catalogs'
-      // },
       {
         isRoot: true,
         name: 'operationBinnacle',
@@ -291,19 +254,19 @@ export class MenuService {
           fontIcon: 'fa-calendar-check',
           fontSet: 'fas'
         },
-        permission: 'admin.operationBinnacle'
+        permission: 'operation-binnacle'
       },
-      // {
-      //   isRoot: true,
-      //   name: 'binnacle',
-      //   isParent: false,
-      //   routeLink: ['/', 'admin', 'binnacle'],
-      //   icon: {
-      //     fontIcon: 'fa-list-alt',
-      //     fontSet: 'fas'
-      //   },
-      //   permission: 'admin.binnacle'
-      // }
+      {
+        isRoot: true,
+        name: 'nomina',
+        isParent: false,
+        routeLink: ['/', 'admin', 'nomina'],
+        icon: {
+          fontIcon: 'fa-money-bills',
+          fontSet: 'fas'
+        },
+        permission: 'prenominal'
+      }
     ]
   }
 
@@ -312,13 +275,16 @@ export class MenuService {
   }
 
   getSecureMenu (): Observable<IMenu[]> {
+    this.actions = this.loginService.getPermissions()
+
+    console.log(this.actions)
     return of(this.getSubMenu(this.menu))
   }
 
   getSubMenu (menu: IMenu[]) {
     const secureMenu: IMenu[] = []
 
-    menu.forEach((el: any) => {
+    menu?.forEach((el: any) => {
       if (el.permission) {
         if (this.actions.indexOf(el.permission) >= 0) {
           const childs: IMenu[] = this.getSubMenu(el.childs)

@@ -14,6 +14,13 @@
                     <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
                   </mat-form-field>
                 </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'employee.bankAccount' | translate}}</mat-label>
+                    <input formControlName="bankAccount" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+                    <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+                  </mat-form-field>
+                </div>
                 <div class="col-12">
                   <div class="row d-flex justify-content-between pt-4">
                     <div class="col-12">
@@ -71,6 +78,16 @@
                     <mat-select formControlName="clientId" (selectionChange)="updatePositionsForClient($event)">
                       <mat-option [value]="null">{{'employee.withoutClient' | translate}}</mat-option>
                       <mat-option *ngFor="let client of clientsForCompany; let i = index" [value]="client.id">{{client.businessName}}</mat-option>
+                    </mat-select>
+                    <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                  <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                    <mat-label>{{'employee.clientService' | translate}}</mat-label>
+                    <mat-select formControlName="clientServiceId">
+                      <mat-option [value]="null">{{'employee.withoutClientService' | translate}}</mat-option>
+                      <mat-option *ngFor="let service of clientServicesForCompany; let i = index" [value]="service.id">{{service.name}}</mat-option>
                     </mat-select>
                     <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.optional' | translate}}</mat-hint>
                   </mat-form-field>
@@ -198,7 +215,7 @@
             </form>
           </div>
         </div>
-        <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>1
+        <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>

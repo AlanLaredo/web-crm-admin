@@ -22,6 +22,7 @@ import { NotifyService } from 'src/app/shared/services'
 })
 export class EmployeeFormComponent implements OnInit {
   clientsForCompany: any[] = []
+  clientServicesForCompany: any[] = []
   positionsForClient: any[] = []
   documents: any[] = []
   user: any
@@ -101,27 +102,29 @@ export class EmployeeFormComponent implements OnInit {
     const companyId = !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : this._data?.companyId || undefined
 
     this.formBuilderGroup = this.formBuilder.group({
-      keycode: new FormControl((this._data.keycode || undefined), []),
-      hiringDate: new FormControl((this._data.hiringDate || undefined), []),
-      startOperationDate: new FormControl((this._data.startOperationDate || undefined), []),
+      keycode: new FormControl((this._data.keycode || null), []),
+      bankAccount: new FormControl((this._data.bankAccount || null), []),
+      hiringDate: new FormControl((this._data.hiringDate || null), []),
+      startOperationDate: new FormControl((this._data.startOperationDate || null), []),
 
-      positionId: new FormControl({ value: (this._data.positionId || undefined), disabled: this._disableConfigurations }, []),
-      clientId: new FormControl({ value: (this._data.clientId || undefined), disabled: this._disableConfigurations }, []),
+      positionId: new FormControl({ value: (this._data.positionId || null), disabled: this._disableConfigurations }, []),
+      clientId: new FormControl({ value: (this._data.clientId || null), disabled: this._disableConfigurations }, []),
+      clientServiceId: new FormControl({ value: (this._data.clientServiceId || null), disabled: this._disableConfigurations }, []),
       companyId: new FormControl({ value: companyId, disabled: !(this.user.userRole.name === 'CrmAdmin') || this._disableConfigurations }, [Validators.required]),
-      contactName: new FormControl((this._data.person?.name || undefined), [Validators.required]),
-      contactLastName: new FormControl((this._data.person?.lastName || undefined), []),
+      contactName: new FormControl((this._data.person?.name || null), [Validators.required]),
+      contactLastName: new FormControl((this._data.person?.lastName || null), []),
       contactPhoneContacts: new FormControl((this._data.person?.phoneContacts && this._data.person?.phoneContacts[0] ? this._data.person?.phoneContacts[0] : undefined), []),
-      contactEmails: new FormControl((this._data.person?.emails && this._data.person?.emails[0] ? this._data.person?.emails[0] : undefined), []),
+      contactEmails: new FormControl((this._data.person?.emails && this._data.person?.emails[0] ? this._data.person?.emails[0] : null), []),
 
-      name: new FormControl((this._data.address?.name || undefined), []),
-      street: new FormControl((this._data.address?.street || undefined), []),
-      exteriorNumber: new FormControl((this._data.address?.exteriorNumber || undefined), []),
-      interiorNumber: new FormControl((this._data.address?.interiorNumber || undefined), []),
-      neightborhood: new FormControl((this._data.address?.neightborhood || undefined), []),
-      city: new FormControl((this._data.address?.city || undefined), []),
-      state: new FormControl((this._data.address?.state || undefined), []),
-      country: new FormControl((this._data.address?.country || undefined), []),
-      postalCode: new FormControl((this._data.address?.postalCode || undefined), [])
+      name: new FormControl((this._data.address?.name || null), []),
+      street: new FormControl((this._data.address?.street || null), []),
+      exteriorNumber: new FormControl((this._data.address?.exteriorNumber || null), []),
+      interiorNumber: new FormControl((this._data.address?.interiorNumber || null), []),
+      neightborhood: new FormControl((this._data.address?.neightborhood || null), []),
+      city: new FormControl((this._data.address?.city || null), []),
+      state: new FormControl((this._data.address?.state || null), []),
+      country: new FormControl((this._data.address?.country || null), []),
+      postalCode: new FormControl((this._data.address?.postalCode || null), [])
     })
 
     if (companyId) {
@@ -147,10 +150,13 @@ export class EmployeeFormComponent implements OnInit {
     const outData: any = {}
 
     outData.keycode = employee.keycode ? employee.keycode.trim() : undefined
+    outData.bankAccount = employee.bankAccount ? employee.bankAccount.trim() : undefined
     outData.positionId = employee.positionId ? employee.positionId : undefined
     outData.hiringDate = employee.hiringDate ? employee.hiringDate : undefined
     outData.startOperationDate = employee.startOperationDate ? employee.startOperationDate : undefined
     outData.clientId = employee.clientId ? employee.clientId : null
+    outData.clientServiceId = employee.clientServiceId ? employee.clientServiceId : null
+
     outData.companyId = employee.companyId ? employee.companyId : undefined
 
     outData.person = {}
@@ -206,6 +212,12 @@ export class EmployeeFormComponent implements OnInit {
     }
 
     this.positionsForClient = this._positions.filter(_position => _position.clientId === clientId)
+    this.updateClientServicesForClient({ value: clientId }, false)
+  }
+
+  async updateClientServicesForClient ($event: any, checkReasignment: boolean = true) {
+    const clientId = $event.value
+    this.clientServicesForCompany = this._clients.find(client => client.id === clientId).clientServices
   }
 
   async updateDocumentsForPosition ($event: any) {
@@ -231,6 +243,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   openDialogReasignment () {
+    Promise.allSettled([])
     const dialogRef = this.dialog.open(InputModalComponent, {
       width: '400px',
       disableClose: true,

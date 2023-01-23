@@ -94,7 +94,8 @@
     "binnacle": "Bitácora",
     "process": "Procesos",
     "recruitment": "Reclutamiento",
-    "operationBinnacle": "Operación"
+    "operationBinnacle": "Operación",
+    "nomina": "Nómina"
   },
   "submenu": {
     "users": "Usuarios",
@@ -113,7 +114,9 @@
     "jobVacancy": "Vacantes",
     "position": "Puestos",
     "recruit": "Reclutamiento",
-    "operationBinnacle": "Bitácora operativa"
+    "operationBinnacle": "Bitácora operativa",
+    "nomina": "Nómina",
+    "prenominal": "Prenómina"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -399,7 +402,7 @@
     "qrCost": "Costo Qr",
     "costHolyDays": "Costo día libre",
     "addressExecution": "Dirección ejecución",
-    "totalElementsDay": "elementos día",
+    "totalElementsDay": "Elementos día",
     "totalElementsNight": "Elementos noche",
     "totalPatrol": "Total patrullas",
     "totalQuadBike": "Total cuatrimoto",
@@ -423,7 +426,8 @@
     "paymentContactName": "Nombre",
     "paymentContactLastName": "Apellido",
     "paymentContactPhoneContacts": "Telefono",
-    "paymentContactEmails": "Email"
+    "monthly": "Mensual",
+    "biweekly": "Quincenal"
   },
   "person": {
     "legalRepresentative": "Representante legal",
@@ -449,17 +453,20 @@
     "operation": "Operación",
     "withoutPosition": "Sin puesto",
     "withoutClient": "Sin asignación",
+    "withoutClientService": "Sin servicio",
     "info": "Configuración",
     "address": "Dirección",
     "data": "Personales",
     "configuration": "Configuración",
     "company": "Compañía",
     "keycode": "Código",
+    "bankAccount": "Cuenta",
     "personName": "Nombre",
     "positionName": "Puesto",
     "hiringDate": "Contratación",
     "startOperationDate": "Inicio de operación",
     "clientName": "Cliente",
+    "clientService": "Servicio",
     "position": "Puesto",
     "client": "Cliente",
     "reasignmentReason": "Reasignación de empleado",
@@ -469,7 +476,7 @@
   "position": {
     "name": "Nombre",
     "clientName": "Cliente",
-    "salary": "Salario"
+    "salary": "Salario diario"
   },
   "process": {
     "form": "Proceso",
@@ -584,6 +591,7 @@
     "date": "Creado"
   },
   "operationBinnacle": {
+    "date": "Fecha",
     "incidence": "Incidencia",
     "clientBusinessName": "Cliente",
     "fullname": "Empleado",
@@ -601,5 +609,15 @@
     "infoWorkhift": "Introduce un turno",
     "infoHours": "Introduce la cantidad de horas",
     "info": "Empleados"
+  },
+  "incidence": {
+    "date": "Fecha",
+    "generalComments": "Generales",
+    "serviceComments": "Servicio",
+    "supervisorComments": "Supervisor",
+    "eventComments": "Evento",
+    "coordinationComments": "Coordinación",
+    "followAndConclusionComments": "Seguimiento y Conclusión",
+    "moreComments": "Más datos"
   }
 }

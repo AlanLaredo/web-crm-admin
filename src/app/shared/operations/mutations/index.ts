@@ -66,6 +66,12 @@ import updateUserOperation from './updateUser'
 import deleteUserOperation from './deleteUser'
 import updateOperation from './updateOperation'
 import createOperation from './createOperation'
+import createNominaOperation from './createNomina.operation'
+import createPrenominaOperation from './createPrenomina.operation'
+import deleteNominaOperation from './deleteNomina.operation'
+import deletePrenominaOperation from './deletePrenomina.operation'
+import updateNominaOperation from './updateNomina.operation'
+import updatePrenominaOperation from './updatePrenomina.operation'
 
 export {
   createClientServiceOperation,
@@ -135,5 +141,11 @@ export {
   updateUserOperation,
   deleteUserOperation,
   updateOperation,
-  createOperation
+  createOperation,
+  createNominaOperation,
+  createPrenominaOperation,
+  deleteNominaOperation,
+  deletePrenominaOperation,
+  updateNominaOperation,
+  updatePrenominaOperation
 }

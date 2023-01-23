@@ -39,7 +39,7 @@ export class MenuLeftComponent implements OnInit {
   }
 
   loadMenuOptions () {
-    this.menuService.getMenu()
+    this.menuService.getSecureMenu()
       .subscribe(menuOptions => {
         this.menuOptions = menuOptions
       }) // temporal change

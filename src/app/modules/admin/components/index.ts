@@ -23,6 +23,8 @@ import { JobVacancyFormComponent } from './job-vacancy-form'
 import { RecruitFormComponent } from './recruit-form'
 import { OperationBinnacleGridComponent } from './operation-binnacle-grid'
 import { OperationFormModalComponent } from './operation-form-modal'
+import { IncidenceFormModalComponent } from './incidence-form-modal'
+import { PrenominalGridComponent } from './prenominal-grid'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -50,7 +52,9 @@ export const ADMIN_COMPONENTS = [
   JobVacancyFormComponent,
   RecruitFormComponent,
   OperationBinnacleGridComponent,
-  OperationFormModalComponent
+  OperationFormModalComponent,
+  IncidenceFormModalComponent,
+  PrenominalGridComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = [
@@ -81,5 +85,7 @@ export {
   JobVacancyFormComponent,
   RecruitFormComponent,
   OperationBinnacleGridComponent,
-  OperationFormModalComponent
+  OperationFormModalComponent,
+  IncidenceFormModalComponent,
+  PrenominalGridComponent
 }

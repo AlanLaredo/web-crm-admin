@@ -9,6 +9,7 @@ export default gql`mutation updateClientService($updateClientServiceData: Update
         deletedBy
         deletedAt
         id
+        keycode
         name
         clientId
         serviceType

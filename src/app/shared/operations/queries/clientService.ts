@@ -27,6 +27,7 @@ query clientService($id: ID, $name: String, $clientId: ID, $serviceType: String,
         totalQuadBike
         startDate
         name
+        keycode
         emergencyContact{
             name
             lastName

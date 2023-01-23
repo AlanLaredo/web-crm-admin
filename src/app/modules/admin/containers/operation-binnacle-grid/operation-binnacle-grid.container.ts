@@ -5,13 +5,14 @@ import { TranslateService } from '@ngx-translate/core'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { DateTime } from 'luxon'
 
-import { employeesInOperationOperation } from 'src/app/shared/operations/queries'
+import { employeesInOperationOperation, operationSendEmail } from 'src/app/shared/operations/queries'
 import { OPERATIONS_CATALOG_DATA } from '../../data'
 import { MatDialog } from '@angular/material/dialog'
 import { OperationFormModalComponent } from '../../components/operation-form-modal/'
 import { createOperation, updateOperation } from 'src/app/shared/operations/mutations'
 import { LoginService } from 'src/app/modules/auth/services'
 import { InputModalComponent } from 'src/app/shared/components/input-modal'
+import { IncidenceFormModalComponent } from '../../components'
 
 @Component({
   templateUrl: './operation-binnacle-grid.container.html',
@@ -118,16 +119,6 @@ export class OperationBinnacleGridContainer implements OnInit {
           employee[dayOfWeek.toFormat('D')] = { date: dayOfWeek.toJSDate(), dateTime: dayOfWeek, employeeId: employee.id }
         }
       })
-
-      // employee.restDay = employee.operations.restDay
-      // employee.workshift = employee.operations.workshift
-      // employee.hours = employee.operations.hours
-
-      // date
-      // operation
-      // operationConfirm
-      // operationModifiedBy
-      // operationConfirmModifiedBy
       employee.fullname = employee.person.name + ' ' + (employee.person.lastName ? employee.person.lastName : '')
       employee.phone = employee.person.phoneContacts && employee.person.phoneContacts.length > 0 ? employee.person.phoneContacts[0] : 'N/A'
       employee.startOperationDateString = employee.startOperationDate ? DateTime.fromJSDate(new Date(employee.startOperationDate)).setLocale(this.translate.instant('lang.luxon')).toFormat('DDD') : 'N/A'
@@ -145,6 +136,56 @@ export class OperationBinnacleGridContainer implements OnInit {
   }
 
   openDialogInicidence () {
+    const dialogRef = this.dialog.open(IncidenceFormModalComponent, {
+      width: '900px',
+      disableClose: false,
+      data: {}
+    })
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      if (result) {
+        const date = new Date(result.date)
+        const incidence = result
+        incidence.date = DateTime.fromJSDate(date).toFormat('DDDD')
+        if (result.destination === 1) {
+          this.sendMessageToWhatsApp(incidence)
+        } else {
+          this.sendMessageToEmail(incidence)
+        }
+      }
+    })
+  }
+
+  sendMessageToWhatsApp (incidence: any) {
+    let urlMessage = 'https://api.whatsapp.com/send?phone=528132657969&text=Central%20de%20Radio%20informa.'
+    urlMessage += '%0AFecha%3A' + incidence.date
+    urlMessage += '%0AGenerales%3A' + incidence.generalComments
+    urlMessage += '%20%0AServicio%3A' + incidence.serviceComments
+    urlMessage += '%20%20%0ASupervisor%3A' + incidence.supervisorComments
+    urlMessage += '%0AEvento%3A' + incidence.eventComments
+    urlMessage += '%0ACoordinaci%C3%B3n%3A' + incidence.coordinationComments
+    urlMessage += '%0ASeguimiento%20y%20Conclusi%C3%B3n%3A' + incidence.followAndConclusionComments
+    urlMessage += '%0AMas%20datos%3A' + incidence.moreComments
+    urlMessage += '&app_absent=1'
+    window.open(urlMessage, '_blank')
+  }
+
+  async sendMessageToEmail (incidence: any) {
+    let message: string = ''
+    message += '\n Fecha: ' + incidence.date
+    message += '\n Generales: ' + incidence.generalComments
+    message += '\n Servicio: ' + incidence.serviceComments
+    message += '\n Supervisor: ' + incidence.supervisorComments
+    message += '\n Evento: ' + incidence.eventComments
+    message += '\n Coordinación: ' + incidence.coordinationComments
+    message += '\n SeguimientoyConclusión: ' + incidence.followAndConclusionComments
+    message += '\n Mas datos: ' + incidence.moreComments
+
+    message = message.toString()
+    console.log(message)
+    const result = await this.graphqlService.execute(operationSendEmail, {
+      message
+    })
+    console.log(result)
   }
 
   onChangeDate ($event: any) {

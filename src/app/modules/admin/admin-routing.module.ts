@@ -23,7 +23,8 @@ import {
   EmployeeReassignmentGridContainer,
   JobVacancyFormContainer,
   RecruitGridContainer,
-  OperationBinnacleGridContainer
+  OperationBinnacleGridContainer,
+  PrenominalGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -300,6 +301,11 @@ const routes: Routes = [
           //   canActivate: [AuthGuard]
           // },
         ],
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'nomina',
+        component: PrenominalGridContainer,
         canActivate: [AuthGuard]
       },
       {

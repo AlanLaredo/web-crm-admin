@@ -11,6 +11,7 @@ query employees($id: ID, $keycode: String, $person: CreatePersonInput, $position
         deletedAt
         id
         keycode
+        bankAccount
         companyId
         company {
           id

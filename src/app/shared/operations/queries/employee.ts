@@ -13,6 +13,7 @@ query employee($id: ID, $keycode: String, $person: CreatePersonInput, $positionI
         keycode
         companyId
         attachedQuotePath
+        bankAccount
         company {
           name
         }
@@ -41,6 +42,7 @@ query employee($id: ID, $keycode: String, $person: CreatePersonInput, $positionI
         hiringDate
         startOperationDate
         clientId
+        clientServiceId
         address{
             name
             street
