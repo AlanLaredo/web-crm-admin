@@ -1,0 +1,32 @@
+@import '../../../../sass-utils/variables.scss';
+@import '../../../../sass-utils/mixins.scss';
+@import '../../../../sass-utils/functions.scss';
+
+.loading-container {
+  width: 100%;
+
+  .loading {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    padding: get-scale-size(24) get-scale-size(72);
+    margin-top: get-scale-size(24);
+
+    mat-progress-bar {
+      display: inline-block;
+      max-width: 300px;
+    }
+
+    p {
+      margin-bottom: get-scale-size(24);
+      @include rem(font-size, 18px);
+      color: get-color-scale("dark", 100);
+      @include rem(line-height, -0.15px);
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden !important;
+}

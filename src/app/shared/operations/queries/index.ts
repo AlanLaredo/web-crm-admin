@@ -70,6 +70,17 @@ import nominasOperation from './nominas.operation'
 import prenominaOperation from './prenomina.operation'
 import prenominasOperation from './prenominas.operation'
 
+import prenominaConfigurationOperation from './prenominaConfiguration.operation'
+import prenominaConfigurationsOperation from './prenominaConfigurations.operation'
+import prenominaPeriodOperation from './prenominaPeriod.operation'
+import prenominaPeriodEmployeeOperation from './prenominaPeriodEmployee.operation'
+import prenominaPeriodEmployeeDayOperation from './prenominaPeriodEmployeeDay.operation'
+import prenominaPeriodEmployeeDaysOperation from './prenominaPeriodEmployeeDays.operation'
+import prenominaPeriodEmployeesOperation from './prenominaPeriodEmployees.operation'
+import prenominaPeriodsOperation from './prenominaPeriods.operation'
+import projectedDataOperation from './projectedData.operation'
+import projectedDatasOperation from './projectedDatas.operation'
+
 export {
   actionLogOperation,
   applicantStatusOperation,
@@ -139,5 +150,15 @@ export {
   nominaOperation,
   nominasOperation,
   prenominaOperation,
-  prenominasOperation
+  prenominasOperation,
+  prenominaConfigurationOperation,
+  prenominaConfigurationsOperation,
+  prenominaPeriodOperation,
+  prenominaPeriodEmployeeOperation,
+  prenominaPeriodEmployeeDayOperation,
+  prenominaPeriodEmployeeDaysOperation,
+  prenominaPeriodEmployeesOperation,
+  prenominaPeriodsOperation,
+  projectedDataOperation,
+  projectedDatasOperation
 }

@@ -89,8 +89,6 @@ export class FilesViewGridComponent {
   }
 
   onFileComplete ($event: any) {
-    console.log('onFileComplete')
-    console.log($event)
   }
 
   selectedFiles: any[] = []

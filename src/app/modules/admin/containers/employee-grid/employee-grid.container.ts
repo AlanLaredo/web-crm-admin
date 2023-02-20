@@ -76,7 +76,7 @@ export class EmployeeGridContainer implements OnInit {
       this.data.map((employee: any) => {
         employee.personName = employee.person.name + ' ' + (employee.person.lastName ? employee.person.lastName : ' ')
         employee.companyName = employee.company.name
-        employee.positionName = employee.position.name
+        employee.positionName = employee.position?.name ? employee.position?.name : 'N/A'
         employee.clientName = employee.client.businessName
 
         employee.hiringDate = employee.hiringDate ? DateTime.fromJSDate(new Date(employee.hiringDate)).toFormat('DDDD') : 'N/A'

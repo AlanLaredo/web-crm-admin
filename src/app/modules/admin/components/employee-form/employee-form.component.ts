@@ -217,7 +217,9 @@ export class EmployeeFormComponent implements OnInit {
 
   async updateClientServicesForClient ($event: any, checkReasignment: boolean = true) {
     const clientId = $event.value
-    this.clientServicesForCompany = this._clients.find(client => client.id === clientId).clientServices
+    if (clientId) {
+      this.clientServicesForCompany = this._clients.find(client => client.id === clientId).clientServices
+    }
   }
 
   async updateDocumentsForPosition ($event: any) {

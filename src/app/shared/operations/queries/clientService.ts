@@ -28,6 +28,7 @@ query clientService($id: ID, $name: String, $clientId: ID, $serviceType: String,
         startDate
         name
         keycode
+        description
         emergencyContact{
             name
             lastName

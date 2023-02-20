@@ -45,6 +45,7 @@ export class ClientServiceFormComponent implements OnInit {
     this.formBuilderGroup = this.formBuilder.group({
       keycode: new FormControl((this._data.keycode || undefined), []),
       name: new FormControl((this._data.name || undefined), [Validators.required]),
+      description: new FormControl((this._data.description || undefined), []),
       serviceType: new FormControl((this._data.serviceType || undefined), []),
       scheduleHours: new FormControl((this._data.scheduleHours || undefined), []),
       serviceCost: new FormControl((this._data.serviceCost || undefined), []),
@@ -90,6 +91,7 @@ export class ClientServiceFormComponent implements OnInit {
 
     const outData: any = {}
     outData.keycode = serviceClient.keycode?.trim()
+    outData.description = serviceClient.description?.trim()
     outData.name = serviceClient.name?.trim()
     outData.serviceType = serviceClient.serviceType?.trim()
     outData.scheduleHours = serviceClient.scheduleHours?.trim()

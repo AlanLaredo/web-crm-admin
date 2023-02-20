@@ -6,7 +6,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
 import { LoginService } from 'src/app/modules/auth/services'
-import { LocalService } from 'src/app/shared/services'
 import Swal from 'sweetalert2'
 
 @Component({

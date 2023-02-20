@@ -1,4 +1,6 @@
 /* eslint-disable no-useless-constructor */
+/* eslint accessor-pairs: ["error", { "enforceForClassMembers": false }] */
+
 // Third Party
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
@@ -23,17 +25,9 @@ export class PermissionFormComponent implements OnInit {
     this.initForm()
   }
 
-  get data () {
-    return this._data
-  }
-
   @Input('loading')
   set loading (loading: boolean) {
     this._loading = loading
-  }
-
-  get loading () {
-    return this.loading
   }
 
   @Output()
@@ -41,8 +35,8 @@ export class PermissionFormComponent implements OnInit {
 
   constructor (
     private formBuilder: FormBuilder,
-    public translate: TranslateService
-  ) { }
+    public translate: TranslateService) {
+  }
 
   ngOnInit (): void {
     this.initForm()

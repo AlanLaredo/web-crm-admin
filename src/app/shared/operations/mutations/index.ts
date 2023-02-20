@@ -71,7 +71,22 @@ import createPrenominaOperation from './createPrenomina.operation'
 import deleteNominaOperation from './deleteNomina.operation'
 import deletePrenominaOperation from './deletePrenomina.operation'
 import updateNominaOperation from './updateNomina.operation'
-import updatePrenominaOperation from './updatePrenomina.operation'
+
+import createPrenominaConfigurationOperation from './createPrenominaConfiguration.operation'
+import createPrenominaPeriodOperation from './createPrenominaPeriod.operation'
+import createPrenominaPeriodEmployeeOperation from './createPrenominaPeriodEmployee.operation'
+import createPrenominaPeriodEmployeeDayOperation from './createPrenominaPeriodEmployeeDay.operation'
+import createProjectedDataOperation from './createProjectedData.operation'
+import deletePrenominaConfigurationOperation from './deletePrenominaConfiguration.operation'
+import deletePrenominaPeriodOperation from './deletePrenominaPeriod.operation'
+import deletePrenominaPeriodEmployeeOperation from './deletePrenominaPeriodEmployee.operation'
+import deletePrenominaPeriodEmployeeDayOperation from './deletePrenominaPeriodEmployeeDay.operation'
+import deleteProjectedDataOperation from './deleteProjectedData.operation'
+import updatePrenominaConfigurationOperation from './updatePrenominaConfiguration.operation'
+import updatePrenominaPeriodOperation from './updatePrenominaPeriod.operation'
+import updatePrenominaPeriodEmployeeOperation from './updatePrenominaPeriodEmployee.operation'
+import updatePrenominaPeriodEmployeeDayOperation from './updatePrenominaPeriodEmployeeDay.operation'
+import updateProjectedDataOperation from './updateProjectedData.operation'
 
 export {
   createClientServiceOperation,
@@ -147,5 +162,19 @@ export {
   deleteNominaOperation,
   deletePrenominaOperation,
   updateNominaOperation,
-  updatePrenominaOperation
+  createPrenominaConfigurationOperation,
+  createPrenominaPeriodOperation,
+  createPrenominaPeriodEmployeeOperation,
+  createPrenominaPeriodEmployeeDayOperation,
+  createProjectedDataOperation,
+  deletePrenominaConfigurationOperation,
+  deletePrenominaPeriodOperation,
+  deletePrenominaPeriodEmployeeOperation,
+  deletePrenominaPeriodEmployeeDayOperation,
+  deleteProjectedDataOperation,
+  updatePrenominaConfigurationOperation,
+  updatePrenominaPeriodOperation,
+  updatePrenominaPeriodEmployeeOperation,
+  updatePrenominaPeriodEmployeeDayOperation,
+  updateProjectedDataOperation
 }

@@ -5,8 +5,8 @@
         <h1>{{ 'submenu.prenominal' | translate }}</h1>
       </div>
       <div class="col-6">
-        <a class="m-4" [routerLink]="['create']">
-          <button class="float-right " mat-stroked-button color="primary">
+        <a class="m-4">
+          <button class="float-right " mat-stroked-button color="primary" (click)="new()">
             <mat-icon>add</mat-icon>
             {{'actions.new' | translate}}
           </button>
@@ -14,17 +14,48 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-        <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+        <data-filter-component [dataSource]="prenominaConfigurations" [options]="filterOptions" [dataFilterConfiguration]="{hideSelectable: true}" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <component-loading [isLoading]="loading">
-          grid component
-          <prenominal-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)"></prenominal-grid-component>
+          <mat-tab-group dynamicHeight *ngIf="prenominaConfigurations.length > 0">
+            <mat-tab *ngFor="let prenominaConfiguration of filteredData; let i = index" label="{{prenominaConfiguration.name}} ({{ 'periods.' + prenominaConfiguration.billingPeriod | translate}})">
+              <ng-template mat-tab-label>
+                <span>
+                  {{prenominaConfiguration.name}} ({{ 'periods.' + prenominaConfiguration.billingPeriod | translate}})
+                </span>
+                <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openformGroupDialog(prenominaConfiguration)">
+                  <mat-icon color="primary">edit</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="removeConfiguration(prenominaConfiguration.id)">
+                  <mat-icon color="warn">close</mat-icon>
+                </button>
+              </ng-template>
+              <ng-template matTabContent>
+                <prenomina-tab-content-component [prenominaConfiguration]="prenominaConfiguration"></prenomina-tab-content-component>
+              </ng-template>
+              
+                <!-- <button mat-stroked-button="mat-stroked-button" class="ml-1">
+                  <mat-icon class="action-button" fontSet="fas" fontIcon="fa-arrow-right"></mat-icon>
+                  <span>{{ 'general.following' | translate }}</span>
+                </button> -->
+                <!-- <general-catalog-grid-component [columns]="columns" [data]="filteredDataApplicants" (outActionDelete)="delete($event)"></general-catalog-grid-component> -->
+            </mat-tab>
+          </mat-tab-group>
+          <div class="total-business pl-4 pt-2" *ngIf="prenominaConfigurations.length===0">
+            <button mat-icon-button (click)="new()">
+              {{'prenomina.noConfigurations' | translate}}
+              <mat-icon color="info">add</mat-icon>
+            </button>
+          </div>
+          <!-- <prenominal-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)"></prenominal-grid-component> -->
         </component-loading>
       </div>
     </div>
   </div>
 </div>
+
+

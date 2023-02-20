@@ -12,6 +12,7 @@ export default gql`mutation updateUserRole($updateUserRoleData: UpdateUserRoleIn
         name
         description
         permissionsIds
+        companyId
     }
 }
 `

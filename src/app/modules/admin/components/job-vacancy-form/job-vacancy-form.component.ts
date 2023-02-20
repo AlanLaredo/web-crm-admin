@@ -41,7 +41,6 @@ export class JobVacancyFormComponent implements OnInit {
 
   @Input('clients')
   set clients (clients: any) {
-    console.log(clients)
     this._clients = clients
     this.initForm()
   }

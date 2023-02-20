@@ -91,8 +91,9 @@ export class InputModalComponent {
     if (this._data.required) {
       validations.push(Validators.required)
     }
+    value = value || value === 0 || null ? value : undefined
     this.formBuilderGroup = this.formBuilder.group({
-      inputValue: new FormControl({ value: (value || undefined), disabled: this._data.disabled }, validations)
+      inputValue: new FormControl({ value, disabled: this._data.disabled }, validations)
     })
   }
 
@@ -105,6 +106,9 @@ export class InputModalComponent {
       Swal.fire({ icon: 'warning', titleText: this.translate.instant('form.insufficientData') }).then()
       return
     }
+    // if (this._data.type !== '' && this._data.type === 'number') {
+
+    // }
     this.dialogRef.close(this.formBuilderGroup.value.inputValue)
   }
 

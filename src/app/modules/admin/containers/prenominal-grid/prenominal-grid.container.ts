@@ -1,8 +1,12 @@
 // Third Party
 import { Component, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
 import { Title } from '@angular/platform-browser'
 import { TranslateService } from '@ngx-translate/core'
+import { createPrenominaConfigurationOperation, deletePrenominaConfigurationOperation, updatePrenominaConfigurationOperation } from 'src/app/shared/operations/mutations'
+import { clientsOperation, prenominaConfigurationsOperation } from 'src/app/shared/operations/queries'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
+import { PrenominaGroupFormModalComponent } from '../../components'
 
 @Component({
   templateUrl: './prenominal-grid.container.html',
@@ -11,16 +15,20 @@ import { GraphqlService, NotifyService } from 'src/app/shared/services'
 export class PrenominalGridContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
-  data: any[] = []
   filteredData: any[] = []
   columns: any[] = []
+  prenominaConfigurations: any[] = []
+  clients: any[] = []
+
+  // datesInfo: string = ''
 
   /* eslint-disable no-useless-constructor */
   constructor (
     private translate: TranslateService,
     private notifyService: NotifyService,
     private titleService: Title,
-    private graphqlService: GraphqlService
+    private graphqlService: GraphqlService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit () {
@@ -31,13 +39,9 @@ export class PrenominalGridContainer implements OnInit {
   }
 
   loadTranslations () {
-    this.translate.stream('jobVacancies').subscribe((cols) => {
+    this.translate.stream('prenomina').subscribe((cols) => {
       this.filterOptions = [
-        { key: 'positionName', text: cols.positionName },
-        { key: 'clientServiceName', text: cols.clientServiceName },
-        { key: 'totalVacanciesString', text: cols.totalVacancies },
-        { key: 'requiredDocumentsPathsString', text: cols.requiredDocumentsPaths },
-        { key: 'jobVacanciesStatusString', text: cols.jobVacanciesStatusString }
+        { key: 'name', text: cols.name }
       ]
     })
 
@@ -48,39 +52,68 @@ export class PrenominalGridContainer implements OnInit {
     })
   }
 
-  loadData () {
+  async loadData () {
     this.loading = true
-    // this.graphqlService.execute(jobVacanciesOperation).then((result: any) => {
-    //   this.loading = false
-    //   this.data = result
-    //   this.data.map((prenominal: any) => {
-    //     prenominal.positionName = prenominal.position.name
-    //     prenominal.clientServiceName = prenominal.clientService.name
-    //     prenominal.requiredDocumentsPathsString = prenominal.requiredDocumentsPaths ? prenominal.requiredDocumentsPaths.toString() : this.translate.instant('jobVacancies.noDocuments')
-    //     prenominal.jobVacanciesStatusString = !prenominal.jobVacanciesStatus ? this.translate.instant('jobVacancies.inProcess') : prenominal.jobVacanciesStatus === 1 ? this.translate.instant('jobVacancies.completed') : 'N/A'
-    //     prenominal.totalVacanciesString = prenominal.totalVacancies + ' / ' + (prenominal.recruits && prenominal.recruits.lenght > 0 ? prenominal.recruits.lenght : 0)
-    //     return prenominal
-    //   })
+    const promises = [
+      this.graphqlService.execute(prenominaConfigurationsOperation),
+      this.graphqlService.execute(clientsOperation)
+    ]
 
-    //   this.setDataFiltered(this.data)
-    // })
+    const [prenominaConfigurations, clients] = await Promise.all(promises)
+    this.loading = false
+    this.prenominaConfigurations = prenominaConfigurations
+    this.clients = clients
+
+    this.setDataFiltered(this.prenominaConfigurations)
   }
 
   setDataFiltered (filteredData: any) {
     this.filteredData = filteredData
   }
 
-  async delete (id: any) {
-    // const confirm = await this.notifyService.deleteConfirm()
-    // if (confirm) {
-    //   this.loading = true
-    //   this.graphqlService.execute(deletePrenominalOperation, { id }).then(
-    //     (result: any) => {
-    //       this.loading = false
-    //       this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')
-    //       this.loadData()
-    //     }
-    //   )
-    // }
+  new () {
+    this.openformGroupDialog()
+  }
+
+  async removeConfiguration (prenominaConfigurationId: string) {
+    if (await this.notifyService.confirm(this.translate.instant('prenomina.questionRemoveConfiguration'))) {
+      this.loading = true
+      await this.deleteConfiguration(prenominaConfigurationId)
+      this.loadData()
+      this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')
+    }
+  }
+
+  async deleteConfiguration (id: string) {
+    return this.graphqlService.execute(deletePrenominaConfigurationOperation, { id })
+  }
+
+  openformGroupDialog (prenominaConfiguration: any = null) {
+    if (this.loading) {
+      return
+    }
+    const dialogRef = this.dialog.open(PrenominaGroupFormModalComponent, {
+      maxWidth: '750px',
+      data: {
+        title: this.translate.instant('prenomina.configuration'),
+        clients: this.clients,
+        prenominaConfiguration,
+        disabled: prenominaConfiguration && prenominaConfiguration.id
+      }
+    })
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      if (result) {
+        this.loading = true
+
+        prenominaConfiguration = await this.savePrenominaConfiguration(result)
+        this.loadData()
+      }
+    })
+  }
+
+  savePrenominaConfiguration (prenominaConfiguration: any) {
+    return this.graphqlService.execute(
+      prenominaConfiguration && prenominaConfiguration.id ? updatePrenominaConfigurationOperation : createPrenominaConfigurationOperation,
+      prenominaConfiguration)
   }
 }

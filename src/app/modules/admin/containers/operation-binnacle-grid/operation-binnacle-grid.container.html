@@ -24,7 +24,7 @@
           value="{{dateString}}"
           (keydown)="keydownOff($event)" [matDatepickerFilter]="weekendsDatesFilter" [matDatepicker]="picker"
           (dateChange)="onChangeDate($event)"
-          placeholder="{{'form.instructions.enterADate' | translate}}"
+          placeholder="{{'form.instructions.selectADate' | translate}}"
           autocomplete="off">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>          

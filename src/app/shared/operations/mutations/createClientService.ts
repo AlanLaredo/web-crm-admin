@@ -26,6 +26,8 @@ export default gql`mutation createClientService($createClientServiceData: Create
         totalQuadBike
         startDate
         name
+        keycode
+        description
         emergencyContact{
             name
             lastName

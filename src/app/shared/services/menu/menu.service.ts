@@ -59,17 +59,17 @@ export class MenuService {
             },
             permission: 'users'
           },
-          {
-            isRoot: false,
-            name: 'permission',
-            isParent: false,
-            routeLink: ['/', 'admin', 'security', 'role-permissions'],
-            icon: {
-              fontIcon: 'fa-user-shield',
-              fontSet: 'fas'
-            },
-            permission: 'roles'
-          },
+          // {
+          //   isRoot: false,
+          //   name: 'permission',
+          //   isParent: false,
+          //   routeLink: ['/', 'admin', 'security', 'role-permissions'],
+          //   icon: {
+          //     fontIcon: 'fa-user-shield',
+          //     fontSet: 'fas'
+          //   },
+          //   permission: 'roles'
+          // },
           {
             isRoot: false,
             name: 'userRole',
@@ -92,7 +92,7 @@ export class MenuService {
           fontIcon: 'fa-building',
           fontSet: 'fas'
         },
-        permission: 'admin.company',
+        permission: 'company',
         childs: [
           {
             isRoot: false,
@@ -138,7 +138,7 @@ export class MenuService {
           fontIcon: 'fa-cubes',
           fontSet: 'fas'
         },
-        permission: 'customers',
+        permission: 'operations',
         childs: [
           {
             isRoot: false,
@@ -258,14 +258,25 @@ export class MenuService {
       },
       {
         isRoot: true,
-        name: 'nomina',
+        name: 'prenominal',
         isParent: false,
-        routeLink: ['/', 'admin', 'nomina'],
+        routeLink: ['/', 'admin', 'prenominal'],
         icon: {
           fontIcon: 'fa-money-bills',
           fontSet: 'fas'
         },
         permission: 'prenominal'
+      },
+      {
+        isRoot: true,
+        name: 'projectedData',
+        isParent: false,
+        routeLink: ['/', 'admin', 'projected-data'],
+        icon: {
+          fontIcon: 'fa-calculator',
+          fontSet: 'fas'
+        },
+        permission: 'projected-data'
       }
     ]
   }
@@ -276,8 +287,6 @@ export class MenuService {
 
   getSecureMenu (): Observable<IMenu[]> {
     this.actions = this.loginService.getPermissions()
-
-    console.log(this.actions)
     return of(this.getSubMenu(this.menu))
   }
 

@@ -1,0 +1,78 @@
+
+<div class="row pt-4">
+
+  <div class="col-12">
+    <div class="d-flex justify-content-between">
+      <div class="row">
+        <div class="col-12 pt-3">
+          <mat-form-field appearance="legacy">
+            <mat-label>{{'operationBinnacle.date' | translate }}</mat-label>
+            <input matInput
+            value="{{dateString}}" [matDatepickerFilter]="datesFilter" [matDatepicker]="picker"
+            (dateChange)="onChangeDate($event)"
+            placeholder="{{'form.instructions.selectADate' | translate}}"
+            autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>          
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 pt-4">
+          <h2>
+            <span class="text-align-center">
+              <mat-icon class="text-success tiny-process-icon-title" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" matTooltip="{{'prenomina.generated' | translate}}">verified</mat-icon>
+              <mat-icon class="text-warning" *ngIf="!prenominaPeriod || !prenominaPeriod.id" matTooltip="{{'prenomina.noGenerated' | translate}}">manage_history</mat-icon>
+              <mat-icon color="primary" *ngIf="prenominaPeriod && prenominaPeriod.id && prenominaPeriod.completed" matTooltip="{{'prenomina.statusCompleted' | translate}}">lock</mat-icon>
+              {{prenominaPeriod && prenominaPeriod.name ? prenominaPeriod.name : (dayOfPeriod ? 'Prenómina de ' + capitalize(dayOfPeriod.monthLong) + ' ' + dayOfPeriod.year : 'Selecciona una fecha')}}
+            </span>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 pt-4">
+          <div class="d-flex justify-content-between">
+            <button mat-stroked-button color="primary" matTooltip="{{'actions.delete' | translate}}" (click)="complete(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
+              <mat-icon >check_circle</mat-icon>
+              <span>{{ 'prenomina.complete' | translate }}</span>
+            </button>
+                   
+            <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="exportFile(prenominaPeriod)" *ngIf="prenominaPeriod && prenominaPeriod.id" class="mr-2">
+              <mat-icon >download</mat-icon>
+              <span>{{ 'prenomina.export' | translate }}</span>
+            </button>
+
+            <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="save()" *ngIf="!prenominaPeriod" class="mr-2">
+              <mat-icon >save</mat-icon>
+              <span>{{ 'prenomina.save' | translate }}</span>
+            </button>
+            <button mat-stroked-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="remove(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed">
+              <mat-icon >delete_forever</mat-icon>
+              <span>{{ 'prenomina.remove' | translate }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+        <data-filter-component [dataSource]="prenominaPeriodEmployeesData" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <component-loading [isLoading]="loading">
+          <div class="row">
+            <div class="col-12">
+              <prenomina-period-employee-grid-component (outActionSave)="savePrenominaPeriodEmployee($event)" [data]="filteredData" [loading]="loading" [columns]="columns"></prenomina-period-employee-grid-component>
+            </div>
+          </div>
+        </component-loading>
+      </div>
+    </div>
+  </div>
+</div>

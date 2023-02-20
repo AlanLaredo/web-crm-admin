@@ -11,6 +11,7 @@ import { InputModalComponent } from './input-modal'
 import { UploadFilesComponent } from './upload-files-component'
 import { PdfFormModalComponent } from './pdf-form-modal'
 import { InputChipModalComponent } from './input-ships-modal'
+import { FixedDecimalsComponent } from './fixed-decimals'
 
 export const SHARED_COMPONENTS = [
   LoadingComponent,
@@ -25,7 +26,8 @@ export const SHARED_COMPONENTS = [
   InputModalComponent,
   UploadFilesComponent,
   PdfFormModalComponent,
-  InputChipModalComponent
+  InputChipModalComponent,
+  FixedDecimalsComponent
 ]
 
 export {
@@ -38,5 +40,6 @@ export {
   CalendarMonthComponent,
   UploadFilesComponent,
   PdfFormModalComponent,
-  InputChipModalComponent
+  InputChipModalComponent,
+  FixedDecimalsComponent
 }

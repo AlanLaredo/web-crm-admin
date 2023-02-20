@@ -13,5 +13,6 @@ query userRole($id: ID, $name: String, $description: String, $permissionsIds: [I
         name
         description
         permissionsIds
+        companyId
     }
 }`

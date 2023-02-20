@@ -95,7 +95,9 @@
     "process": "Procesos",
     "recruitment": "Reclutamiento",
     "operationBinnacle": "Operación",
-    "nomina": "Nómina"
+    "nomina": "Prenomina",
+    "prenominal": "Prenómina",
+    "projectedData": "Proyectado"
   },
   "submenu": {
     "users": "Usuarios",
@@ -417,7 +419,7 @@
     "lastFourDigits": "4 dígitos",
     "paymentMethod": "Método pago",
     "usageCfdi": "Uso CFDI",
-    "paymentForm": "Método pago",
+    "paymentForm": "Forma pago",
     "contactEmergency": "Contacto de emergencia",
     "emergencyContactName": "Nombre",
     "emergencyContactLastName": "Apellido",
@@ -426,8 +428,11 @@
     "paymentContactName": "Nombre",
     "paymentContactLastName": "Apellido",
     "paymentContactPhoneContacts": "Telefono",
+    "paymentContactEmails": "Telefono",
+    "weekly": "Semanal",
     "monthly": "Mensual",
-    "biweekly": "Quincenal"
+    "biweekly": "Quincenal",
+    "description": "Descripción"
   },
   "person": {
     "legalRepresentative": "Representante legal",
@@ -619,5 +624,53 @@
     "coordinationComments": "Coordinación",
     "followAndConclusionComments": "Seguimiento y Conclusión",
     "moreComments": "Más datos"
+  },
+  "prenominal": {
+    "name": "Nombre",
+    "period": "Periodo",
+    "clients": "Clientes"
+  },
+  "prenomina": {
+    "configuration": "Configuración",
+    "name": "Configuración",
+    "remove": "Eliminar",
+    "edit": "Editar",
+    "periods": "Periodos",
+    "questionRemoveConfiguration": "Se eliminarán todas las prenóminas. ¿Desea continuar?",
+    "completed": "Completado",
+    "generate": "Generar",
+    "save": "Crear",
+    "complete": "Completar",
+    "generated": "Ésta prenómina ya ha sido generada",
+    "noGenerated": "Ésta prenómina aún no ha sido generada",
+    "statusCompleted": "Ésta prenómina ha sido cerrada y no se puede modificar",
+    "noConfigurations": "Aún no hay configuraciones",
+    "export": "Excel"
+
+  },
+  "periods": {
+    "biweekly": "Quincenal",
+    "monthly": "Mensual",
+    "weekly": "Semanal",
+    "quantity": "Editar cantidad",
+    "cols": {
+      "employeeName": "Empleado",
+      "keycode" : "Clave",
+      "bankAccount" : "Cuenta",
+      "clientName" : "Cliente",
+      "salary" : "Salario",
+      "absences" : "Ausencias",
+      "saving" : "Ahorro",
+      "uniforms" : "Uniformes",
+      "advance" : "Anticipo",
+      "double" : "Dobles",
+      "bonus" : "Bonos",
+      "holiday" : "Festivos",
+      "infonavit" : "Infonavit",
+      "fonacot" : "Fonacot",
+      "loan" : "Prestamo",
+      "nss" : "NSS",
+      "total" : "Total"
+    }
   }
 }

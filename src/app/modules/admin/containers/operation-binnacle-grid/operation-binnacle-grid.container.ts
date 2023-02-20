@@ -181,11 +181,9 @@ export class OperationBinnacleGridContainer implements OnInit {
     message += '\n Mas datos: ' + incidence.moreComments
 
     message = message.toString()
-    console.log(message)
     const result = await this.graphqlService.execute(operationSendEmail, {
       message
     })
-    console.log(result)
   }
 
   onChangeDate ($event: any) {
@@ -217,8 +215,6 @@ export class OperationBinnacleGridContainer implements OnInit {
   }
 
   keydownOff ($event: any) {
-    console.log('keydownOff')
-    console.log($event)
     return false
   }
 

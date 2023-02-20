@@ -38,6 +38,7 @@ export class LoginContainer {
       } else if (error.status !== 0) {
         Swal.fire({ icon: 'warning', titleText: error.error.message }).then()
       }
+      this.loading = false
     })
   }
 }

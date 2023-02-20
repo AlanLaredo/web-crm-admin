@@ -33,7 +33,7 @@ export class PermissionsListComponent {
   outActionAdd: EventEmitter<string> = new EventEmitter<string>()
 
   _data: IPermission[] = []
-  displayedColumns: string[] = ['name', 'description', 'tag', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'actions'];
   dataSource: any
 
   @ViewChild(MatPaginator) paginator: any

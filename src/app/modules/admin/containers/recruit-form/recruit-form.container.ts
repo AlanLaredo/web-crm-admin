@@ -94,7 +94,6 @@ export class RecruitFormContainer implements OnInit {
         //   this.router.navigate(['/admin/recruitment/job-vacancies/' + this.jobVacancyId + '/recruits'])
         // })
       }
-      console.log(documents)
     }
   }
 }

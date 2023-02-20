@@ -9,7 +9,6 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
 
-import { IGeneralGridColumn } from '../../models/data'
 import { DateTime } from 'luxon'
 // OperationFormModalComponent
 @Component({

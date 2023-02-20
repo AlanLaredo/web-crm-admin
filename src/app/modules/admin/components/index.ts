@@ -25,6 +25,9 @@ import { OperationBinnacleGridComponent } from './operation-binnacle-grid'
 import { OperationFormModalComponent } from './operation-form-modal'
 import { IncidenceFormModalComponent } from './incidence-form-modal'
 import { PrenominalGridComponent } from './prenominal-grid'
+import { PrenominaGroupFormModalComponent } from './prenomina-group-form-modal'
+import { CompanyTabContentComponent } from './prenomina-tab-grid/prenomina-tab-content.component'
+import { PrenominaPeriodEmployeeGridComponent } from './prenomina-period-employee-grid'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -54,12 +57,13 @@ export const ADMIN_COMPONENTS = [
   OperationBinnacleGridComponent,
   OperationFormModalComponent,
   IncidenceFormModalComponent,
-  PrenominalGridComponent
+  PrenominalGridComponent,
+  PrenominaGroupFormModalComponent,
+  CompanyTabContentComponent,
+  PrenominaPeriodEmployeeGridComponent
 ]
 
-export const ADMIN_ENTRY_COMPONENTS = [
-
-]
+export const ADMIN_ENTRY_COMPONENTS = []
 
 export {
   HeaderComponent,
@@ -87,5 +91,8 @@ export {
   OperationBinnacleGridComponent,
   OperationFormModalComponent,
   IncidenceFormModalComponent,
-  PrenominalGridComponent
+  PrenominalGridComponent,
+  PrenominaGroupFormModalComponent,
+  CompanyTabContentComponent,
+  PrenominaPeriodEmployeeGridComponent
 }

@@ -5,8 +5,9 @@ import { TranslateService } from '@ngx-translate/core'
 import Swal from 'sweetalert2'
 
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
-import { rolePermissionsOperation, userRoleOperation } from 'src/app/shared/operations/queries'
+import { companiesOperation, rolePermissionsOperation, userRoleOperation } from 'src/app/shared/operations/queries'
 import { createUserRoleOperation, updateUserRoleOperation } from 'src/app/shared/operations/mutations'
+import { LoginService } from 'src/app/modules/auth/services'
 
 @Component({
   templateUrl: './user-role-form.container.html',
@@ -16,10 +17,15 @@ export class UserRoleFormContainer implements OnInit {
   loading: boolean = false
   public filterOptions: any = []
   title: string = ''
-  data: any = {}
+  data: any = {
+    permissionsIds: []
+  }
+
   permissions: any[] = []
   filteredPermissions: any[] = []
   existsChanges: boolean = false
+  user: any
+  companies: any[] = []
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -27,8 +33,10 @@ export class UserRoleFormContainer implements OnInit {
     private activatedRoute: ActivatedRoute,
     private graphQlService: GraphqlService,
     public translate: TranslateService,
+    private loginService: LoginService,
     private notifyService: NotifyService
   ) {
+    this.user = this.loginService.getUser()
   }
 
   loadTranslations () {
@@ -46,6 +54,7 @@ export class UserRoleFormContainer implements OnInit {
     const params = this.activatedRoute.snapshot.params
     this.loading = true
     const promises: Promise<any>[] = [
+      this.graphQlService.execute(companiesOperation),
       this.graphQlService.execute(rolePermissionsOperation)
     ]
 
@@ -55,7 +64,18 @@ export class UserRoleFormContainer implements OnInit {
     } else {
       this.title = 'general.titles.creation'
     }
-    const [permissions, data] = await Promise.all(promises)
+    let [companies, permissions, data] = await Promise.all(promises)
+    this.companies = companies
+
+    if (this.user?.userRole?.name !== 'CrmAdmin') {
+      permissions = (permissions || []).filter((permission: any) => {
+        return !['company', 'company.set',
+          'company.delete',
+          'companyGroups',
+          'companyGroups.set',
+          'companyGroups.delete'].includes(permission.tag)
+      })
+    }
     this.loading = false
     this.permissions = permissions
     if (data) {
@@ -95,7 +115,7 @@ export class UserRoleFormContainer implements OnInit {
 
   setDataFiltered (filteredPermissions: any) {
     filteredPermissions.map((element: any) => {
-      element.exists = this.data && this.data.permissionsIds.includes(element.id)
+      element.exists = this.data && (this.data?.permissionsIds || []).includes(element.id)
       return element
     })
     this.filteredPermissions = filteredPermissions

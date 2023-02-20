@@ -304,7 +304,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'nomina',
+        path: 'prenominal',
         component: PrenominalGridContainer,
         canActivate: [AuthGuard]
       },

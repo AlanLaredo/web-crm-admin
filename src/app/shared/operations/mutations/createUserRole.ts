@@ -12,6 +12,7 @@ export default gql`mutation createUserRole($createUserRoleData: CreateUserRoleIn
         name
         description
         permissionsIds
+        companyId
     }
 }
 `
