@@ -1,0 +1,101 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <h1>{{ 'submenu.projectedData' | translate }}</h1>
+      </div>
+      <div class="col-6">
+        <!-- <a class="m-4" [routerLink]="['create']">
+          <button class="float-right " mat-stroked-button color="primary">
+            <mat-icon>add</mat-icon>
+            {{'actions.new' | translate}}
+          </button>
+        </a> -->
+      </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between">
+          <div class="row">
+            <div class="col-12 pt-3">
+              <mat-form-field appearance="legacy">
+                <mat-label>{{'operationBinnacle.date' | translate }}</mat-label>
+                <input matInput
+                value="{{dateString}}" [matDatepickerFilter]="datesFilter" [matDatepicker]="picker"
+                (dateChange)="onChangeDate($event)"
+                placeholder="{{'form.instructions.selectADate' | translate}}"
+                autocomplete="off">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>          
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 pt-4">
+              <h2>
+                <span class="text-align-center">
+                  {{ (dayOfPeriod ? 'Proyectado de ' + capitalize(dayOfPeriod.monthLong) + ' ' + dayOfPeriod.year : 'Selecciona una fecha')}}
+                  <!-- <mat-icon class="text-success tiny-process-icon-title" *ngIf="projectedPeriod && projectedPeriod.id && !prenominaPeriod.completed" matTooltip="{{'prenomina.generated' | translate}}">verified</mat-icon> -->
+                  <!-- <mat-icon class="text-warning" matTooltip="{{'prenomina.noGenerated' | translate}}">manage_history</mat-icon> -->
+                  <!-- <mat-icon color="primary" matTooltip="{{'prenomina.statusCompleted' | translate}}">lock</mat-icon> -->
+                  <!-- {{prenominaPeriod && prenominaPeriod.name ? prenominaPeriod.name : (dayOfPeriod ? 'Prenómina de ' + capitalize(dayOfPeriod.monthLong) + ' ' + dayOfPeriod.year : 'Selecciona una fecha')}} -->
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 pt-4">
+              <div class="d-flex justify-content-between">
+                <!-- <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="exportFile(prenominaPeriod)" *ngIf="projectedData && projectedData.id" class="mr-2">
+                  <mat-icon >manage_history</mat-icon>
+                  <span>{{ 'projected.sync' | translate }}</span>
+                </button>
+                -->
+                <!-- <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="sync()" *ngIf="projectedPeriod && projectedPeriod.id" class="mr-2">
+                  <mat-icon>manage_history</mat-icon>
+                  <span>{{ 'projected.sync' | translate }}</span>
+                </button> -->
+                <a *validatePermission="'projected-data.set'">
+                  <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="save()" *ngIf="!projectedPeriod" class="mr-2">
+                    <mat-icon >save</mat-icon>
+                    <span>{{ 'prenomina.save' | translate }}</span>
+                  </button>
+                </a>
+                <a *validatePermission="'projected-data.delete'">
+                  <button mat-stroked-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="remove()" *ngIf="projectedPeriod && projectedPeriod.id">
+                    <mat-icon >delete_forever</mat-icon>
+                    <span>{{ 'prenomina.remove' | translate }}</span>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+            <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <component-loading [isLoading]="loading">
+              <div class="row">
+                <div class="col-12">
+                  <projected-data-grid-component [data]="filteredData" [loading]="loading" [columns]="columns"></projected-data-grid-component>
+                </div>
+              </div>
+            </component-loading>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+  </div>
+</div>
+

@@ -60,7 +60,7 @@ export class UsersContainer implements OnInit {
 
     this.loading = false
     const users = result.map((user: any) => {
-      user.fullName = user.firstName + (user.lastName ? user.lastName + ' ' : '')
+      user.fullName = user.firstName + (user.lastName ? ' ' + user.lastName + ' ' : '')
       user.companyName = user.company?.name || 'N/A'
       return user
     })

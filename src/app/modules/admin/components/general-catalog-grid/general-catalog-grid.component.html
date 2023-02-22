@@ -10,7 +10,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> {{'general.actions' | translate}} </th>
           <td mat-cell *matCellDef="let row">
-            <a [routerLink]="[row.id, 'edit']">
+            <a [routerLink]="[row.id, 'edit']" *ngIf="_permissions.edit">
               <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
                 <mat-icon>mode_edit</mat-icon>
               </button>
@@ -20,7 +20,7 @@
                 <mat-icon class="cs-material-icons material-icons mat-icon-no-color" [fontSet]="'fa'" [fontIcon]="'fa-globe'"></mat-icon>
               </button>
             </a>
-            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)">
+            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)" *ngIf="_permissions.delete">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>

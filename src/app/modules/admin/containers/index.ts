@@ -20,6 +20,7 @@ import { RecruitGridContainer } from './recruit-grid'
 import { RecruitFormContainer } from './recruit-form'
 import { OperationBinnacleGridContainer } from './operation-binnacle-grid'
 import { PrenominalGridContainer } from './prenominal-grid'
+import { ProjectedDataGridContainer } from './projected-data-grid'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -43,7 +44,8 @@ export const ADMIN_CONTAINERS = [
   RecruitGridContainer,
   RecruitFormContainer,
   OperationBinnacleGridContainer,
-  PrenominalGridContainer
+  PrenominalGridContainer,
+  ProjectedDataGridContainer
 ]
 
 export {
@@ -68,5 +70,6 @@ export {
   RecruitGridContainer,
   RecruitFormContainer,
   OperationBinnacleGridContainer,
-  PrenominalGridContainer
+  PrenominalGridContainer,
+  ProjectedDataGridContainer
 }

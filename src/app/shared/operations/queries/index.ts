@@ -80,6 +80,8 @@ import prenominaPeriodEmployeesOperation from './prenominaPeriodEmployees.operat
 import prenominaPeriodsOperation from './prenominaPeriods.operation'
 import projectedDataOperation from './projectedData.operation'
 import projectedDatasOperation from './projectedDatas.operation'
+import projectedPeriodOperation from './projectedPeriod.operation'
+import projectedPeriodsOperation from './projectedPeriods.operation'
 
 export {
   actionLogOperation,
@@ -160,5 +162,7 @@ export {
   prenominaPeriodEmployeesOperation,
   prenominaPeriodsOperation,
   projectedDataOperation,
-  projectedDatasOperation
+  projectedDatasOperation,
+  projectedPeriodOperation,
+  projectedPeriodsOperation
 }

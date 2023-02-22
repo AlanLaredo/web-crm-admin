@@ -39,10 +39,20 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
     this._viewServices = viewServices
   }
 
+  @Input('permissions')
+  set permissions (permissions: any) {
+    this._permissions.edit = permissions && permissions.edit !== undefined ? permissions.edit : false
+    this._permissions.delete = permissions && permissions.delete !== undefined ? permissions.delete : false
+  }
+
   @Output()
   outActionDelete: EventEmitter<string> = new EventEmitter<string>()
 
   _data: any[] = []
+  _permissions: any = {
+    edit: true,
+    delete: true
+  }
 
   _columns: IGeneralGridColumn[] = [{
     id: 'name',

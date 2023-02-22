@@ -20,6 +20,10 @@ export class EmployeeGridContainer implements OnInit {
   filteredData: any[] = []
   columns: any[] = []
   user: any
+  permissions: any = {
+    edit: false,
+    delete: false
+  }
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -29,6 +33,9 @@ export class EmployeeGridContainer implements OnInit {
     private graphqlService: GraphqlService,
     private loginService: LoginService
   ) {
+    const permissions = this.loginService.getPermissions() || []
+    this.permissions.edit = permissions.includes('employees.set')
+    this.permissions.delete = permissions.includes('employees.delete')
     this.user = this.loginService.getUser()
   }
 

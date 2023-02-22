@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
 
 import { DateTime } from 'luxon'
+import { LoginService } from 'src/app/modules/auth/services'
 // OperationFormModalComponent
 @Component({
   selector: 'operation-binnacle-grid-component',
@@ -51,16 +52,21 @@ export class OperationBinnacleGridComponent implements AfterViewInit {
   _columns: any[] = []
   _loading: boolean = false
   todayString: string = (DateTime.now().weekdayLong + ' ' + DateTime.now().setLocale(this.translate.instant('lang.luxon')).toFormat('d'))
-
   displayedColumns: string[] = this._columns.map(column => column.key)
   dataSource: any
+  operationButton = false
+  operationConfirmButton = false
 
   @ViewChild(MatPaginator) paginator: any
   @ViewChild(MatSort) sort: any
 
   constructor (
-    public translate: TranslateService
+    public translate: TranslateService,
+    private loginService: LoginService
   ) {
+    const permissions = this.loginService.getPermissions()
+    this.operationButton = permissions.includes('operation-binnacle-operation')
+    this.operationConfirmButton = permissions.includes('operation-binnacle-operation-confirmation')// permissions.operationConfirmButton = null
   }
 
   ngAfterViewInit (): void {

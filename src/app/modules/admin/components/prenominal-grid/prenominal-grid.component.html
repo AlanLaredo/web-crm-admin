@@ -11,17 +11,17 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> {{'general.actions' | translate}} </th>
           <td mat-cell *matCellDef="let row">
-            <a [routerLink]="[row.id, 'edit']">
+            <a [routerLink]="[row.id, 'edit']" *validatePermission="'prenominal.set'">
               <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
                 <mat-icon>mode_edit</mat-icon>
               </button>
             </a>
             <a [routerLink]="[row.id, 'recruits']">
-              <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
+              <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}" *validatePermission="'prenominal.set'">
                 <mat-icon>engineering</mat-icon>
               </button>
             </a>
-            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)">
+            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)" *validatePermission="'prenominal.delete'">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>

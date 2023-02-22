@@ -52,6 +52,11 @@ export class LoginService {
     return this.httpClient.post(`${environment.rest_api_url}/auth/login`, null, { params: { username, password } })
   }
 
+  private async updatePermissions () {
+    const permissions = await this.httpClient.get(`${environment.rest_api_url}/auth/update`).toPromise()
+    this.localService.setItem(this.SECUTIRY_KEY, permissions)
+  }
+
   getUserID (): string {
     return ''
   }
@@ -124,6 +129,8 @@ export class LoginService {
   }
 
   getPermissions () {
+    this.updatePermissions()
+
     const permissions = this.localService.getItem<any>(this.SECUTIRY_KEY)
     if (permissions) {
       return permissions.map((permission: any) => permission.tag)

@@ -1,0 +1,13 @@
+mutation deleteProjectedPeriod($deleteIdData: DeleteIDInput!){
+    deleteProjectedPeriod(deleteIdData: $deleteIdData){
+        createdBy
+        createdAt
+        modifiedBy
+        modifiedAt
+        deletedBy
+        deletedAt
+        id
+        date
+        companyId
+    }
+}

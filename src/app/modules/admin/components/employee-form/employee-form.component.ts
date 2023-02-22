@@ -35,6 +35,11 @@ export class EmployeeFormComponent implements OnInit {
   _jobVacancyDocuments: any = []
   _disableConfigurations: boolean = false
 
+  permissions: any = {
+    edit: false,
+    delete: false
+  }
+
   @Input('data')
   set data (data: Partial<any>) {
     this._data = data
@@ -88,8 +93,7 @@ export class EmployeeFormComponent implements OnInit {
     public translate: TranslateService,
     private loginService: LoginService,
     private awsFileService: AwsFileService,
-    private dialog: MatDialog,
-    private notifyService: NotifyService
+    private dialog: MatDialog
   ) {
     this.user = this.loginService.getUser()
   }

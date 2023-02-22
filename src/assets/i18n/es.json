@@ -118,7 +118,8 @@
     "recruit": "Reclutamiento",
     "operationBinnacle": "Bitácora operativa",
     "nomina": "Nómina",
-    "prenominal": "Prenómina"
+    "prenominal": "Prenómina",
+    "projectedData": "Proyectado"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -672,5 +673,18 @@
       "nss" : "NSS",
       "total" : "Total"
     }
+  },
+  "projected": {
+    "sync": "Sincronizar",
+    "clientKeycode": "# Cliente",
+    "clientServiceKeycode": "# Servicio",
+    "startDate": "Fecha",
+    "invoiceTypePayment": "Periodo",
+    "clientName": "Cliente",
+    "subtotal": "Subtotal",
+    "iva": "IVA",
+    "invoiceTotal": "Total",
+    "description": "Comentarios",
+    "invoiced": "Facturado"
   }
 }

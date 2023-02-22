@@ -19,6 +19,10 @@ export class PositionGridContainer implements OnInit {
   filteredData: any[] = []
   columns: any[] = []
   user: any
+  permissions: any = {
+    edit: false,
+    delete: false
+  }
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -28,6 +32,10 @@ export class PositionGridContainer implements OnInit {
     private graphqlService: GraphqlService,
     private loginService: LoginService
   ) {
+    const permissions = this.loginService.getPermissions()
+    this.permissions.edit = permissions.includes('positions.set')
+    this.permissions.delete = permissions.includes('positions.delete')
+
     this.user = this.loginService.getUser()
   }
 

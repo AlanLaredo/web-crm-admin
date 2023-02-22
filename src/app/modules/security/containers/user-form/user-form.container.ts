@@ -11,6 +11,7 @@ import { RoleAcccessGqlService } from '../../services/graphql/role-access.gql.se
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 
 import { companiesOperation, userRolesOperation, userOperation } from 'src/app/shared/operations/queries/'
+import { LoginService } from 'src/app/modules/auth/services'
 
 @Component({
   templateUrl: './user-form.container.html',
@@ -34,7 +35,8 @@ export class UserFormContainer implements OnInit {
     public translate: TranslateService,
     private notifyService: NotifyService,
     private titleService: Title
-  ) { }
+  ) {
+  }
 
   async ngOnInit () {
     this.titleService.setTitle(this.translate.instant('userForm.titles.page') + ' - ' + this.translate.instant('applicationTitle'))

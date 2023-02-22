@@ -6,7 +6,7 @@
       </div>
       <div class="col-6">
         <a class="m-4">
-          <button class="float-right " mat-stroked-button color="primary" (click)="new()">
+          <button class="float-right " mat-stroked-button color="primary" (click)="new()" *validatePermission="'prenominal.set'">
             <mat-icon>add</mat-icon>
             {{'actions.new' | translate}}
           </button>
@@ -27,10 +27,10 @@
                 <span>
                   {{prenominaConfiguration.name}} ({{ 'periods.' + prenominaConfiguration.billingPeriod | translate}})
                 </span>
-                <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openformGroupDialog(prenominaConfiguration)">
+                <button mat-icon-button matTooltip="{{'actions.edit' | translate}}" (click)="openformGroupDialog(prenominaConfiguration)" *validatePermission="'prenominal.set'">
                   <mat-icon color="primary">edit</mat-icon>
                 </button>
-                <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="removeConfiguration(prenominaConfiguration.id)">
+                <button mat-icon-button matTooltip="{{'actions.delete' | translate}}" (click)="removeConfiguration(prenominaConfiguration.id)" *validatePermission="'prenominal.delete'">
                   <mat-icon color="warn">close</mat-icon>
                 </button>
               </ng-template>
@@ -46,7 +46,7 @@
             </mat-tab>
           </mat-tab-group>
           <div class="total-business pl-4 pt-2" *ngIf="prenominaConfigurations.length===0">
-            <button mat-icon-button (click)="new()">
+            <button mat-icon-button (click)="new()" *validatePermission="'prenominal.set'">
               {{'prenomina.noConfigurations' | translate}}
               <mat-icon color="info">add</mat-icon>
             </button>

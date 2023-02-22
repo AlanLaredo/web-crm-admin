@@ -32,24 +32,33 @@
       <div class="row">
         <div class="col-12 pt-4">
           <div class="d-flex justify-content-between">
-            <button mat-stroked-button color="primary" matTooltip="{{'actions.delete' | translate}}" (click)="complete(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
-              <mat-icon >check_circle</mat-icon>
-              <span>{{ 'prenomina.complete' | translate }}</span>
-            </button>
+            <a *validatePermission="'prenominal.set'">
+              <button mat-stroked-button color="primary" matTooltip="{{'actions.delete' | translate}}" (click)="complete(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
+                <mat-icon >check_circle</mat-icon>
+                <span>{{ 'prenomina.complete' | translate }}</span>
+              </button>
+            </a>
                    
-            <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="exportFile(prenominaPeriod)" *ngIf="prenominaPeriod && prenominaPeriod.id" class="mr-2">
-              <mat-icon >download</mat-icon>
-              <span>{{ 'prenomina.export' | translate }}</span>
-            </button>
+            <a>
+              <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="exportFile(prenominaPeriod)" *ngIf="prenominaPeriod && prenominaPeriod.id" class="mr-2">
+                <mat-icon >download</mat-icon>
+                <span>{{ 'prenomina.export' | translate }}</span>
+              </button>
+            </a>
 
-            <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="save()" *ngIf="!prenominaPeriod" class="mr-2">
-              <mat-icon >save</mat-icon>
-              <span>{{ 'prenomina.save' | translate }}</span>
-            </button>
-            <button mat-stroked-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="remove(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed">
-              <mat-icon >delete_forever</mat-icon>
-              <span>{{ 'prenomina.remove' | translate }}</span>
-            </button>
+            <a *validatePermission="'prenominal.set'">
+              <button mat-stroked-button color="primary" matTooltip="{{'prenomina.generate' | translate}}" (click)="save()" *ngIf="!prenominaPeriod" class="mr-2">
+                <mat-icon >save</mat-icon>
+                <span>{{ 'prenomina.save' | translate }}</span>
+              </button>
+            </a>
+
+            <a *validatePermission="'prenominal.delete'">
+              <button mat-stroked-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="remove(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed">
+                <mat-icon >delete_forever</mat-icon>
+                <span>{{ 'prenomina.remove' | translate }}</span>
+              </button>
+            </a>
           </div>
         </div>
       </div>

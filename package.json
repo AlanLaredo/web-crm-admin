@@ -37,6 +37,7 @@
     "apollo-link-error": "^1.1.13",
     "aws-sdk": "^2.1048.0",
     "file-saver": "^2.0.5",
+    "fs": "0.0.1-security",
     "graphql": "15.4.0",
     "graphql-tag": "2.11.0",
     "jspdf": "^2.5.0",

@@ -5,23 +5,31 @@
 
         <ng-container *ngFor="let column of _columns" [matColumnDef]="column.key">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.text}} </th>
-          <td mat-cell *matCellDef="let row"> {{row[column.key]}} </td>
+          <td mat-cell *matCellDef="let row">
+            <fixed-decimals-component *ngIf="['subtotal', 'iva', 'invoiceTotal'].includes(column.key)" [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
+            <span *ngIf="!['invoiced', 'subtotal', 'iva', 'invoiceTotal'].includes(column.key)">
+              {{row[column.key]}}
+            </span>
+            <span *ngIf="column.key === 'invoiced' && row[column.key] === 'Facturado'">
+              <mat-icon class=" text-success">done</mat-icon>
+            </span>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> {{'general.actions' | translate}} </th>
           <td mat-cell *matCellDef="let row">
-            <a [routerLink]="[row.id, 'edit']" *validatePermission="'jobVavancy.set'">
+            <a [routerLink]="[row.id, 'edit']" *validatePermission="'projected-data.set'">
               <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
                 <mat-icon>mode_edit</mat-icon>
               </button>
             </a>
-            <a [routerLink]="[row.id, 'recruits']" *validatePermission="'jobVavancy.set'">
+            <a [routerLink]="[row.id, 'recruits']" *validatePermission="'projected-data.set'">
               <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
                 <mat-icon>engineering</mat-icon>
               </button>
             </a>
-            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)" *validatePermission="'jobVavancy.delete'">
+            <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)" *validatePermission="'projected-data.delete'">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>

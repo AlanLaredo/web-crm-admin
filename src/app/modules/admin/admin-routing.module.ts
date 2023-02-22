@@ -24,7 +24,8 @@ import {
   JobVacancyFormContainer,
   RecruitGridContainer,
   OperationBinnacleGridContainer,
-  PrenominalGridContainer
+  PrenominalGridContainer,
+  ProjectedDataGridContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -306,6 +307,11 @@ const routes: Routes = [
       {
         path: 'prenominal',
         component: PrenominalGridContainer,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'projected-data',
+        component: ProjectedDataGridContainer,
         canActivate: [AuthGuard]
       },
       {

@@ -21,6 +21,10 @@ export class ClientGridContainer implements OnInit {
   columns: IGeneralGridColumn[] = []
   roleAccessName: any
   actions: any
+  permissions: any = {
+    edit: false,
+    delete: false
+  }
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -34,7 +38,12 @@ export class ClientGridContainer implements OnInit {
   ngOnInit () {
     this.titleService.setTitle(this.translate.instant('submenu.clients') + ' - ' + this.translate.instant('applicationTitle'))
     const user: any = this.loginService.getUser()
+    const permissions = this.loginService.getPermissions()
+    this.permissions.edit = permissions.includes('clients.set')
+    this.permissions.delete = permissions.includes('clients.delete')
+
     this.roleAccessName = user.userRole?.name || ''
+    // *validatePermission="'users.delete'"
 
     this.loadTranslations()
     this.loadData()

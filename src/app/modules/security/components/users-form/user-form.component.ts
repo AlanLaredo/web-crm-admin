@@ -18,6 +18,7 @@ export class UserFormComponent implements OnInit {
   public userForm: any = null
   _user: any = {}
   _roleAccessList: any[] = []
+  roleAccessListForCompany: any[] = []
   _companies: any[] = []
   roleAccessName: any
   companyId: any
@@ -41,6 +42,7 @@ export class UserFormComponent implements OnInit {
   @Input('roleAccessList')
   set roleAccessList (roleAccessList: any[]) {
     this._roleAccessList = roleAccessList
+    this.initForm()
   }
 
   @Output()
@@ -86,6 +88,17 @@ export class UserFormComponent implements OnInit {
         Validators.minLength(8)
       ])
     })
+
+    this.updateUserRoles(this.companyId)
+  }
+
+  updateUserRoles ($event: any) {
+    const companyId = $event && $event.value ? $event.value : false || $event || null
+    if (companyId !== null) {
+      this.roleAccessListForCompany = this._roleAccessList.filter(role => role.companyId === companyId)
+    } else {
+      this.roleAccessListForCompany = [...this._roleAccessList]
+    }
   }
 
   submitForm () {
