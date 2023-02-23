@@ -18,10 +18,9 @@ export class FixedDecimalsComponent implements OnInit {
     }
     value = value === null || value === undefined ? 0 : value
 
-    const valueToLocale = value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true })
-    const partsOfValue = valueToLocale.split(',')
-   
-    this._value = partsOfValue[0].replace(/\./g, ',') + '.' + partsOfValue[1] //value.toFixed(2)
+    value = value.toFixed(2)
+
+    this._value = this.formatNumberWithCommas(value)
   }
 
   @Output() outValue: EventEmitter<void> = new EventEmitter()
@@ -30,5 +29,11 @@ export class FixedDecimalsComponent implements OnInit {
   }
 
   ngOnInit () {
+  }
+
+  formatNumberWithCommas (num: number) {
+    const parts = num.toString().split('.')
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return parts.join('.')
   }
 }
