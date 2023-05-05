@@ -166,6 +166,41 @@ export class MenuService {
       },
       {
         isRoot: true,
+        name: 'inventory',
+        isParent: true,
+        routeLink: ['/', 'admin', 'inventory'],
+        icon: {
+          fontIcon: 'fa-industry',
+          fontSet: 'fas'
+        },
+        permission: 'inventory',
+        childs: [
+          {
+            isRoot: false,
+            name: 'products',
+            isParent: false,
+            routeLink: ['/', 'admin', 'inventory', 'products'],
+            icon: {
+              fontIcon: 'fa-list',
+              fontSet: 'fas'
+            },
+            permission: 'inventory.product-management'
+          },
+          {
+            isRoot: false,
+            name: 'stock',
+            isParent: false,
+            routeLink: ['/', 'admin', 'inventory', 'stock'],
+            icon: {
+              fontIcon: 'fa-archive',
+              fontSet: 'fas'
+            },
+            permission: 'inventory.stock'
+          }
+        ]
+      },
+      {
+        isRoot: true,
         name: 'client',
         isParent: false,
         routeLink: ['/', 'admin', 'clients'],

@@ -1,0 +1,10 @@
+@import '../../../../../sass-utils/variables.scss';
+@import '../../../../../sass-utils/mixins.scss';
+@import '../../../../../sass-utils/functions.scss';
+
+.mat-column-actions  {
+  width: 220px !important;
+}
+.row-highlighted {
+  background-color: #ff9191 !important;
+}

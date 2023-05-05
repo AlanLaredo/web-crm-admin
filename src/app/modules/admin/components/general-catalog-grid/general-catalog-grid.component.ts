@@ -56,13 +56,17 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
 
   _columns: IGeneralGridColumn[] = [{
     id: 'name',
-    name: 'catalogs.cols.name'
+    name: 'catalogs.cols.name',
+    type: 'text'
   }, {
     id: 'description',
-    name: 'catalogs.cols.description'
+    name: 'catalogs.cols.description',
+    type: 'text'
+
   }, {
     id: 'actions',
-    name: 'catalogs.cols.actions'
+    name: 'catalogs.cols.actions',
+    type: 'text'
   }]
 
   displayedColumns: string[] = this._columns.map(column => column.id)

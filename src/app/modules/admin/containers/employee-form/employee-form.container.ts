@@ -162,4 +162,24 @@ export class EmployeeFormContainer implements OnInit {
   async uploadAws (files: any[]): Promise<any[]> {
     return await Promise.all(files.map(file => this.awsFileService.uploadFile(file, 'employeeDocuments')))
   }
+
+  isVacancy = false
+  isVacancyMode () {
+    this.isVacancy = !this.isVacancy
+
+    if (!this.data.person) {
+      this.data.person = {}
+    }
+    if (this.data.person.name === 'Vacante') {
+      this.data.person.contactEmails = ''
+      this.data.person.contactLastName = ''
+      this.data.person.contactPhoneContacts = ''
+    }
+    
+    this.data.person.name = this.data.person.name === 'Vacante' ? '' : 'Vacante'
+
+
+    // this.data.person.name = 'Vacante'
+    this.data = { ...this.data }
+  }
 }

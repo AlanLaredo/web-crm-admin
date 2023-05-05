@@ -25,7 +25,10 @@ import {
   RecruitGridContainer,
   OperationBinnacleGridContainer,
   PrenominalGridContainer,
-  ProjectedDataGridContainer
+  ProjectedDataGridContainer,
+  ProductManagementGridContainer,
+  ProductManagementFormContainer,
+  ProductManagementStockContainer
 } from './containers'
 import { ClientServiceGridContainer } from './containers/client-service-grid'
 import { JobVacancyGridContainer } from './containers/job-vacancy-grid'
@@ -179,6 +182,35 @@ const routes: Routes = [
             }
           }
         ]
+      },
+      {
+        path: 'inventory',
+        children: [{
+          path: 'products',
+          component: ProductManagementGridContainer,
+          data: {
+            title: 'Listado de productos'
+          }
+        }, {
+          path: 'products/create',
+          component: ProductManagementFormContainer,
+          data: {
+            title: 'Creación de producto'
+          }
+        },
+        {
+          path: 'products/:elementId/edit',
+          component: ProductManagementFormContainer,
+          data: {
+            title: 'Edición de producto'
+          }
+        }, {
+          path: 'stock',
+          component: ProductManagementStockContainer,
+          data: {
+            title: 'Exisitencias'
+          }
+        }]
       },
       {
         path: 'employee',

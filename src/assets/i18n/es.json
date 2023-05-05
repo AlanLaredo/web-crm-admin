@@ -97,7 +97,8 @@
     "operationBinnacle": "Operación",
     "nomina": "Prenomina",
     "prenominal": "Prenómina",
-    "projectedData": "Proyectado"
+    "projectedData": "Proyectado",
+    "inventory": "Inventarios"
   },
   "submenu": {
     "users": "Usuarios",
@@ -119,7 +120,9 @@
     "operationBinnacle": "Bitácora operativa",
     "nomina": "Nómina",
     "prenominal": "Prenómina",
-    "projectedData": "Proyectado"
+    "projectedData": "Proyectado",
+    "products": "Productos",
+    "stock": "Existencias"
   },
   "header": {
     "confirmLogout": "¿Está seguro de cerrar sesión?",
@@ -211,6 +214,7 @@
     },
     "instructions": {
       "introduce": "Introduce un texto",
+      "editValue": "Editar el valor",
       "enterAText": "Introduce un texto",
       "enterATextWithComma": "Texto separado por Coma",
       "selectADate": "Seleccione una fecha",
@@ -476,6 +480,7 @@
     "position": "Puesto",
     "client": "Cliente",
     "reasignmentReason": "Reasignación de empleado",
+    "vacancy": "Es vacante",
     "reason": "Razón",
     "enterAReason": "Introduce el motivo de la reasignación"
   },
@@ -614,7 +619,13 @@
     "infoRestDay": "Selecciona la fecha de descanso",
     "infoWorkhift": "Introduce un turno",
     "infoHours": "Introduce la cantidad de horas",
-    "info": "Empleados"
+    "info": "Empleados",
+    "clientService": "Servicio",
+    "totalVacancy": "#Vacantes",
+    "totalOperationNull": "#Ops. pendientes",
+    "totalConfirmNull": "#Ops. Confirm. pendientes",
+    "today": "Hoy",
+    "comment": "Comentario"
   },
   "incidence": {
     "date": "Fecha",
@@ -646,7 +657,8 @@
     "noGenerated": "Ésta prenómina aún no ha sido generada",
     "statusCompleted": "Ésta prenómina ha sido cerrada y no se puede modificar",
     "noConfigurations": "Aún no hay configuraciones",
-    "export": "Excel"
+    "export": "Excel",
+    "removePrenomina": "Borrar prenómina"
 
   },
   "periods": {
@@ -686,5 +698,17 @@
     "invoiceTotal": "Total",
     "description": "Comentarios",
     "invoiced": "Facturado"
+  },
+  "productsManagement": {
+    "title": "Productos",
+    "keycode": "Código",
+    "name": "Producto",
+    "description": "Descripción",
+    "reorderPoint": "Punto de reorden",
+    "unitCost": "Precio unitario",
+    "itemsInStock": "Existencias",
+    "totalValue": "Valor total",
+    "elements": "elementos",
+    "valorTotalInventary": "Valor total de inventario"
   }
 }

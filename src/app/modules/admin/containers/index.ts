@@ -21,6 +21,9 @@ import { RecruitFormContainer } from './recruit-form'
 import { OperationBinnacleGridContainer } from './operation-binnacle-grid'
 import { PrenominalGridContainer } from './prenominal-grid'
 import { ProjectedDataGridContainer } from './projected-data-grid'
+import { ProductManagementGridContainer } from './product-management-grid'
+import { ProductManagementFormContainer } from './product-management-form'
+import { ProductManagementStockContainer } from './product-management-stock'
 
 export const ADMIN_CONTAINERS = [
   MainContainer,
@@ -45,7 +48,10 @@ export const ADMIN_CONTAINERS = [
   RecruitFormContainer,
   OperationBinnacleGridContainer,
   PrenominalGridContainer,
-  ProjectedDataGridContainer
+  ProjectedDataGridContainer,
+  ProductManagementGridContainer,
+  ProductManagementFormContainer,
+  ProductManagementStockContainer
 ]
 
 export {
@@ -71,5 +77,8 @@ export {
   RecruitFormContainer,
   OperationBinnacleGridContainer,
   PrenominalGridContainer,
-  ProjectedDataGridContainer
+  ProjectedDataGridContainer,
+  ProductManagementGridContainer,
+  ProductManagementFormContainer,
+  ProductManagementStockContainer
 }

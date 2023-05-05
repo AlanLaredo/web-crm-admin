@@ -37,7 +37,8 @@ export class OperationFormModalComponent {
 
   initForm () {
     this.formBuilderGroup = this.formBuilder.group({
-      abbreviation: new FormControl(this._data.abbreviation, [Validators.required])
+      abbreviation: new FormControl(this._data.abbreviation, [Validators.required]),
+      comment: new FormControl(this._data.comment, []),
     })
   }
 

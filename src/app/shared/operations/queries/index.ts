@@ -83,6 +83,11 @@ import projectedDatasOperation from './projectedDatas.operation'
 import projectedPeriodOperation from './projectedPeriod.operation'
 import projectedPeriodsOperation from './projectedPeriods.operation'
 
+import productManagementsOperation from './productManagements.operation'
+import productManagementOperation from './productManagement.operation'
+import getProductManagementFindOperation from './getProductManagementFind.operation'
+
+
 export {
   actionLogOperation,
   applicantStatusOperation,
@@ -164,5 +169,8 @@ export {
   projectedDataOperation,
   projectedDatasOperation,
   projectedPeriodOperation,
-  projectedPeriodsOperation
+  projectedPeriodsOperation,
+  productManagementsOperation,
+  productManagementOperation,
+  getProductManagementFindOperation
 }

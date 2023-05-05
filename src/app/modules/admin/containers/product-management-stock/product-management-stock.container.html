@@ -1,0 +1,41 @@
+<div class="row container-custom">
+  <div class="col-12">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <h1>{{ 'productsManagement.itemsInStock' | translate }}</h1>
+
+      </div>
+      <div class="col-6">
+        <div class="row d-flex justify-content-between">
+          <div class="col-6">
+            <h2> {{ data | sumTotal: 'itemsInStock' }} {{ 'productsManagement.elements' | translate }}</h2>
+          </div>
+          <div class="col-6">
+            <h2>  {{ 'productsManagement.totalValue' | translate }} 
+              <fixed-decimals-component [value]=" data | sumTotal: 'totalValue'"></fixed-decimals-component>
+            </h2>
+          </div>
+        </div>
+
+        <!-- <a class="m-4" [routerLink]="['create']">
+          <button class="float-right " mat-stroked-button color="primary">
+            <mat-icon>add</mat-icon>
+            {{'actions.new' | translate}}
+          </button>
+        </a> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+        <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <component-loading [isLoading]="loading">
+          <generic-grid-component [columns]="columns" [data]="filteredData" (outActionDelete)="delete($event)" (outActionColumnEdit)="saveRow($event)"></generic-grid-component>
+        </component-loading>
+      </div>
+    </div>
+  </div>
+</div>

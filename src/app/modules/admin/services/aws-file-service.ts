@@ -45,20 +45,6 @@ export class AwsFileService {
         resolve(data)
       })
     })
-
-    // Thirdfor upload progress
-    /*
-    this.s3Object.upload(params).on('httpUploadProgress', function (evt) {
-              console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
-          }).send(function (err, data) {
-              if (err) {
-                  console.log('There was an error uploading your file: ', err);
-                  return false;
-              }
-              console.log('Successfully uploaded file.', data);
-              return true;
-          });
-      */
   }
 
   public getSignedUrl (key: string): Observable<string> {
@@ -95,8 +81,6 @@ export class AwsFileService {
       }
 
       return this.s3Object.deleteObject(params, (err: any, data: any) => {
-        console.log(err)
-        console.log(data)
         if (err) {
           reject(err)
         }

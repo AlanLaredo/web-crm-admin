@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-12">
+    <mat-progress-bar mode="indeterminate" *ngIf="_loading"></mat-progress-bar>
+    <mat-card>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-12">
+            <form *ngIf="formBuilderGroup" [formGroup]="formBuilderGroup">
+              <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                <mat-label>{{'productsManagement.keycode' | translate}}</mat-label>
+                <input
+                type="text"
+                autocomplete="off"
+                matInput="matInput"
+                placeholder="{{'form.instructions.enterAText' | translate}}"
+                formControlName="keycode"
+                />
+                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                <mat-label>{{'productsManagement.name' | translate}}</mat-label>
+                <input
+                type="text"
+                autocomplete="off"
+                matInput="matInput"
+                placeholder="{{'form.instructions.enterAText' | translate}}"
+                formControlName="name"
+                />
+                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                <mat-label>{{'productsManagement.description' | translate}}</mat-label>
+                <input
+                type="text"
+                autocomplete="off"
+                matInput="matInput"
+                placeholder="{{'form.instructions.enterAText' | translate}}"
+                formControlName="description"
+                />
+                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                <mat-label>{{'productsManagement.reorderPoint' | translate}}</mat-label>
+                <input
+                type="text"
+                autocomplete="off"
+                matInput="matInput"
+                placeholder="{{'form.instructions.enterANumber' | translate}}"
+                formControlName="reorderPoint"
+                />
+                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="legacy" class="custom-mat-form-field">
+                <mat-label>{{'productsManagement.unitCost' | translate}}</mat-label>
+                <input
+                type="text"
+                autocomplete="off"
+                matInput="matInput"
+                placeholder="{{'form.instructions.enterANumber' | translate}}"
+                formControlName="unitCost"
+                />
+                <mat-hint>{{'form.validations.required' | translate}} </mat-hint>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="row" *ngIf="formBuilderGroup">
+  <div class="col-12 mt-4">
+    <button
+    [disabled]="!formBuilderGroup.valid || _loading"
+    class="text-white"
+    mat-flat-button="mat-flat-button"
+    (click)="submitForm()"
+    color="primary">
+    {{'form.save' | translate}}
+    </button>
+    <button
+    class="cancel-button"
+    mat-button="mat-button"
+    (click)="cancelForm()"
+    color="primary"
+    [hidden]="!_data.id">
+    {{'form.cancel' | translate}}
+    </button>
+  </div>
+</div>
+
+

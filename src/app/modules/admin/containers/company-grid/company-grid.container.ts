@@ -19,6 +19,7 @@ export class CompanyGridContainer implements OnInit {
   columns: string[] = []
 
   /* eslint-disable no-useless-constructor */
+  // TODO: Revisar si realmente necesito el notifyService
   constructor (
     private translate: TranslateService,
     private notifyService: NotifyService,

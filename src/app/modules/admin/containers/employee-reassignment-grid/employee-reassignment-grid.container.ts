@@ -45,7 +45,6 @@ export class EmployeeReassignmentGridContainer implements OnInit {
     this.graphqlService.execute(employeeReassignmentsOperation, { clientId: this.clientId }).then((result: any) => {
       this.loading = false
       this.data = result.map((employeeReassignment: any) => {
-        console.log(employeeReassignment)
         employeeReassignment.employeName = employeeReassignment.employee.person.name + ' ' + (employeeReassignment.employee.person.lastName ? employeeReassignment.employee.person.lastName : ' ')
         employeeReassignment.transmitterClientName = employeeReassignment.transmitterClient.businessName ? employeeReassignment.transmitterClient.businessName : 'N/a'
         employeeReassignment.receiverClientName = employeeReassignment.receiverClient.businessName ? employeeReassignment.receiverClient.businessName : 'N/a'

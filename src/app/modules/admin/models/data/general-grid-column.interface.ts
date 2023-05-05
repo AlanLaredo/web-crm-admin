@@ -3,4 +3,5 @@ export default interface IGeneralGridColumn extends IBase {
   id: string
   name: string
   actions?: string[]
+  type?: string
 }

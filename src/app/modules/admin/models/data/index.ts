@@ -4,6 +4,7 @@ import ICatalog from './catalog.interface'
 import ISystemAlert from './system-alert.interface'
 import IImage from './image.interface'
 import IGeneralGridColumn from './general-grid-column.interface'
+import IGenericGridColumn from './generic-grid-column.interface'
 
 export {
   IBase,
@@ -11,5 +12,6 @@ export {
   ICatalog,
   ISystemAlert,
   IImage,
-  IGeneralGridColumn
+  IGeneralGridColumn,
+  IGenericGridColumn
 }

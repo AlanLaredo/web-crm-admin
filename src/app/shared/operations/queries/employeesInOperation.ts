@@ -19,6 +19,9 @@ query employeesInOperation($id: ID, $keycode: String, $person: CreatePersonInput
         client {
           businessName
         }
+        clientService {
+          name
+        }
         person{
             name
             lastName
@@ -66,6 +69,8 @@ query employeesInOperation($id: ID, $keycode: String, $person: CreatePersonInput
           hours
           operationModifiedBy
           operationConfirmModifiedBy
+          operationComments
+          operationConfirmComments
         }
     }
 }`

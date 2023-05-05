@@ -39,6 +39,7 @@ import { SHARED_SERVICES } from './services'
 // Directives
 import { SHARED_DIRECTIVES } from './directives'
 import { HttpAuthenticationInterceptor, HttpErrorExceptionIntercept } from './interceptors'
+import { PIPES } from './pipes'
 
 // Para clases puras no se utiliza el export
 export function createTranslateLoader (http: HttpClient) {
@@ -47,7 +48,8 @@ export function createTranslateLoader (http: HttpClient) {
 @NgModule({
   declarations: [
     ...SHARED_COMPONENTS,
-    ...SHARED_DIRECTIVES
+    ...SHARED_DIRECTIVES,
+    ...PIPES
   ],
   imports: [
     RouterModule,
@@ -103,6 +105,7 @@ export function createTranslateLoader (http: HttpClient) {
   exports: [
     ...SHARED_COMPONENTS,
     ...SHARED_DIRECTIVES,
+    ...PIPES,
     TranslateModule,
     MatButtonModule,
     DragDropModule,

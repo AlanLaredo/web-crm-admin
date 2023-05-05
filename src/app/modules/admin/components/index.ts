@@ -29,6 +29,8 @@ import { PrenominaGroupFormModalComponent } from './prenomina-group-form-modal'
 import { CompanyTabContentComponent } from './prenomina-tab-grid/prenomina-tab-content.component'
 import { PrenominaPeriodEmployeeGridComponent } from './prenomina-period-employee-grid'
 import { ProjectedDataGridComponent } from './projected-data-grid-component'
+import { ProductManagementFormComponent } from './product-management-form'
+import { GenericGridComponent } from './generic-grid'
 
 export const ADMIN_COMPONENTS = [
   HeaderComponent,
@@ -62,7 +64,9 @@ export const ADMIN_COMPONENTS = [
   PrenominaGroupFormModalComponent,
   CompanyTabContentComponent,
   PrenominaPeriodEmployeeGridComponent,
-  ProjectedDataGridComponent
+  ProjectedDataGridComponent,
+  ProductManagementFormComponent,
+  GenericGridComponent
 ]
 
 export const ADMIN_ENTRY_COMPONENTS = []
@@ -97,5 +101,7 @@ export {
   PrenominaGroupFormModalComponent,
   CompanyTabContentComponent,
   PrenominaPeriodEmployeeGridComponent,
-  ProjectedDataGridComponent
+  ProjectedDataGridComponent,
+  ProductManagementFormComponent,
+  GenericGridComponent
 }

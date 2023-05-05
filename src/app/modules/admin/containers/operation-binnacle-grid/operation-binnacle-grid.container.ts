@@ -28,6 +28,8 @@ export class OperationBinnacleGridContainer implements OnInit {
   daysOfWeek: DateTime[] = []
   datesInfo: string = ''
   user: any = {}
+  todayStringCol = DateTime.now().toFormat('D')
+
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -53,6 +55,7 @@ export class OperationBinnacleGridContainer implements OnInit {
   loadTranslations () {
     this.filterOptions = [
       { key: 'clientBusinessName', text: this.translate.instant('operationBinnacle.clientBusinessName') },
+      { key: 'clientService', text: this.translate.instant('operationBinnacle.clientService') },
       { key: 'fullname', text: this.translate.instant('operationBinnacle.fullname') },
       { key: 'restDay', text: this.translate.instant('operationBinnacle.restDay') },
       { key: 'workshift', text: this.translate.instant('operationBinnacle.workshift') },
@@ -79,11 +82,12 @@ export class OperationBinnacleGridContainer implements OnInit {
 
   async loadData () {
     this.loading = true
-    this.data = await this.graphqlService.execute(employeesInOperationOperation)
+    this.data = await this.graphqlService.execute(employeesInOperationOperation, { operationStartDate: '2023-04-02' })
     this.loading = false
 
     this.data = this.data.map((employee: any) => {
-      employee.clientBusinessName = employee.client.businessName
+      employee.clientBusinessName = employee.client?.businessName || 'N/A'
+      employee.clientService = employee.clientService?.name || 'N/A'
 
       this.daysOfWeek.forEach((dayOfWeek: DateTime) => {
         const foundOperation = employee.operations.find((operation: any) => {
@@ -132,6 +136,7 @@ export class OperationBinnacleGridContainer implements OnInit {
   }
 
   setDataFiltered (filteredData: any) {
+    console.log(filteredData)
     this.filteredData = filteredData
   }
 
@@ -189,20 +194,20 @@ export class OperationBinnacleGridContainer implements OnInit {
   onChangeDate ($event: any) {
     const date = $event.value || $event
     if (date) {
-      const firstDayOfWeek = DateTime.fromJSDate(new Date(date))
-      if (firstDayOfWeek) {
-        this.daysOfWeek = this.configDatesOfWeek(firstDayOfWeek)
-        this.setDatesInfo(firstDayOfWeek)
+      const dateOfWeek = DateTime.fromJSDate(new Date(date))
+      if (dateOfWeek) {
+        this.daysOfWeek = this.configDatesOfWeek(dateOfWeek)
+        this.setDatesInfo(dateOfWeek)
         this.loadTranslations()
         this.loadData()
       }
     }
   }
 
-  setDatesInfo (firstDayOfWeek: DateTime) {
-    const endDay: DateTime = firstDayOfWeek.plus({ days: 6 })
-    if (firstDayOfWeek.monthLong !== endDay.monthLong) {
-      this.datesInfo = this.capitalize(firstDayOfWeek.monthLong) + ' ' + firstDayOfWeek.year + ' - ' + this.capitalize(endDay.monthLong) + ' ' + endDay.year
+  setDatesInfo (dateOfWeek: DateTime) {
+    const endDay: DateTime = dateOfWeek.plus({ days: 6 })
+    if (dateOfWeek.monthLong !== endDay.monthLong) {
+      this.datesInfo = this.capitalize(dateOfWeek.monthLong) + ' ' + dateOfWeek.year + ' - ' + this.capitalize(endDay.monthLong) + ' ' + endDay.year
     } else {
       this.datesInfo = this.capitalize(endDay.monthLong) + ' ' + endDay.year
     }
@@ -230,20 +235,23 @@ export class OperationBinnacleGridContainer implements OnInit {
   openDialogOperation ($event: any) {
     const { employee, _function, operation } = $event
     const abbreviation = _function === 'operation' ? operation.operation : operation.operationConfirm
+    const comment = _function === 'operation' ? operation.operationComments : operation.operationConfirmComments
     const dialogRef = this.dialog.open(OperationFormModalComponent, {
       width: '900px',
       disableClose: false,
       data: {
         abbreviation,
+        comment,
         operations: OPERATIONS_CATALOG_DATA
       }
     })
     dialogRef.afterClosed().subscribe(async (result: any) => {
       if (result) {
-        if (result.abbreviation !== abbreviation) {
+        if (result.abbreviation !== abbreviation || result.comment !== comment) {
           const { dateTime, operationColor, operationConfirmColor, text, textConfirm, ...updateOperation } = operation
           _function === 'operation' ? updateOperation.operation = result.abbreviation : updateOperation.operationConfirm = result.abbreviation
           _function === 'operation' ? updateOperation.operationModifiedBy = this.user._id : updateOperation.operationConfirmModifiedBy = this.user._id
+          _function === 'operation' ? updateOperation.operationComments = result.comment : updateOperation.operationConfirmComments = result.comment
           this.loading = true
           const response = await this.saveOperation(updateOperation)
           if (response.id) {

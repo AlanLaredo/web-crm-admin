@@ -20,10 +20,8 @@ import { PERIODS_CATALOG_DATA } from '../../data'
 export class CompanyTabContentComponent implements OnInit {
   @Input('prenominaConfiguration')
   set prenominaConfiguration (prenominaConfiguration: any[]) {
-    if (prenominaConfiguration !== null) {
       this._prenominaConfiguration = prenominaConfiguration
       this.loadDefaultDate()
-    }
   }
 
   @Output()
@@ -61,11 +59,8 @@ export class CompanyTabContentComponent implements OnInit {
 
     this.prenominaPeriod = await this.checkPrenominaPeriod()
     this.generateColumnsConfiguration(days)
-    if (this.prenominaPeriod) {
-      this.loadPrenominaPeriodEmployee(this.prenominaPeriod && this.prenominaPeriod.id ? this.prenominaPeriod.id : null)
-    } else {
-      this.loading = false
-    }
+    await this.loadPrenominaPeriodEmployee(this.prenominaPeriod && this.prenominaPeriod.id ? this.prenominaPeriod.id : null)
+    this.loading = false
   }
 
   generateColumnsConfiguration (days: DateTime[]) {
@@ -175,10 +170,12 @@ export class CompanyTabContentComponent implements OnInit {
   }
 
   async remove (id: string) {
-    await this.graphqlService.execute(deletePrenominaPeriodOperation, { id })
-    this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')
-    this.loadDefaultDate()
-    // this.prenominaPeriod = await this.checkPrenominaPeriod()
+    if (await this.notifyService.confirm(this.translate.instant('prenomina.removePrenomina'))) {
+      await this.graphqlService.execute(deletePrenominaPeriodOperation, { id })
+      this.notifyService.notify(this.translate.instant('messages.delete.success'), 'success')
+      this.loadDefaultDate()
+      // this.prenominaPeriod = await this.checkPrenominaPeriod()
+    }
   }
 
   async complete (id: string) {
@@ -331,8 +328,6 @@ export class CompanyTabContentComponent implements OnInit {
     if (id) {
       this.loading = true
       this.prenominaPeriodEmployees = await this.getPrenominaPeriodEmployeeByPrenominaPeriodId(id)
-      // console.log('this.prenominaPeriodEmployees => ')
-      // console.log(this.prenominaPeriodEmployees)
       this.loading = false
     } else {
       this.prenominaPeriodEmployees = []

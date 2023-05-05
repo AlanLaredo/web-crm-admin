@@ -32,10 +32,6 @@ export class MenuLeftComponent implements OnInit {
         }
       }
     )
-    // this.router.events.filter(
-    //   (event: any) => event instanceof NavigationEnd).subscribe(event => {
-    //   console.log(event)
-    // })
   }
 
   loadMenuOptions () {

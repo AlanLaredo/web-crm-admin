@@ -104,7 +104,6 @@ export class EmployeeFormComponent implements OnInit {
 
   initForm () {
     const companyId = !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : this._data?.companyId || undefined
-
     this.formBuilderGroup = this.formBuilder.group({
       keycode: new FormControl((this._data.keycode || null), []),
       bankAccount: new FormControl((this._data.bankAccount || null), []),
@@ -115,10 +114,10 @@ export class EmployeeFormComponent implements OnInit {
       clientId: new FormControl({ value: (this._data.clientId || null), disabled: this._disableConfigurations }, []),
       clientServiceId: new FormControl({ value: (this._data.clientServiceId || null), disabled: this._disableConfigurations }, []),
       companyId: new FormControl({ value: companyId, disabled: !(this.user.userRole.name === 'CrmAdmin') || this._disableConfigurations }, [Validators.required]),
-      contactName: new FormControl((this._data.person?.name || null), [Validators.required]),
-      contactLastName: new FormControl((this._data.person?.lastName || null), []),
-      contactPhoneContacts: new FormControl((this._data.person?.phoneContacts && this._data.person?.phoneContacts[0] ? this._data.person?.phoneContacts[0] : undefined), []),
-      contactEmails: new FormControl((this._data.person?.emails && this._data.person?.emails[0] ? this._data.person?.emails[0] : null), []),
+      contactName: new FormControl({ value: (this._data.person?.name || null), disabled: this._data.person?.name === 'Vacante' }, [Validators.required]),
+      contactLastName: new FormControl({ value: (this._data.person?.lastName || null), disabled: this._data.person?.name === 'Vacante'  }, []),
+      contactPhoneContacts: new FormControl({ value: (this._data.person?.phoneContacts && this._data.person?.phoneContacts[0] ? this._data.person?.phoneContacts[0] : undefined), disabled: this._data.person?.name === 'Vacante' }, []),
+      contactEmails: new FormControl({ value: (this._data.person?.emails && this._data.person?.emails[0] ? this._data.person?.emails[0] : null), disabled: this._data.person?.name === 'Vacante'  }, []),
 
       name: new FormControl((this._data.address?.name || null), []),
       street: new FormControl((this._data.address?.street || null), []),
@@ -192,7 +191,6 @@ export class EmployeeFormComponent implements OnInit {
       outData.newFiles = this.newFiles
       this.newFiles = []
     }
-
     this.outActionForm.emit(outData)
   }
 

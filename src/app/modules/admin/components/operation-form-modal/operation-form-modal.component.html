@@ -19,6 +19,11 @@
       </mat-select>
       <mat-hint>{{'form.instructions.selectAnOption' | translate}}, {{'form.validations.required' | translate}}</mat-hint>
     </mat-form-field>
+    <mat-form-field appearance="legacy" class="custom-mat-form-field">
+      <mat-label>{{'operationBinnacle.comment' | translate}}</mat-label>
+      <input formControlName="comment" placeholder="{{'form.instructions.enterAText' | translate}}" type="text" autocomplete="off" matInput="matInput"/>
+      <mat-hint>{{'form.validations.optional' | translate}} </mat-hint>
+    </mat-form-field>
   </form>
   <div class="row mt-4">
     <div class="col-12">

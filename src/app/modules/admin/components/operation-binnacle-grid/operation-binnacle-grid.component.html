@@ -46,7 +46,7 @@
         </ng-container>
 
         <ng-container matColumnDef="dates">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="7">   
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="8">   
             {{datesInfo}}
           </th>
         </ng-container>
@@ -55,7 +55,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="14">
+          <td class="mat-cell" colspan="15">
             {{'matTable.noRecords' | translate}}
           </td>
         </tr>

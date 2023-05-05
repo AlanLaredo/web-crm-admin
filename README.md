@@ -93,3 +93,4 @@ pm2 serve "./dist/webCrmAdmin/" 4200
 ##dos 
 ng build
 
+Versión de node v14.20.1

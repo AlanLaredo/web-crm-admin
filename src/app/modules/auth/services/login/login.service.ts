@@ -42,7 +42,6 @@ export class LoginService {
       return true
     },
     err => {
-      console.log(err)
       throw err
     })
   }

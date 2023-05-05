@@ -63,7 +63,6 @@ export class PrenominalGridContainer implements OnInit {
     this.loading = false
     this.prenominaConfigurations = prenominaConfigurations
     this.clients = clients
-
     this.setDataFiltered(this.prenominaConfigurations)
   }
 

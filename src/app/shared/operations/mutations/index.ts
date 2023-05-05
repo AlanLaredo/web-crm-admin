@@ -90,6 +90,11 @@ import updateProjectedDataOperation from './updateProjectedData.operation'
 import createProjectedPeriod from './createProjectedPeriod.operation'
 import deleteProjectedPeriodOperation from './deleteProjectedPeriod.operation'
 
+
+import updateProductManagementOperation from './updateProductManagement.operation'
+import deleteProductManagementOperation from './deleteProductManagement.operation'
+import createProductManagementOperation from './createProductManagement.operation'
+
 export {
   deleteProjectedPeriodOperation,
   createClientServiceOperation,
@@ -180,7 +185,10 @@ export {
   updatePrenominaPeriodEmployeeOperation,
   updatePrenominaPeriodEmployeeDayOperation,
   updateProjectedDataOperation,
-  createProjectedPeriod
+  createProjectedPeriod,
+  updateProductManagementOperation,
+  deleteProductManagementOperation,
+  createProductManagementOperation
   /*,
   deleteProjectedPeriodOperation
   */

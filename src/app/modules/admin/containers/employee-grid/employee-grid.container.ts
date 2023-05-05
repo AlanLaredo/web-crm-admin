@@ -84,7 +84,7 @@ export class EmployeeGridContainer implements OnInit {
         employee.personName = employee.person.name + ' ' + (employee.person.lastName ? employee.person.lastName : ' ')
         employee.companyName = employee.company.name
         employee.positionName = employee.position?.name ? employee.position?.name : 'N/A'
-        employee.clientName = employee.client.businessName
+        employee.clientName = employee.client?.businessName || 'N/A'
 
         employee.hiringDate = employee.hiringDate ? DateTime.fromJSDate(new Date(employee.hiringDate)).toFormat('DDDD') : 'N/A'
         employee.startOperationDate = employee.startOperationDate ? DateTime.fromJSDate(new Date(employee.startOperationDate)).toFormat('DDDD') : 'N/A'
