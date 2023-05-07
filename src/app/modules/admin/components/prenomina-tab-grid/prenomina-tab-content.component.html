@@ -32,6 +32,24 @@
       <div class="row">
         <div class="col-12 pt-4">
           <div class="d-flex justify-content-between">
+
+            <!-- <a *validatePermission="'prenominal.set'">
+              <button mat-stroked-button color="primary" matTooltip="{{'actions.delete' | translate}}" (click)="uploadFile(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
+                <mat-icon >upload</mat-icon>
+                <span>{{ 'prenomina.import' | translate }}</span>
+              </button>
+            </a> -->
+
+            <a  *validatePermission="'prenominal.set'">
+              <div *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
+                <upload-files-component
+                [multiple]="false"
+                (complete)="onFileComplete($event)"
+                (outActionUploadFile)="uploadFile($event, prenominaPeriod.id)"
+                (outActionRemoveFile)="removeTemporalFile($event)"></upload-files-component>
+              </div>
+            </a>
+              
             <a *validatePermission="'prenominal.set'">
               <button mat-stroked-button color="primary" matTooltip="{{'actions.delete' | translate}}" (click)="complete(prenominaPeriod.id)" *ngIf="prenominaPeriod && prenominaPeriod.id && !prenominaPeriod.completed" class="mr-2">
                 <mat-icon >check_circle</mat-icon>

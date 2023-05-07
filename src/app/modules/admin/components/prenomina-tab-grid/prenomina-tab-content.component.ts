@@ -2,15 +2,18 @@
 /* eslint accessor-pairs: ["error", { "enforceForClassMembers": false }] */
 // Third Party
 import { HttpClient } from '@angular/common/http'
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { DateTime } from 'luxon'
 import * as fileSaver from 'file-saver'
+
 import { createPrenominaPeriodOperation, deletePrenominaPeriodOperation, updatePrenominaPeriodEmployeeOperation, updatePrenominaPeriodOperation } from 'src/app/shared/operations/mutations'
 import { operationsOperation, prenominaPeriodEmployeesOperation, prenominaPeriodOperation } from 'src/app/shared/operations/queries'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { environment } from 'src/environments/environment'
 import { PERIODS_CATALOG_DATA } from '../../data'
+import { UploadFilesComponent } from 'src/app/shared/components'
+import { UploadFileModel } from 'src/app/shared/components/upload-files-component/upload-file.model'
 
 @Component({
   selector: 'prenomina-tab-content-component',
@@ -403,6 +406,51 @@ export class CompanyTabContentComponent implements OnInit {
     } catch (error: any) {
       this.notifyService.notify(this.translate.instant('messages.delete.error'), 'Error al generar el archivo.')
     }
+  }
+
+  @ViewChild(UploadFilesComponent) uploadFilesComponent!: UploadFilesComponent
+  async uploadFile ($event: UploadFileModel, prenominaPeriodId: any) {
+    const file: any = $event.data
+    console.log(file)
+    if (file) {
+      try {
+
+        await this.sendFile(file, prenominaPeriodId);
+        this.uploadFilesComponent.cancelFile(file)
+        this.uploadFilesComponent.cleanTemporalImages()
+        await this.loadPrenominaPeriodEmployee(prenominaPeriodId)
+
+      } catch (error) {
+        console.error('Error al subir el archivo:', error);
+      }
+    }
+    
+    // const file = (event.target as HTMLInputElement).files[0];
+    // if (file) {
+    //   // try {
+    //   //   await this.uploadFile(file);
+    //   //   console.log('Archivo subido con éxito');
+    //   // } catch (error) {
+    //   //   console.error('Error al subir el archivo:', error);
+    //   // }
+    // }
+  }
+
+  async sendFile (file: File, prenominaPeriodId: string) {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+  
+    // Reemplaza la URL con la ruta de tu API y agrega el prenominaPeriodId
+    const apiUrl = `http://localhost:3001/prenomina/importExcel/${prenominaPeriodId}`
+    
+    return this.httpClient.post(apiUrl, formData).toPromise()
+  }
+
+  onFileComplete ($event: any) {
+  }
+
+  removeTemporalFile ($event: any) {
+
   }
 }
 

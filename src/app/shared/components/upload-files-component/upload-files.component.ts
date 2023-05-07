@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable accessor-pairs */
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core'
 import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { UploadFileModel } from './upload-file.model'
@@ -39,6 +39,7 @@ export class UploadFilesComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   constructor (
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit () {
@@ -77,6 +78,11 @@ export class UploadFilesComponent implements OnInit {
     if (file) {
       this.removeFileFromArray(file)
     }
+  }
+
+  cleanTemporalImages () {
+    this.files = []
+    this.cd.detectChanges()
   }
 
   retryFile (file: UploadFileModel) {

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <div class="d-flex flex-column pt-4" *ngFor="let file of files" [@fadeInOut]="file.state">
+    <div class="d-flex flex-column" *ngFor="let file of files" [@fadeInOut]="file.state">
       <div>
         <span id="file-label" class="cs-filename">
           <button mat-icon-button color="primary" title="Cancel"(click)="cancelFile(file)" *ngIf="file.canCancel">

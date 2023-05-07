@@ -658,6 +658,7 @@
     "statusCompleted": "Ésta prenómina ha sido cerrada y no se puede modificar",
     "noConfigurations": "Aún no hay configuraciones",
     "export": "Excel",
+    "import": "Importar",
     "removePrenomina": "Borrar prenómina"
 
   },
