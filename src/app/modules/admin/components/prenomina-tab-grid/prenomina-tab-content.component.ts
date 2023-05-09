@@ -11,7 +11,7 @@ import { createPrenominaPeriodOperation, deletePrenominaPeriodOperation, updateP
 import { operationsOperation, prenominaPeriodEmployeesOperation, prenominaPeriodOperation } from 'src/app/shared/operations/queries'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 import { environment } from 'src/environments/environment'
-import { PERIODS_CATALOG_DATA } from '../../data'
+import { OPERATIONS_CATALOG_DATA, PERIODS_CATALOG_DATA } from '../../data'
 import { UploadFilesComponent } from 'src/app/shared/components'
 import { UploadFileModel } from 'src/app/shared/components/upload-files-component/upload-file.model'
 
@@ -338,6 +338,10 @@ export class CompanyTabContentComponent implements OnInit {
     this.prenominaPeriodEmployeesData = this.processPrenominaPeriodEmployeesData(this.prenominaPeriodEmployees)
   }
 
+  getOperationData (abbreviation: string): any {
+    return OPERATIONS_CATALOG_DATA.find((operation: any) => operation.abbreviation === abbreviation)
+  }
+
   processPrenominaPeriodEmployeesData (prenominaPeriodEmployees: any[]) {
     // const days = this.getDaysForPeriod(this.dayOfPeriod, this._prenominaConfiguration)
 
@@ -347,7 +351,12 @@ export class CompanyTabContentComponent implements OnInit {
       // prenominaPeriodEmployee.days = []
       prenominaPeriodEmployee.prenominaPeriodEmployeeDays.forEach((day: any) => {
         const colDateName = this.getFormatDayForThisPeriod(day.date, 'weekly')
+        const operationData = this.getOperationData(day.operationAbbreviation)
         prenominaPeriodEmployee[colDateName] = day.operationAbbreviation
+
+        prenominaPeriodEmployee[colDateName + '_operation'] =  !!day.operationAbbreviation
+        prenominaPeriodEmployee[colDateName + '_operationColor'] = operationData?.color
+        
         // prenominaPeriodEmployee[]
         // dayOfWeek.toFormat('D')
         // prenominaPeriodEmployee.days.push({
@@ -411,7 +420,6 @@ export class CompanyTabContentComponent implements OnInit {
   @ViewChild(UploadFilesComponent) uploadFilesComponent!: UploadFilesComponent
   async uploadFile ($event: UploadFileModel, prenominaPeriodId: any) {
     const file: any = $event.data
-    console.log(file)
     if (file) {
       try {
 
@@ -419,21 +427,11 @@ export class CompanyTabContentComponent implements OnInit {
         this.uploadFilesComponent.cancelFile(file)
         this.uploadFilesComponent.cleanTemporalImages()
         await this.loadPrenominaPeriodEmployee(prenominaPeriodId)
-
+        this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
       } catch (error) {
         console.error('Error al subir el archivo:', error);
       }
     }
-    
-    // const file = (event.target as HTMLInputElement).files[0];
-    // if (file) {
-    //   // try {
-    //   //   await this.uploadFile(file);
-    //   //   console.log('Archivo subido con éxito');
-    //   // } catch (error) {
-    //   //   console.error('Error al subir el archivo:', error);
-    //   // }
-    // }
   }
 
   async sendFile (file: File, prenominaPeriodId: string) {

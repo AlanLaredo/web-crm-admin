@@ -8,11 +8,11 @@
       <div class="col-6">
         <div class="row d-flex justify-content-between">
           <div class="col-6">
-            <h2> {{ data | sumTotal: 'itemsInStock' }} {{ 'productsManagement.elements' | translate }}</h2>
+            <h2> {{ filteredData | sumTotal: 'itemsInStock' }} {{ 'productsManagement.elements' | translate }}</h2>
           </div>
           <div class="col-6">
             <h2>  {{ 'productsManagement.totalValue' | translate }} 
-              <fixed-decimals-component [value]=" data | sumTotal: 'totalValue'"></fixed-decimals-component>
+              <fixed-decimals-component [value]=" filteredData | sumTotal: 'totalValue'"></fixed-decimals-component>
             </h2>
           </div>
         </div>

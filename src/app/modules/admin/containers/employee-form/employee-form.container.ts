@@ -170,13 +170,25 @@ export class EmployeeFormContainer implements OnInit {
     if (!this.data.person) {
       this.data.person = {}
     }
+
+    this.data.person.name = this.data.person.name === 'Vacante' ? '' : 'Vacante'
+
     if (this.data.person.name === 'Vacante') {
-      this.data.person.contactEmails = ''
-      this.data.person.contactLastName = ''
-      this.data.person.contactPhoneContacts = ''
+      this.data.person.emails = ''
+      this.data.person.lastName = ''
+      this.data.person.phoneContacts = ''
+
+      this.data.address.name = ''
+      this.data.address.street = ''
+      this.data.address.exteriorNumber = ''
+      this.data.address.interiorNumber = ''
+      this.data.address.neightborhood = ''
+      this.data.address.city = ''
+      this.data.address.state = ''
+      this.data.address.country = ''
+      this.data.address.postalCode = ''
     }
     
-    this.data.person.name = this.data.person.name === 'Vacante' ? '' : 'Vacante'
 
 
     // this.data.person.name = 'Vacante'

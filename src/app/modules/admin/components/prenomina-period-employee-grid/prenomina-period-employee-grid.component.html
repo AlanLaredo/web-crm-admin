@@ -9,7 +9,37 @@
               <fixed-decimals-component [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
             </button>
             <span *ngIf="!['saving','uniforms','advance','double','bonus','holiday','infonavit','fonacot','loan','nss'].includes(column.key)">
-              {{!['salary', 'absences', 'total'].includes(column.key) ? row[column.key] : ''}}<span  [ngClass]="(row[column.key] ? row[column.key] : 0) < 0 ? 'text-danger' : 'text-success'"><fixed-decimals-component *ngIf="['salary', 'absences', 'total'].includes(column.key)" [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component></span>
+
+
+
+              <div *ngIf="!row[column.key + '_operation']">
+                <ng-container *ngTemplateOutlet="common"></ng-container>
+              </div>
+
+              <div *ngIf="row[column.key + '_operation']">
+                <button mat-icon-button class="m-1" color="accent"
+                matTooltip="{{row[column.key].text}}"
+                [ngStyle]="{ 'background': row[column.key + '_operationColor'] ? row[column.key + '_operationColor'].replace('0f', '40') : ''}">
+                  <span><ng-container *ngTemplateOutlet="common"></ng-container></span>
+                </button>
+                
+              </div>
+              
+              <ng-template #common>
+                {{!['salary', 'absences', 'total'].includes(column.key) ? row[column.key] : ''}}
+              </ng-template>
+
+
+              <!-- {{row[column.key + '_operation'] ? 'operation' : ''}} -->
+
+
+          
+
+
+
+              <span  [ngClass]="(row[column.key] ? row[column.key] : 0) < 0 ? 'text-danger' : 'text-success'">
+                <fixed-decimals-component *ngIf="['salary', 'absences', 'total'].includes(column.key)" [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
+              </span>
             </span>
           </td>
         </ng-container>

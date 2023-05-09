@@ -103,6 +103,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   initForm () {
+    console.log(this._data.person)
     const companyId = !(this.user.userRole.name === 'CrmAdmin') ? this.user.companyId : this._data?.companyId || undefined
     this.formBuilderGroup = this.formBuilder.group({
       keycode: new FormControl((this._data.keycode || null), []),
@@ -116,18 +117,18 @@ export class EmployeeFormComponent implements OnInit {
       companyId: new FormControl({ value: companyId, disabled: !(this.user.userRole.name === 'CrmAdmin') || this._disableConfigurations }, [Validators.required]),
       contactName: new FormControl({ value: (this._data.person?.name || null), disabled: this._data.person?.name === 'Vacante' }, [Validators.required]),
       contactLastName: new FormControl({ value: (this._data.person?.lastName || null), disabled: this._data.person?.name === 'Vacante'  }, []),
-      contactPhoneContacts: new FormControl({ value: (this._data.person?.phoneContacts && this._data.person?.phoneContacts[0] ? this._data.person?.phoneContacts[0] : undefined), disabled: this._data.person?.name === 'Vacante' }, []),
+      contactPhoneContacts: new FormControl({ value: (this._data.person?.phoneContacts && this._data.person?.phoneContacts[0] ? this._data.person?.phoneContacts[0] : null), disabled: this._data.person?.name === 'Vacante' }, []),
       contactEmails: new FormControl({ value: (this._data.person?.emails && this._data.person?.emails[0] ? this._data.person?.emails[0] : null), disabled: this._data.person?.name === 'Vacante'  }, []),
 
-      name: new FormControl((this._data.address?.name || null), []),
-      street: new FormControl((this._data.address?.street || null), []),
-      exteriorNumber: new FormControl((this._data.address?.exteriorNumber || null), []),
-      interiorNumber: new FormControl((this._data.address?.interiorNumber || null), []),
-      neightborhood: new FormControl((this._data.address?.neightborhood || null), []),
-      city: new FormControl((this._data.address?.city || null), []),
-      state: new FormControl((this._data.address?.state || null), []),
-      country: new FormControl((this._data.address?.country || null), []),
-      postalCode: new FormControl((this._data.address?.postalCode || null), [])
+      name: new FormControl({ value: (this._data.address?.name || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      street: new FormControl({ value: (this._data.address?.street || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      exteriorNumber: new FormControl({ value: (this._data.address?.exteriorNumber || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      interiorNumber: new FormControl({ value: (this._data.address?.interiorNumber || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      neightborhood: new FormControl({ value: (this._data.address?.neightborhood || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      city: new FormControl({ value: (this._data.address?.city || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      state: new FormControl({ value: (this._data.address?.state || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      country: new FormControl({ value: (this._data.address?.country || null), disabled: this._data.person?.name === 'Vacante' }, []),
+      postalCode: new FormControl({ value: (this._data.address?.postalCode || null), disabled: this._data.person?.name === 'Vacante' }, [])
     })
 
     if (companyId) {
