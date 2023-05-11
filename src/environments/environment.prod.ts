@@ -4,13 +4,13 @@ export const environment = {
   // graphql_api_url: 'http://128.199.41.36:3000/admin',
   rest_api_url: 'http://localhost:3001',
   graphql_api_url: 'http://localhost:3001/admin',
-  aws_s3_api: 'https://web-crm-admin.s3.eu-central-1.amazonaws.com/',
+  aws_s3_api: 'https://jbweb-crm-admin.s3.amazonaws.com',
   authTokenKey: 'Production',
   version: '1.0.0',
   aws_file_service: {
-    access_key_id: 'AKIA3VX47VBE4LXUMEQD',
-    secret_access_key: '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',
-    region: 'eu-central-1',
-    bucket: 'web-crm-admin'
+    access_key_id: 'AKIA5UTPAFHAT72YVYVZ',
+    secret_access_key: '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',
+    region: 'us-east-1',
+    bucket: 'jbweb-crm-admin'
   }
 }

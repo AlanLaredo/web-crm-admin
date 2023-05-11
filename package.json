@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "SET --max_old_space_size=16384 ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "standard:test": "standard \"$(pwd)/src/**/*.ts\" | ./node_modules/.bin/snazzy",

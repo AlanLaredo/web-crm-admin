@@ -12,13 +12,12 @@ export const environment = {
   authTokenKey: 'Production',
   version: '1.0.0',
   aws_file_service: {
-    access_key_id: 'AKIA3VX47VBE4LXUMEQD',
-    secret_access_key: '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',
-    region: 'eu-central-1',
-    bucket: 'web-crm-admin'
+    access_key_id: 'AKIA5UTPAFHAT72YVYVZ',
+    secret_access_key: 'vRfvPupBi6RJh9kraJYEwebYvvmnytXhaKHNDbFQ',
+    region: 'us-east-1',
+    bucket: 'jbweb-crm-admin'
   }
 }
-
 
 // // This file can be replaced during build by using the `fileReplacements` array.
 // // `ng build` replaces `environment.ts` with `environment.prod.ts`.
