@@ -19,6 +19,7 @@ query customers($id: ID, $processId: ID, $commercialValue: Float, $attemptClosin
         attachedQuotePath
         comments
         remindDate
+        hidden
         client {
           businessName
         }

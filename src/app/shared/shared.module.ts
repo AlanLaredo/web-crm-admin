@@ -40,6 +40,9 @@ import { SHARED_SERVICES } from './services'
 import { SHARED_DIRECTIVES } from './directives'
 import { HttpAuthenticationInterceptor, HttpErrorExceptionIntercept } from './interceptors'
 import { PIPES } from './pipes'
+import { MatTableModule } from '@angular/material/table'
+import { MatSortModule } from '@angular/material/sort'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 // Para clases puras no se utiliza el export
 export function createTranslateLoader (http: HttpClient) {
@@ -75,6 +78,9 @@ export function createTranslateLoader (http: HttpClient) {
     DragDropModule,
     FlexLayoutModule,
     MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     // NgxMatTimepickerModule,
     // NgxMatNativeDateModule,
     // NgxMatDatetimePickerModule,

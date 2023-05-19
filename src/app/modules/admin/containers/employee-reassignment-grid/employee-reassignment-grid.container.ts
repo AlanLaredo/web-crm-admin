@@ -46,8 +46,8 @@ export class EmployeeReassignmentGridContainer implements OnInit {
       this.loading = false
       this.data = result.map((employeeReassignment: any) => {
         employeeReassignment.employeName = employeeReassignment.employee.person.name + ' ' + (employeeReassignment.employee.person.lastName ? employeeReassignment.employee.person.lastName : ' ')
-        employeeReassignment.transmitterClientName = employeeReassignment.transmitterClient.businessName ? employeeReassignment.transmitterClient.businessName : 'N/a'
-        employeeReassignment.receiverClientName = employeeReassignment.receiverClient.businessName ? employeeReassignment.receiverClient.businessName : 'N/a'
+        employeeReassignment.transmitterClientName = employeeReassignment.transmitterClient?.businessName ? employeeReassignment.transmitterClient?.businessName : 'N/a'
+        employeeReassignment.receiverClientName = employeeReassignment.receiverClient?.businessName ? employeeReassignment.receiverClient?.businessName : 'N/a'
         employeeReassignment.date = DateTime.fromJSDate(new Date(employeeReassignment.createdAt)).setLocale(this.translate.instant('lang.luxon')).toFormat('DDDD\',\' hh:mm a')
         return employeeReassignment
       })

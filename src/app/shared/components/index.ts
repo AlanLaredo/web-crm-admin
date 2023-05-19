@@ -12,6 +12,7 @@ import { UploadFilesComponent } from './upload-files-component'
 import { PdfFormModalComponent } from './pdf-form-modal'
 import { InputChipModalComponent } from './input-ships-modal'
 import { FixedDecimalsComponent } from './fixed-decimals'
+import { GenericGridv2Component } from './generic-grid-v2'
 
 export const SHARED_COMPONENTS = [
   LoadingComponent,
@@ -27,7 +28,8 @@ export const SHARED_COMPONENTS = [
   UploadFilesComponent,
   PdfFormModalComponent,
   InputChipModalComponent,
-  FixedDecimalsComponent
+  FixedDecimalsComponent,
+  GenericGridv2Component
 ]
 
 export {
@@ -41,5 +43,6 @@ export {
   UploadFilesComponent,
   PdfFormModalComponent,
   InputChipModalComponent,
-  FixedDecimalsComponent
+  FixedDecimalsComponent,
+  GenericGridv2Component
 }

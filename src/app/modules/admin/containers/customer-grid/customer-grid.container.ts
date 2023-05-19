@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { GraphqlService, NotifyService } from 'src/app/shared/services'
 
 import { customersOperation } from 'src/app/shared/operations/queries'
-import { deleteCustomerOperation } from 'src/app/shared/operations/mutations'
+import { createCustomerOperation, deleteCustomerOperation, updateCustomerOperation } from 'src/app/shared/operations/mutations'
 import { ActivatedRoute, Router } from '@angular/router'
 import { DateTime } from 'luxon'
 import { LoginService } from 'src/app/modules/auth/services'
@@ -21,6 +21,17 @@ export class CustomerGridContainer implements OnInit {
   filteredData: any[] = []
   columns: any[] = []
   clientId: string = ''
+  buttons: any[] = [
+    {
+      name: 'actions.delete',
+      color: 'warn',
+      icon: {
+        type: 'mat-icon',
+        name: 'delete_forever'
+      },
+      callback: (row: any) => this.delete(row.id)
+    }
+  ]
 
   /* eslint-disable no-useless-constructor */
   constructor (
@@ -128,13 +139,50 @@ export class CustomerGridContainer implements OnInit {
     ]
 
     this.columns = this.filterOptions.map((column: any) => {
-      column.id = column.key
-      column.name = column.text
+      column.key = column.key
+      column.display = column.text
+      column.type = 'text'
       return column
     })
-    // this.columns.push({
-    //   id: 'actions',
-    //   name: this.translate.instant('general.actions')
-    // })
+
+    this.columns.push({
+      key: 'actions',
+      display: this.translate.instant('general.actions')
+    })
+  }
+
+  async unhide (row: any) {
+    const { id } = row
+    if (await this.notifyService.confirm(this.translate.instant('messages.unhide.confirmQuestion'))) {
+      this.saveCustomer({ id, hidden: true })
+    }
+  }
+
+  async saveCustomer (data: any) {
+    this.loading = true
+    delete data.createdAtString
+    delete data.createdAt
+    delete data.remindDateString
+    this.graphqlService.execute(updateCustomerOperation, data).then(
+      (response: any) => {
+        this.loading = false
+        if (!data.id) {
+          this.notifyService.notify(this.translate.instant('messages.save.success'), 'success')
+        } else {
+          this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
+        }
+        this.loadData()
+      },
+      () => {
+        this.notifyService.notify(this.translate.instant('messages.update.error'), 'error')
+        this.loading = false
+      }
+    )
+  }
+
+  catchAction ($event: any) {
+    const { button, row } = $event
+    this.buttons.find(btn => btn.name === button).callback(row)
+
   }
 }

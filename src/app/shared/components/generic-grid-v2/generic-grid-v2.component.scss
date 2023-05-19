@@ -1,0 +1,12 @@
+@import '../../../../sass-utils/variables.scss';
+@import '../../../../sass-utils/mixins.scss';
+@import '../../../../sass-utils/functions.scss';
+
+
+.row-highlighted {
+  background-color: #ff9191 !important;
+}
+
+mat-slider {
+  width: 300px;
+}
