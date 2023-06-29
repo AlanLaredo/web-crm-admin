@@ -20,6 +20,8 @@ export default gql`query prenominaPeriodEmployees($id: ID, $employeeId: ID, $pre
     fonacot
     loan
     nss
+    loanDeposit
+    differenceWithoutImss
     total
     employee {
       id
@@ -36,6 +38,9 @@ export default gql`query prenominaPeriodEmployees($id: ID, $employeeId: ID, $pre
         name
         lastName
       }
+      clientService {
+        name
+      }
     }
     prenominaPeriodEmployeeDays {
       id
@@ -43,7 +48,8 @@ export default gql`query prenominaPeriodEmployees($id: ID, $employeeId: ID, $pre
       date
       operationText
       operationAbbreviation
-
+      operationComments
+      operationConfirmComments
     }
   }
 }`

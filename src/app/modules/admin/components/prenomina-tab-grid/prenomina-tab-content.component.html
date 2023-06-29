@@ -95,7 +95,7 @@
         <component-loading [isLoading]="loading">
           <div class="row">
             <div class="col-12">
-              <prenomina-period-employee-grid-component (outActionSave)="savePrenominaPeriodEmployee($event)" [data]="filteredData" [loading]="loading" [columns]="columns"></prenomina-period-employee-grid-component>
+              <prenomina-period-employee-grid-component [editable]="!prenominaPeriod.completed" (outActionSave)="savePrenominaPeriodEmployee($event)" [data]="filteredData" [loading]="loading" [columns]="columns"></prenomina-period-employee-grid-component>
             </div>
           </div>
         </component-loading>

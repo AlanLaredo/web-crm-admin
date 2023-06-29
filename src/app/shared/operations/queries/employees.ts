@@ -20,6 +20,9 @@ query employees($id: ID, $keycode: String, $person: CreatePersonInput, $position
         client {
           businessName
         }
+        clientService {
+          name
+        }
         person{
             name
             lastName

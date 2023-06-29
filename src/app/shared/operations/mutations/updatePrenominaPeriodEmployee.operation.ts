@@ -25,6 +25,8 @@ export default gql`mutation updatePrenominaPeriodEmployee($updatePrenominaPeriod
         infonavit
         fonacot
         loan
+        loanDeposit
+        differenceWithoutImss
         nss
         total
         employee{

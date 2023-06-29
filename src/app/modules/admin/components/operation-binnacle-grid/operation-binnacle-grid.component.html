@@ -23,12 +23,18 @@
                 <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime && operationButton"
                 (click)="setOperation({ employee: row, _function: 'operation', operation: row[column.key] })"
                 matTooltip="{{row[column.key].text}}"
-                [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor.replace('0f', '40') : ''}">
+                [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor.replace('0f', '40') : ''}"
+                matBadge="{{row[column.key].operationComments ? '💬' : ''}}"
+                matBadgeColor="primary" matBadgeSize="small">
                   <mat-icon class="font-size-18" [ngClass]="row[column.key].operation ? 'text-success' : ''" *ngIf="!row[column.key].operation">pending_actions</mat-icon>
                   <span>{{row[column.key].operation}}</span>
+                  <!-- {{row[column.key].operationComments}} -->
                 </button>
-                
-                <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime && operationConfirmButton" (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
+                <!-- row[column.key].operationConfirmComments -->
+                <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime && operationConfirmButton" 
+                matBadge="{{row[column.key].operationConfirmComments ? '💬' : ''}}"
+                 matBadgeColor="warn" matBadgeSize="small"
+                (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
                 matTooltip="{{row[column.key].textConfirm}}"
                 [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor.replace('0f', '40') : ''}">
                   <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''"  *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>

@@ -4,4 +4,6 @@ export default interface IGenericGridColumn extends IBase {
   display: string
   type?: string
   editable?: boolean
+  plusButton?: boolean
+  restButton?: boolean
 }

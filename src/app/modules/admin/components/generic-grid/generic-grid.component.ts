@@ -31,7 +31,7 @@ export class GenericGridComponent implements AfterViewInit {
   set columns (columns: IGenericGridColumn[]) {
     if (columns !== null) {
       this._columns = columns
-      this.displayedColumns = this._columns.map(column => column.key)
+       this.displayedColumns = this._columns.map(column => column.key)
       this.updateElements()
     }
   }
@@ -141,6 +141,27 @@ export class GenericGridComponent implements AfterViewInit {
         oldValue: row[column.key]
       })
     }
+  }
+
+  plus (keyColumn: any, row: any) {
+    this.plusOrMinus(keyColumn, row, true)
+  }
+
+  minus (keyColumn: any, row: any) {
+    this.plusOrMinus(keyColumn, row, false)
+  }
+
+  async plusOrMinus (keyColumn: any, row: any, plus: boolean) {
+    const column: any = this._columns.find(column => column.key === keyColumn)
+    let value = row[column.key] ? parseInt(row[column.key]) : 0
+    value = plus ? value = value + 1 : value = value - 1
+    this.outActionColumnEdit.emit({
+      id: row.id,
+      keyColumn,
+      newValue: value ? value : null,
+      oldValue: row[column.key]
+    })
+
   }
 
   shouldHighlight(row: any): boolean {

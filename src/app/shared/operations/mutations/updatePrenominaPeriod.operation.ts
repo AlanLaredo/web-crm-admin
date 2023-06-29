@@ -30,6 +30,8 @@ export default gql`mutation updatePrenominaPeriod($updatePrenominaPeriodData: Up
         infonavit
         fonacot
         loan
+        loanDeposit
+        differenceWithoutImss
         nss
         total
       }

@@ -2,80 +2,85 @@ export const OPERATIONS_CATALOG_DATA = [
   {
     abbreviation: 'S/O',
     text: 'Sin Operación',
-    color: '#CD5C5C0f'
+    color: '#ffffff'
   },
   {
     abbreviation: 'A',
     text: 'Asistencia',
-    color: '#8000800f'
+    color: '#ffffff'
   },
   {
     abbreviation: 'PSS',
     text: 'Permiso sin goce de sueldo',
-    color: '#FF00FF0f'
+    color: '#00b0f0'
   },
   {
     abbreviation: 'D',
     text: 'Descanso',
-    color: '#0000800f'
+    color: '#a6a6a6'
   },
   {
     abbreviation: 'A/T',
     text: 'Adelanto de turno',
-    color: '#0000FF0f'
+    color: '#ff9999'
   },
   {
     abbreviation: 'F',
     text: 'Falta',
-    color: '#0080800f'
+    color: '#ff0000'
   },
   {
-    abbreviation: 'T/E',
+    abbreviation: 'TEP',
     text: 'Tiempo extra',
-    color: '#00FFFF0f'
+    color: '#00b050'
   },
   {
     abbreviation: 'VAC',
     text: 'Vacaciones',
-    color: '#0080000f'
+    color: '#ffc000'
   },
   {
     abbreviation: 'D/L',
     text: 'Descanso laborado',
-    color: '#00FF000f'
+    color: '#bf8f00'
   },
   {
     abbreviation: 'B',
     text: 'Baja',
-    color: '#8080000f'
+    color: '#ff0000'
   },
   {
     abbreviation: 'O',
     text: 'Otros',
-    color: '#FFFF000f'
+    color: '#ffffff'
   },
   {
     abbreviation: 'R',
     text: 'Descanso fijo',
-    color: '#8000000f'
+    color: '#00b050'
   },
   {
     abbreviation: 'FJJ',
     text: 'Justificante en tiempo y forma',
-    color: '#FF00000f'
+    color: '#ff0000'
   },
   {
     abbreviation: 'TEP',
     text: 'Pago en efecivo Y/O depositado a su tarjeta el mismo día',
-    color: '#0000000f'
+    color: '#00b050'
   },
   {
     abbreviation: 'DEP',
     text: 'Descanso fijo establecido, labora el elemento 12 horas y se le paga en efectivo Y/O su tarjeta el mismo día',
-    color: '#8080800f'
+    color: '#00b050'
   },
   {
     abbreviation: 'RP',
     text: 'Descanso fijo establecido, labora 24 horas continuas y se le paga en efectivo Y/O su tarjeta el mismo día ',
-    color: '#C0C0C00f'
+    color: '#00b050'
+  },
+  {
+    abbreviation: 'INC',
+    text: 'Incapacidad ',
+    color: '#7030a0'
   }]

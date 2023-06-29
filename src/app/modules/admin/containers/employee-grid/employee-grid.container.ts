@@ -53,7 +53,8 @@ export class EmployeeGridContainer implements OnInit {
       { key: 'positionName', text: this.translate.instant('employee.positionName') },
       { key: 'hiringDate', text: this.translate.instant('employee.hiringDate') },
       { key: 'startOperationDate', text: this.translate.instant('employee.startOperationDate') },
-      { key: 'clientName', text: this.translate.instant('employee.clientName') }
+      { key: 'clientName', text: this.translate.instant('employee.clientName') },
+      { key: 'clientService', text: this.translate.instant('periods.cols.clientService') }
     ]
 
     if (this.user.userRole.name === 'CrmAdmin') {
@@ -83,6 +84,7 @@ export class EmployeeGridContainer implements OnInit {
       this.data.map((employee: any) => {
         employee.personName = employee.person.name + ' ' + (employee.person.lastName ? employee.person.lastName : ' ')
         employee.companyName = employee.company.name
+        employee.clientService = employee?.clientService?.name
         employee.positionName = employee.position?.name ? employee.position?.name : 'N/A'
         employee.clientName = employee.client?.businessName || 'N/A'
 

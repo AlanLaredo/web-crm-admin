@@ -31,6 +31,8 @@ export default gql`mutation createPrenominaPeriod($createPrenominaPeriodData: Cr
         fonacot
         loan
         nss
+        loanDeposit
+        differenceWithoutImss
         total
       }
       operations{

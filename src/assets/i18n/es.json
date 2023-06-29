@@ -623,8 +623,8 @@
     "info": "Empleados",
     "clientService": "Servicio",
     "totalVacancy": "#Vacantes",
-    "totalOperationNull": "#Ops. pendientes",
-    "totalConfirmNull": "#Ops. Confirm. pendientes",
+    "totalOperationNull": "Asis Pend Gerencia",
+    "totalConfirmNull": "Asis Pend Central",
     "today": "Hoy",
     "comment": "Comentario"
   },
@@ -673,6 +673,7 @@
       "keycode" : "Clave",
       "bankAccount" : "Cuenta",
       "clientName" : "Cliente",
+      "clientService": "Servicio",
       "salary" : "Salario",
       "absences" : "Ausencias",
       "saving" : "Ahorro",
@@ -684,8 +685,10 @@
       "infonavit" : "Infonavit",
       "fonacot" : "Fonacot",
       "loan" : "Prestamo",
+      "loanDeposit": "Depósito(Prestamo)",
       "nss" : "NSS",
-      "total" : "Total"
+      "differenceWithoutImss": "Neto",
+      "total" : "Bruto"
     }
   },
   "projected": {

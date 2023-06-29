@@ -4,12 +4,11 @@
         <ng-container *ngFor="let column of _columns" [matColumnDef]="column.key">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.text}} {{column.extra ? column.extra : ''}}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-button color="accent" (click)="openDialog(column.key, row)" *ngIf="row.employeeId && ['saving','uniforms','advance','double','bonus','holiday','infonavit','fonacot','loan','nss'].includes(column.key)" class="float-left">
+            <button mat-button color="accent" (click)="openDialog(column.key, row)" *ngIf="row.employeeId && ['loanDeposit', 'salary', 'saving','uniforms','advance','double','bonus','holiday','infonavit','fonacot','loan','nss'].includes(column.key)" class="float-left" [disabled]="!_editable">
               <mat-icon class="tiny-icon">settings</mat-icon>
               <fixed-decimals-component [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
             </button>
-            <span *ngIf="!['saving','uniforms','advance','double','bonus','holiday','infonavit','fonacot','loan','nss'].includes(column.key)">
-
+            <span *ngIf="!['loanDeposit', 'saving','uniforms','advance','double','bonus','holiday','infonavit','fonacot','loan','nss', 'salary'].includes(column.key)">
 
 
               <div *ngIf="!row[column.key + '_operation']">
@@ -18,27 +17,22 @@
 
               <div *ngIf="row[column.key + '_operation']">
                 <button mat-icon-button class="m-1" color="accent"
-                matTooltip="{{row[column.key].text}}"
-                [ngStyle]="{ 'background': row[column.key + '_operationColor'] ? row[column.key + '_operationColor'].replace('0f', '40') : ''}">
+                matBadge="{{row[column.key + '_operationComments'] || row[column.key + '_operationConfirmComments'] ? '💬' : ''}}"
+                matBadgeColor="primary" matBadgeSize="small"
+                matTooltip="{{row[column.key + '_operationComments'] ? ' Gerencia: ' + row[column.key + '_operationComments'] + '; ': ''}} {{row[column.key + '_operationConfirmComments'] ? ' Central: ' + row[column.key + '_operationConfirmComments']: ''}}"
+                [ngStyle]="{ 'background': row[column.key + '_operationColor'] ? row[column.key + '_operationColor']: ''}">
                   <span><ng-container *ngTemplateOutlet="common"></ng-container></span>
                 </button>
-                
               </div>
               
               <ng-template #common>
-                {{!['salary', 'absences', 'total'].includes(column.key) ? row[column.key] : ''}}
+                {{!['salary', 'differenceWithoutImss', 'absences', 'total'].includes(column.key) ? row[column.key] : ''}}
               </ng-template>
-
 
               <!-- {{row[column.key + '_operation'] ? 'operation' : ''}} -->
 
-
-          
-
-
-
               <span  [ngClass]="(row[column.key] ? row[column.key] : 0) < 0 ? 'text-danger' : 'text-success'">
-                <fixed-decimals-component *ngIf="['salary', 'absences', 'total'].includes(column.key)" [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
+                <fixed-decimals-component *ngIf="['salary', 'absences', 'differenceWithoutImss', 'total'].includes(column.key)" [value]="(row[column.key] ? row[column.key] : 0)"></fixed-decimals-component>
               </span>
             </span>
           </td>

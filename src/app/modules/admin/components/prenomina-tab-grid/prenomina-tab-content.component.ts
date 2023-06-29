@@ -84,7 +84,9 @@ export class CompanyTabContentComponent implements OnInit {
         { key: 'infonavit', text: cols.infonavit },
         { key: 'fonacot', text: cols.fonacot },
         { key: 'loan', text: cols.loan },
+        { key: 'loanDeposit', text: cols.loanDeposit },
         { key: 'nss', text: cols.nss },
+        { key: 'differenceWithoutImss', text: cols.differenceWithoutImss },
         { key: 'total', text: cols.total }
       ]
     })
@@ -93,6 +95,7 @@ export class CompanyTabContentComponent implements OnInit {
       { key: 'keycode', text: this.translate.instant('periods.cols.keycode') },
       { key: 'bankAccount', text: this.translate.instant('periods.cols.bankAccount') },
       { key: 'clientName', text: this.translate.instant('periods.cols.clientName') },
+      { key: 'clientService', text: this.translate.instant('periods.cols.clientService') },
       { key: 'employeeName', text: this.translate.instant('periods.cols.employeeName') }
     ]
 
@@ -118,7 +121,9 @@ export class CompanyTabContentComponent implements OnInit {
       { key: 'infonavit', text: this.translate.instant('periods.cols.infonavit') },
       { key: 'fonacot', text: this.translate.instant('periods.cols.fonacot') },
       { key: 'loan', text: this.translate.instant('periods.cols.loan') },
+      { key: 'loanDeposit', text: this.translate.instant('periods.cols.loanDeposit') },
       { key: 'nss', text: this.translate.instant('periods.cols.nss') },
+      { key: 'differenceWithoutImss', text: this.translate.instant('periods.cols.differenceWithoutImss') },
       { key: 'total', text: this.translate.instant('periods.cols.total') }
     ]
 
@@ -344,10 +349,14 @@ export class CompanyTabContentComponent implements OnInit {
 
   processPrenominaPeriodEmployeesData (prenominaPeriodEmployees: any[]) {
     // const days = this.getDaysForPeriod(this.dayOfPeriod, this._prenominaConfiguration)
-
+    // prenominaPeriodEmployees.forEach(t=> console.table(t.prenominaPeriodEmployeeDays))
+    // console.table(prenominaPeriodEmployees)
     return prenominaPeriodEmployees.map((prenominaPeriodEmployee: any) => {
       const fullname = (prenominaPeriodEmployee?.employee?.person?.name ? prenominaPeriodEmployee?.employee?.person?.name : ' ') + ' ' + (prenominaPeriodEmployee?.employee?.person?.lastName ? prenominaPeriodEmployee?.employee?.person?.lastName : '')
       prenominaPeriodEmployee.employeeName = fullname
+      prenominaPeriodEmployee.clientService = prenominaPeriodEmployee?.employee?.clientService?.name
+
+      
       // prenominaPeriodEmployee.days = []
       prenominaPeriodEmployee.prenominaPeriodEmployeeDays.forEach((day: any) => {
         const colDateName = this.getFormatDayForThisPeriod(day.date, 'weekly')
@@ -356,6 +365,9 @@ export class CompanyTabContentComponent implements OnInit {
 
         prenominaPeriodEmployee[colDateName + '_operation'] =  !!day.operationAbbreviation
         prenominaPeriodEmployee[colDateName + '_operationColor'] = operationData?.color
+
+        prenominaPeriodEmployee[colDateName + '_operationComments'] =  day.operationComments
+        prenominaPeriodEmployee[colDateName + '_operationConfirmComments'] =  day.operationConfirmComments
         
         // prenominaPeriodEmployee[]
         // dayOfWeek.toFormat('D')
@@ -366,6 +378,7 @@ export class CompanyTabContentComponent implements OnInit {
         // day.operationText
         // day.prenominaPeriodEmployeeId)
       })
+      // console.log(prenominaPeriodEmployee)
       return prenominaPeriodEmployee
     })
   }
@@ -438,7 +451,8 @@ export class CompanyTabContentComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', file, file.name);
   
-    // Reemplaza la URL con la ruta de tu API y agrega el prenominaPeriodId
+    // Reemplaza la URL con la ruta de tu API y agrega el prenominaPeriodId 
+    // TODO:  variable de entorno
     const apiUrl = `http://localhost:3001/prenomina/importExcel/${prenominaPeriodId}`
     
     return this.httpClient.post(apiUrl, formData).toPromise()

@@ -1,37 +1,89 @@
 <div class="row container-custom">
   <div class="col-12">
-    <div class="row d-flex justify-content-between">
-      <div class="col-3">
-        <h1>{{ 'submenu.operationBinnacle' | translate }}</h1>
-      </div>
 
-      <div class="col-3">
-        <a class="m-4" (click)="openDialogInicidence()">
-          <button class="float-right " mat-stroked-button color="primary">
-            <mat-icon>quickreply</mat-icon>
-            {{'operationBinnacle.incidence' | translate}}
-          </button>
-        </a>
+
+
+    <!-- <div class="row h-100">
+      <div class="col-12 d-flex flex-column justify-content-center">
+       
+        <div class="row">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <div>
+              <img class="mb-4" src="../../../../../assets/img/logo.png" alt="" height="90">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <div>
+              <h1>Bienvenido ERP Morse-TI</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-start">
-      <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-        <h1>{{ 'operationBinnacle.totalVacancy' | translate }}: {{ filteredData | countByProp: 'fullname':'Vacante' }}</h1>
+
+     -->
+
+
+
+      <div class="row d-flex justify-content-between fixed-content">
+        <div class="col-2">
+          <h2>{{ 'submenu.operationBinnacle' | translate }}</h2>
+        </div>
+        <div class="col-2">
+          <h2>{{ 'operationBinnacle.totalVacancy' | translate }}: {{ filteredData | countByProp: 'fullname':'Vacante' }}</h2>
+        </div>
+        <div class="col-2">
+          <h2>{{ 'operationBinnacle.totalOperationNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operation' : null }}</h2>
+        </div>
+      
+        <div class="col-2">
+          <h2>{{ 'operationBinnacle.totalConfirmNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operationConfirm' : null }}</h2>
+        </div> 
+      
+        <div class="col-2">
+          <h2>{{ 'operationBinnacle.today' | translate }}: {{ todayStringCol }}</h2>
+        </div> 
+        <div class="col-2">
+          <a class="m-4" (click)="openDialogInicidence()">
+            <button class="float-right " mat-stroked-button color="primary">
+              <mat-icon>quickreply</mat-icon>
+              {{'operationBinnacle.incidence' | translate}}
+            </button>
+          </a>
+        </div>
       </div>
+      <!-- <div class=" fixed-content container-custom-without-height">
+        <div class="row">
 
-      <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-        <h1>{{ 'operationBinnacle.totalOperationNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operation' : null }}</h1>
-      </div>
+ 
+          <div class="col-12">
+            <div class="row d-flex justify-content-start">
+              <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                <h1>{{ 'operationBinnacle.totalVacancy' | translate }}: {{ filteredData | countByProp: 'fullname':'Vacante' }}</h1>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                <h1>{{ 'operationBinnacle.totalOperationNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operation' : null }}</h1>
+              </div>
+            
+              <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                <h1>{{ 'operationBinnacle.totalConfirmNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operationConfirm' : null }}</h1>
+              </div> 
+            
+              <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                <h1>{{ 'operationBinnacle.today' | translate }}: {{ todayStringCol }}</h1>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div> -->
 
-      <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-        <h1>{{ 'operationBinnacle.totalConfirmNull' | translate }}: {{ filteredData | countByProp: todayStringCol + '.operationConfirm' : null }}</h1>
-      </div> 
 
-      <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-        <h1>{{ 'operationBinnacle.today' | translate }}: {{ todayStringCol }}</h1>
-      </div> 
-    </div>
-    <div class="row">
+
+
+    
+    <div class="row " style="margin-top: 80px">
       <div class="col-6">
         <data-filter-component [dataSource]="data" [options]="filterOptions" (filteredDataOut)="setDataFiltered($event)"></data-filter-component>
       </div>

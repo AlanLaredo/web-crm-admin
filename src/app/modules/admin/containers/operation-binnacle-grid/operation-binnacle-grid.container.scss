@@ -1,3 +1,30 @@
 @import '../../../../../sass-utils/mixins.scss';
 @import '../../../../../sass-utils/variables.scss';
 @import '../../../../../sass-utils/functions.scss';
+
+
+.position-relative {
+  position: relative;
+}
+
+.fixed-content {
+  position: fixed;
+  background-color: #fafafa;
+  z-index: 100 !important;
+  /* Otros estilos personalizados */
+  top: 65px;
+  padding-top: 20px;
+  margin-right: 60px;
+  width: 90%;
+  max-width: 90%;
+
+}
+
+
+.container-custom-without-height {
+  max-width: 90%;
+  padding-left: 60px;
+  padding-right: 25px;
+  padding-top: 25px;
+
+}

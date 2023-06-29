@@ -53,6 +53,8 @@ export class ProductManagementStockContainer implements OnInit {
       column.display = column.text
       column.type = ['unitCost', 'totalValue'].includes(column.key) ? 'money' : column.key === 'itemsInStock' ? 'number' : 'text'
       column.editable = column.key === 'itemsInStock'
+      column.plusButton = column.key === 'itemsInStock'
+      column.restButton = column.key === 'itemsInStock'
       return column
     })
 

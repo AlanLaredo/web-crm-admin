@@ -16,6 +16,12 @@ import { MatDialog } from '@angular/material/dialog'
   styleUrls: ['./prenomina-period-employee-grid.component.scss']
 })
 export class PrenominaPeriodEmployeeGridComponent {
+  _editable = true
+  @Input('editable')
+  set editable (editable: boolean) {
+    this._editable = editable
+  }
+
   @Input('data')
   set data (data: any[]) {
     if (data !== null) {
@@ -86,7 +92,7 @@ export class PrenominaPeriodEmployeeGridComponent {
       if (result !== undefined) {
         let total = prenominaPeriodEmployee.total
         result = Number(result)
-        prenominaPeriodEmployee[typeDialog] = result
+        // alert(result +'vs'+prenominaPeriodEmployee[typeDialog])
 
         const updateData: any = {
           id: prenominaPeriodEmployee.id
@@ -99,20 +105,28 @@ export class PrenominaPeriodEmployeeGridComponent {
           case 'advance':
           case 'infonavit':
           case 'fonacot':
-          case 'loan':
-          case 'nss': {
-            total = total - result
-            break
-          }
-
+            case 'loan':
+              {
+                total = total - result + (prenominaPeriodEmployee[typeDialog] || 0)
+                break
+              }
+              
+          case 'nss': 
           case 'double':
           case 'bonus':
+          case 'salary':
+          case 'loanDeposit':
           case 'holiday': {
-            total = total + result
+            total = total + result - (prenominaPeriodEmployee[typeDialog] || 0)
             break
           }
         }
+        
+        prenominaPeriodEmployee[typeDialog] = result
+
         updateData.total = total
+        updateData.differenceWithoutImss = total - (prenominaPeriodEmployee['nss'] || 0)
+        // updateData.differenceWithoutImss = total - (prenominaPeriodEmployee['nss'] || 0)
         prenominaPeriodEmployee = await this.savePrenominaPeriodEmployee(updateData)
         // const updateOperations: any[] = []
         // this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
