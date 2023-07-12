@@ -12,8 +12,8 @@ export const environment = {
   authTokenKey: 'Production',
   version: '1.0.0',
   aws_file_service: {
-    access_key_id: 'AKIA5UTPAFHAT72YVYVZ',
-    secret_access_key: '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',
+    access_key_id: 'AKIA5UTPAFHAURLX2DOE',
+    secret_access_key: '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',
     region: 'us-east-1',
     bucket: 'jbweb-crm-admin'
   }
