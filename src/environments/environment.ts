@@ -6,16 +6,15 @@ export const environment = {
   production: true,
   // rest_api_url: 'http://128.199.41.36:3000',
   // graphql_api_url: 'http://128.199.41.36:3000/admin',
-  rest_api_url: 'http://localhost:3001',
-  graphql_api_url: 'http://localhost:3001/admin',
-  aws_s3_api: 'https://web-crm-admin.s3.eu-central-1.amazonaws.com/',
+  rest_api_url: 'http://52.117.21.213:3001',
+  graphql_api_url: 'http://52.117.21.213:3001/admin',
   authTokenKey: 'Production',
   version: '1.0.0',
   aws_file_service: {
     access_key_id: 'AKIA5UTPAFHAURLX2DOE',
     secret_access_key: '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',
     region: 'us-east-1',
-    bucket: 'jbweb-crm-admin'
+    bucket: 'jarboss-web-crm-admin'
   }
 }
 

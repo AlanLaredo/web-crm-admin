@@ -453,7 +453,8 @@ export class CompanyTabContentComponent implements OnInit {
   
     // Reemplaza la URL con la ruta de tu API y agrega el prenominaPeriodId 
     // TODO:  variable de entorno
-    const apiUrl = `http://localhost:3001/prenomina/importExcel/${prenominaPeriodId}`
+    
+    const apiUrl = `${environment.rest_api_url}/prenomina/importExcel/${prenominaPeriodId}`
     
     return this.httpClient.post(apiUrl, formData).toPromise()
   }
