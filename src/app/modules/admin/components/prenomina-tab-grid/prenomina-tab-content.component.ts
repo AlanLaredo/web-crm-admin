@@ -127,6 +127,8 @@ export class CompanyTabContentComponent implements OnInit {
       { key: 'total', text: this.translate.instant('periods.cols.total') }
     ]
 
+    /**IMSS, diference,  */
+
     this.columns = [...this.columns, ...finalColumns]
   }
 
@@ -435,7 +437,6 @@ export class CompanyTabContentComponent implements OnInit {
     const file: any = $event.data
     if (file) {
       try {
-
         await this.sendFile(file, prenominaPeriodId);
         this.uploadFilesComponent.cancelFile(file)
         this.uploadFilesComponent.cleanTemporalImages()

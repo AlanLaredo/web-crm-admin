@@ -686,9 +686,9 @@
       "fonacot" : "Fonacot",
       "loan" : "Prestamo",
       "loanDeposit": "Depósito(Prestamo)",
-      "nss" : "NSS",
-      "differenceWithoutImss": "Neto",
-      "total" : "Bruto"
+      "nss" : "IMSS",
+      "differenceWithoutImss": "Diferencia",
+      "total" : "Total"
     }
   },
   "projected": {

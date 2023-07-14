@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  // rest_api_url: 'http://128.199.41.36:3000',
-  // graphql_api_url: 'http://128.199.41.36:3000/admin',
+  // rest_api_url: 'http://52.117.21.213:3001',
+  // graphql_api_url: 'http://52.117.21.213:3001/admin',
   rest_api_url: 'http://52.117.21.213:3001',
   graphql_api_url: 'http://52.117.21.213:3001/admin',
   authTokenKey: 'Production',

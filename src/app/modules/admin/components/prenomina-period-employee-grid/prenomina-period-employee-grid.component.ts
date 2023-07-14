@@ -105,13 +105,14 @@ export class PrenominaPeriodEmployeeGridComponent {
           case 'advance':
           case 'infonavit':
           case 'fonacot':
+            // case 'nss': 
+
             case 'loan':
               {
                 total = total - result + (prenominaPeriodEmployee[typeDialog] || 0)
                 break
               }
               
-          case 'nss': 
           case 'double':
           case 'bonus':
           case 'salary':

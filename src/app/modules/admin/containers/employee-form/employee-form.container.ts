@@ -118,6 +118,7 @@ export class EmployeeFormContainer implements OnInit {
     }
     this.graphqlService.execute(data.id ? updateEmployeeOperation : createEmployeeOperation, data).then(
       async (response: any) => {
+        console.log(response)
         this.data = response
         this.dataAttachedQuotePath = this.data.attachedQuotePath
         this.loading = false

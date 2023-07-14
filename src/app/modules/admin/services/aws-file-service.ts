@@ -19,6 +19,7 @@ export class AwsFileService {
         region: environment.aws_file_service.region
       }
     )
+
     this.bucketName = environment.aws_file_service.bucket
   }
 

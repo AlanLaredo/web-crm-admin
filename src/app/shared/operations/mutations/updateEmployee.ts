@@ -19,6 +19,7 @@ export default gql`mutation updateEmployee($updateEmployeeData: UpdateEmployeeIn
       client {
         businessName
       }
+      attachedQuotePath
       person{
           name
           lastName
