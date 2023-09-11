@@ -13,6 +13,8 @@ export default gql`mutation createPosition($createPositionData: CreatePositionIn
         name
         clientId
         salary
+        hoursPerShift
+        bonus
     }
 }
 `

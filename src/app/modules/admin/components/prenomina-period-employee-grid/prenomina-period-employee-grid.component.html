@@ -19,9 +19,12 @@
                 <button mat-icon-button class="m-1" color="accent"
                 matBadge="{{row[column.key + '_operationComments'] || row[column.key + '_operationConfirmComments'] ? '💬' : ''}}"
                 matBadgeColor="primary" matBadgeSize="small"
-                matTooltip="{{row[column.key + '_operationComments'] ? ' Gerencia: ' + row[column.key + '_operationComments'] + '; ': ''}} {{row[column.key + '_operationConfirmComments'] ? ' Central: ' + row[column.key + '_operationConfirmComments']: ''}}"
+                matTooltip="{{row[column.key + '_operationConfirmHours'] ? 'Horas extra: ' + row[column.key + '_operationConfirmHours'] : '' + row[column.key + '_operationComments'] ? ' Gerencia: ' + row[column.key + '_operationComments'] + '; ': ''}} {{row[column.key + '_operationConfirmComments'] ? ' Central: ' + row[column.key + '_operationConfirmComments']: ''}} "
                 [ngStyle]="{ 'background': row[column.key + '_operationColor'] ? row[column.key + '_operationColor']: ''}">
                   <span><ng-container *ngTemplateOutlet="common"></ng-container></span>
+                  
+                  
+                  <!-- {{'operationHours operationConfirmHours}} -->
                 </button>
               </div>
               

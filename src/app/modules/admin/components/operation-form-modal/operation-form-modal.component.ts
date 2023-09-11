@@ -39,6 +39,7 @@ export class OperationFormModalComponent {
     this.formBuilderGroup = this.formBuilder.group({
       abbreviation: new FormControl(this._data.abbreviation, [Validators.required]),
       comment: new FormControl(this._data.comment, []),
+      hours: new FormControl(this._data.hours, []),
     })
   }
 

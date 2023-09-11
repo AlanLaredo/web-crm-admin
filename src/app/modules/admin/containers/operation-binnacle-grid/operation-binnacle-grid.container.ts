@@ -236,22 +236,26 @@ export class OperationBinnacleGridContainer implements OnInit {
     const { employee, _function, operation } = $event
     const abbreviation = _function === 'operation' ? operation.operation : operation.operationConfirm
     const comment = _function === 'operation' ? operation.operationComments : operation.operationConfirmComments
+    const hours = _function === 'operation' ? operation.operationHours : operation.operationConfirmHours
+
     const dialogRef = this.dialog.open(OperationFormModalComponent, {
       width: '900px',
       disableClose: false,
       data: {
         abbreviation,
         comment,
+        hours,
         operations: OPERATIONS_CATALOG_DATA
       }
     })
     dialogRef.afterClosed().subscribe(async (result: any) => {
       if (result) {
-        if (result.abbreviation !== abbreviation || result.comment !== comment) {
+        if (result.abbreviation !== abbreviation || result.comment !== comment || result.hours !== hours) {
           const { dateTime, operationColor, operationConfirmColor, text, textConfirm, ...updateOperation } = operation
           _function === 'operation' ? updateOperation.operation = result.abbreviation : updateOperation.operationConfirm = result.abbreviation
           _function === 'operation' ? updateOperation.operationModifiedBy = this.user._id : updateOperation.operationConfirmModifiedBy = this.user._id
           _function === 'operation' ? updateOperation.operationComments = result.comment : updateOperation.operationConfirmComments = result.comment
+          _function === 'operation' ? updateOperation.operationHours = Number(result.hours) : updateOperation.operationConfirmHours = Number(result.hours)
           this.loading = true
           const response = await this.saveOperation(updateOperation)
           if (response.id) {

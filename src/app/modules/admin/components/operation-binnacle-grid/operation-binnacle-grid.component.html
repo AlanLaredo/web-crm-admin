@@ -37,7 +37,7 @@
                 (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
                 matTooltip="{{row[column.key].textConfirm}}"
                 [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor.replace('0f', '40') : ''}">
-                  <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''"  *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
+                  <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''" *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
                   <span>{{row[column.key].operationConfirm}}</span>
                 </button>
               </div>

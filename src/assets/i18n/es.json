@@ -488,7 +488,9 @@
   "position": {
     "name": "Nombre",
     "clientName": "Cliente",
-    "salary": "Salario diario"
+    "salary": "Salario diario",
+    "hoursPerShift": "Duración turno",
+    "bonus": "Bonus"
   },
   "process": {
     "form": "Proceso",

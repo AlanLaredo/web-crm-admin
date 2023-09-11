@@ -50,6 +50,8 @@ export default gql`query prenominaPeriodEmployees($id: ID, $employeeId: ID, $pre
       operationAbbreviation
       operationComments
       operationConfirmComments
+      operationHours
+      operationConfirmHours
     }
   }
 }`

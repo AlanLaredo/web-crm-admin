@@ -71,6 +71,8 @@ query employeesInOperation($id: ID, $keycode: String, $person: CreatePersonInput
           operationConfirmModifiedBy
           operationComments
           operationConfirmComments
+          operationHours
+          operationConfirmHours
         }
     }
 }`

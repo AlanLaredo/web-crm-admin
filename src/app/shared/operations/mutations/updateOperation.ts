@@ -20,6 +20,8 @@ export default gql`mutation updateOperation($updateOperationData: UpdateOperatio
         operationConfirmComments
         operationModifiedBy
         operationConfirmModifiedBy
+        operationHours
+        operationConfirmHours
     }
 }
 `

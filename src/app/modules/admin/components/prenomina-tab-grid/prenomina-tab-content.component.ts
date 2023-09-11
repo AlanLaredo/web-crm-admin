@@ -360,6 +360,7 @@ export class CompanyTabContentComponent implements OnInit {
 
       
       // prenominaPeriodEmployee.days = []
+      let extraAccumulation = 0
       prenominaPeriodEmployee.prenominaPeriodEmployeeDays.forEach((day: any) => {
         const colDateName = this.getFormatDayForThisPeriod(day.date, 'weekly')
         const operationData = this.getOperationData(day.operationAbbreviation)
@@ -367,10 +368,17 @@ export class CompanyTabContentComponent implements OnInit {
 
         prenominaPeriodEmployee[colDateName + '_operation'] =  !!day.operationAbbreviation
         prenominaPeriodEmployee[colDateName + '_operationColor'] = operationData?.color
-
+        
         prenominaPeriodEmployee[colDateName + '_operationComments'] =  day.operationComments
         prenominaPeriodEmployee[colDateName + '_operationConfirmComments'] =  day.operationConfirmComments
-        
+
+
+        prenominaPeriodEmployee[colDateName + '_operationHours'] = day?.operationHours
+        extraAccumulation += day?.operationConfirmHours || 0
+        prenominaPeriodEmployee[colDateName + '_operationConfirmHours'] = day?.operationConfirmHours
+        // if (prenominaPeriodEmployee.employeeId === '646ee8af50c913355fa221bd') {
+        //   console.log(prenominaPeriodEmployee.prenominaPeriodEmployeeDays )
+        // }
         // prenominaPeriodEmployee[]
         // dayOfWeek.toFormat('D')
         // prenominaPeriodEmployee.days.push({
