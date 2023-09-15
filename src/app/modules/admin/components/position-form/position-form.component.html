@@ -26,7 +26,7 @@
                 <mat-form-field appearance="legacy" class="custom-mat-form-field">
                   <mat-label>{{'position.hoursPerShift' | translate}}</mat-label>
                   <mat-select formControlName="hoursPerShift">
-                    <mat-option *ngFor="let duration of [8, 12]; let i = index" [value]="duration">{{duration}}</mat-option>
+                    <mat-option *ngFor="let duration of [12, 24]; let i = index" [value]="duration">{{duration}}</mat-option>
                   </mat-select>
                   <mat-hint>{{'form.instructions.selectAnOption' | translate}} {{'form.validations.required' | translate}}</mat-hint>
                 </mat-form-field>
