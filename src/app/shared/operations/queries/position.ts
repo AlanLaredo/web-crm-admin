@@ -14,6 +14,7 @@ query position($id: ID, $name: String, $clientId: ID, $salary: Float, $offset: I
         name
         clientId
         salary
+        salaryExtra
         hoursPerShift
         bonus
     }

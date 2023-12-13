@@ -25,8 +25,8 @@ export class JobVacancyGridComponent {
   @Input('columns')
   set columns (columns: any[]) {
     if (columns !== null) {
-      this._columns = columns
-      this.displayedColumns = this._columns.map(column => column.key)
+      this._columns = columns.filter(item => item.key !== 'actions')
+      this.displayedColumns = [...this._columns.map(column => column.key), 'actions']
     }
   }
 

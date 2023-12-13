@@ -66,6 +66,7 @@ export class PositionFormComponent implements OnInit {
       name: new FormControl((this._data.name || undefined), [Validators.required]),
       clientId: new FormControl((this._data.clientId || undefined), [Validators.required]),
       salary: new FormControl((this._data.salary || undefined), []),
+      salaryExtra: new FormControl((this._data.salaryExtra || undefined), []),
       hoursPerShift: new FormControl((this._data.hoursPerShift || undefined), []),
       bonus: new FormControl((this._data.bonus || undefined), [])
     })
@@ -90,6 +91,9 @@ export class PositionFormComponent implements OnInit {
     outData.salary = position.salary ? position.salary : undefined
     outData.hoursPerShift = position.hoursPerShift ? position.hoursPerShift : undefined
     outData.bonus = position.bonus ? position.bonus : undefined
+    outData.salaryExtra = position.salaryExtra ? position.salaryExtra : undefined
+
+    
     
     if (this._data.id) {
       outData.id = this._data.id

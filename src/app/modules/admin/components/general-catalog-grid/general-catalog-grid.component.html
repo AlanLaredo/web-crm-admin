@@ -7,7 +7,25 @@
           <td mat-cell *matCellDef="let row">
             <span *ngIf="column.type==='text' || column.type === undefined">{{row[column.id]}}</span>
             <fixed-decimals-component *ngIf="column.type==='money'" [value]="(row[column.id] ? row[column.id] : 0)"></fixed-decimals-component>
+
+
+            <!-- <div *ngIf="column.id === 'actions'">
+              <a [routerLink]="[row.id, 'edit']" *ngIf="_permissions.edit">
+                <button mat-button color="accent" matTooltip="{{'actions.edit' | translate}}">
+                  <mat-icon>mode_edit</mat-icon>
+                </button>
+              </a>
+              <a [routerLink]="[row.id, 'services']">
+                <button mat-button color="primary" *ngIf="_viewServices" matTooltip="{{'actions.edit' | translate}}">
+                  <mat-icon class="cs-material-icons material-icons mat-icon-no-color" [fontSet]="'fa'" [fontIcon]="'fa-globe'"></mat-icon>
+                </button>
+              </a>
+              <button mat-button color="warn" matTooltip="{{'actions.delete' | translate}}" (click)="delete(row.id)" *ngIf="_permissions.delete">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div> -->
           </td>
+
         </ng-container>
 
         <ng-container matColumnDef="actions">

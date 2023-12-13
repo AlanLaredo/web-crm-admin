@@ -1,9 +1,9 @@
 export const OPERATIONS_CATALOG_DATA = [
-  {
-    abbreviation: 'S/O',
-    text: 'Sin Operación',
-    color: '#ffffff'
-  },
+  // {
+  //   abbreviation: 'S/O',
+  //   text: 'Sin Operación',
+  //   color: '#ffffff'
+  // },
   {
     abbreviation: 'A',
     text: 'Asistencia',
@@ -30,7 +30,7 @@ export const OPERATIONS_CATALOG_DATA = [
     color: '#ff0000'
   },
   {
-    abbreviation: 'TEP',
+    abbreviation: 'TE',
     text: 'Tiempo extra',
     color: '#00b050'
   },
@@ -45,15 +45,20 @@ export const OPERATIONS_CATALOG_DATA = [
     color: '#bf8f00'
   },
   {
+    abbreviation: 'DL&TE',
+    text: 'Descanso laborado y tiempo extra',
+    color: '#bf8f00'
+  },
+  {
     abbreviation: 'B',
     text: 'Baja',
     color: '#ff0000'
   },
-  {
-    abbreviation: 'O',
-    text: 'Otros',
-    color: '#ffffff'
-  },
+  // {
+  //   abbreviation: 'O',
+  //   text: 'Otros',
+  //   color: '#ffffff'
+  // },
   {
     abbreviation: 'R',
     text: 'Descanso fijo',

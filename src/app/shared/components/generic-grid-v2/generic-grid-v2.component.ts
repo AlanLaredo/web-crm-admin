@@ -20,7 +20,6 @@ import { MatDialog } from '@angular/material/dialog'
 export class GenericGridv2Component<T> implements AfterViewInit {
   @Input('data')
   set data (data: T[]) {
-    console.log(data)
     if (data !== null) {
       this._data = data
       this.loadData()
@@ -30,8 +29,13 @@ export class GenericGridv2Component<T> implements AfterViewInit {
   @Input('columns')
   set columns (columns: any[]) {
     if (columns !== null) {
-      this._columns = columns
+      this._columns = columns.filter(item => item.key !== 'actions')
+      const existsActions = columns.find(item => item.key === 'actions')
+
       this.displayedColumns = this._columns.map(column => column.key)
+      if (existsActions) {
+        this.displayedColumns.push('actions')
+      }
       this.updateElements()
     }
   }

@@ -13,6 +13,7 @@ export default gql`mutation updatePosition($updatePositionData: UpdatePositionIn
         name
         clientId
         salary
+        salaryExtra
         hoursPerShift
         bonus
     }

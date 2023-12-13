@@ -28,8 +28,9 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
   @Input('columns')
   set columns (columns: IGeneralGridColumn[]) {
     if (columns !== null) {
-      this._columns = columns
-      this.displayedColumns = this._columns.map(column => column.id)
+      this._columns = columns.filter(column => column.id !== 'actions')
+      this.displayedColumns = columns.map(column => column.id)
+
       this.updateElements()
     }
   }
@@ -63,13 +64,14 @@ export class GeneralCatalogGridComponent implements AfterViewInit {
     name: 'catalogs.cols.description',
     type: 'text'
 
-  }, {
-    id: 'actions',
-    name: 'catalogs.cols.actions',
-    type: 'text'
   }]
+  // , {
+  //   id: 'actions',
+  //   name: 'catalogs.cols.actions',
+  //   type: 'text'
+  // }
 
-  displayedColumns: string[] = this._columns.map(column => column.id)
+  displayedColumns: string[] = [...this._columns.map(column => column.id), 'actions']
   _viewServices: boolean = false
   dataSource: any
 

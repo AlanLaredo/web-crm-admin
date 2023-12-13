@@ -63,6 +63,7 @@ export class PositionGridContainer implements OnInit {
     this.columns = this.filterOptions.map((column: any) => {
       column.id = column.key
       column.name = column.text
+      column.type = 'text'
       return column
     })
 

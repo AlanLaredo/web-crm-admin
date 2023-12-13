@@ -489,6 +489,7 @@
     "name": "Nombre",
     "clientName": "Cliente",
     "salary": "Salario diario",
+    "salaryExtra": "Salario jornada extra",
     "hoursPerShift": "Duración turno",
     "bonus": "Bonus"
   },
