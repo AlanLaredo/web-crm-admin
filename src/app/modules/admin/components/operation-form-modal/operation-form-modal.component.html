@@ -8,7 +8,7 @@
       <mat-select formControlName="abbreviation" (selectionChange)="updateDescription($event)">
         <mat-option *ngFor="let operation of _operations; let i = index" [value]="operation.abbreviation"
           [ngStyle]="{ 'background': operation.color }">
-          <span [ngStyle]="{ 'color': 'black' }">
+          <span >
             <!-- operation.color.replace('0f', '') -->
             ({{operation.abbreviation}})
           </span>

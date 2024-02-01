@@ -1,8 +1,8 @@
 
 export const environment = {
-  production: true,
-  rest_api_url: 'http://52.117.21.213:3001',
-  graphql_api_url: 'http://52.117.21.213:3001/admin',
+  production: false,
+  rest_api_url: 'http://localhost:3001',
+  graphql_api_url: 'http://localhost:3001/admin',
   authTokenKey: 'Production',
   version: '1.0.0',
   aws_file_service: {

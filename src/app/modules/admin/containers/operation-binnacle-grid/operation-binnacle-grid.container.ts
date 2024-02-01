@@ -261,6 +261,8 @@ export class OperationBinnacleGridContainer implements OnInit {
           if (response.id) {
             this.notifyService.notify(this.translate.instant('messages.update.success'), 'success')
           }
+          this.loading = false
+
           this.loadData()
         }
       }

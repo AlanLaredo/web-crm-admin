@@ -12,7 +12,7 @@ export const OPERATIONS_CATALOG_DATA = [
   {
     abbreviation: 'PSS',
     text: 'Permiso sin goce de sueldo',
-    color: '#00b0f0'
+    color: '#00b0f1'
   },
   {
     abbreviation: 'D',

@@ -15,7 +15,7 @@
                   <span *ngIf="column.key!=='phone' || row[column.key] === 'N/A'">{{row[column.key]}}</span>
                 </span>
 
-                <button mat-button color="accent" *ngIf="['restDay', 'workshift', 'hours'].includes(column.key)" (click)="openDialog(column.key, row)" class="float-left">
+                <button mat-button color="accent" *ngIf="['restDay', 'workshift', 'hours'].includes(column.key)" (click)="openDialog(column.key, row)" class="float-left" >
                   <mat-icon>settings</mat-icon>
                   {{row[column.key] ? row[column.key] : ' -- ' }} {{ 'hours' === column.key && row[column.key] ? 'hrs' : ''}}
                 </button>
@@ -23,11 +23,12 @@
                 <button mat-icon-button class="m-1" color="accent" *ngIf="row[column.key] && row[column.key].dateTime && operationButton"
                 (click)="setOperation({ employee: row, _function: 'operation', operation: row[column.key] })"
                 matTooltip="{{row[column.key].text}}"
-                [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor.replace('0f', '40') : ''}"
+                [ngStyle]="{ 'background': row[column.key].operationColor ? row[column.key].operationColor : ''}"
                 matBadge="{{row[column.key].operationComments ? '💬' : ''}}"
-                matBadgeColor="primary" matBadgeSize="small">
+                matBadgeColor="primary" matBadgeSize="small"
+                [disabled]="_loading"> 
                   <mat-icon class="font-size-18" [ngClass]="row[column.key].operation ? 'text-success' : ''" *ngIf="!row[column.key].operation">pending_actions</mat-icon>
-                  <span>{{row[column.key].operation}}</span>
+                  <span>{{row[column.key].operation}}</span>{{loading}}
                   <!-- {{row[column.key].operationComments}} -->
                 </button>
                 <!-- row[column.key].operationConfirmComments -->
@@ -36,9 +37,10 @@
                  matBadgeColor="warn" matBadgeSize="small"
                 (click)="setOperation({ employee: row, _function: 'operationConfirm', operation: row[column.key] })"
                 matTooltip="{{row[column.key].textConfirm}}"
-                [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor.replace('0f', '40') : ''}">
+                [ngStyle]="{ 'background': row[column.key].operationConfirmColor ? row[column.key].operationConfirmColor : ''}"
+                [disabled]="_loading">
                   <mat-icon class="font-size-18" [ngClass]="row[column.key].operationConfirm ? 'text-success' : ''" *ngIf="!row[column.key].operationConfirm">pending_actions</mat-icon>
-                  <span>{{row[column.key].operationConfirm}}</span>
+                  <span>{{row[column.key].operationConfirm}}</span> {{loading}}
                 </button>
               </div>
             </div>

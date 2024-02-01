@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router'
 import { AppModule } from './app/app.module'
 import { environment } from './environments/environment'
 import { routes } from './app/app-routing.module'
+
 if (environment.production) {
   enableProdMode()
 }
